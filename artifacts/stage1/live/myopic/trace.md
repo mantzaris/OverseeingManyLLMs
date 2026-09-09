@@ -1,0 +1,7 @@
+# Episode trace
+
+Scoring/diagnostic artifact; not an agent observation.
+
+| Tick | Event | Details |
+| --- | --- | --- |
+| None | run_blocked | `{"accrued_loss": null, "attempts": 0, "completion_tokens": 0, "correct_jobs": null, "corrections": 0, "episode_wall_seconds": 0.0, "error": "RuntimeError: Existing SSH key ~/.ssh/id_ed25519 is absent; SSH-agent access is denied (Operation not permitted); direct SSH cannot create a socket (Operation not permitted). No permitted authenticated route to the pod was established.", "evidence": "no_gpu_inference", "expired_requests": 0, "jobs_closed": 0, "late_returns": 0, "planned_calls": 12, "policy": "myopic", "prompt_tokens": 0, "request_wall_seconds": 0.0, "review_busy_ticks": 0, "reviews_completed": 0, "reviews_started": 0, "scenario_hash": "46a0826cab9be11d19cdac899a1febe746c52296070d8ab010bea452c3545e55", "scheduled_calls": 0, "seed": 100, "simulated_ticks_completed": 0, "status": "blocked", "total_loss": null, "unknown_token_attempts": 0}` |

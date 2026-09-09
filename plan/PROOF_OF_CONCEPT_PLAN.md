@@ -84,6 +84,8 @@ Estimated review benefit is `p̂_i G_i(T)`, assuming the declared perfect superv
 
 At most three pending jobs give 16 ordered subsets. This optimizes the estimated static queue, not the evolving episode. All policies share the feasibility guard. Known deadlines/durations make late completed reviews normally zero; report expired unserved requests separately to capture lost opportunities.
 
+**Review note (2026-09-09):** The first bounded implementation stage is accepted. For later evaluation, add a delay-aware greedy baseline ranking each pending request by `p_i * G_i(t+s_i)`, its estimated benefit at earliest completion. Comparing this with queue-order search will separate delay awareness from lookahead. Adding that baseline requires updating the later experiment matrix and runtime forecast; this stage retains the four policies above.
+
 ## Experiment matrix and validity
 
 | Stage | Independent scenarios and runs |
