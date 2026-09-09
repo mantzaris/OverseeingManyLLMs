@@ -1,0 +1,22 @@
+{
+  "stage": "stage1_gpu_recovery",
+  "stage_started_utc": "2026-09-09T17:58:37+00:00",
+  "observed_utc": "2026-09-09T18:01:15+00:00",
+  "private_key_path": "~/.ssh/id_rsa",
+  "private_key_readable": true,
+  "private_key_permissions": "0600",
+  "private_key_contents_read_or_logged": false,
+  "ssh_agent_probe_output": "Error connecting to agent: Operation not permitted\n",
+  "direct_ssh_attempts": 1,
+  "gateway_ssh_attempts": 0,
+  "command": "ssh -o BatchMode=yes -o ConnectTimeout=10 -i ~/.ssh/id_rsa -p 19211 root@209.170.80.132 'hostname; nvidia-smi'",
+  "exit_code": 255,
+  "combined_output": "socket: Operation not permitted\r\nssh: connect to host 209.170.80.132 port 19211: failure\r\n",
+  "blocker": "Execution environment prohibits the SSH socket: socket: Operation not permitted. The existing RSA key is readable; connection failed before authentication to 209.170.80.132:19211.",
+  "pod_connection_established": false,
+  "remote_commands_executed": false,
+  "hardware_verified": false,
+  "runtime_compatibility_repairs_attempted": 0,
+  "final_server_status": "unknown; pod unreachable and untouched",
+  "note": "No gateway retry or attempt to bypass socket restrictions. No key contents, passphrases, credentials, or authentication files were copied."
+}
