@@ -48,12 +48,12 @@ def parse_action(body):
 
 
 class GPUClient:
-    evidence = "live_a100"
+    evidence = "live_l40s"
 
     def __init__(self, config, raw_path, deadline, max_calls=12):
         parsed = urllib.parse.urlparse(config["base_url"])
         if parsed.scheme != "http" or parsed.hostname != "127.0.0.1" or parsed.path != "/v1":
-            raise ValueError("Run the client on the A100 pod against its loopback vLLM server")
+            raise ValueError("Run the client on the verified GPU pod against its loopback vLLM server")
         if parsed.username or parsed.password or parsed.query or parsed.fragment:
             raise ValueError("Endpoint must not contain credentials or query data")
         self.config, self.deadline, self.max_calls = config, deadline, max_calls

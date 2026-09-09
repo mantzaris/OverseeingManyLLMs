@@ -127,7 +127,7 @@ class BackboneChecks(unittest.TestCase):
         self.assertIsNone(result["total_loss"])
         self.assertIsNone(replay_score(self.path / "e.jsonl")["total_loss"])
 
-    def test_gpu_gate_rejects_non_a100_before_any_request(self):
+    def test_gpu_gate_rejects_non_l40s_before_any_request(self):
         with patch("overseeing.gpu.output", return_value="GPU-test, CPU substitute, 80000, 15000, 1, 0"):
             with self.assertRaises(RuntimeError):
                 collect_evidence(1, self.path / "none.log", self.path / "gpu.json")

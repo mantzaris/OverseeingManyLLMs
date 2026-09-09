@@ -1,7 +1,7 @@
 """Only mechanics, the authorized four-run demo, blocked records, and replay."""
 
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import hashlib
 import importlib.metadata
 import json
@@ -19,6 +19,30 @@ from .replay import replay_score
 from .simulator import StipulatedProposals, run_episode
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def validate_deadline(deadline_utc, clock, continuation=None, now=None):
+    """Select an explicitly recorded authorization; never extend the overall cap."""
+    now = now or datetime.now(timezone.utc)
+    deadline = datetime.fromisoformat(deadline_utc)
+    maximum = datetime.fromisoformat(clock["stage1_deadline_utc"])
+    if continuation:
+        stages = [s for s in clock.get("continuation_stages", []) if s["name"] == continuation]
+        if len(stages) != 1:
+            raise ValueError("Continuation must name one recorded user authorization")
+        stage = stages[0]
+        start = datetime.fromisoformat(stage["started_utc"])
+        maximum = datetime.fromisoformat(stage["deadline_utc"])
+        if (start.tzinfo is None or maximum.tzinfo is None or start > now
+                or not start < maximum <= start + timedelta(hours=2)
+                or stage.get("authorization") != "explicit_user_request"):
+            raise ValueError("Invalid authorized continuation window")
+    overall = datetime.fromisoformat(clock["overall_deadline_utc"])
+    if deadline.tzinfo is None or maximum.tzinfo is None or overall.tzinfo is None:
+        raise ValueError("Deadlines require a UTC offset")
+    if deadline > min(maximum, overall) or deadline <= now:
+        raise ValueError("Deadline exceeds the recorded stage/overall window or has expired")
+    return deadline
 
 
 def load_config(path):
@@ -150,14 +174,11 @@ def run_demo(args, blocked=False):
             connection = json.loads(Path(args.connection).read_text())
             manifest["connection"] = connection
             raise RuntimeError(connection["blocker"])
-        deadline = datetime.fromisoformat(args.deadline_utc)
-        if deadline.tzinfo is None:
-            raise ValueError("Deadline requires a UTC offset")
         clock = json.loads((ROOT / "reports/implementation_clock.json").read_text())
-        maximum = min(datetime.fromisoformat(clock["stage1_deadline_utc"]),
-                      datetime.fromisoformat(clock["overall_deadline_utc"]))
-        if deadline > maximum or deadline <= datetime.now(timezone.utc):
-            raise ValueError("Deadline exceeds the recorded stage/overall window or has expired")
+        continuation = getattr(args, "continuation", None)
+        deadline = validate_deadline(args.deadline_utc, clock, continuation)
+        manifest["continuation"] = continuation
+        manifest["authorization_clock"] = clock
         manifest["deadline_utc"] = deadline.isoformat()
         port = urllib.parse.urlparse(config["base_url"]).port or 8000
         collect_evidence(args.server_pid, args.server_log, out / "gpu_before.json", port)
@@ -231,6 +252,7 @@ def main():
             sub.add_argument("--server-pid", required=True, type=int)
             sub.add_argument("--server-log", required=True)
             sub.add_argument("--deadline-utc", required=True)
+            sub.add_argument("--continuation", help="Name of an explicitly authorized recorded continuation")
         else:
             sub.add_argument("--connection", required=True)
     args = parser.parse_args()

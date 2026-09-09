@@ -53,7 +53,7 @@ def run_episode(scenario, policy, provider, events_path, review_ticks=2,
     emit("episode_started", 0, policy=policy, evidence=provider.evidence,
          scenario=scenario.record(), scenario_hash=scenario.hash,
          review_ticks=review_ticks, p_error="fixture_override" if fixture_probabilities else 0.5,
-         planned_calls=12 if provider.evidence == "live_a100" else 0)
+         planned_calls=12 if provider.evidence in ("live_a100", "live_l40s") else 0)
     private = {j.public.job_id: j for j in scenario.jobs}
     histories = {j.public.agent_id: [] for j in scenario.jobs}
     states, pending = {}, {}
@@ -165,7 +165,7 @@ def run_episode(scenario, policy, provider, events_path, review_ticks=2,
     result = {
         "policy": policy, "seed": scenario.seed, "scenario_hash": scenario.hash,
         "evidence": provider.evidence, "status": status, "error": error,
-        "planned_calls": 12 if provider.evidence == "live_a100" else 0,
+        "planned_calls": 12 if provider.evidence in ("live_a100", "live_l40s") else 0,
         "total_loss": accrued_loss if status == "completed" else None,
         "accrued_loss": accrued_loss,
         "loss_upper_bound": sum(j.public.cost_per_tick * (j.public.deadline - j.public.release)

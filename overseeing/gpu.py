@@ -11,6 +11,9 @@ import sys
 from .client import MODEL, REVISION
 from .io import utc_now, write_json
 
+EXPECTED_GPU_NAME = "NVIDIA L40S"
+MINIMUM_GPU_MEMORY_MIB = 45000
+
 REQUIRED_FLAGS = {
     "--revision": REVISION, "--tokenizer-revision": REVISION,
     "--dtype": "bfloat16", "--tensor-parallel-size": "1", "--max-model-len": "2048",
@@ -23,6 +26,32 @@ REQUIRED_FLAGS = {
 def output(command):
     return subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                           text=True, timeout=10).stdout.strip()
+
+
+def validate_hardware(gpus):
+    if (len(gpus) != 1 or gpus[0][1] != EXPECTED_GPU_NAME
+            or float(gpus[0][2]) < MINIMUM_GPU_MEMORY_MIB):
+        raise ValueError("Expected one NVIDIA L40S with at least 45000 MiB total memory")
+
+
+def cuda_runtime_evidence():
+    import torch
+    if (not torch.cuda.is_available() or torch.cuda.device_count() != 1
+            or torch.cuda.get_device_name(0) != EXPECTED_GPU_NAME
+            or not torch.cuda.is_bf16_supported()):
+        raise ValueError("Expected one CUDA L40S with native BF16 support")
+    # A tiny CUDA BF16 kernel verifies the runtime, independently of driver compatibility.
+    with torch.inference_mode():
+        x = torch.ones((32, 32), device="cuda:0", dtype=torch.bfloat16)
+        y = x @ x
+        torch.cuda.synchronize()
+        if y.dtype != torch.bfloat16 or y.device.type != "cuda" or y[0, 0].item() != 32:
+            raise ValueError("CUDA BF16 kernel verification failed")
+    return {"torch": torch.__version__, "torch_cuda_runtime": torch.version.cuda,
+            "device_name": torch.cuda.get_device_name(0),
+            "compute_capability": list(torch.cuda.get_device_capability(0)),
+            "native_bf16_supported": True, "bf16_matmul_device": str(y.device),
+            "bf16_matmul_dtype": str(y.dtype), "bf16_matmul_verified": True}
 
 
 def descendant(pid, ancestor):
@@ -48,8 +77,10 @@ def collect_evidence(server_pid, server_log, path, expected_port=8000):
                            "--format=csv,noheader,nounits"])
         record["gpu_query"] = gpu_text
         gpus = list(csv.reader(gpu_text.splitlines(), skipinitialspace=True))
-        if len(gpus) != 1 or "A100" not in gpus[0][1] or float(gpus[0][2]) < 70000:
-            raise ValueError("Expected the single allocated A100 80GB")
+        validate_hardware(gpus)
+        record["expected_gpu_name"] = EXPECTED_GPU_NAME
+        record["minimum_gpu_memory_mib"] = MINIMUM_GPU_MEMORY_MIB
+        record["cuda_runtime"] = cuda_runtime_evidence()
         args = Path("/proc/{}/cmdline".format(server_pid)).read_bytes().decode().strip("\0").split("\0")
         if "serve" not in args or MODEL not in args or "--enforce-eager" not in args:
             raise ValueError("PID is not the planned vLLM serve command")
@@ -81,6 +112,8 @@ def collect_evidence(server_pid, server_log, path, expected_port=8000):
             and not any(k in line.lower() for k in ("api_key", "authorization", "password", "secret"))][-100:]
         if not any("cuda" in line.lower() for line in record["relevant_server_log"]):
             raise ValueError("Server logs do not establish CUDA execution")
+        if not any("bfloat16" in line.lower() for line in record["relevant_server_log"]):
+            raise ValueError("Server logs do not establish BF16 model placement")
         record["status"] = "placement_verified"
     except Exception as exc:
         record["error"] = "{}: {}".format(type(exc).__name__, exc)

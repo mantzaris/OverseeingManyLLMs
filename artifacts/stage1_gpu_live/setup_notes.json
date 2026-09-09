@@ -1,0 +1,22 @@
+{
+  "inference_failures": 0,
+  "inference_retries": 0,
+  "setup_repairs": [
+    {
+      "issue": "Local orchestration used unavailable btoa helper before changing the pod.",
+      "resolution": "Passed the public key directly to the authenticated gateway with structured quoting."
+    },
+    {
+      "issue": "Initial tar extraction tried to preserve local UID/GID on the pod persistent filesystem: Cannot change ownership to uid 1000, gid 1000: Operation not permitted. The command stopped before launching the server.",
+      "resolution": "Extracted with tar --no-same-owner. Existing services and authentication configuration were unchanged."
+    },
+    {
+      "issue": "Initial synthetic placement test mocked os.readlink globally; platform.platform then tried to read /test/python and failed.",
+      "resolution": "Isolated platform metadata in the test mock; 11 focused checks subsequently passed."
+    },
+    {
+      "issue": "First result-copy command used a remote /. source, which SCP rejected as unexpected filename: .",
+      "resolution": "Copied the named stage1_gpu_live directory successfully. No live run was repeated."
+    }
+  ]
+}
