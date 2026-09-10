@@ -8,6 +8,33 @@ Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy
 
 All 56 episodes completed and replayed: **672 experimental generations plus one placement**, with no retries or failures. Calibration had 87 agreeing pairs (12 errors) and nine disagreeing pairs (five errors), so disagreement used pooled fallback. Validation loss totaled 60 for FCFS/uncertainty-first and 62 for myopic/greedy/queue search; each policy corrected two jobs. Queue search and greedy chose identical review orders on all eight scenarios. These ties and negative results are retained.
 
+## Robustness study and ICAART manuscript
+
+Stage 6 is complete on **24 fresh source cases in eight disjoint bundles**, each with three GPU preparation replicates. It preserves the Stage 5 risk estimator and preparation interface while separately testing approve-or-block authority and one extra review tick for multi-item proposals. All 120 prior accounts are excluded across the pinned train/dev/test splits. Only ten eligible modification accounts remain, so the declared eight-bundle fallback is used.
+
+The restricted-authority primary result is unfavorable to search: **+1.6667 loss points versus greedy, 95% paired interval [0.0000, 4.6667], W/T/L 0/6/2**. Blocking prevents posting consequences but does not complete the request. All policies complete the same 39 initially correct tasks under this authority. The 72 fresh workflows include 51 staged proposals, 12 initial errors and 21 unstaged failures. All 675 GPU calls succeed with no retries. The 864 fresh policy traces and 3,456 separate post hoc traces replay, including 1,152 exact historical reference matches.
+
+| Fresh two-tick policy | Correction mean loss | Approve/block mean loss | Complexity-time mean loss |
+|---|---:|---:|---:|
+| No review | 9.8333 | 9.8333 | 9.8333 |
+| FCFS | 5.5000 | 7.0000 | 5.8333 |
+| EDF | 5.5000 | 7.0000 | 5.8333 |
+| Uncertainty-first | 3.5000 | 5.5000 | 3.8333 |
+| Delay-aware greedy | 3.5000 | 5.5000 | 3.8333 |
+| Queue-order search | 5.8333 | 7.1667 | 6.1667 |
+
+At one tick, every review policy prevents all staged errors in each fresh condition. The restricted-authority completion floor and no-review invariance follow from the semantics. They are not new empirical discoveries. The fresh eight bundles and the post hoc 32-bundle sensitivity remain separate; broad source templates are shared and public-data contamination is not ruled out.
+
+Read the [Stage 6 report](reports/STAGE6_ROBUSTNESS.md), [source-based assumption review](paper/RETAIL_ASSUMPTION_REVIEW.md), [manuscript](paper/main.pdf), [supplement](paper/supplement.pdf), and [reproduction guide](paper/STAGE6_REPRODUCTION.md). The nine-page manuscript and ten-page supplement use the official ICAART 2027 template. Human authors must finalize submission declarations and confirm AI-disclosure/supplement handling; nothing is pushed or submitted.
+
+With the analysis dependencies and LaTeX installed, reproduce saved tables, figures and both PDFs without inference:
+
+```bash
+bash scripts/replay_stage6.sh
+```
+
+The [plan](plan/STAGE6_ROBUSTNESS_PLAN.md) and [frozen declaration](artifacts/stage6_robustness/batches/evaluation/declaration.json) predate fresh inference. The original GPU server remains healthy and the separate Stage 6 server/workers are stopped. Stage 6 has its own six-hour clock; all earlier clocks and evidence remain intact.
+
 ## Practical retail application
 
 The Stage 5 study uses 96 evaluation source cases in 32 bundles, three fresh GPU preparation replicates and two review capacities. FCFS, EDF, uncertainty-first, greedy, search and no review receive identical saved transactions; policy replay isolates scheduling without claiming subsequent agent feedback adaptation. A development-only application estimator replaces the maintenance risk model. Upstream tool guards remain active, while only a completed perfect simulated review can correct a staged semantic mistake before its processing cutoff.

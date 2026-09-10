@@ -1,0 +1,11 @@
+\subsection{Fresh Unfavorable and Tied Cases}
+
+No fresh restricted-authority run gives search lower loss than greedy. The first unfavorable run is bundle 06, replicate 2. Modification case train:466 proposes a wrong available variant. It has arrival zero, cutoff five, processing weight four and predicted error 0.2917. Cancellation case train:356 is correct, with arrival zero, cutoff two, weight twelve and predicted error 0.04. Exchange train:177 arrives at one, is correct, and has cutoff five, weight eight and predicted error 0.4762.
+
+Search first protects the expiring cancellation, then chooses the exchange at tick two. The modification can no longer finish review after tick four and posts at five. Its service cost four plus posting cost four yields loss eight. Greedy blocks the modification at two, leaving service loss four, then approves the exchange. The unreviewed correct cancellation posts at its cutoff without error. This illustrates how preserving an opportunity under a public expected-value model can fail to preserve an actual error.
+
+The first tie is bundle 00, replicate 0. Both policies approve the cancellation at two and block an incomplete return proposal at four. The modification has no staged proposal. Both have loss eight, consisting of the unresolved return and the unstaged modification. The first preparation failure is that modification, train:421. It finishes without a mutation; the failure field is null because no runtime exception occurs. This is still an unsuccessful retained workflow.
+
+\subsection{Saved-Data Benefit and Failure}
+
+The post hoc cohort contains a first qualifying benefit at bundle 28, replicate 0, with search-minus-greedy loss $-4$. Its first unfavorable case is bundle 09, replicate 0, with difference $+4$, and its first tie is bundle 00, replicate 0. The first unstaged failure is train:062 in bundle 00, replicate 2, which exhausts all 14 tool turns. The complete source intentions, proposed and annotated actions, and tick-by-tick review and posting events are saved in the companion trace files. These examples are selected by first qualification, not effect size.

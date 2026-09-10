@@ -1,0 +1,43 @@
+{
+  "captured_utc": "2026-09-10T22:40:03.906026+00:00",
+  "remaining_experimental_workers": [],
+  "server_processes": {
+    "exit_code": 0,
+    "output": "PID ELAPSED %CPU %MEM COMMAND\n   7338   79477  0.9  0.0 /workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/bin/python /workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/bin/vllm serve Qwen/Qwen2.5-7B-Instruct --revision a09a35458c702b33eeacc393d103063234e8bc28 --tokenizer-revision a09a35458c702b33eeacc393d103063234e8bc28 --dtype bfloat16 --tensor-parallel-size 1 --max-model-len 2048 --max-num-seqs 1 --gpu-memory-utilization 0.5 --enforce-eager --cpu-offload-gb 0 --swap-space 0 --generation-config vllm --seed 20260909 --host 127.0.0.1 --port 8000\n   8449   79348 10.4  0.1 VLLM::EngineCore"
+  },
+  "gpu": {
+    "exit_code": 0,
+    "output": "name, uuid, driver_version, memory.total [MiB], memory.used [MiB], utilization.gpu [%]\nNVIDIA RTX 6000 Ada Generation, GPU-c9db04c6-026b-f6d2-e711-de40c5b3e9cd, 580.126.20, 49140 MiB, 24628 MiB, 0 %"
+  },
+  "compute_processes": {
+    "exit_code": 0,
+    "output": "pid, process_name, used_gpu_memory [MiB]\n8449, VLLM::EngineCore, 24618 MiB"
+  },
+  "disk": {
+    "exit_code": 0,
+    "output": "Filesystem                                                   Size  Used Avail Use% Mounted on\nus-ca-2-vast.runpod.net:/runpodfs/networkvolumes/a9bi5tffa6   70G   24G   47G  34% /workspace"
+  },
+  "nvcc_on_path": null,
+  "packages": {
+    "torch": "2.8.0",
+    "vllm": "0.10.2",
+    "transformers": "4.55.2"
+  },
+  "endpoints": {
+    "health": {
+      "status": 200,
+      "body": ""
+    },
+    "metrics": {
+      "status": 200,
+      "body": "vllm:num_requests_running{engine=\"0\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 0.0\nvllm:num_requests_waiting{engine=\"0\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 0.0\nvllm:prompt_tokens_total{engine=\"0\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 1.1387315e+07\nvllm:generation_tokens_total{engine=\"0\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 359645.0\nvllm:request_success_total{engine=\"0\",finished_reason=\"stop\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 51347.0\nvllm:request_success_total{engine=\"0\",finished_reason=\"length\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 0.0\nvllm:request_success_total{engine=\"0\",finished_reason=\"abort\",model_name=\"Qwen/Qwen2.5-7B-Instruct\"} 0.0"
+    },
+    "v1/models": {
+      "status": 200,
+      "body": "{\"object\":\"list\",\"data\":[{\"id\":\"Qwen/Qwen2.5-7B-Instruct\",\"object\":\"model\",\"created\":1789080003,\"owned_by\":\"vllm\",\"root\":\"Qwen/Qwen2.5-7B-Instruct\",\"parent\":null,\"max_model_len\":2048,\"permission\":[{\"id\":\"modelperm-62c8524dfd0c442680bfb6a98f1cba85\",\"object\":\"model_permission\",\"created\":1789080003,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":true,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]}]}"
+    }
+  },
+  "new_generations": 0,
+  "services_changed": false,
+  "billing_information": "Not available from this runtime inspection; no monetary allocation estimate inferred."
+}

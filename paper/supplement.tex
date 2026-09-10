@@ -1,0 +1,127 @@
+\input{preamble}
+\begin{document}
+\title{Supplement to Planning Shared Review for Language Model Workflows with Expiring Intervention Opportunities}
+\author{\authorname{Anonymous Companion Material}}
+\keywords{Reproducibility, Review Semantics, Paired Evaluation.}
+\abstract{This companion records experimental matrices, operational assumptions, source-case provenance, paired robustness diagnostics and replay procedures for the shared-review study. It separates the original maintenance distributions from constructed competition, and separates fresh retail source cases from post hoc analysis of earlier preparations. Detailed outcome tables retain failures and blocked unresolved requests. The main paper contains the formulation, central comparisons, uncertainty and limitations needed to assess its claims. This supplement provides additional inspection and reproduction detail. It is a local research companion and is not represented as an accepted supplementary submission under the conference policy.}
+\onecolumn\maketitle\normalsize\setcounter{footnote}{0}\vfill
+
+\section{EVIDENCE ORGANIZATION}
+\noindent The evidence package retains immutable declarations, source snapshots, model requests and responses, event traces, estimators and accounting ledgers. Development chronology resides in stage reports rather than the main scientific argument. Original, competition and larger maintenance distributions remain separate. Original retail and the fresh operational follow-up are also separate cohorts.\draftcredit
+
+The completed maintenance evaluation contains 2,752 episodes, with 304 development episodes and 128 separate repeated-request diagnostic generations. Its 48,320 GPU attempts include all development, evaluation and diagnostic calls. The original retail stage contains two preserved pilots, a 72-workflow calibration set and a 288-workflow evaluation. The first pilot staged no transactions; one declared interface revision corrected tool-before-argument serialization and added public progress information. It does not identify the separate causal effects of those two changes. The frozen follow-up leaves this interface unchanged.
+
+\subsection{Maintenance Matrices}
+Original scenarios use seeds 10000--10063 and competition uses 11000--11063. Each has six policies and both review durations under frozen agreement risk. The two alternative-risk rules use the first 32 seeds in each workload with greedy and search, while reusing matching frozen rows as the reference. Larger-workload scenarios use 12000--12031, three and six agents, four policies and both durations. The selected objective extension uses 13000--13015 with the declared additional-closure penalties 0, 4 and 8. It is a development-selected objective study, not a universal objective search.
+
+The original distribution and competition matrices contribute 1,536 episodes, alternative-risk rollouts 512, larger workload 512, and the objective extension 192. These are repeated conditions, not 2,752 independent scenarios. The frozen scenario prefixes are not extended based on observed outcomes. All completed traces replay.
+
+\subsection{Observation and Feedback Boundary}
+Maintenance model inputs contain released public job information and that agent's own history. Schedulers receive public request records rather than private job objects. Before review completion, neither has definitive fault labels. Reviews finish before same-tick deadline closure, so equality can prevent a terminal penalty. Downtime accumulated before correction remains. Search has no access to the generator's future waves.
+
+Retail preparation has its own agent history and no access to annotated targets. Authentication, account ownership, retrieval and confirmation checks apply before a mutation can be staged. The scheduler then receives only arrived transaction requests and public risk, cost, cutoff and service-time fields. Hidden proposal correctness is consulted by completed perfect review and offline scoring. Other-policy choices logged on the same public state are diagnostics and do not alter the executed policy.
+
+\section{RETAIL SOURCE AND SEMANTICS}
+\noindent The source is the MIT-licensed retail component of $\tau$-bench \cite{yao2024tau}, pinned at revision
+\begin{quote}\small\ttfamily
+59a200c6d575d595120f1cb70fea53cef0632f6b
+\end{quote}
+The selected substrate retains all orders for each isolated account and the full product catalog. Tool functions are unmodified. The original package's hosted user simulator is not imported. The adapter reproduces its recursive final-database hash semantics and verifies target mutations on isolated state.\draftcredit
+
+The supported mutation tools are cancellation, pending-order item modification, delivered-order item return and delivered-order item exchange. Account lookup, account retrieval, order retrieval and product retrieval remain genuine tool steps. Item-modification and exchange calls require the full desired list, compatible available variants and valid payment. A wrong but available variant can pass these checks and fail the recorded user intent. Review therefore addresses a different error class from an invalid tool call.
+
+The customer script repeats only the task's operational information. It confirms the proposal that the agent displays, without independently checking product identifiers against hidden targets. This is not an oracle user. The source audit checks intent-to-annotation consistency without model outputs, including order identity, cancellation reason, refund/payment destination, old/new options, unique available target variants, return names and multiplicities. Broad source templates remain shared across partitions.
+
+\subsection{Operational Assumptions}
+The following distinctions guide interpretation.
+\begin{itemize}
+\item A staged mutation is a proposed database operation. Posting it is a committed application transition. Physical delivery, receipt and payment settlement are not simulated.
+\item A review cutoff is our constructed latest completion time for preventing the posting consequence. It is not a measured retailer deadline. The backend does not advance a pending order to shipped merely because a tick passes.
+\item Corrective review assumes permission to restore the complete recorded intent without renewed customer confirmation. Restricted review removes that power and retains perfect detection only.
+\item Blocking a wrong transaction prevents its processing consequence but leaves four points of unresolved service loss. It is neither a completed task nor a successful correction.
+\item Complexity time depends on the proposed public item list. If an agent omits an item, the proxy may make that proposal appear simpler. This is retained rather than repaired using hidden targets.
+\item Exact database equality may penalize a reason or payment-field difference more strictly than a domain expert's operational equivalence judgment. Such judgments were not collected.
+\end{itemize}
+
+Shopify's documented editing, cancellation and return-processing interfaces support the distinction between request, approval and later processing \cite{shopify2026editing,shopify2026cancel,shopify2026returns}. They do not establish the simulation's numerical weights, perfect detection or service times. The source-based methodological review is not independent human expert validation.
+
+\subsection{Risk Estimator}
+Calibration includes all 64 successfully staged proposals from 72 development workflows, with labels taken before correction. No reviewed-only label filter is applied. Let a bin have $e$ initial errors among $n$ proposals. Its estimate is $(e+1)/(n+2)$ if $n\geq 10$, otherwise the pooled calibration estimate. The public feature is family plus an uncertainty flag for non-high reported confidence or a previous automatic rejection.
+
+\begin{table}[t]
+\caption{Frozen application calibration. All staged examples have the uncertainty flag. Unflagged bins have no examples and use pooled fallback.}
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+Family & Examples & Errors & Risk \\
+\midrule
+Cancellation & 23 & 0 & 0.0400 \\
+Modification & 22 & 6 & 0.2917 \\
+Return/exchange & 19 & 9 & 0.4762 \\
+Pooled & 64 & 15 & 0.2424 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The frozen estimator hash is
+\begin{quote}\small\ttfamily
+5734f6babfbd33655a76595f001251bd591\\
+4d94dde0c0e3401af3fc4a762a581
+\end{quote}
+No follow-up labels refit it. Prediction diagnostics condition on staging and are identical across scheduling conditions because preparations are shared. Unstaged failures remain in task and loss reporting.
+
+\section{FRESH FOLLOW-UP PROVENANCE}
+\noindent The source-pool audit examines all 635 pinned train, dev and test records. It finds 54 customer accounts appearing in multiple splits. Exclusion operates on account identity across splits, not just record IDs. All 120 Stage 5 accounts are excluded, including development and pilot records. Remaining eligible accounts number 10 for modification, 26 for cancellation and 69 for returns/exchanges before cross-family reservation. The 16-bundle target is therefore infeasible. The frozen fallback selects eight bundles from 24 globally unique training accounts. The source split does not establish absence from model training.\draftcredit
+
+Source order is train, dev, test, then ascending index. Modification is reserved first, followed by cancellation and returns/exchanges, with account deduplication throughout. No model outcome influences selection. Three generation replicates use identical case composition and public slot assignments. Scenario seeds 62000--62007 permute arrivals, windows, weights and agent-family order. Generation seeds hash the partition, bundle, case, replicate, step and retry, independently of policy or operational variant.
+
+\input{generated/source_bundles}
+
+The full frozen follow-up is 72 workflow attempts and 864 policy episodes. Its maximum preparation cost is 1,008 ordinary calls or 2,016 attempts with one retry per call. The stage-wide ceiling is 6,000 attempts. Model settings, source hashes, estimator, conditions, comparisons and failure handling were committed before the first fresh call. No difficult case is replaced.
+
+\section{PAIRED ANALYSIS DETAILS}
+\noindent For each source bundle, the three generation replicates are averaged before comparing policies. Bootstrap draws resample entire bundles, with all conditions kept together. The fresh sample therefore has eight independent bundle units. The post hoc sensitivity uses 32 earlier bundles and is not pooled with it. Fixed seed 20260916 generates 2,000 common-index resamples for the follow-up analyses.\draftcredit
+
+The original Stage 5 primary interval remains [$-0.3333,1.0000$] with its original analysis seed. Recomputing the same reference rows with the newly declared common bootstrap seed gives a slightly different upper endpoint, 0.9167. This finite Monte Carlo difference does not reflect changed outcomes. Both records are preserved.
+
+A reporting-direction defect in secondary completion rows was detected and repaired. The initial code labeled a negative completion difference as a win because it inherited the loss convention. The corrected labels treat more completed tasks as better. Numeric differences, intervals, simulation outcomes and the primary loss comparison are unchanged; the original tables and patch hashes are retained. Frozen preparation code and source snapshots remain intact.
+
+\input{generated/robustness_tables}
+
+\section{GENERATION AND PLANNING COSTS}
+\noindent Experiments use Qwen/Qwen2.5-7B-Instruct revision
+\begin{quote}\small\ttfamily
+a09a35458c702b33eeacc393d103063234e8bc28
+\end{quote}
+on one RTX 6000 Ada, BF16, with CPU model offload and swap disabled. The reused runtime has Python 3.11.13, PyTorch 2.8.0 with CUDA 12.8, vLLM 0.10.2 and Transformers 4.55.2. The driver is 580.126.20. Driver-reported compatibility is not used as evidence of the installed runtime. CUDA BF16 computation, server arguments, model identity, process ancestry and GPU allocation are recorded together.\draftcredit
+
+The original server on port 8000 is preserved. A separate retail server uses a 16,384-token context and 0.4 GPU-memory reservation. Requests are serial. Tokenization runs before each generation and enforces the declared input bound. Each attempt has a 60-second timeout, and each ordinary call allows one retry. Every request and failed attempt is retained in a session ledger and reconciled with raw evidence and server counters.
+
+Earlier maintenance exact search reached six eligible requests and 1,957 ordered subsets, with 22 observed decisions averaging 4.531 ms on its recorded host. Original retail search had at most two eligible requests at actual dispatch, examining five subsets and averaging 0.05135 ms over 218 such decisions. These are bounded host-planning measurements, not a scalability guarantee or GPU latency measure.
+
+\input{generated/stage6_accounting}
+
+\section{EXAMPLE SELECTION}
+\noindent Examples follow the frozen rule of the first numeric bundle and replicate satisfying each category under the primary restricted-authority condition. Categories are search benefit, tie, unfavorable result and preparation failure. A missing category is reported rather than filled with a convenient alternative. Full traces retain tool proposals, annotated targets for offline interpretation, review starts/completions, blocks, committed changes and incurred consequences.\draftcredit
+
+\input{generated/stage6_examples}
+
+\section{REPLAY AND REPRODUCTION}
+\noindent From a clean checkout, saved-data analysis requires Python 3.8 or later, NumPy and Matplotlib. It makes no inference requests. The declared inference path is one-shot, deadline-guarded and separate from analysis. Reproducing a fresh model output is not guaranteed by its seed. In earlier maintenance evidence, 38 identical-request groups had mixed actions; fresh generation variation and changes in feedback-dependent prompts are separate phenomena.\draftcredit
+
+The short saved-data path is:
+\begin{quote}\small\ttfamily
+bash scripts/replay\_stage6.sh
+\end{quote}
+This command verifies evidence, replays both cohorts, regenerates diagnostic tables and figures, and builds both PDFs.
+New analyses write only under the Stage 6 root. Historical reference traces are checked against their original values and all historical artifact hashes are preserved. The manuscript and supplement use the unchanged official template class, style and bibliography style. Source and build details are in the reproduction guide and stage report.
+
+Previously disclosed Stage 5 redactions remove unsolicited credential-like model text from auxiliary arguments and later prompt histories. Original request, response and file hashes remain, with exact originals retained on the authorized pod and in an ignored local evidence directory. Transactions, states, labels and accounting do not change. Public redacted prompts are not claimed to be byte-identical regeneration inputs. Any new follow-up publication redaction is separately recorded under its own evidence root.
+
+\section*{AI ASSISTANCE}
+OpenAI Codex assisted code, analysis, source checking, figure code and manuscript drafting and revision throughout this companion \cite{openai2026codex}. Reported numeric evidence comes from retained model outputs and deterministic simulation. Human authors must review and take responsibility for the complete submission. No human expert validation, author identity, funding or conflict declaration is invented.
+
+\clearpage
+\bibliographystyle{apalike}
+{\small\bibliography{references}}
+\end{document}

@@ -31,3 +31,26 @@ same automatic safeguards. These are mechanism baselines, not claims to
 reproduce the full cited systems. The practical contribution sought is the
 application adapter and controlled evidence about when queue planning changes
 retail consequences; exhaustive scheduling itself is inherited methodology.
+
+## Operational assumptions and submission bibliography
+
+The Stage 6 [source-based assumption review](RETAIL_ASSUMPTION_REVIEW.md)
+distinguishes upstream policy from platform documentation and constructed
+experimental quantities. Shopify documentation supports distinct editing,
+cancellation and return-processing stages. It does not establish our chosen
+review times, cutoffs, consequence weights or perfect reviewer authority.
+The approve-or-block comparison tests a restricted intervention mechanism;
+it is not an implementation of KnowNo, DeCCaF or a complete value-of-information
+communication system.
+
+The classical scheduling bibliography is now complete. Hariri, Potts and Van
+Wassenhove (1995), ORSA Journal on Computing 7(2), 232--242,
+[DOI 10.1287/ijoc.7.2.232](https://pubsonline.informs.org/doi/10.1287/ijoc.7.2.232),
+and Guo, Lu, Yuan, Ng and Cheng (2022), Naval Research Logistics 69(5), 816--837,
+[DOI 10.1002/nav.22050](https://onlinelibrary.wiley.com/doi/abs/10.1002/nav.22050),
+were checked against publisher records and publisher-deposited Crossref metadata.
+KnowNo's [PMLR record](https://proceedings.mlr.press/v229/ren23a.html) supplies
+volume 229 and pages 661--682. The cited arXiv records for tau-bench, One Human
+N Agents, Value of Information and DeCCaF were rechecked on 2026-09-10.
+The AI-assistance citation identifies the research preparation tool; it is
+separate from the Qwen model whose experimental generations are measured.
