@@ -1,0 +1,704 @@
+{
+  "authorization_clock": {
+    "continuation_stages": [
+      {
+        "artifacts": "artifacts/stage1_gpu_live/",
+        "authorization": "explicit_user_request",
+        "deadline_utc": "2026-09-10T01:42:54+00:00",
+        "elapsed_seconds_at_report": 886.56,
+        "experimental_requests": 48,
+        "finish_marker": "The task Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+        "inference_retries": 0,
+        "limit_hours": 2,
+        "name": "stage1_gpu_live",
+        "placement_requests": 1,
+        "report": "reports/STAGE1_GPU_LIVE.md",
+        "reported_utc": "2026-09-09T23:57:40.560414+00:00",
+        "result": "live_gpu_demo_completed_four_replays_verified",
+        "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. No calibration or additional seeds.",
+        "started_utc": "2026-09-09T23:42:54+00:00"
+      },
+      {
+        "artifacts": "artifacts/stage1_gpu_live/rtx6000_ada_20260910T002404Z/",
+        "authorization": "explicit_user_request",
+        "completion_tokens": 343,
+        "deadline_utc": "2026-09-10T02:24:04+00:00",
+        "elapsed_seconds_at_report": 1971.849,
+        "experimental_requests": 48,
+        "finish_marker": "The task Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+        "inference_attempts": 49,
+        "inference_failures": 0,
+        "inference_retries": 0,
+        "limit_hours": 2,
+        "name": "stage1_gpu_live_rtx6000_ada",
+        "overall_elapsed_seconds_at_report": 33478.849,
+        "overall_elapsed_seconds_at_start": 31507.0,
+        "overall_remaining_seconds_at_report": 96121.151,
+        "overall_remaining_seconds_at_start": 98093.0,
+        "placement_requests": 1,
+        "previous_live_report": "reports/STAGE1_GPU_L40S.md",
+        "prompt_tokens": 10227,
+        "report": "reports/STAGE1_GPU_LIVE.md",
+        "reported_utc": "2026-09-10T00:56:55.849320+00:00",
+        "result": "rtx6000_ada_live_gpu_demo_completed_four_replays_verified",
+        "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. Basics and mechanics only; no calibration, new seeds, or additional baselines.",
+        "started_utc": "2026-09-10T00:24:04+00:00"
+      },
+      {
+        "artifacts": "artifacts/stage2_development/",
+        "authorization": "explicit_user_request",
+        "baseline_commit": "77d0e16094b4529a23dfaf1907ba5ab87e25b660",
+        "deadline_utc": "2026-09-10T03:07:01+00:00",
+        "limit_hours": 2,
+        "name": "stage2_development",
+        "report": "reports/STAGE2_DEVELOPMENT.md",
+        "scope": "16 FCFS calibration episodes seeds 200-215; 40 validation episodes seeds 216-223 across five policies; review duration 2; 672 scheduled experimental calls and at most one placement generation. No held-out evaluation or further batch.",
+        "started_utc": "2026-09-10T01:07:01+00:00"
+      }
+    ],
+    "note": "Elapsed clocks start at implementation authorization and do not reset after retries. This stage does not authorize later calibration or evaluation.",
+    "overall_deadline_utc": "2026-09-11T03:38:57+00:00",
+    "overall_limit_hours": 36,
+    "overall_started_utc": "2026-09-09T15:38:57+00:00",
+    "recovery_stages": [
+      {
+        "artifacts": "artifacts/stage1_gpu_recovery/",
+        "connection_check_finished_utc": "2026-09-09T18:01:15+00:00",
+        "deadline_utc": "2026-09-09T19:58:37+00:00",
+        "elapsed_seconds_at_report": 334,
+        "finish_marker": "The recovery Git commit's committer timestamp; the report checkpoint precedes final Git verification.",
+        "limit_hours": 2,
+        "name": "stage1_gpu_recovery",
+        "note": "New user-authorized two-hour recovery stage within the unchanged overall 36-hour window. Original Stage 1 timestamps and CLI deadline enforcement are preserved. No inference was launched.",
+        "overall_elapsed_seconds_at_report": 8714,
+        "overall_elapsed_seconds_at_start": 8380,
+        "overall_remaining_seconds_at_report": 120886,
+        "overall_remaining_seconds_at_start": 121220,
+        "report": "reports/STAGE1_GPU_RECOVERY.md",
+        "reported_utc": "2026-09-09T18:04:11+00:00",
+        "result": "gpu_blocked_by_execution_environment_socket_restriction",
+        "started_utc": "2026-09-09T17:58:37+00:00"
+      }
+    ],
+    "stage1_deadline_utc": "2026-09-09T19:38:57+00:00",
+    "stage1_elapsed_seconds_at_report": 1862,
+    "stage1_finish_marker": "The Stage 1 Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+    "stage1_limit_hours": 4,
+    "stage1_reported_utc": "2026-09-09T16:09:59+00:00",
+    "stage1_result": "local_checks_passed_gpu_blocked",
+    "stage1_started_utc": "2026-09-09T15:38:57+00:00"
+  },
+  "config": {
+    "agents": 3,
+    "baseline_commit": "77d0e16094b4529a23dfaf1907ba5ab87e25b660",
+    "calibration_p_error": 0.5,
+    "calibration_policy": "fcfs",
+    "calibration_seeds": [
+      200,
+      201,
+      202,
+      203,
+      204,
+      205,
+      206,
+      207,
+      208,
+      209,
+      210,
+      211,
+      212,
+      213,
+      214,
+      215
+    ],
+    "continuation": "stage2_development",
+    "horizon": 12,
+    "jobs_per_agent": 2,
+    "maximum_experimental_attempts": 1344,
+    "maximum_placement_attempts": 1,
+    "minimum_bin_count": 10,
+    "policies": [
+      "fcfs",
+      "uncertainty",
+      "myopic",
+      "greedy",
+      "delay"
+    ],
+    "policy_order": "left_rotate_by_seed_minus_216_mod_5",
+    "review_ticks": 2,
+    "scheduled_calls_per_episode": 12,
+    "scheduled_experimental_calls": 672,
+    "validation_seeds": [
+      216,
+      217,
+      218,
+      219,
+      220,
+      221,
+      222,
+      223
+    ]
+  },
+  "declaration_hash": "076a9e689465b54096a399a47346a70529aeb3abdee391f4d74e51f5564a5f65",
+  "episodes": [
+    {
+      "execution_index": 0,
+      "folder": "calibration/200/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "a649715894dd0977535a69531676be5965130c60d8e95205bc604aef9b2796d2",
+      "seed": 200
+    },
+    {
+      "execution_index": 1,
+      "folder": "calibration/201/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "95fc7b0470c43bc83c273415a6723e1ef7a36cf524aff6cffb59a849c0de5d75",
+      "seed": 201
+    },
+    {
+      "execution_index": 2,
+      "folder": "calibration/202/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "cff280356f04d5661d194a9f0236d31000bad9efc17dc147db404de2e91dbf58",
+      "seed": 202
+    },
+    {
+      "execution_index": 3,
+      "folder": "calibration/203/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "f813b9bea89d2c6b9c515f8620a2d6f28b246600b81688e61e58c51e40df0f80",
+      "seed": 203
+    },
+    {
+      "execution_index": 4,
+      "folder": "calibration/204/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "fc19d284d2ae4c214beedd5699e6c439e029b6c11d994676a87214229a560f5d",
+      "seed": 204
+    },
+    {
+      "execution_index": 5,
+      "folder": "calibration/205/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "3515383c2933c6ceb03d991da007d9e9111041bb2237d10646def4403030c640",
+      "seed": 205
+    },
+    {
+      "execution_index": 6,
+      "folder": "calibration/206/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "3ce3cd51d94ee2fc9a8933395006132ebe7b0ef5dac21caee58b2de74a6abd94",
+      "seed": 206
+    },
+    {
+      "execution_index": 7,
+      "folder": "calibration/207/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "9c04f844b3af8ac5a8902f0ddbd9768ab6783be2fc2bb34b16bc65dbac3f6ea5",
+      "seed": 207
+    },
+    {
+      "execution_index": 8,
+      "folder": "calibration/208/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "84d2f74bed0d9c879fc461dcd18e089c4dbee88ba5c6ac8ed1ada1debcf9b114",
+      "seed": 208
+    },
+    {
+      "execution_index": 9,
+      "folder": "calibration/209/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "ea1d52e6c644cb1bbc17ac854f43be7aaaf6b1c9345936d66e9fe48bb20ab7d0",
+      "seed": 209
+    },
+    {
+      "execution_index": 10,
+      "folder": "calibration/210/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "08fea82576193782c6cd1fc52386923ccc2c65b002d20db05b2f421b810e508d",
+      "seed": 210
+    },
+    {
+      "execution_index": 11,
+      "folder": "calibration/211/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "f04b137ccdf98a6c8504acb1ff412c1bda50021635d0f6890379b989144f7ae7",
+      "seed": 211
+    },
+    {
+      "execution_index": 12,
+      "folder": "calibration/212/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "5a1dd7b1b1418a57d8f0b3acbaf258e4051d2035ac75c65c4de02012c46a285a",
+      "seed": 212
+    },
+    {
+      "execution_index": 13,
+      "folder": "calibration/213/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "7be433e751f3da81d3688d752ae3c3ba31be4be84f3e85d0fc6d2d1b9a916347",
+      "seed": 213
+    },
+    {
+      "execution_index": 14,
+      "folder": "calibration/214/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "8ca1b31bc47ee3f10ac948b7e983b4d0ad3a5c1918569e3b56a016192bb7be12",
+      "seed": 214
+    },
+    {
+      "execution_index": 15,
+      "folder": "calibration/215/fcfs",
+      "phase": "calibration",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "a663f93d0fca3a5bee92fbbf8befde588662730dc6551ff4e5c087757a8a4ee9",
+      "seed": 215
+    },
+    {
+      "execution_index": 16,
+      "folder": "validation/216/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "dac70d859520a2753fb935368b8cc17d7c7b6518a31e7dd5344e49cabd609333",
+      "seed": 216
+    },
+    {
+      "execution_index": 17,
+      "folder": "validation/216/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "dac70d859520a2753fb935368b8cc17d7c7b6518a31e7dd5344e49cabd609333",
+      "seed": 216
+    },
+    {
+      "execution_index": 18,
+      "folder": "validation/216/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "dac70d859520a2753fb935368b8cc17d7c7b6518a31e7dd5344e49cabd609333",
+      "seed": 216
+    },
+    {
+      "execution_index": 19,
+      "folder": "validation/216/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "dac70d859520a2753fb935368b8cc17d7c7b6518a31e7dd5344e49cabd609333",
+      "seed": 216
+    },
+    {
+      "execution_index": 20,
+      "folder": "validation/216/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "dac70d859520a2753fb935368b8cc17d7c7b6518a31e7dd5344e49cabd609333",
+      "seed": 216
+    },
+    {
+      "execution_index": 21,
+      "folder": "validation/217/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "b674f2b64d436c6dcaaae951b6b960b2640874594579d7da2fbcff4f44439c3a",
+      "seed": 217
+    },
+    {
+      "execution_index": 22,
+      "folder": "validation/217/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "b674f2b64d436c6dcaaae951b6b960b2640874594579d7da2fbcff4f44439c3a",
+      "seed": 217
+    },
+    {
+      "execution_index": 23,
+      "folder": "validation/217/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "b674f2b64d436c6dcaaae951b6b960b2640874594579d7da2fbcff4f44439c3a",
+      "seed": 217
+    },
+    {
+      "execution_index": 24,
+      "folder": "validation/217/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "b674f2b64d436c6dcaaae951b6b960b2640874594579d7da2fbcff4f44439c3a",
+      "seed": 217
+    },
+    {
+      "execution_index": 25,
+      "folder": "validation/217/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "b674f2b64d436c6dcaaae951b6b960b2640874594579d7da2fbcff4f44439c3a",
+      "seed": 217
+    },
+    {
+      "execution_index": 26,
+      "folder": "validation/218/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "4b7cc93f1fec65f6a0e9437ccb25792b11e34e11adc920d8d68a409e8c8a8646",
+      "seed": 218
+    },
+    {
+      "execution_index": 27,
+      "folder": "validation/218/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "4b7cc93f1fec65f6a0e9437ccb25792b11e34e11adc920d8d68a409e8c8a8646",
+      "seed": 218
+    },
+    {
+      "execution_index": 28,
+      "folder": "validation/218/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "4b7cc93f1fec65f6a0e9437ccb25792b11e34e11adc920d8d68a409e8c8a8646",
+      "seed": 218
+    },
+    {
+      "execution_index": 29,
+      "folder": "validation/218/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "4b7cc93f1fec65f6a0e9437ccb25792b11e34e11adc920d8d68a409e8c8a8646",
+      "seed": 218
+    },
+    {
+      "execution_index": 30,
+      "folder": "validation/218/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "4b7cc93f1fec65f6a0e9437ccb25792b11e34e11adc920d8d68a409e8c8a8646",
+      "seed": 218
+    },
+    {
+      "execution_index": 31,
+      "folder": "validation/219/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "ab2f3314558062e39d7d2ef8322888e12d97522d3e05989c0e3599dbe6cced10",
+      "seed": 219
+    },
+    {
+      "execution_index": 32,
+      "folder": "validation/219/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "ab2f3314558062e39d7d2ef8322888e12d97522d3e05989c0e3599dbe6cced10",
+      "seed": 219
+    },
+    {
+      "execution_index": 33,
+      "folder": "validation/219/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "ab2f3314558062e39d7d2ef8322888e12d97522d3e05989c0e3599dbe6cced10",
+      "seed": 219
+    },
+    {
+      "execution_index": 34,
+      "folder": "validation/219/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "ab2f3314558062e39d7d2ef8322888e12d97522d3e05989c0e3599dbe6cced10",
+      "seed": 219
+    },
+    {
+      "execution_index": 35,
+      "folder": "validation/219/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "ab2f3314558062e39d7d2ef8322888e12d97522d3e05989c0e3599dbe6cced10",
+      "seed": 219
+    },
+    {
+      "execution_index": 36,
+      "folder": "validation/220/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "c986429270cd0b18dcf4468dd430d53aedb624c6695a3fb92ea0ff725a9b5ebf",
+      "seed": 220
+    },
+    {
+      "execution_index": 37,
+      "folder": "validation/220/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "c986429270cd0b18dcf4468dd430d53aedb624c6695a3fb92ea0ff725a9b5ebf",
+      "seed": 220
+    },
+    {
+      "execution_index": 38,
+      "folder": "validation/220/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "c986429270cd0b18dcf4468dd430d53aedb624c6695a3fb92ea0ff725a9b5ebf",
+      "seed": 220
+    },
+    {
+      "execution_index": 39,
+      "folder": "validation/220/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "c986429270cd0b18dcf4468dd430d53aedb624c6695a3fb92ea0ff725a9b5ebf",
+      "seed": 220
+    },
+    {
+      "execution_index": 40,
+      "folder": "validation/220/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "c986429270cd0b18dcf4468dd430d53aedb624c6695a3fb92ea0ff725a9b5ebf",
+      "seed": 220
+    },
+    {
+      "execution_index": 41,
+      "folder": "validation/221/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "4e37da73fd2728aa92698fd396b037abbe5d2658e9ddc674fedb3a6d6ff55a43",
+      "seed": 221
+    },
+    {
+      "execution_index": 42,
+      "folder": "validation/221/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "4e37da73fd2728aa92698fd396b037abbe5d2658e9ddc674fedb3a6d6ff55a43",
+      "seed": 221
+    },
+    {
+      "execution_index": 43,
+      "folder": "validation/221/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "4e37da73fd2728aa92698fd396b037abbe5d2658e9ddc674fedb3a6d6ff55a43",
+      "seed": 221
+    },
+    {
+      "execution_index": 44,
+      "folder": "validation/221/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "4e37da73fd2728aa92698fd396b037abbe5d2658e9ddc674fedb3a6d6ff55a43",
+      "seed": 221
+    },
+    {
+      "execution_index": 45,
+      "folder": "validation/221/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "4e37da73fd2728aa92698fd396b037abbe5d2658e9ddc674fedb3a6d6ff55a43",
+      "seed": 221
+    },
+    {
+      "execution_index": 46,
+      "folder": "validation/222/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "7ed5a28f2968f2ffdd714c816e527463b82963bc1ec04409cf4bb8ad542beee6",
+      "seed": 222
+    },
+    {
+      "execution_index": 47,
+      "folder": "validation/222/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "7ed5a28f2968f2ffdd714c816e527463b82963bc1ec04409cf4bb8ad542beee6",
+      "seed": 222
+    },
+    {
+      "execution_index": 48,
+      "folder": "validation/222/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "7ed5a28f2968f2ffdd714c816e527463b82963bc1ec04409cf4bb8ad542beee6",
+      "seed": 222
+    },
+    {
+      "execution_index": 49,
+      "folder": "validation/222/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "7ed5a28f2968f2ffdd714c816e527463b82963bc1ec04409cf4bb8ad542beee6",
+      "seed": 222
+    },
+    {
+      "execution_index": 50,
+      "folder": "validation/222/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "7ed5a28f2968f2ffdd714c816e527463b82963bc1ec04409cf4bb8ad542beee6",
+      "seed": 222
+    },
+    {
+      "execution_index": 51,
+      "folder": "validation/223/myopic",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "scenario_hash": "2b4c6fdbac8d2624ce85a81b6ea30ea032a93619cbfd95266c169ccf315a74c1",
+      "seed": 223
+    },
+    {
+      "execution_index": 52,
+      "folder": "validation/223/greedy",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "scenario_hash": "2b4c6fdbac8d2624ce85a81b6ea30ea032a93619cbfd95266c169ccf315a74c1",
+      "seed": 223
+    },
+    {
+      "execution_index": 53,
+      "folder": "validation/223/delay",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "delay",
+      "scenario_hash": "2b4c6fdbac8d2624ce85a81b6ea30ea032a93619cbfd95266c169ccf315a74c1",
+      "seed": 223
+    },
+    {
+      "execution_index": 54,
+      "folder": "validation/223/fcfs",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "scenario_hash": "2b4c6fdbac8d2624ce85a81b6ea30ea032a93619cbfd95266c169ccf315a74c1",
+      "seed": 223
+    },
+    {
+      "execution_index": 55,
+      "folder": "validation/223/uncertainty",
+      "phase": "validation",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "scenario_hash": "2b4c6fdbac8d2624ce85a81b6ea30ea032a93619cbfd95266c169ccf315a74c1",
+      "seed": 223
+    }
+  ],
+  "failure_handling": "Retain partial pairs and every episode row; never replace seeds or rerun episodes",
+  "prediction_diagnostics": "Same saved validation trajectories; no counterfactual generations",
+  "prepared_utc": "2026-09-10T01:18:35.229622+00:00",
+  "prompt_sha256": "fcc2aef1d617ec070fa1eed0b239eeb1b0c4ad88268a0857aed2a29c1b6a2ce6",
+  "runtime_config": {
+    "agents": 3,
+    "base_url": "http://127.0.0.1:8000/v1",
+    "horizon": 12,
+    "jobs_per_agent": 2,
+    "max_attempts_per_call": 2,
+    "max_input_tokens": 1024,
+    "max_output_tokens": 48,
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "p_error": 0.5,
+    "placement_calls": 1,
+    "policies": [
+      "fcfs",
+      "uncertainty",
+      "myopic",
+      "delay"
+    ],
+    "review_ticks": 2,
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "scheduled_calls_per_policy": 12,
+    "seed": 100,
+    "temperature": 0.3,
+    "timeout_seconds": 60,
+    "top_p": 1.0
+  },
+  "source_files_sha256": {
+    "configs/stage1.json": "f3fdc0276558f4a463a7da59423be43487836acc46e45be6d6385bfda067ca4b",
+    "configs/stage2.json": "7ed82f6cc860bb4bfacc65b1948151b595b9c34164e6658fca92b8197935b4d1",
+    "overseeing/__init__.py": "bd0a7075d4312b0f318a5bdfe2536f8424b98e43ed921e309facf4db482ad2bb",
+    "overseeing/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "overseeing/cli.py": "d18c22d603f60ce0111dd226b946d90179e1166805291b81977feae2402b22ba",
+    "overseeing/client.py": "3061c66ee44053d61488cb6b712dbb9af60b33dcb8023af0ea07d571b9e59633",
+    "overseeing/development.py": "a7d282633e7a1f4f43b1ec4977d095f626cec5f7ab06378da28144e531350c7c",
+    "overseeing/development_analysis.py": "260936d6ed623aaadc1c77b4ff4644afb6a4f6efe377d2068ad0524cbe946ff5",
+    "overseeing/domain.py": "301aafb2438631021fd5dfa117ce9142f1a21616feecd13cf5418038a6dd98cd",
+    "overseeing/estimator.py": "6b1bd81b2cf29d40d9c37af0acc5b248d7f2fde0f1a0635086928943c46d6b44",
+    "overseeing/fixtures.py": "534546323423efb134feb568f798111e08390e5b6adc6a23b8e4dc0efeeb1871",
+    "overseeing/gpu.py": "afa70760ada591c563d79b08e87c4a207cefe430b21e6c4b3a9ef0a629afd8d9",
+    "overseeing/io.py": "17bdc1fc00654dc9be5f9bb46af1f8660519e7efef6af48248fbbd389aecf32f",
+    "overseeing/policies.py": "04909b686a64288069c7541c759eb8bcf8a0cf495807997c8e5a47acf05068d6",
+    "overseeing/replay.py": "5e36aa697b7a2ee399c9591292c1315b9d2f6f8f277dc24c3a4d5a1048256df4",
+    "overseeing/simulator.py": "63182efb1c254538d8f003dd8b231dd12ad62c30674d8e12ca77e9363c7f1db7",
+    "requirements-gpu.txt": "4c26987896af990fce81edff192081764c39320231559e6aabde99b5af71cf01",
+    "scripts/pod_preflight.sh": "161eada6903bdbf7ebc7099cc78e66084ebe58007893faceab398b1382dd283b",
+    "scripts/serve_gpu.sh": "744619f1ae0ef5571309b51ab702cc7142b7ca84786978d30e0a9c416e2bc6e8",
+    "scripts/verify_development.py": "ee82b514cc0287cd87941741c9cf5050444335b8f6d7941bd284bba9d3055ec9",
+    "scripts/verify_live_results.py": "fa8487c51113a2b6c11903f07c0b65f7fcf7bb6c487af65a2a062d34b581f29b",
+    "tests/test_backbone.py": "6929dbaff292585568e083b5363555d924cd046f41b68bd22014c21f4f049e84",
+    "tests/test_development.py": "712d174cbdfcd0ef8959eac3922698700d5ffd9fac350e22478043584811ec6a",
+    "tests/test_live_gpu.py": "e2ec09fe946c1cd5fde97b404e7108a9703902130be6925cf26870f6652dd3e5"
+  }
+}
