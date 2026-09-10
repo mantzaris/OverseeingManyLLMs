@@ -59,8 +59,9 @@ def main(root,batch,label):
             a=next(r for r in episodes if r['phase']=='objective_evaluation' and r['workload']==workload and r['seed']==seed and r['review_ticks']==duration and r['closure_penalty']==8)
             b=next(r for r in episodes if r['phase']=='objective_evaluation' and r['workload']==workload and r['seed']==seed and r['review_ticks']==duration and r['closure_penalty']==0)
             filename='{}_s{}_objective.md'.format(workload,duration)
-            render_pair(root,batch,a,b,out/filename,'First numerical seed where λ=8 reduces incorrect closures while increasing original maintenance loss relative to λ=0.')
-            selected.append(dict(workload=workload,direction='objective_tradeoff',review_ticks=duration,seed=seed,file=filename,loss_difference=float(p['loss_difference']),incorrect_difference=int(p['incorrect_difference'])))
+            variation=' First actions differ for {} jobs; observations differ for {}; identical-request first-action differences: {}. This is an integrated trajectory comparison.'.format(p['primary_action_differences'],p['different_observations'],p['identical_request_primary_differences'])
+            render_pair(root,batch,a,b,out/filename,'First numerical seed where λ=8 reduces incorrect closures while increasing original maintenance loss relative to λ=0.'+variation)
+            selected.append(dict(workload=workload,direction='objective_tradeoff',review_ticks=duration,seed=seed,file=filename,loss_difference=float(p['loss_difference']),incorrect_difference=int(p['incorrect_difference']),first_action_differences=int(p['primary_action_differences']),different_observations=int(p['different_observations']),identical_request_first_action_differences=int(p['identical_request_primary_differences'])))
     write_json(out/'selection.json',selected)
     return selected
 

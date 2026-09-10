@@ -8,6 +8,7 @@ import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent.parent))
 from overseeing.domain import digest
 from overseeing.io import read_events,write_json
+from overseeing.research_analysis import historical_file_status
 
 
 def audit(root):
@@ -51,8 +52,10 @@ def audit(root):
         raw=read_events(root/'diagnostics/raw'/('{:03d}.jsonl'.format(record['execution_index'])))
         assert all(digest(r['request'])==d['prompts'][record['prompt_index']]['request_hash'] for r in raw)
     historical=json.loads((root/'history_hashes.json').read_text())
-    changed=[p for p,h in historical.items() if hashlib.sha256(Path(p).read_bytes()).hexdigest()!=h]
-    summary.update(historical_files_checked=len(historical),historical_files_changed=changed)
+    lf_path=root/'history_csv_lf_hashes.json';lf=json.loads(lf_path.read_text()) if lf_path.exists() else {}
+    states={p:historical_file_status(Path(p).read_bytes(),h,lf.get(p) if p.endswith('.csv') else None) for p,h in historical.items()}
+    changed=[p for p,status in states.items() if status=='changed']
+    summary.update(historical_files_checked=len(historical),historical_files_changed=changed,historical_csv_line_ending_variations=[p for p,status in states.items() if status=='csv_line_endings'])
     assert not changed
     completed=0;planned=sum(json.loads(p.read_text())['planned_episodes'] for p in (root/'batches').glob('*/declaration.json'))
     for p in (root/'batches').glob('*/analysis/audit.json'):

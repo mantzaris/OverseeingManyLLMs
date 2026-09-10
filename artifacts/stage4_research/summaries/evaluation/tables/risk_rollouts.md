@@ -1,0 +1,26 @@
+| Workload | Ticks | Policy | Risk | Mean loss | Brier on own trajectories |
+| --- | --- | --- | --- | --- | --- |
+| original | 1 | greedy | frozen | 4.062 | 0.22110 |
+| original | 2 | greedy | frozen | 7.562 | 0.22136 |
+| original | 1 | greedy | pooled | 4.062 | 0.21496 |
+| original | 2 | greedy | pooled | 7.812 | 0.21496 |
+| original | 1 | greedy | analytical | 3.844 | 0.15033 |
+| original | 2 | greedy | analytical | 7.812 | 0.15033 |
+| original | 1 | delay | frozen | 3.438 | 0.22142 |
+| original | 2 | delay | frozen | 7.625 | 0.22472 |
+| original | 1 | delay | pooled | 3.438 | 0.21496 |
+| original | 2 | delay | pooled | 7.875 | 0.21826 |
+| original | 1 | delay | analytical | 3.188 | 0.15033 |
+| original | 2 | delay | analytical | 7.500 | 0.15033 |
+| competition | 1 | greedy | frozen | 0.375 | 0.19587 |
+| competition | 2 | greedy | frozen | 3.250 | 0.19239 |
+| competition | 1 | greedy | pooled | 0.375 | 0.19519 |
+| competition | 2 | greedy | pooled | 3.250 | 0.18860 |
+| competition | 1 | greedy | analytical | 0.375 | 0.14250 |
+| competition | 2 | greedy | analytical | 2.875 | 0.14250 |
+| competition | 1 | delay | frozen | 0.000 | 0.19581 |
+| competition | 2 | delay | frozen | 1.625 | 0.19614 |
+| competition | 1 | delay | pooled | 0.000 | 0.19190 |
+| competition | 2 | delay | pooled | 1.625 | 0.18860 |
+| competition | 1 | delay | analytical | 0.000 | 0.14250 |
+| competition | 2 | delay | analytical | 1.500 | 0.14250 |

@@ -93,6 +93,7 @@ def main(root,batch,label):
             for point,penalties in annotations.items():
                 ax.annotate('λ='+','.join(map(str,penalties)),point,xytext=(4,6),textcoords='offset points',fontsize=8)
             ax.plot(xs,ys,'o-',color=COLORS['delay']);ax.set_xlabel('Mean incorrect closures / scenario');ax.set_ylabel('Mean original loss / scenario');ax.set_title('{}; {}-tick reviews'.format(workload.capitalize(),duration));ax.grid(alpha=.2);ax.margins(.25)
+            if workload=='competition':ax.set_xlim(0,1.2);ax.set_ylim(0,2.5)
     finish(fig,out/'objective_tradeoff','Exploratory extension: 16 new paired scenarios per workload, competition with three agents and larger workload with six. Search uses λ=0,4,8; axes always show original maintenance loss and incorrect closures separately. Lines follow the declared grid and do not assert a Pareto frontier. Scenario-paired intervals and common-objective comparisons are in paired_comparisons.csv.')
     write_json(out/'manifest.json',dict(source_batch=batch,source_label=label,figures=['policy_losses','capacity','risk_estimates','objective_tradeoff'],matplotlib=matplotlib.__version__,numpy=np.__version__,no_new_inference=True))
 

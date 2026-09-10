@@ -38,6 +38,16 @@ def main(root,batch,label):
         if rows:planning.append(dict(eligible_requests=size,decisions=len(rows),mean_ms=float(np.mean([r['planning_seconds']*1000 for r in rows])),p95_ms=float(np.percentile([r['planning_seconds']*1000 for r in rows],95)),max_ms=max(r['planning_seconds']*1000 for r in rows),ordered_subsets=min(r['ordered_subsets_evaluated'] for r in rows)))
     write_csv(summary/'search_latency_by_eligible.csv',planning)
     (out/'search_latency.md').write_text(table(['Eligible requests','Decisions','Mean ms','95th percentile ms','Max ms','Ordered subsets'],[[r['eligible_requests'],r['decisions'],f(r['mean_ms']),f(r['p95_ms']),f(r['max_ms']),r['ordered_subsets']] for r in planning]))
+    quality=read(summary/'prediction_quality.csv')
+    keys=('workload','agents','review_ticks','risk','policy','closure_penalty','study')
+    prediction_rows=[]
+    for outcome in outcomes:
+        group=[r for r in quality if all(r[k]==outcome[k] for k in keys)]
+        scores={r['scoring_risk']:r for r in group if r['agreement_bin']=='all'}
+        bins={r['agreement_bin']:r for r in group if r['scoring_risk']=='frozen'}
+        label='{} {} a{} s{} {} {} λ{}'.format(outcome['study'],outcome['workload'],outcome['agents'],outcome['review_ticks'],outcome['risk'],outcome['policy'],outcome['closure_penalty'])
+        prediction_rows.append([label,bins['agree']['errors']+' / '+bins['agree']['examples'],bins['disagree']['errors']+' / '+bins['disagree']['examples'],f(scores['frozen']['observed_error_rate']),*[f(scores[k]['brier'],5) for k in ('frozen','pooled','analytical')]])
+    (out/'prediction_diagnostics.md').write_text('Initial-action labels on each saved condition; alternatives score the same outputs. Repeated policy/job rows are not independent scenarios.\n\n'+table(['Condition','Agree errors / n','Disagree errors / n','Initial error rate','Frozen Brier','Pooled Brier','Analytical Brier'],prediction_rows))
     print('Wrote tables to',out)
 
 if __name__=='__main__':

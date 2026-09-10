@@ -17,6 +17,15 @@ COUNT_FIELDS=('scheduled_calls','attempts','retries','failed_attempts','unfinish
 CONDITION_FIELDS=('workload','agents','review_ticks','risk','policy','closure_penalty','study')
 
 
+def historical_file_status(data,expected,csv_lf_hash=None):
+    """CSV line-ending portability without permitting changed values or raw evidence."""
+    import hashlib
+    if hashlib.sha256(data).hexdigest()==expected:return 'unchanged'
+    if csv_lf_hash and hashlib.sha256(data.replace(b'\r\n',b'\n')).hexdigest()==csv_lf_hash:
+        return 'csv_line_endings'
+    return 'changed'
+
+
 def existing_evidence(path):
     path=Path(path)
     return path if path.exists() else Path(str(path)+'.gz')

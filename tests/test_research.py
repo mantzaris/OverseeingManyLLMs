@@ -116,6 +116,16 @@ class ResearchFoundationChecks(unittest.TestCase):
         self.assertEqual(sum(r['planned_calls'] for r in objective_branch_plan(True)),4608)
         self.assertEqual(sum(r['planned_calls'] for r in selected_evaluation_plan()),43008)
 
+    def test_historical_csv_portability_does_not_allow_changed_values(self):
+        import hashlib
+        from overseeing.research_analysis import historical_file_status
+        raw=b'seed,loss\r\n100,3\r\n';lf=raw.replace(b'\r\n',b'\n')
+        expected=hashlib.sha256(raw).hexdigest();normalized=hashlib.sha256(lf).hexdigest()
+        self.assertEqual(historical_file_status(raw,expected,normalized),'unchanged')
+        self.assertEqual(historical_file_status(lf,expected,normalized),'csv_line_endings')
+        self.assertEqual(historical_file_status(lf.replace(b'100,3',b'100,4'),expected,normalized),'changed')
+        self.assertEqual(historical_file_status(lf,expected),'changed')
+
     def test_gpu_startup_evidence_survives_long_cache_log(self):
         from overseeing.gpu import relevant_log_evidence
         log='Using CUDA device\nModel dtype bfloat16\nAPI_KEY=private cuda\n'+'GPU cache usage 0%\n'*200

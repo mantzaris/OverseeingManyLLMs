@@ -1,8 +1,8 @@
 # OverseeingManyLLMs
 
-A reproducible backbone for studying how one simulated human supervisor allocates review time across three LLM agents doing synthetic civilian maintenance tasks. It implements generation, public observations, GPU actions, a frozen agreement estimator, a review queue, six schedulers, corrective interventions, loss scoring, and independent replay.
+A reproducible backbone for studying how one simulated human supervisor allocates review time across three or six LLM agents doing synthetic civilian maintenance tasks. It implements generation, public observations, GPU actions, a frozen agreement estimator, a review queue, six schedulers, corrective interventions, loss scoring, and independent replay.
 
-Start with the [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
+Start with the completed [Stage 4 research report](reports/STAGE4_RESEARCH.md), [research draft](paper/RESEARCH_DRAFT.md), [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
 
 Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy baseline. Calibration uses 16 FCFS episodes with provisional **p=0.5**; the frozen estimator then drives five policies on eight development scenarios. The declared scope is 56 episodes, 672 experimental calls, and at most one placement generation. A bin with fewer than ten calibration examples uses the smoothed pooled estimate. This development batch is not a held-out effectiveness study.
 
@@ -61,7 +61,7 @@ These are historical execution commands. Existing outputs and the one-shot execu
 
 The [original backbone report](reports/STAGE1_GPU_BACKBONE.md), [blocked recovery](reports/STAGE1_GPU_RECOVERY.md), and [first L40S live report](reports/STAGE1_GPU_L40S.md) remain available with their original artifacts. All clocks are retained in [implementation_clock.json](reports/implementation_clock.json).
 
-The declared development calibration and fifth baseline are implemented. The separate Stage 3 condition adds deadline-first scheduling and a one-versus-two-tick review comparison. Held-out evaluation seeds, larger experiments, advanced tasks, estimator changes, and a full manuscript remain later work. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
+The declared development calibration and fifth baseline are implemented. The separate Stage 3 condition adds deadline-first scheduling and a one-versus-two-tick review comparison. Stage 4 extends this history with frozen evaluation seeds, a larger workload, public risk references, and a research draft. Advanced tasks and real-human validation remain outside the implemented scope. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
 
 ## Stage 3 competition diagnostic
 
@@ -81,8 +81,25 @@ python3 -m overseeing prepare-competition --out artifacts/stage3_competition/run
   --deadline-utc 2026-09-10T04:47:37+00:00
 ```
 
-The separately recorded Stage 3 authorization lasts at most two hours and remains within the original overall deadline. Earlier command deadlines are unchanged. Stop after this batch; further inference requires a new authorized scope.
+The separately recorded Stage 3 authorization lasts at most two hours and remains within the original overall deadline. Earlier command deadlines are unchanged. That historical authorization ends with its batch; Stage 4 uses its own separately recorded scope.
 
 ## Stage 4 research session
 
-A separately authorized nine-hour research session is underway. The [working report](reports/STAGE4_RESEARCH.md), [register](artifacts/stage4_research/RESEARCH_PLAN.md), and [decisions](artifacts/stage4_research/decisions.jsonl) distinguish development from frozen evaluation. New entry points use a shared 50,000-call / 60,000-attempt ledger and stop inference 90 minutes before the stage deadline. Historical commands retain their previous limits. No claim is made that equal sampling seeds reproduce identical GPU actions.
+The bounded research session completed **2,752 frozen evaluation episodes plus 304 development episodes**, all replayed, with **48,320 successful GPU generations, zero retries and zero failures**. The [completed report](reports/STAGE4_RESEARCH.md), [register](artifacts/stage4_research/RESEARCH_PLAN.md), and [decisions](artifacts/stage4_research/decisions.jsonl) distinguish development from frozen evaluation. The execution used a shared 50,000-call / 60,000-attempt ledger and reserved the final 90 minutes before the stage deadline for reporting. All experimental workers have stopped; the existing GPU server and pod files remain intact. Historical commands retain their previous limits. No claim is made that equal sampling seeds reproduce identical GPU actions.
+
+
+The main findings are conditional. Search minus greedy mean loss at two ticks is **−0.094** on the original workload (95% paired interval includes zero), and **−1.313** on the constructed competition workload ([−2.250, −0.438]). EDF matches search's zero loss at one-tick competition. Larger-workload planning gains are strong at one tick but small at two. Analytical public risk improves prediction scores without consistently improving allocation. Adding an incorrect-closure penalty reduces wrong closures at one tick while increasing original cost; null and negative results are retained. See the report for all policies, per-agent outcomes and scenario-paired comparisons.
+
+The [saved-output reproduction guide](artifacts/stage4_research/REPRODUCE.md) gives exact audit and rendering commands. The new larger workload supports three or six agents, three jobs per agent, a 24-tick horizon, and at most six outstanding requests. Search enumerates every ordered subset of the eligible public queue; no queue truncation or future-arrival access is used. Frozen agreement, pooled calibration, and analytical public-clue risk rules are compared without refitting. The selected extension adds a declared incorrect-closure penalty while retaining original maintenance loss as a separate metric.
+
+```bash
+python3 scripts/analyze_research.py --batches evaluation --label evaluation
+python3 scripts/audit_numerical_ties.py --batches evaluation --label evaluation
+python3 scripts/audit_objective_null.py
+python3 scripts/plot_research.py
+python3 scripts/research_traces.py
+python3 scripts/research_tables.py
+python3 scripts/audit_research_session.py
+```
+
+The [research draft](paper/RESEARCH_DRAFT.md), [claim–evidence map](paper/CLAIM_EVIDENCE.md), and [verified related-work note](paper/RELATED_WORK.md) distinguish the framework and measured analysis from established scheduling and uncertainty-guided help-seeking methods. Supervision remains simulated; exhaustive scheduling itself is not claimed as novel.
