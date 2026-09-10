@@ -79,3 +79,19 @@ primary-source bibliography, frozen raw evidence and replay/accounting audits,
 Stage 5 report, updated research draft and claim-evidence map. Commit milestones
 directly to main without pushing. Stop only Stage 5 workers; retain the existing
 server and pod files. Final report includes cumulative time and submission gaps.
+
+## Frozen evaluation declaration
+
+The complete matrix is now fixed in
+`artifacts/stage5_practical/evaluation_freeze.json`: 32 source-disjoint bundles,
+96 evaluation source cases, three fresh workflow replicates, six finite policies
+and review durations 1/2. This means 288 live workflows and 1,152 paired policy
+replays. An inexpensive parallel-perfect-review reference requires no further
+inference. At most 4,032 evaluation calls and 8,064 attempts are allowed by the
+per-workflow limits, within the tighter session-wide 30,000-attempt ceiling.
+
+Development retained one interface revision, no scope narrowing, and all failed
+pilots. The calibration collection has 64 staged proposals, 15 initial errors
+and eight unstaged failures. Its two-tick search loss exceeds greedy's on saved
+development trajectories. The fixed evaluation proceeds without changing the
+cases, scheduler, objective or estimator in response to that result.

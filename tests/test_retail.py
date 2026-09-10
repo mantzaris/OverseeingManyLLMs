@@ -44,6 +44,14 @@ class RetailSemantics(unittest.TestCase):
         self.assertEqual(state_hash(w.data),state_hash(initial));self.assertIsNotNone(w.proposal)
 
     def test_upstream_guards_and_target_state_reuse(self):
+        import ast,__future__,hashlib
+        from overseeing.retail.upstream import PACKAGE
+        tree=ast.parse((PACKAGE/'envs/base.py').read_text())
+        selected=[n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name in ('to_hashable','consistent_hash')]
+        code=ast.Module(body=selected,type_ignores=[]);namespace={'sha256':hashlib.sha256}
+        exec(compile(code,'upstream-validator','exec',flags=__future__.annotations.compiler_flag),namespace)
+        fixture={'a':[1,2.0,{'b':'value'}],'c':{'x':False}}
+        self.assertEqual(state_hash(fixture),namespace['consistent_hash'](namespace['to_hashable'](fixture)))
         for case in self.cases:
             initial=account_database(self.data,case['user_id']);target=copy.deepcopy(initial)
             self.assertFalse(invoke(target,case['target_action']).startswith('Error:'))
@@ -57,6 +65,63 @@ class RetailSemantics(unittest.TestCase):
         for index in range(32):
             self.assertEqual(bundles[index*3]['slots'],bundles[index*3+1]['slots'])
         self.assertEqual(len({s['case_id'] for b in bundles for s in b['slots']}),96)
+        for case in self.cases:
+            workflow=RetailWorkflow(case['customer_message'],{})
+            self.assertEqual(workflow.public_family,case['family'])
+
+    def test_valid_wrong_transaction_is_not_filtered_by_hidden_target(self):
+        case=self.case('cancel');initial,w=self.prepared_workflow(case)
+        wrong=copy.deepcopy(case['target_action'])
+        wrong['arguments']['reason']='ordered by mistake' if wrong['arguments']['reason']=='no longer needed' else 'no longer needed'
+        w.step(dict(tool='request_confirmation',arguments=dict(action=wrong,summary='Cancel the requested order',all_items_confirmed=True),confidence='high'))
+        w.step(dict(wrong,confidence='high'))
+        result=w.result(case,initial)
+        self.assertTrue(result['initial_error']);self.assertIsNotNone(w.proposal)
+        alternative=copy.deepcopy(case);alternative['target_state_hash']=result['proposed_state_hash']
+        rescored=w.result(alternative,initial)
+        self.assertFalse(rescored['initial_error']);self.assertEqual(rescored['features'],result['features'])
+
+    def test_wire_schema_selects_tool_before_arguments(self):
+        from datetime import datetime,timedelta,timezone
+        from unittest.mock import patch
+        from overseeing.retail.client import RetailClient
+        from overseeing.retail.workflow import ACTION_SCHEMA
+        from tempfile import TemporaryDirectory
+        class Response:
+            status=200;headers={}
+            def __enter__(self):return self
+            def __exit__(self,*args):pass
+            def read(self):return b'{}'
+        with TemporaryDirectory() as temp:
+            config=json.loads(Path('configs/stage5_retail.json').read_text())
+            client=RetailClient(config,Path(temp)/'raw.jsonl',datetime.now(timezone.utc)+timedelta(minutes=1))
+            with patch.object(client.opener,'open',return_value=Response()) as request:
+                client._http(config['base_url']+'/chat/completions',dict(guided_json=ACTION_SCHEMA))
+                payload=json.loads(request.call_args[0][0].data)
+                self.assertEqual(list(payload['guided_json']['anyOf'][0]['properties']),['tool','arguments','confidence'])
+
+    def test_session_reserve_and_retry_limits(self):
+        from datetime import datetime,timedelta,timezone
+        from tempfile import TemporaryDirectory
+        from overseeing.retail.client import RetailLedger
+        now=datetime.now(timezone.utc)
+        auth=dict(name='stage5_practical',authorization='explicit_user_request',attempt_limit=30000,
+            started_utc=(now-timedelta(minutes=1)).isoformat(),deadline_utc=(now+timedelta(hours=9,minutes=-1)).isoformat(),
+            inference_cutoff_utc=(now+timedelta(hours=7,minutes=29)).isoformat())
+        with TemporaryDirectory() as temp:
+            path=Path(temp)/'authorization.json';path.write_text(json.dumps(auth))
+            ledger=RetailLedger(temp,'mechanics_fixture')
+            try:
+                call=ledger.reserve_call({'fixture':True});ledger.reserve_attempt(call,0);ledger.reserve_attempt(call,1)
+                with self.assertRaises(RuntimeError):ledger.reserve_attempt(call,1)
+                ledger.attempts=30000
+                with self.assertRaises(RuntimeError):ledger.reserve_call({'fixture':True})
+            finally:ledger.close()
+            start=now-timedelta(hours=8)
+            auth.update(started_utc=start.isoformat(),deadline_utc=(start+timedelta(hours=9)).isoformat(),
+                inference_cutoff_utc=(start+timedelta(hours=7,minutes=30)).isoformat())
+            path.write_text(json.dumps(auth))
+            with self.assertRaises(RuntimeError):RetailLedger(temp,'expired_fixture')
 
     def test_search_preserves_expiring_opportunity_and_deadline_equality(self):
         requests=[TransactionRequest('urgent',0,0,2,2,.5,8),TransactionRequest('large',1,0,5,2,.5,12),TransactionRequest('medium',2,0,4,2,.5,4)]
