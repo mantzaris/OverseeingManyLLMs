@@ -1,0 +1,1999 @@
+{
+  "analysis_definitions": {
+    "dispatch": "Free-supervisor saved public states; opportunity has >=1 eligible request, competition >=2; offline greedy/search and search/EDF choices on identical states",
+    "equivalence": "With zero downtime and common eligibility, myopic and greedy both rank p*K; check equal choices on every saved public state",
+    "failure_handling": "Never replace or rerun episodes; partial labels retained, paired loss missing with conservative bounds for incomplete runs",
+    "figure": "Two duration panels, per-scenario search-minus-greedy and search-minus-EDF loss differences; no independent-episode uncertainty claims",
+    "orders": "Compare actual ordered review job IDs per scenario and duration; different order alone is not a realized loss advantage",
+    "outcomes": "Per duration/policy: total and mean completed-episode loss, correctness, reviews, corrections, opportunity_lost_while_waiting; incomplete rows and bounds retained",
+    "paired_differences": "All policy pairs within scenario/duration; left minus right, negative favors left; wins/ties/losses on completed pairs",
+    "predictions": "Initial FIRST-action labels from every collected pair, before correction; bin counts/errors and frozen-estimator Brier separately by policy/duration; no refit",
+    "provenance": "Constructed diagnostic motivated by Stage 2 limited competition, identical greedy/search orders and slightly lower FCFS loss; separate from original distribution.",
+    "queue_example": "First numerical seed with completed differing greedy/search review sequences; if both durations qualify choose duration 1 before 2, regardless of winner",
+    "unit": "16 paired scenarios; policies and durations are repeated conditions, not independent scenarios"
+  },
+  "authorization_clock": {
+    "continuation_stages": [
+      {
+        "artifacts": "artifacts/stage1_gpu_live/",
+        "authorization": "explicit_user_request",
+        "deadline_utc": "2026-09-10T01:42:54+00:00",
+        "elapsed_seconds_at_report": 886.56,
+        "experimental_requests": 48,
+        "finish_marker": "The task Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+        "inference_retries": 0,
+        "limit_hours": 2,
+        "name": "stage1_gpu_live",
+        "placement_requests": 1,
+        "report": "reports/STAGE1_GPU_LIVE.md",
+        "reported_utc": "2026-09-09T23:57:40.560414+00:00",
+        "result": "live_gpu_demo_completed_four_replays_verified",
+        "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. No calibration or additional seeds.",
+        "started_utc": "2026-09-09T23:42:54+00:00"
+      },
+      {
+        "artifacts": "artifacts/stage1_gpu_live/rtx6000_ada_20260910T002404Z/",
+        "authorization": "explicit_user_request",
+        "completion_tokens": 343,
+        "deadline_utc": "2026-09-10T02:24:04+00:00",
+        "elapsed_seconds_at_report": 1971.849,
+        "experimental_requests": 48,
+        "finish_marker": "The task Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+        "inference_attempts": 49,
+        "inference_failures": 0,
+        "inference_retries": 0,
+        "limit_hours": 2,
+        "name": "stage1_gpu_live_rtx6000_ada",
+        "overall_elapsed_seconds_at_report": 33478.849,
+        "overall_elapsed_seconds_at_start": 31507.0,
+        "overall_remaining_seconds_at_report": 96121.151,
+        "overall_remaining_seconds_at_start": 98093.0,
+        "placement_requests": 1,
+        "previous_live_report": "reports/STAGE1_GPU_L40S.md",
+        "prompt_tokens": 10227,
+        "report": "reports/STAGE1_GPU_LIVE.md",
+        "reported_utc": "2026-09-10T00:56:55.849320+00:00",
+        "result": "rtx6000_ada_live_gpu_demo_completed_four_replays_verified",
+        "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. Basics and mechanics only; no calibration, new seeds, or additional baselines.",
+        "started_utc": "2026-09-10T00:24:04+00:00"
+      },
+      {
+        "artifacts": "artifacts/stage2_development/",
+        "authorization": "explicit_user_request",
+        "baseline_commit": "77d0e16094b4529a23dfaf1907ba5ab87e25b660",
+        "deadline_utc": "2026-09-10T03:07:01+00:00",
+        "elapsed_seconds_at_report": 1474.526,
+        "estimator_hash": "54d9a97e25f5cb22cf0df216293303ea5c945713032c6bc1282c55fcf327e085",
+        "experimental_calls": 672,
+        "finish_marker": "The task commit's committer timestamp marks final Git completion.",
+        "inference_attempts": 673,
+        "inference_failures": 0,
+        "inference_retries": 0,
+        "limit_hours": 2,
+        "name": "stage2_development",
+        "overall_remaining_seconds_at_report": 94041.474,
+        "placement_calls": 1,
+        "report": "reports/STAGE2_DEVELOPMENT.md",
+        "reported_utc": "2026-09-10T01:31:35.526400+00:00",
+        "result": "completed_56_episodes_and_replays",
+        "scope": "16 FCFS calibration episodes seeds 200-215; 40 validation episodes seeds 216-223 across five policies; review duration 2; 672 scheduled experimental calls and at most one placement generation. No held-out evaluation or further batch.",
+        "started_utc": "2026-09-10T01:07:01+00:00"
+      },
+      {
+        "artifacts": "artifacts/stage3_competition",
+        "authorization": "explicit_user_request",
+        "baseline_commit": "c6871facdae9d0ebff0aa74dbe9a443ba6ff00c1",
+        "deadline_utc": "2026-09-10T04:47:37+00:00",
+        "limit_hours": 2,
+        "name": "stage3_competition",
+        "overall_elapsed_seconds_at_start": 40120.0,
+        "report": "reports/STAGE3_COMPETITION.md",
+        "scope": "Seeds 300-315, six policies, review durations 1 and 2; 192 competition-condition episodes, 2304 scheduled experimental calls, at most one placement generation. Frozen Stage 2 estimator, no refit or added seeds.",
+        "started_utc": "2026-09-10T02:47:37+00:00"
+      }
+    ],
+    "note": "Elapsed clocks start at implementation authorization and do not reset after retries. This stage does not authorize later calibration or evaluation.",
+    "overall_deadline_utc": "2026-09-11T03:38:57+00:00",
+    "overall_limit_hours": 36,
+    "overall_started_utc": "2026-09-09T15:38:57+00:00",
+    "recovery_stages": [
+      {
+        "artifacts": "artifacts/stage1_gpu_recovery/",
+        "connection_check_finished_utc": "2026-09-09T18:01:15+00:00",
+        "deadline_utc": "2026-09-09T19:58:37+00:00",
+        "elapsed_seconds_at_report": 334,
+        "finish_marker": "The recovery Git commit's committer timestamp; the report checkpoint precedes final Git verification.",
+        "limit_hours": 2,
+        "name": "stage1_gpu_recovery",
+        "note": "New user-authorized two-hour recovery stage within the unchanged overall 36-hour window. Original Stage 1 timestamps and CLI deadline enforcement are preserved. No inference was launched.",
+        "overall_elapsed_seconds_at_report": 8714,
+        "overall_elapsed_seconds_at_start": 8380,
+        "overall_remaining_seconds_at_report": 120886,
+        "overall_remaining_seconds_at_start": 121220,
+        "report": "reports/STAGE1_GPU_RECOVERY.md",
+        "reported_utc": "2026-09-09T18:04:11+00:00",
+        "result": "gpu_blocked_by_execution_environment_socket_restriction",
+        "started_utc": "2026-09-09T17:58:37+00:00"
+      }
+    ],
+    "stage1_deadline_utc": "2026-09-09T19:38:57+00:00",
+    "stage1_elapsed_seconds_at_report": 1862,
+    "stage1_finish_marker": "The Stage 1 Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+    "stage1_limit_hours": 4,
+    "stage1_reported_utc": "2026-09-09T16:09:59+00:00",
+    "stage1_result": "local_checks_passed_gpu_blocked",
+    "stage1_started_utc": "2026-09-09T15:38:57+00:00"
+  },
+  "config": {
+    "agents": 3,
+    "baseline_commit": "c6871facdae9d0ebff0aa74dbe9a443ba6ff00c1",
+    "continuation": "stage3_competition",
+    "duration_order": "[1,2] for even seed index; [2,1] for odd",
+    "estimator_file_sha256": "4ce8309bce27b70cdab1bd707bc3468f1039e88d4c30632541231efd6dde0d9d",
+    "estimator_hash": "54d9a97e25f5cb22cf0df216293303ea5c945713032c6bc1282c55fcf327e085",
+    "horizon": 12,
+    "jobs_per_agent": 2,
+    "maximum_experimental_attempts": 4608,
+    "maximum_placement_attempts": 1,
+    "policies": [
+      "fcfs",
+      "uncertainty",
+      "myopic",
+      "greedy",
+      "edf",
+      "delay"
+    ],
+    "policy_order": "left_rotate_by_(2*seed_index+duration_position)_mod_6",
+    "review_ticks": [
+      1,
+      2
+    ],
+    "scheduled_calls_per_episode": 12,
+    "scheduled_experimental_calls": 2304,
+    "seeds": [
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
+      308,
+      309,
+      310,
+      311,
+      312,
+      313,
+      314,
+      315
+    ]
+  },
+  "config_hash": "5ef85e371e65aa666c956b1ce6d746dfb1228e1fa0e23da1f90689cc6733234c",
+  "declaration_hash": "60ca9324f7b12f0b1e2dd8dad8d87a6a439b25053b4b969569f91bc93d983f8a",
+  "episodes": [
+    {
+      "execution_index": 0,
+      "folder": "300/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 1,
+      "folder": "300/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 2,
+      "folder": "300/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 3,
+      "folder": "300/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 4,
+      "folder": "300/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 5,
+      "folder": "300/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 6,
+      "folder": "300/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 7,
+      "folder": "300/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 8,
+      "folder": "300/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 9,
+      "folder": "300/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 10,
+      "folder": "300/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 11,
+      "folder": "300/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "9c8dec59301d1742753949eb3b29cda6c01efef5b9aa19eb3849c0eadaf4c6fd",
+      "seed": 300
+    },
+    {
+      "execution_index": 12,
+      "folder": "301/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 13,
+      "folder": "301/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 14,
+      "folder": "301/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 15,
+      "folder": "301/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 16,
+      "folder": "301/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 17,
+      "folder": "301/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 18,
+      "folder": "301/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 19,
+      "folder": "301/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 20,
+      "folder": "301/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 21,
+      "folder": "301/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 22,
+      "folder": "301/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 23,
+      "folder": "301/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "919db2443a551c1a0bedaf742f84cdc57ee0783a26de2d5355989dab342cdbe6",
+      "seed": 301
+    },
+    {
+      "execution_index": 24,
+      "folder": "302/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 25,
+      "folder": "302/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 26,
+      "folder": "302/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 27,
+      "folder": "302/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 28,
+      "folder": "302/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 29,
+      "folder": "302/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 30,
+      "folder": "302/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 31,
+      "folder": "302/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 32,
+      "folder": "302/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 33,
+      "folder": "302/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 34,
+      "folder": "302/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 35,
+      "folder": "302/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "8ca9bd486018da55cabe3c0a9eff4beca930767197f6079e00fab451e5fd6d50",
+      "seed": 302
+    },
+    {
+      "execution_index": 36,
+      "folder": "303/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 37,
+      "folder": "303/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 38,
+      "folder": "303/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 39,
+      "folder": "303/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 40,
+      "folder": "303/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 41,
+      "folder": "303/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 42,
+      "folder": "303/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 43,
+      "folder": "303/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 44,
+      "folder": "303/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 45,
+      "folder": "303/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 46,
+      "folder": "303/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 47,
+      "folder": "303/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "b83eacc3f07791bb2f4ea5979fb2b7423a3a62e6c3d6e1970f50f9d41459ecdf",
+      "seed": 303
+    },
+    {
+      "execution_index": 48,
+      "folder": "304/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 49,
+      "folder": "304/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 50,
+      "folder": "304/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 51,
+      "folder": "304/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 52,
+      "folder": "304/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 53,
+      "folder": "304/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 54,
+      "folder": "304/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 55,
+      "folder": "304/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 56,
+      "folder": "304/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 57,
+      "folder": "304/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 58,
+      "folder": "304/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 59,
+      "folder": "304/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "a81cceb92dcb078054c398795cb98e97b94a5c678b0272b5036654960f08a38f",
+      "seed": 304
+    },
+    {
+      "execution_index": 60,
+      "folder": "305/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 61,
+      "folder": "305/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 62,
+      "folder": "305/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 63,
+      "folder": "305/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 64,
+      "folder": "305/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 65,
+      "folder": "305/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 66,
+      "folder": "305/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 67,
+      "folder": "305/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 68,
+      "folder": "305/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 69,
+      "folder": "305/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 70,
+      "folder": "305/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 71,
+      "folder": "305/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "5916f8ae6dad61ef61a447ababc7acbde5ce8fb4b46eaece1c349c3f1d8707b3",
+      "seed": 305
+    },
+    {
+      "execution_index": 72,
+      "folder": "306/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 73,
+      "folder": "306/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 74,
+      "folder": "306/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 75,
+      "folder": "306/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 76,
+      "folder": "306/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 77,
+      "folder": "306/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 78,
+      "folder": "306/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 79,
+      "folder": "306/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 80,
+      "folder": "306/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 81,
+      "folder": "306/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 82,
+      "folder": "306/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 83,
+      "folder": "306/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "fe4c4cae465b39ade5a5f6d76d3404a8230d1eebf19c86deec30fd7b267d6176",
+      "seed": 306
+    },
+    {
+      "execution_index": 84,
+      "folder": "307/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 85,
+      "folder": "307/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 86,
+      "folder": "307/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 87,
+      "folder": "307/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 88,
+      "folder": "307/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 89,
+      "folder": "307/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 90,
+      "folder": "307/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 91,
+      "folder": "307/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 92,
+      "folder": "307/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 93,
+      "folder": "307/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 94,
+      "folder": "307/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 95,
+      "folder": "307/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "f2d4a7aee02bccaffddbaa6b954de277cfde5b2e10cdad74f58af3ab4e6ec173",
+      "seed": 307
+    },
+    {
+      "execution_index": 96,
+      "folder": "308/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 97,
+      "folder": "308/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 98,
+      "folder": "308/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 99,
+      "folder": "308/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 100,
+      "folder": "308/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 101,
+      "folder": "308/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 102,
+      "folder": "308/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 103,
+      "folder": "308/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 104,
+      "folder": "308/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 105,
+      "folder": "308/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 106,
+      "folder": "308/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 107,
+      "folder": "308/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "120ec2a19c189482031d9900da52560f6bee67d6225807e06828dff27a4008b1",
+      "seed": 308
+    },
+    {
+      "execution_index": 108,
+      "folder": "309/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 109,
+      "folder": "309/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 110,
+      "folder": "309/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 111,
+      "folder": "309/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 112,
+      "folder": "309/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 113,
+      "folder": "309/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 114,
+      "folder": "309/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 115,
+      "folder": "309/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 116,
+      "folder": "309/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 117,
+      "folder": "309/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 118,
+      "folder": "309/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 119,
+      "folder": "309/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "0d7d5ad3af2f381873bf076a5d698b70db0787fa77cbc6bf590a6cc8200c09e4",
+      "seed": 309
+    },
+    {
+      "execution_index": 120,
+      "folder": "310/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 121,
+      "folder": "310/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 122,
+      "folder": "310/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 123,
+      "folder": "310/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 124,
+      "folder": "310/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 125,
+      "folder": "310/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 126,
+      "folder": "310/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 127,
+      "folder": "310/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 128,
+      "folder": "310/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 129,
+      "folder": "310/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 130,
+      "folder": "310/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 131,
+      "folder": "310/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "70ae19bd71970d5272638b7d41e9225597db6c7ce0ddac1be48c92ff3ef51fc0",
+      "seed": 310
+    },
+    {
+      "execution_index": 132,
+      "folder": "311/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 133,
+      "folder": "311/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 134,
+      "folder": "311/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 135,
+      "folder": "311/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 136,
+      "folder": "311/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 137,
+      "folder": "311/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 138,
+      "folder": "311/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 139,
+      "folder": "311/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 140,
+      "folder": "311/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 141,
+      "folder": "311/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 142,
+      "folder": "311/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 143,
+      "folder": "311/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "73663fb800dcf115d4aedade6c19f758eca17abe25ab1e4817ec1c60fad00480",
+      "seed": 311
+    },
+    {
+      "execution_index": 144,
+      "folder": "312/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 145,
+      "folder": "312/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 146,
+      "folder": "312/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 147,
+      "folder": "312/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 148,
+      "folder": "312/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 149,
+      "folder": "312/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 150,
+      "folder": "312/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 151,
+      "folder": "312/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 152,
+      "folder": "312/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 153,
+      "folder": "312/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 154,
+      "folder": "312/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 155,
+      "folder": "312/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "ee9f7181e748d524101bee4701ec1cceb80100c6131d2d6c32a77834f534b9fd",
+      "seed": 312
+    },
+    {
+      "execution_index": 156,
+      "folder": "313/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 157,
+      "folder": "313/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 158,
+      "folder": "313/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 159,
+      "folder": "313/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 160,
+      "folder": "313/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 161,
+      "folder": "313/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 162,
+      "folder": "313/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 163,
+      "folder": "313/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 164,
+      "folder": "313/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 165,
+      "folder": "313/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 166,
+      "folder": "313/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 167,
+      "folder": "313/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "b6c7ef72f38b9db15bd5ac30b02747297faedff13f37b01ec322b9df03a846aa",
+      "seed": 313
+    },
+    {
+      "execution_index": 168,
+      "folder": "314/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 169,
+      "folder": "314/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 170,
+      "folder": "314/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 171,
+      "folder": "314/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 172,
+      "folder": "314/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 173,
+      "folder": "314/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 174,
+      "folder": "314/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 175,
+      "folder": "314/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 176,
+      "folder": "314/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 177,
+      "folder": "314/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 178,
+      "folder": "314/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 179,
+      "folder": "314/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "b8f4b6a635a459feb792ea7fc5ca3eaf867dc4eb98c792cc4cf42cddf8ac7200",
+      "seed": 314
+    },
+    {
+      "execution_index": 180,
+      "folder": "315/s2/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 181,
+      "folder": "315/s2/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 182,
+      "folder": "315/s2/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 183,
+      "folder": "315/s2/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 184,
+      "folder": "315/s2/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 185,
+      "folder": "315/s2/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 2,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 186,
+      "folder": "315/s1/uncertainty",
+      "planned_calls": 12,
+      "policy": "uncertainty",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 187,
+      "folder": "315/s1/myopic",
+      "planned_calls": 12,
+      "policy": "myopic",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 188,
+      "folder": "315/s1/greedy",
+      "planned_calls": 12,
+      "policy": "greedy",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 189,
+      "folder": "315/s1/edf",
+      "planned_calls": 12,
+      "policy": "edf",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 190,
+      "folder": "315/s1/delay",
+      "planned_calls": 12,
+      "policy": "delay",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    },
+    {
+      "execution_index": 191,
+      "folder": "315/s1/fcfs",
+      "planned_calls": 12,
+      "policy": "fcfs",
+      "review_ticks": 1,
+      "scenario_hash": "6e24f26cb9d9914506ff303d1553ffb6bd99328343d6786393f05fca6556658e",
+      "seed": 315
+    }
+  ],
+  "estimator_file_sha256": "4ce8309bce27b70cdab1bd707bc3468f1039e88d4c30632541231efd6dde0d9d",
+  "estimator_hash": "54d9a97e25f5cb22cf0df216293303ea5c945713032c6bc1282c55fcf327e085",
+  "estimator_source": "artifacts/stage2_development/run/estimator.json",
+  "generator_spec": {
+    "agents": 3,
+    "clue_accuracies": [
+      0.8,
+      0.6
+    ],
+    "deadline_windows": [
+      2,
+      4,
+      5
+    ],
+    "downtime_cost": 0,
+    "fault_prior": {
+      "filter": 0.5,
+      "sensor": 0.5
+    },
+    "horizon": 12,
+    "inclusion": "All seeds 300-315; no conditioning on actions, errors, or outcomes",
+    "jobs_per_agent": 2,
+    "random_streams": "SHA256(seed, wave, component); independent deadlines, penalties, faults/clues streams",
+    "releases": [
+      0,
+      6
+    ],
+    "terminal_penalties": [
+      4,
+      8,
+      12
+    ]
+  },
+  "prepared_utc": "2026-09-10T02:58:14.895413+00:00",
+  "prompt_sha256": "fcc2aef1d617ec070fa1eed0b239eeb1b0c4ad88268a0857aed2a29c1b6a2ce6",
+  "runtime_config": {
+    "agents": 3,
+    "base_url": "http://127.0.0.1:8000/v1",
+    "horizon": 12,
+    "jobs_per_agent": 2,
+    "max_attempts_per_call": 2,
+    "max_input_tokens": 1024,
+    "max_output_tokens": 48,
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "p_error": 0.5,
+    "placement_calls": 1,
+    "policies": [
+      "fcfs",
+      "uncertainty",
+      "myopic",
+      "delay"
+    ],
+    "review_ticks": 2,
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "scheduled_calls_per_policy": 12,
+    "seed": 100,
+    "temperature": 0.3,
+    "timeout_seconds": 60,
+    "top_p": 1.0
+  },
+  "runtime_config_hash": "d2bbc06830e70485423abf3781dccaafe10e031fb84654d50236e45b56397675",
+  "sampling_seeds": "Existing SHA256(scenario_seed,agent_id,job_id,sample,retry); excludes policy, duration and execution order",
+  "source_files_sha256": {
+    "configs/stage1.json": "f3fdc0276558f4a463a7da59423be43487836acc46e45be6d6385bfda067ca4b",
+    "configs/stage2.json": "7ed82f6cc860bb4bfacc65b1948151b595b9c34164e6658fca92b8197935b4d1",
+    "configs/stage3.json": "ce28b5adb85fc8891956ea87d503e79967ae879d6e314c942257cf44d66278dc",
+    "overseeing/__init__.py": "bd0a7075d4312b0f318a5bdfe2536f8424b98e43ed921e309facf4db482ad2bb",
+    "overseeing/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "overseeing/cli.py": "ce426736cf4ed6ee37b6ecf4f35de29ff3e7a48a55385b080150338f8f786399",
+    "overseeing/client.py": "3061c66ee44053d61488cb6b712dbb9af60b33dcb8023af0ea07d571b9e59633",
+    "overseeing/competition.py": "220c09e6587618a61135ea85adebe3ede2b7a3da75b5b864ab068959f50e78ad",
+    "overseeing/competition_analysis.py": "af6711afaf4e0f4e89d61b7e6e357e2fd6b6b4c5b032b95c86fcefe169d7bb13",
+    "overseeing/competition_condition.py": "52438fa2151d53101efaef5855394f035884b5b51a7168ae3cca9e8900172cac",
+    "overseeing/development.py": "0ebda6b3bdb352c5500810a8e89c8fdf02f35296339250cb8f81e3645551cde2",
+    "overseeing/development_analysis.py": "cff4cccc88f621976190277b7e459dd6caee956e40daf9a512c0f18d08d44bfc",
+    "overseeing/domain.py": "206c30eeb2f7a1fae221faa95c97ac71a392bd7bbb800c917757d121166987a7",
+    "overseeing/estimator.py": "6b1bd81b2cf29d40d9c37af0acc5b248d7f2fde0f1a0635086928943c46d6b44",
+    "overseeing/fixtures.py": "534546323423efb134feb568f798111e08390e5b6adc6a23b8e4dc0efeeb1871",
+    "overseeing/gpu.py": "afa70760ada591c563d79b08e87c4a207cefe430b21e6c4b3a9ef0a629afd8d9",
+    "overseeing/io.py": "17bdc1fc00654dc9be5f9bb46af1f8660519e7efef6af48248fbbd389aecf32f",
+    "overseeing/policies.py": "2e9033ab07419b8fb0718dd47ac0d6ee6f0c6ac241e37edbe8c7b2122ff994bf",
+    "overseeing/replay.py": "5e36aa697b7a2ee399c9591292c1315b9d2f6f8f277dc24c3a4d5a1048256df4",
+    "overseeing/simulator.py": "63182efb1c254538d8f003dd8b231dd12ad62c30674d8e12ca77e9363c7f1db7",
+    "requirements-gpu.txt": "4c26987896af990fce81edff192081764c39320231559e6aabde99b5af71cf01",
+    "scripts/plot_competition.py": "bf2124fdfa3c5b4e634a9631dab6ccf80a99540aad4d4f89b57bce2cc1d3525b",
+    "scripts/pod_preflight.sh": "161eada6903bdbf7ebc7099cc78e66084ebe58007893faceab398b1382dd283b",
+    "scripts/serve_gpu.sh": "744619f1ae0ef5571309b51ab702cc7142b7ca84786978d30e0a9c416e2bc6e8",
+    "scripts/verify_competition.py": "a2a063196787902eb3c3955a68c9ce30052ac2e7316f01a89e4fb8b26a1204f8",
+    "scripts/verify_development.py": "ee82b514cc0287cd87941741c9cf5050444335b8f6d7941bd284bba9d3055ec9",
+    "scripts/verify_live_results.py": "fa8487c51113a2b6c11903f07c0b65f7fcf7bb6c487af65a2a062d34b581f29b",
+    "tests/test_backbone.py": "6929dbaff292585568e083b5363555d924cd046f41b68bd22014c21f4f049e84",
+    "tests/test_competition.py": "500126c6d7eea6893ea1c06b7e571854a1ec11d97c5c1d95d60280aa1b4d2fc4",
+    "tests/test_development.py": "91c2032803c6067347c7e59d1d65623ec03780c99656346d6a614a94bc4f1138",
+    "tests/test_live_gpu.py": "e2ec09fe946c1cd5fde97b404e7108a9703902130be6925cf26870f6652dd3e5"
+  }
+}

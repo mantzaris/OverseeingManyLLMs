@@ -1,8 +1,8 @@
 # OverseeingManyLLMs
 
-A reproducible backbone for studying how one simulated human supervisor allocates review time across three LLM agents doing synthetic civilian maintenance tasks. It implements generation, public observations, GPU actions, a frozen agreement estimator, a review queue, five schedulers, corrective interventions, loss scoring, and independent replay.
+A reproducible backbone for studying how one simulated human supervisor allocates review time across three LLM agents doing synthetic civilian maintenance tasks. It implements generation, public observations, GPU actions, a frozen agreement estimator, a review queue, six schedulers, corrective interventions, loss scoring, and independent replay.
 
-Start with the [development report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
+Start with the [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
 
 Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy baseline. Calibration uses 16 FCFS episodes with provisional **p=0.5**; the frozen estimator then drives five policies on eight development scenarios. The declared scope is 56 episodes, 672 experimental calls, and at most one placement generation. A bin with fewer than ten calibration examples uses the smoothed pooled estimate. This development batch is not a held-out effectiveness study.
 
@@ -18,6 +18,7 @@ python3 -m overseeing mechanics --out artifacts/local-mechanics
 python3 -m overseeing replay artifacts/local-mechanics/competition/delay/events.jsonl
 python3 -m overseeing development-mechanics --out artifacts/local-development-mechanics
 python3 scripts/verify_development.py artifacts/stage2_development/run
+python3 scripts/verify_competition.py artifacts/stage3_competition/run
 
 task_artifacts=artifacts/stage1_gpu_live/rtx6000_ada_20260910T002404Z
 python3 scripts/verify_live_results.py "$task_artifacts/run"
@@ -60,4 +61,24 @@ These are historical execution commands. Existing outputs and the one-shot execu
 
 The [original backbone report](reports/STAGE1_GPU_BACKBONE.md), [blocked recovery](reports/STAGE1_GPU_RECOVERY.md), and [first L40S live report](reports/STAGE1_GPU_L40S.md) remain available with their original artifacts. All clocks are retained in [implementation_clock.json](reports/implementation_clock.json).
 
-The declared development calibration and fifth baseline are implemented. Review-duration controls, held-out evaluation seeds, larger experiments, advanced tasks, and a full manuscript remain later work. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
+The declared development calibration and fifth baseline are implemented. The separate Stage 3 condition adds deadline-first scheduling and a one-versus-two-tick review comparison. Held-out evaluation seeds, larger experiments, advanced tasks, estimator changes, and a full manuscript remain later work. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
+
+## Stage 3 competition diagnostic
+
+Motivated by Stage 2's limited competition, a separate generator releases three jobs together at ticks 0 and 6, independently permutes deadline windows 2/4/5 and penalties 4/8/12, and sets downtime costs to zero. The frozen Stage 2 estimator is reused without fitting. Six policies, two review durations, and seeds 300–315 give **192 episodes / 2,304 experimental calls**, with one separate placement request. The 192 repeated conditions represent 16 paired scenarios, not 192 independent observations. Historical policy lists and commands retain their original scope.
+
+All 192 episodes completed and replayed with **2,305 total GPU generations, zero retries/failures**. At one tick, search and EDF tied at loss 0 versus greedy's 12. At two ticks, search totaled 44 versus greedy's 52 and EDF's 84, while losing on individual scenarios. Search/greedy orders differed in 15/16 and 14/16 scenarios. These deliberately constructed development results are separate from Stage 2; exact regenerated actions are not assured, and every saved result remains replayable.
+
+[Declaration and raw evidence](artifacts/stage3_competition/run/), [paired-loss figure](artifacts/stage3_competition/run/paired_loss.png), and [first differing queue example](artifacts/stage3_competition/run/queue_example.md) accompany the [report](reports/STAGE3_COMPETITION.md). Verify saved results with the command above. Recreate the figure with `python3 scripts/plot_competition.py artifacts/stage3_competition/run` (requires Matplotlib; the audit itself uses only the standard library).
+
+Historical execution commands, guarded against overwriting or rerunning the saved batch:
+
+```bash
+python3 -m overseeing prepare-competition --out artifacts/stage3_competition/run
+.venv/bin/python -m overseeing competition --out artifacts/stage3_competition/run \
+  --server-pid 7338 \
+  --server-log artifacts/stage1_gpu_live/rtx6000_ada_20260910T002404Z/setup/server.log \
+  --deadline-utc 2026-09-10T04:47:37+00:00
+```
+
+The separately recorded Stage 3 authorization lasts at most two hours and remains within the original overall deadline. Earlier command deadlines are unchanged. Stop after this batch; further inference requires a new authorized scope.
