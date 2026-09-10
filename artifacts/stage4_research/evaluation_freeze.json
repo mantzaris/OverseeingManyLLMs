@@ -1,0 +1,64 @@
+{
+  "core_prefixes": {
+    "ablation_competition": [
+      11000,
+      11031
+    ],
+    "ablation_original": [
+      10000,
+      10031
+    ],
+    "competition": [
+      11000,
+      11063
+    ],
+    "larger": [
+      12000,
+      12031
+    ],
+    "original": [
+      10000,
+      10063
+    ]
+  },
+  "development_findings": "Core s2 search/greedy tied on both small workloads; larger workload raised competition and cost/count tradeoffs. Objective pilot mostly tied or slightly worsened cost; no grid tuning. Identical-request variation persisted in 2 core and3 objective pilot hash groups and will be reported.",
+  "development_seconds_per_call": {
+    "maximum": 0.30971933333333335,
+    "mean": 0.20510863870614035,
+    "p95": 0.2425095791666664
+  },
+  "forecast_finish_utc": "2026-09-10T09:20:01.662202+00:00",
+  "forecast_rule": "1.5 times measured p95 end-to-end episode seconds/call, multiplied by all declared evaluation calls, plus 1800 seconds contingency; includes measured planning and artifact overhead.",
+  "forecast_seconds": 17444.777971199983,
+  "frozen_utc": "2026-09-10T04:29:16.884231+00:00",
+  "inference_cutoff_utc": "2026-09-10T11:18:53+00:00",
+  "maximum_retries_per_call": 1,
+  "maximum_session_attempts": 60000,
+  "objective_branch": {
+    "durations": [
+      1,
+      2
+    ],
+    "iterations": 1,
+    "penalties": [
+      0,
+      4,
+      8
+    ],
+    "policy": "delay",
+    "seeds": [
+      13000,
+      13015
+    ],
+    "workloads": [
+      "competition a3",
+      "larger a6"
+    ]
+  },
+  "phase": "evaluation frozen before outcomes",
+  "planned_calls": 43008,
+  "planned_episodes": 2752,
+  "prior_calls": 5312,
+  "restriction": "No generator, policy, estimator, seed, objective grid or analysis redesign using evaluation outcomes. Failed rows retained; no replacement seeds; all primary runs use fresh GPU calls. Fixed scenario bootstrap definitions in declaration.",
+  "total_session_planned_calls": 48320
+}

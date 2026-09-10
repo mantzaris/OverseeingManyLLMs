@@ -2,7 +2,7 @@
 
 The nine-hour stage started **2026-09-10 03:48:53 UTC**, with a hard finish at **12:48:53 UTC** and inference cutoff **11:18:53 UTC**, reserving 90 minutes for reporting. Historical clocks and command limits remain unchanged. A single append-only ledger enforces 50,000 scheduled calls and 60,000 generation attempts. Every ordinary call permits at most one retry. [Authorization](../artifacts/stage4_research/authorization.json), [initial register](../artifacts/stage4_research/RESEARCH_PLAN.md), [decision log](../artifacts/stage4_research/decisions.jsonl).
 
-This milestone contains the verified foundation and declarations; it is not the completed research report. No evaluation has begun and no optional branch has been selected.
+This milestone contains the verified foundation and declarations; it is not the completed research report. No evaluation has begun. The cost-versus-correctness branch is now selected and the full evaluation matrix is frozen.
 
 ## Foundation findings
 
@@ -24,3 +24,11 @@ A numerical tie defect was identified before expansion: sequential floating-poin
 All **39 focused checks** pass after the extensions, including analytical complementary-action cases, public/private independence, nested agent conditions, reporting reserve/ledger caps, stable search ties, full enumeration, history boundaries, and compressed evidence replay. [Checks](../artifacts/stage4_research/core_checks.txt).
 
 The declared initial rollout pilot uses seeds 400–407 for risk comparisons and 408–411 for the larger workload: **256 episodes / 4,032 scheduled calls**. It will precede branch selection and evaluation freeze. [Pilot declaration](../artifacts/stage4_research/batches/development_pilot/declaration.json).
+
+## Development completion and evaluation freeze
+
+All 256 initial pilot episodes and 48 objective pilot episodes completed and replayed, using 5,184 calls with no retries or failed attempts. The larger pilot reached six outstanding requests, five simultaneously eligible requests, and 292 input tokens at maximum. The final initial-pilot GPU log check failed because its tail-only log selection dropped startup placement lines; its failed evidence remains saved. A separate same-server recheck verified placement, and the validator now retains startup anchors. The objective pilot's final check passed.
+
+The initial pilot found two mixed-action request-hash groups among 640 repeated groups; the objective pilot found three among 296. No stabilization reruns were made. Frozen s=2 search/greedy losses tied on both original and competition pilots. On six-agent s=1 pilot scenarios, search cost 63 with 67 correct closures, versus EDF cost 95 with 69; two of four scenarios had lower cost but more incorrect closures. This repeated objective tradeoff motivated branch A. Its one fixed pilot iteration (λ=0,4,8) produced mostly ties and small cost increases, so the grid remains unchanged.
+
+The [evaluation freeze](../artifacts/stage4_research/evaluation_freeze.json) declares all full core prefixes and 16 objective-extension scenarios per workload: 2,752 evaluation episodes, 43,008 calls, and 48,320 session calls including all prior work. The forecast uses 1.5 times measured p95 end-to-end episode seconds/call plus 30 minutes contingency and fits before the inference cutoff. No evaluation labels are used for method or sample-size choices. [Current register](../artifacts/stage4_research/EXPERIMENT_REGISTER.md).
