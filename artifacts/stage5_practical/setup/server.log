@@ -1,0 +1,30 @@
+INFO 09-10 14:25:44 [__init__.py:216] Automatically detected platform cuda.
+[1;36m(APIServer pid=239590)[0;0m INFO 09-10 14:25:57 [api_server.py:1896] vLLM API server version 0.10.2
+[1;36m(APIServer pid=239590)[0;0m INFO 09-10 14:25:57 [utils.py:328] non-default args: {'model_tag': 'Qwen/Qwen2.5-7B-Instruct', 'host': '127.0.0.1', 'port': 8001, 'model': 'Qwen/Qwen2.5-7B-Instruct', 'dtype': 'bfloat16', 'seed': 20260909, 'revision': 'a09a35458c702b33eeacc393d103063234e8bc28', 'tokenizer_revision': 'a09a35458c702b33eeacc393d103063234e8bc28', 'max_model_len': 16384, 'enforce_eager': True, 'generation_config': 'vllm', 'gpu_memory_utilization': 0.4, 'swap_space': 0.0, 'max_num_seqs': 1}
+[1;36m(APIServer pid=239590)[0;0m Traceback (most recent call last):
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/bin/vllm", line 10, in <module>
+[1;36m(APIServer pid=239590)[0;0m     sys.exit(main())
+[1;36m(APIServer pid=239590)[0;0m              ^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/vllm/entrypoints/cli/main.py", line 54, in main
+[1;36m(APIServer pid=239590)[0;0m     args.dispatch_function(args)
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/vllm/entrypoints/cli/serve.py", line 50, in cmd
+[1;36m(APIServer pid=239590)[0;0m     uvloop.run(run_server(args))
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+[1;36m(APIServer pid=239590)[0;0m     return runner.run(wrapper())
+[1;36m(APIServer pid=239590)[0;0m            ^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "/usr/lib/python3.11/asyncio/runners.py", line 118, in run
+[1;36m(APIServer pid=239590)[0;0m     return self._loop.run_until_complete(task)
+[1;36m(APIServer pid=239590)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+[1;36m(APIServer pid=239590)[0;0m     return await main
+[1;36m(APIServer pid=239590)[0;0m            ^^^^^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 1940, in run_server
+[1;36m(APIServer pid=239590)[0;0m     listen_address, sock = setup_server(args)
+[1;36m(APIServer pid=239590)[0;0m                            ^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 1911, in setup_server
+[1;36m(APIServer pid=239590)[0;0m     sock = create_server_socket(sock_addr)
+[1;36m(APIServer pid=239590)[0;0m            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[1;36m(APIServer pid=239590)[0;0m   File "/workspace/OverseeingManyLLMs-rtx6000-ada-20260910T002404Z/.venv/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 1866, in create_server_socket
+[1;36m(APIServer pid=239590)[0;0m     sock.bind(addr)
+[1;36m(APIServer pid=239590)[0;0m OSError: [Errno 98] Address already in use
