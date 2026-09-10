@@ -33,11 +33,12 @@ def bundle_means(rows,metric):
     return result
 
 
-def paired_summary(values,indices):
+def paired_summary(values,indices,lower_is_better=True):
     if not values:return dict(mean_difference=None,ci_low=None,ci_high=None,wins=0,ties=0,losses=0)
     samples=[sum(values[i] for i in draw)/len(values) for draw in indices]
     return dict(mean_difference=sum(values)/len(values),ci_low=percentile(samples,.025),ci_high=percentile(samples,.975),
-        wins=sum(v<0 for v in values),ties=sum(v==0 for v in values),losses=sum(v>0 for v in values))
+        wins=sum(v<0 if lower_is_better else v>0 for v in values),ties=sum(v==0 for v in values),
+        losses=sum(v>0 if lower_is_better else v<0 for v in values))
 
 
 def analyze(cohort):
@@ -121,7 +122,7 @@ def analyze(cohort):
             for other in ('greedy','edf','fcfs','uncertainty','no_review'):
                 for metric in ('operational_loss','task_completed','wrong_transactions','review_busy_ticks'):
                     diffs=[means[metric][(b,(variant,duration,'search'))]-means[metric][(b,(variant,duration,other))] for b in complete_bundles]
-                    result=paired_summary(diffs,indices)
+                    result=paired_summary(diffs,indices,lower_is_better=metric!='task_completed')
                     pairs.append(dict(variant=variant,review_duration=duration,comparison='search-'+other,metric=metric,bundles=len(diffs),**result))
                     for b,d in zip(complete_bundles,diffs):differences.append(dict(bundle_id=b,variant=variant,review_duration=duration,comparison='search-'+other,metric=metric,difference=d))
     changes=[]
@@ -130,7 +131,7 @@ def analyze(cohort):
             for policy in POLICIES:
                 for metric in ('operational_loss','task_completed','wrong_transactions','review_busy_ticks'):
                     ds=[means[metric][(b,(variant,duration,policy))]-means[metric][(b,('reference',duration,policy))] for b in complete_bundles]
-                    changes.append(dict(variant=variant,review_duration=duration,policy=policy,metric=metric,bundles=len(ds),**paired_summary(ds,indices)))
+                    changes.append(dict(variant=variant,review_duration=duration,policy=policy,metric=metric,bundles=len(ds),**paired_summary(ds,indices,lower_is_better=metric!='task_completed')))
     csv_file(out/'policy_outcomes.csv',summaries);csv_file(out/'paired_comparisons.csv',pairs);csv_file(out/'bundle_differences.csv',differences);csv_file(out/'variant_changes.csv',changes)
     prediction,bins=prediction_metrics(all_prepared,estimator);csv_file(out/'risk_bins.csv',bins)
     variability=[]

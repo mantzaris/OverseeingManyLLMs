@@ -1,0 +1,527 @@
+ Supplement to Planning Shared Review for Language Model Workflows
+               with Expiring Intervention Opportunities
+
+                                           Anonymous Companion Material
+
+
+
+Keywords:        Reproducibility, Review Semantics, Paired Evaluation.
+
+Abstract:        This companion records experimental matrices, operational assumptions, source-case provenance, paired ro-
+                 bustness diagnostics and replay procedures for the shared-review study. It separates the original maintenance
+                 distributions from constructed competition, and separates fresh retail source cases from post hoc analysis of
+                 earlier preparations. Detailed outcome tables retain failures and blocked unresolved requests. The main paper
+                 contains the formulation, central comparisons, uncertainty and limitations needed to assess its claims. This
+                 supplement provides additional inspection and reproduction detail. It is a local research companion and is not
+                 represented as an accepted supplementary submission under the conference policy.
+
+
+
+1     EVIDENCE ORGANIZATION                                        while reusing matching frozen rows as the reference.
+                                                                   Larger-workload scenarios use 12000–12031, three
+The evidence package retains immutable declarations,               and six agents, four policies and both durations. The
+source snapshots, model requests and responses,                    selected objective extension uses 13000–13015 with
+event traces, estimators and accounting ledgers. De-               the declared additional-closure penalties 0, 4 and 8. It
+velopment chronology resides in stage reports rather               is a development-selected objective study, not a uni-
+than the main scientific argument. Original, competi-              versal objective search.
+tion and larger maintenance distributions remain sep-                  The original distribution and competition matri-
+arate. Original retail and the fresh operational follow-           ces contribute 1,536 episodes, alternative-risk rollouts
+up are also separate cohorts.1                                     512, larger workload 512, and the objective extension
+     The completed maintenance evaluation contains                 192. These are repeated conditions, not 2,752 inde-
+2,752 episodes, with 304 development episodes and                  pendent scenarios. The frozen scenario prefixes are
+128 separate repeated-request diagnostic generations.              not extended based on observed outcomes. All com-
+Its 48,320 GPU attempts include all development,                   pleted traces replay.
+evaluation and diagnostic calls. The original retail
+stage contains two preserved pilots, a 72-workflow                 1.2    Observation and Feedback
+calibration set and a 288-workflow evaluation. The
+first pilot staged no transactions; one declared inter-
+                                                                          Boundary
+face revision corrected tool-before-argument serial-
+                                                                   Maintenance model inputs contain released public job
+ization and added public progress information. It does
+                                                                   information and that agent’s own history. Schedulers
+not identify the separate causal effects of those two
+                                                                   receive public request records rather than private job
+changes. The frozen follow-up leaves this interface
+                                                                   objects. Before review completion, neither has defini-
+unchanged.
+                                                                   tive fault labels. Reviews finish before same-tick
+                                                                   deadline closure, so equality can prevent a terminal
+1.1    Maintenance Matrices                                        penalty. Downtime accumulated before correction re-
+                                                                   mains. Search has no access to the generator’s future
+Original scenarios use seeds 10000–10063 and com-                  waves.
+petition uses 11000–11063. Each has six policies                       Retail preparation has its own agent history and no
+and both review durations under frozen agreement                   access to annotated targets. Authentication, account
+risk. The two alternative-risk rules use the first                 ownership, retrieval and confirmation checks apply
+32 seeds in each workload with greedy and search,                  before a mutation can be staged. The scheduler then
+                                                                   receives only arrived transaction requests and pub-
+    1 Draftingassistance: OpenAI Codex (OpenAI, 2026).             lic risk, cost, cutoff and service-time fields. Hidden
+See the AI assistance disclosure.
+                                                           Table 1: Frozen application calibration. All staged exam-
+proposal correctness is consulted by completed per-        ples have the uncertainty flag. Unflagged bins have no ex-
+fect review and offline scoring. Other-policy choices      amples and use pooled fallback.
+logged on the same public state are diagnostics and
+do not alter the executed policy.                                Family            Examples     Errors     Risk
+                                                                 Cancellation             23        0    0.0400
+                                                                 Modification             22        6    0.2917
+                                                                 Return/exchange          19        9    0.4762
+2     RETAIL SOURCE AND                                          Pooled                   64       15    0.2424
+      SEMANTICS
+                                                               It is not a measured retailer deadline. The back-
+The source is the MIT-licensed retail component of             end does not advance a pending order to shipped
+τ-bench (Yao et al., 2024), pinned at revision                 merely because a tick passes.
+      59a200c6d575d595120f1cb70fea53cef0632f6b              • Corrective review assumes permission to restore
+The selected substrate retains all orders for each iso-       the complete recorded intent without renewed
+lated account and the full product catalog. Tool func-        customer confirmation. Restricted review re-
+tions are unmodified. The original package’s hosted           moves that power and retains perfect detection
+user simulator is not imported. The adapter repro-            only.
+duces its recursive final-database hash semantics and       • Blocking a wrong transaction prevents its process-
+verifies target mutations on isolated state.2                 ing consequence but leaves four points of unre-
+    The supported mutation tools are cancellation,            solved service loss. It is neither a completed task
+pending-order item modification, delivered-order              nor a successful correction.
+item return and delivered-order item exchange. Ac-
+count lookup, account retrieval, order retrieval and        • Complexity time depends on the proposed pub-
+product retrieval remain genuine tool steps. Item-            lic item list. If an agent omits an item, the proxy
+modification and exchange calls require the full de-          may make that proposal appear simpler. This is
+sired list, compatible available variants and valid pay-      retained rather than repaired using hidden targets.
+ment. A wrong but available variant can pass these          • Exact database equality may penalize a reason or
+checks and fail the recorded user intent. Review              payment-field difference more strictly than a do-
+therefore addresses a different error class from an in-       main expert’s operational equivalence judgment.
+valid tool call.                                              Such judgments were not collected.
+    The customer script repeats only the task’s op-            Shopify’s documented editing, cancellation and
+erational information. It confirms the proposal that       return-processing interfaces support the distinction
+the agent displays, without independently check-           between request, approval and later processing
+ing product identifiers against hidden targets. This       (Shopify, 2026b; Shopify, 2026a; Shopify, 2026c).
+is not an oracle user. The source audit checks             They do not establish the simulation’s numerical
+intent-to-annotation consistency without model out-        weights, perfect detection or service times. The
+puts, including order identity, cancellation reason, re-   source-based methodological review is not indepen-
+fund/payment destination, old/new options, unique          dent human expert validation.
+available target variants, return names and multiplic-
+ities. Broad source templates remain shared across
+partitions.                                                2.2     Risk Estimator
+                                                           Calibration includes all 64 successfully staged pro-
+2.1     Operational Assumptions                            posals from 72 development workflows, with labels
+                                                           taken before correction. No reviewed-only label fil-
+The following distinctions guide interpretation.           ter is applied. Let a bin have e initial errors among
+ • A staged mutation is a proposed database opera-         n proposals. Its estimate is (e + 1)/(n + 2) if n ≥ 10,
+   tion. Posting it is a committed application transi-     otherwise the pooled calibration estimate. The public
+   tion. Physical delivery, receipt and payment set-       feature is family plus an uncertainty flag for non-high
+   tlement are not simulated.                              reported confidence or a previous automatic rejection.
+ • A review cutoff is our constructed latest comple-           The frozen estimator hash is
+   tion time for preventing the posting consequence.           5734f6babfbd33655a76595f001251bd591
+                                                               4d94dde0c0e3401af3fc4a762a581
+    2 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.
+No follow-up labels refit it. Prediction diagnostics        resamples for the follow-up analyses.4
+condition on staging and are identical across schedul-          The original Stage 5 primary interval remains
+ing conditions because preparations are shared. Un-         [−0.3333, 1.0000] with its original analysis seed. Re-
+staged failures remain in task and loss reporting.          computing the same reference rows with the newly
+                                                            declared common bootstrap seed gives a slightly dif-
+                                                            ferent upper endpoint, 0.9167. This finite Monte
+3    FRESH FOLLOW-UP                                        Carlo difference does not reflect changed outcomes.
+                                                            Both records are preserved.
+     PROVENANCE                                                 A reporting-direction defect in secondary comple-
+                                                            tion rows was detected and repaired. The initial code
+The source-pool audit examines all 635 pinned train,        labeled a negative completion difference as a win be-
+dev and test records. It finds 54 customer accounts         cause it inherited the loss convention. The corrected
+appearing in multiple splits. Exclusion operates on         labels treat more completed tasks as better. Numeric
+account identity across splits, not just record IDs. All    differences, intervals, simulation outcomes and the
+120 Stage 5 accounts are excluded, including devel-         primary loss comparison are unchanged; the original
+opment and pilot records. Remaining eligible ac-            tables and patch hashes are retained. Frozen prepara-
+counts number 10 for modification, 26 for cancella-         tion code and source snapshots remain intact.
+tion and 69 for returns/exchanges before cross-family
+reservation. The 16-bundle target is therefore infea-
+sible. The frozen fallback selects eight bundles from
+24 globally unique training accounts. The source split      5    GENERATION AND PLANNING
+does not establish absence from model training.3                 COSTS
+    Source order is train, dev, test, then ascending in-
+dex. Modification is reserved first, followed by can-       Experiments use Qwen/Qwen2.5-7B-Instruct revi-
+cellation and returns/exchanges, with account dedu-         sion
+plication throughout. No model outcome influences               a09a35458c702b33eeacc393d103063234e8bc28
+selection. Three generation replicates use identical
+case composition and public slot assignments. Sce-          on one RTX 6000 Ada, BF16, with CPU model of-
+nario seeds 62000–62007 permute arrivals, windows,          fload and swap disabled. The reused runtime has
+weights and agent-family order. Generation seeds            Python 3.11.13, PyTorch 2.8.0 with CUDA 12.8,
+hash the partition, bundle, case, replicate, step and       vLLM 0.10.2 and Transformers 4.55.2. The driver
+retry, independently of policy or operational variant.      is 580.126.20. Driver-reported compatibility is not
+    The full frozen follow-up is 72 workflow attempts       used as evidence of the installed runtime. CUDA
+and 864 policy episodes. Its maximum preparation            BF16 computation, server arguments, model identity,
+cost is 1,008 ordinary calls or 2,016 attempts with         process ancestry and GPU allocation are recorded to-
+one retry per call. The stage-wide ceiling is 6,000         gether.5
+attempts. Model settings, source hashes, estimator,             The original server on port 8000 is preserved.
+conditions, comparisons and failure handling were           A separate retail server uses a 16,384-token context
+committed before the first fresh call. No difficult case    and 0.4 GPU-memory reservation. Requests are se-
+is replaced.                                                rial. Tokenization runs before each generation and en-
+                                                            forces the declared input bound. Each attempt has a
+                                                            60-second timeout, and each ordinary call allows one
+                                                            retry. Every request and failed attempt is retained in a
+4    PAIRED ANALYSIS DETAILS                                session ledger and reconciled with raw evidence and
+                                                            server counters.
+For each source bundle, the three generation repli-             Earlier maintenance exact search reached six eli-
+cates are averaged before comparing policies. Boot-         gible requests and 1,957 ordered subsets, with 22 ob-
+strap draws resample entire bundles, with all condi-        served decisions averaging 4.531 ms on its recorded
+tions kept together. The fresh sample therefore has         host. Original retail search had at most two eligible
+eight independent bundle units. The post hoc sensi-         requests at actual dispatch, examining five subsets and
+tivity uses 32 earlier bundles and is not pooled with it.   averaging 0.05135 ms over 218 such decisions. These
+Fixed seed 20260916 generates 2,000 common-index
+                                                                4 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+                                                            See the AI assistance disclosure.
+    3 Draftingassistance: OpenAI Codex (OpenAI, 2026).         5 Drafting assistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.                           See the AI assistance disclosure.
+Table 2: Fresh bundle composition. Each row is reused across three generation replicates. Values are case ID, arrival, cutoff
+and processing weight in agent order.
+                                    Bundle       Agent 0                  Agent 1                  Agent 2
+                                    stage6_00    train:313 / 0 / 2 / 8    train:421 / 0 / 4 / 12   train:153 / 1 / 6 / 4
+                                    stage6_01    train:158 / 0 / 2 / 8    train:320 / 1 / 5 / 12   train:436 / 0 / 5 / 4
+                                    stage6_02    train:437 / 1 / 5 / 8    train:162 / 0 / 2 / 12   train:323 / 0 / 5 / 4
+                                    stage6_03    train:167 / 0 / 2 / 4    train:324 / 1 / 6 / 12   train:439 / 0 / 4 / 8
+                                    stage6_04    train:169 / 0 / 4 / 4    train:338 / 0 / 2 / 8    train:450 / 1 / 6 / 12
+                                    stage6_05    train:174 / 0 / 5 / 12   train:455 / 1 / 5 / 8    train:341 / 0 / 2 / 4
+                                    stage6_06    train:466 / 0 / 5 / 4    train:177 / 1 / 5 / 8    train:356 / 0 / 2 / 12
+                                    stage6_07    train:357 / 0 / 2 / 4    train:482 / 1 / 5 / 12   train:178 / 0 / 5 / 8
+
+
+                             12.5
+  Search minus greedy loss
+
+
+
+
+                             10.0
+
+                              7.5
+
+                              5.0
+
+                              2.5
+
+                              0.0
+                                    00          01           02           03            04            05            06      07
+                                                         Source bundle (three replicates averaged)
+
+Figure 1: All eight fresh primary bundle differences, after averaging three generation replicates. Zero values remain explicit.
+
+
+are bounded host-planning measurements, not a scal-                                  The stage starts at 21:18:02 UTC on 10 September
+ability guarantee or GPU latency measure.                                        2026, with inference cutoff 01:48:02 and hard dead-
+    The fresh follow-up completes 675 ordinary gen-                              line 03:18:02 the next day. The last generation com-
+eration calls and 675 attempts, with zero retries, fail-                         pletes at 21:57:00.893 UTC, well before the reporting
+ures or unknown-token records. Requests consume                                  reserve. The temporary server and both experimen-
+3,495,749 prompt tokens and 58,762 completion to-                                tal worker processes are verified absent at 21:59:19
+kens. Summed HTTP generation time is 1,149.669                                   UTC. The original server remains healthy with un-
+seconds; the preparation worker spans 1,200.660 sec-                             changed counters. No new paid resources are provi-
+onds. The longest attempt lasts 4.993 seconds. Max-                              sioned. Provider allocation duration, price and charge
+imum observed input/output lengths are 11,369/256                                are unavailable, so request time is not converted into
+tokens, within their declared limits. Server counter                             billed cost. The final stage and cumulative clocks are
+deltas agree exactly with the ledger and raw attempts.                           reported in the repository report. Across both Stage
+    There are no repeated byte-identical request                                 1 GPU demonstrations and Stages 2–6, the recorded
+groups within this fresh run. Different seeded repli-                            total is 55,384 generation attempts, including two re-
+cates yield different proposals on eight of 24 source                            tries. No timestamp is reset to fit the original 36-hour
+cases and mixed initial correctness on four. These                               target.
+comparisons involve different generation seeds and                                   The 13,459 historical artifact, configuration and
+often later prompt histories; they do not measure                                upstream files captured at authorization remain byte-
+identical-request nondeterminism.                                                identical. All 72 new GPU workflows, 864 fresh
+    Across fresh operational conditions, actual search                           policy traces and 3,456 post hoc traces replay. The
+dispatch reaches two eligible requests. Its 114 such                             latter include 1,152 exact matches to historical re-
+decisions examine five ordered subsets and aver-                                 tail reference traces. No fresh public evidence re-
+age 0.04832 ms, with maximum 0.11583 ms on the                                   quires redaction; historical redaction provenance re-
+recorded host. Three pending requests can appear in                              mains disclosed.
+no-review diagnostic states; the exact planner is not
+truncated. These repeated state measurements are de-
+scriptive.
+Table 3: Fresh cases. Absolute outcomes across three generation replicates per bundle. Totals are repeated-condition counts,
+not independent samples. S and W denote service and wrong-posting loss. B is blocked unresolved requests and U is unstaged
+failures.
+       Condition / base       Policy         Loss    Mean        S      W    Correct   Wrong      B     U    Missed
+       Correction / 1         No review       236    9.833    132      104       39        12     0    21         12
+       Correction / 1         FCFS             84    3.500     84        0       51         0     0    21          0
+       Correction / 1         EDF              84    3.500     84        0       51         0     0    21          0
+       Correction / 1         Uncertainty      84    3.500     84        0       51         0     0    21          0
+       Correction / 1         Greedy           84    3.500     84        0       51         0     0    21          0
+       Correction / 1         Search           84    3.500     84        0       51         0     0    21          0
+       Correction / 2         No review       236    9.833    132      104       39        12     0    21         12
+       Correction / 2         FCFS            132    5.500     96       36       48         3     0    21          3
+       Correction / 2         EDF             132    5.500     96       36       48         3     0    21          3
+       Correction / 2         Uncertainty      84    3.500     84        0       51         0     0    21          0
+       Correction / 2         Greedy           84    3.500     84        0       51         0     0    21          0
+       Correction / 2         Search          140    5.833    100       40       47         4     0    21          4
+       Approve/block / 1      No review       236    9.833    132      104       39        12     0    21         12
+       Approve/block / 1      FCFS            132    5.500    132        0       39         0    12    21          0
+       Approve/block / 1      EDF             132    5.500    132        0       39         0    12    21          0
+       Approve/block / 1      Uncertainty     132    5.500    132        0       39         0    12    21          0
+       Approve/block / 1      Greedy          132    5.500    132        0       39         0    12    21          0
+       Approve/block / 1      Search          132    5.500    132        0       39         0    12    21          0
+       Approve/block / 2      No review       236    9.833    132      104       39        12     0    21         12
+       Approve/block / 2      FCFS            168    7.000    132       36       39         3     9    21          3
+       Approve/block / 2      EDF             168    7.000    132       36       39         3     9    21          3
+       Approve/block / 2      Uncertainty     132    5.500    132        0       39         0    12    21          0
+       Approve/block / 2      Greedy          132    5.500    132        0       39         0    12    21          0
+       Approve/block / 2      Search          172    7.167    132       40       39         4     8    21          4
+       Complexity time / 1    No review       236    9.833    132      104       39        12     0    21         12
+       Complexity time / 1    FCFS             84    3.500     84        0       51         0     0    21          0
+       Complexity time / 1    EDF              84    3.500     84        0       51         0     0    21          0
+       Complexity time / 1    Uncertainty      84    3.500     84        0       51         0     0    21          0
+       Complexity time / 1    Greedy           84    3.500     84        0       51         0     0    21          0
+       Complexity time / 1    Search           84    3.500     84        0       51         0     0    21          0
+       Complexity time / 2    No review       236    9.833    132      104       39        12     0    21         12
+       Complexity time / 2    FCFS            140    5.833    100       40       47         4     0    21          4
+       Complexity time / 2    EDF             140    5.833    100       40       47         4     0    21          4
+       Complexity time / 2    Uncertainty      92    3.833     88        4       50         1     0    21          1
+       Complexity time / 2    Greedy           92    3.833     88        4       50         1     0    21          1
+       Complexity time / 2    Search          148    6.167    104       44       46         5     0    21          5
+
+
+6    EXAMPLE SELECTION                                           6.1     Fresh Unfavorable and Tied Cases
+Examples follow the frozen rule of the first numeric             No fresh restricted-authority run gives search lower
+bundle and replicate satisfying each category under              loss than greedy. The first unfavorable run is bundle
+the primary restricted-authority condition. Categories           06, replicate 2. Modification case train:466 proposes
+are search benefit, tie, unfavorable result and prepara-         a wrong available variant. It has arrival zero, cut-
+tion failure. A missing category is reported rather than         off five, processing weight four and predicted error
+filled with a convenient alternative. Full traces retain         0.2917. Cancellation case train:356 is correct, with
+tool proposals, annotated targets for offline interpre-          arrival zero, cutoff two, weight twelve and predicted
+tation, review starts/completions, blocks, committed             error 0.04. Exchange train:177 arrives at one, is cor-
+changes and incurred consequences.6                              rect, and has cutoff five, weight eight and predicted
+                                                                 error 0.4762.
+                                                                     Search first protects the expiring cancellation,
+                                                                 then chooses the exchange at tick two. The modifi-
+                                                                 cation can no longer finish review after tick four and
+    6 Drafting                                                   posts at five. Its service cost four plus posting cost
+              assistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.                                four yields loss eight. Greedy blocks the modification
+Table 4: Fresh cases. Review resources. Time and waiting are summed abstract ticks. Utilization is mean occupied fraction
+of the processing horizon. More reviews do not necessarily imply more useful interventions.
+     Condition / base       Policy         Reviews    Corrections    Time    Waiting    Utilization   Multi-eligible
+     Correction / 1         No review            0              0       0          0         0.000               57
+     Correction / 1         FCFS                51             12      51         19         0.401               19
+     Correction / 1         EDF                 51             12      51         19         0.401               19
+     Correction / 1         Uncertainty         46             12      46          9         0.361               19
+     Correction / 1         Greedy              46             12      46          9         0.361               19
+     Correction / 1         Search              51             12      51         19         0.401               19
+     Correction / 2         No review            0              0       0          0         0.000               38
+     Correction / 2         FCFS                44              9      88         32         0.686               18
+     Correction / 2         EDF                 44              9      88         33         0.686               19
+     Correction / 2         Uncertainty         42             12      84         23         0.658               14
+     Correction / 2         Greedy              42             12      84         23         0.658               14
+     Correction / 2         Search              44              8      88         32         0.686               19
+     Approve/block / 1      No review            0              0       0          0         0.000               57
+     Approve/block / 1      FCFS                51              0      51         19         0.401               19
+     Approve/block / 1      EDF                 51              0      51         19         0.401               19
+     Approve/block / 1      Uncertainty         46              0      46          9         0.361               19
+     Approve/block / 1      Greedy              46              0      46          9         0.361               19
+     Approve/block / 1      Search              51              0      51         19         0.401               19
+     Approve/block / 2      No review            0              0       0          0         0.000               38
+     Approve/block / 2      FCFS                44              0      88         32         0.686               18
+     Approve/block / 2      EDF                 44              0      88         33         0.686               19
+     Approve/block / 2      Uncertainty         42              0      84         23         0.658               14
+     Approve/block / 2      Greedy              42              0      84         23         0.658               14
+     Approve/block / 2      Search              44              0      88         32         0.686               19
+     Complexity time / 1    No review            0              0       0          0         0.000               52
+     Complexity time / 1    FCFS                50             12      56         22         0.442               18
+     Complexity time / 1    EDF                 51             12      57         24         0.450               19
+     Complexity time / 1    Uncertainty         46             12      52         14         0.410               15
+     Complexity time / 1    Greedy              46             12      52         14         0.410               15
+     Complexity time / 1    Search              51             12      57         24         0.450               19
+     Complexity time / 2    No review            0              0       0          0         0.000               34
+     Complexity time / 2    FCFS                43              8      91         32         0.714               18
+     Complexity time / 2    EDF                 43              8      91         32         0.714               19
+     Complexity time / 2    Uncertainty         41             11      87         26         0.686               14
+     Complexity time / 2    Greedy              41             11      87         26         0.686               14
+     Complexity time / 2    Search              43              7      90         31         0.706               19
+
+
+at two, leaving service loss four, then approves the           6.2    Saved-Data Benefit and Failure
+exchange. The unreviewed correct cancellation posts
+at its cutoff without error. This illustrates how pre-         The post hoc cohort contains a first qualifying bene-
+serving an opportunity under a public expected-value           fit at bundle 28, replicate 0, with search-minus-greedy
+model can fail to preserve an actual error.                    loss −4. Its first unfavorable case is bundle 09, repli-
+    The first tie is bundle 00, replicate 0. Both poli-        cate 0, with difference +4, and its first tie is bundle
+cies approve the cancellation at two and block an in-          00, replicate 0. The first unstaged failure is train:062
+complete return proposal at four. The modification             in bundle 00, replicate 2, which exhausts all 14 tool
+has no staged proposal. Both have loss eight, consist-         turns. The complete source intentions, proposed and
+ing of the unresolved return and the unstaged modi-            annotated actions, and tick-by-tick review and posting
+fication. The first preparation failure is that modifi-        events are saved in the companion trace files. These
+cation, train:421. It finishes without a mutation; the         examples are selected by first qualification, not effect
+failure field is null because no runtime exception oc-         size.
+curs. This is still an unsuccessful retained workflow.
+Table 5: Fresh cases. Search-minus-comparator loss differences. Negative favors search. Intervals resample bundles; W/T/L
+are scenario-bundle wins, ties and losses. Only the fresh approve/block two-tick search–greedy row is primary.
+                       Condition         Comparator     Base     Difference    95% interval     W/T/L
+                       Correction        greedy             1         0.000    [0.000, 0.000]   0/8/0
+                       Correction        edf                1         0.000    [0.000, 0.000]   0/8/0
+                       Correction        greedy             2         2.333    [0.000, 6.333]   0/6/2
+                       Correction        edf                2         0.333    [0.000, 1.000]   0/7/1
+                       Approve/block     greedy             1         0.000    [0.000, 0.000]   0/8/0
+                       Approve/block     edf                1         0.000    [0.000, 0.000]   0/8/0
+                       Approve/block     greedy             2         1.667    [0.000, 4.667]   0/6/2
+                       Approve/block     edf                2         0.167    [0.000, 0.500]   0/7/1
+                       Complexity time   greedy             1         0.000    [0.000, 0.000]   0/8/0
+                       Complexity time   edf                1         0.000    [0.000, 0.000]   0/8/0
+                       Complexity time   greedy             2         2.333    [0.000, 6.333]   0/6/2
+                       Complexity time   edf                2         0.333    [0.000, 1.000]   0/7/1
+
+
+                              Base review: 1 tick                                        Base review: 2 ticks
+          Correction                                                  Correction
+
+
+
+
+     Approve/block                                                Approve/block
+
+
+
+
+    Complexity time                                             Complexity time
+                              0.0      0.5      1.0                                       0.0      0.5      1.0
+                            Search minus greedy loss                                    Search minus greedy loss
+
+Figure 2: Post hoc saved-preparation sensitivity. The 32 bundles are separate from the eight fresh bundles and are not pooled
+for inference.
+
+
+7    REPLAY AND REPRODUCTION                                     use the unchanged official template class, style and
+                                                                 bibliography style. Source and build details are in the
+From a clean checkout, saved-data analysis requires              reproduction guide and stage report.
+Python 3.8 or later, NumPy and Matplotlib. It makes                  Previously disclosed Stage 5 redactions remove
+no inference requests. The declared inference path is            unsolicited credential-like model text from auxiliary
+one-shot, deadline-guarded and separate from analy-              arguments and later prompt histories. Original re-
+sis. Reproducing a fresh model output is not guar-               quest, response and file hashes remain, with exact
+anteed by its seed. In earlier maintenance evi-                  originals retained on the authorized pod and in an ig-
+dence, 38 identical-request groups had mixed actions;            nored local evidence directory. Transactions, states,
+fresh generation variation and changes in feedback-              labels and accounting do not change. Public redacted
+dependent prompts are separate phenomena.7                       prompts are not claimed to be byte-identical regenera-
+    The short saved-data path is:                                tion inputs. Any new follow-up publication redaction
+    bash scripts/replay_stage6.sh                                is separately recorded under its own evidence root.
+This command verifies evidence, replays both co-
+horts, regenerates diagnostic tables and figures, and
+builds both PDFs. New analyses write only under the              AI ASSISTANCE
+Stage 6 root. Historical reference traces are checked
+against their original values and all historical artifact        OpenAI Codex assisted code, analysis, source check-
+hashes are preserved. The manuscript and supplement              ing, figure code and manuscript drafting and revi-
+                                                                 sion throughout this companion (OpenAI, 2026). Re-
+    7 Draftingassistance: OpenAI Codex (OpenAI, 2026).           ported numeric evidence comes from retained model
+See the AI assistance disclosure.
+Table 6: Post hoc Stage 5 preparations. Absolute outcomes across three generation replicates per bundle. Totals are repeated-
+condition counts, not independent samples. S and W denote service and wrong-posting loss. B is blocked unresolved requests
+and U is unstaged failures.
+       Condition / base       Policy          Loss    Mean       S     W     Correct    Wrong      B     U    Missed
+       Correction / 1         No review        800    8.333    424    376        182        51     0    55        51
+       Correction / 1         FCFS             220    2.292    220      0        233         0     0    55         0
+       Correction / 1         EDF              220    2.292    220      0        233         0     0    55         0
+       Correction / 1         Uncertainty      220    2.292    220      0        233         0     0    55         0
+       Correction / 1         Greedy           220    2.292    220      0        233         0     0    55         0
+       Correction / 1         Search           220    2.292    220      0        233         0     0    55         0
+       Correction / 2         No review        800    8.333    424    376        182        51     0    55        51
+       Correction / 2         FCFS             480    5.000    312    168        210        23     0    55        23
+       Correction / 2         EDF              440    4.583    292    148        215        18     0    55        18
+       Correction / 2         Uncertainty      332    3.458    260     72        223        10     0    55        10
+       Correction / 2         Greedy           332    3.458    260     72        223        10     0    55        10
+       Correction / 2         Search           356    3.708    264     92        222        11     0    55        11
+       Approve/block / 1      No review        800    8.333    424    376        182        51     0    55        51
+       Approve/block / 1      FCFS             424    4.417    424      0        182         0    51    55         0
+       Approve/block / 1      EDF              424    4.417    424      0        182         0    51    55         0
+       Approve/block / 1      Uncertainty      424    4.417    424      0        182         0    51    55         0
+       Approve/block / 1      Greedy           424    4.417    424      0        182         0    51    55         0
+       Approve/block / 1      Search           424    4.417    424      0        182         0    51    55         0
+       Approve/block / 2      No review        800    8.333    424    376        182        51     0    55        51
+       Approve/block / 2      FCFS             592    6.167    424    168        182        23    28    55        23
+       Approve/block / 2      EDF              572    5.958    424    148        182        18    33    55        18
+       Approve/block / 2      Uncertainty      496    5.167    424     72        182        10    41    55        10
+       Approve/block / 2      Greedy           496    5.167    424     72        182        10    41    55        10
+       Approve/block / 2      Search           508    5.292    424     84        182        11    40    55        11
+       Complexity time / 1    No review        800    8.333    424    376        182        51     0    55        51
+       Complexity time / 1    FCFS             284    2.958    240     44        228         5     0    55         5
+       Complexity time / 1    EDF              220    2.292    220      0        233         0     0    55         0
+       Complexity time / 1    Uncertainty      244    2.542    228     16        231         2     0    55         2
+       Complexity time / 1    Greedy           244    2.542    228     16        231         2     0    55         2
+       Complexity time / 1    Search           236    2.458    224     12        232         1     0    55         1
+       Complexity time / 2    No review        800    8.333    424    376        182        51     0    55        51
+       Complexity time / 2    FCFS             512    5.333    324    188        207        26     0    55        26
+       Complexity time / 2    EDF              464    4.833    300    164        213        20     0    55        20
+       Complexity time / 2    Uncertainty      332    3.458    260     72        223        10     0    55        10
+       Complexity time / 2    Greedy           332    3.458    260     72        223        10     0    55        10
+       Complexity time / 2    Search           380    3.958    272    108        220        13     0    55        13
+
+
+outputs and deterministic simulation. Human authors
+must review and take responsibility for the complete
+submission. No human expert validation, author iden-
+tity, funding or conflict declaration is invented.
+Table 7: Post hoc Stage 5 preparations. Review resources. Time and waiting are summed abstract ticks. Utilization is mean
+occupied fraction of the processing horizon. More reviews do not necessarily imply more useful interventions.
+     Condition / base        Policy         Reviews    Corrections     Time    Waiting    Utilization      Multi-eligible
+     Correction / 1          No review             0             0        0          0           0.000               301
+     Correction / 1          FCFS                233            51      233        115           0.459               115
+     Correction / 1          EDF                 233            51      233        115           0.459               115
+     Correction / 1          Uncertainty         224            51      224         97           0.442               115
+     Correction / 1          Greedy              224            51      224         97           0.442               115
+     Correction / 1          Search              233            51      233        115           0.459               115
+     Correction / 2          No review             0             0        0          0           0.000               212
+     Correction / 2          FCFS                182            28      364        152           0.712                87
+     Correction / 2          EDF                 190            33      380        191           0.740               103
+     Correction / 2          Uncertainty         169            41      338        104           0.664                83
+     Correction / 2          Greedy              169            41      338        104           0.664                83
+     Correction / 2          Search              190            40      380        184           0.740               103
+     Approve/block / 1       No review             0             0        0          0           0.000               301
+     Approve/block / 1       FCFS                233             0      233        115           0.459               115
+     Approve/block / 1       EDF                 233             0      233        115           0.459               115
+     Approve/block / 1       Uncertainty         224             0      224         97           0.442               115
+     Approve/block / 1       Greedy              224             0      224         97           0.442               115
+     Approve/block / 1       Search              233             0      233        115           0.459               115
+     Approve/block / 2       No review             0             0        0          0           0.000               212
+     Approve/block / 2       FCFS                182             0      364        152           0.712                87
+     Approve/block / 2       EDF                 190             0      380        191           0.740               103
+     Approve/block / 2       Uncertainty         169             0      338        104           0.664                83
+     Approve/block / 2       Greedy              169             0      338        104           0.664                83
+     Approve/block / 2       Search              190             0      380        182           0.740               103
+     Complexity time / 1     No review             0             0        0          0           0.000               290
+     Complexity time / 1     FCFS                219            46      239        107           0.472               106
+     Complexity time / 1     EDF                 233            51      256        133           0.506               115
+     Complexity time / 1     Uncertainty         216            49      237        104           0.467               109
+     Complexity time / 1     Greedy              216            49      237        104           0.467               109
+     Complexity time / 1     Search              232            50      254        132           0.502               114
+     Complexity time / 2     No review             0             0        0          0           0.000               200
+     Complexity time / 2     FCFS                175            25      365        144           0.714                86
+     Complexity time / 2     EDF                 186            31      386        177           0.755                98
+     Complexity time / 2     Uncertainty         161            41      337         88           0.664                79
+     Complexity time / 2     Greedy              161            41      337         88           0.664                79
+     Complexity time / 2     Search              186            38      386        170           0.755                98
+
+
+
+Table 8: Post hoc Stage 5 preparations. Search-minus-comparator loss differences. Negative favors search. Intervals resample
+bundles; W/T/L are scenario-bundle wins, ties and losses. Only the fresh approve/block two-tick search–greedy row is
+primary.
+                    Condition           Comparator     Base    Difference     95% interval        W/T/L
+                    Correction          greedy             1          0.000   [0.000, 0.000]      0/32/0
+                    Correction          edf                1          0.000   [0.000, 0.000]      0/32/0
+                    Correction          greedy             2          0.250   [-0.333, 0.917]     1/29/2
+                    Correction          edf                2         -0.875   [-2.000, 0.000]     3/29/0
+                    Approve/block       greedy             1          0.000   [0.000, 0.000]      0/32/0
+                    Approve/block       edf                1          0.000   [0.000, 0.000]      0/32/0
+                    Approve/block       greedy             2          0.125   [-0.167, 0.500]     1/29/2
+                    Approve/block       edf                2         -0.667   [-1.417, -0.083]    4/28/0
+                    Complexity time     greedy             1         -0.083   [-0.250, 0.000]     1/31/0
+                    Complexity time     edf                1          0.167   [0.000, 0.500]      0/31/1
+                    Complexity time     greedy             2          0.500   [-0.083, 1.250]     1/28/3
+                    Complexity time     edf                2         -0.875   [-2.000, 0.000]     3/29/0
+REFERENCES
+OpenAI (2026).         Codex.     OpenAI documentation.
+     https://learn.chatgpt.com/docs/codex/cli. Accessed 10
+     September 2026.
+Shopify (2026a). Canceling orders. Shopify Help Cen-
+     ter. https://help.shopify.com/en/manual/fulfillment/
+     managing-orders/canceling-orders. Accessed 10
+     September 2026.
+Shopify (2026b). Editing orders. Shopify Help Cen-
+     ter. https://help.shopify.com/en/manual/fulfillment/
+     managing-orders/editing-orders.        Accessed      10
+     September 2026.
+Shopify (2026c).       Processing and managing returns.
+     Shopify Help Center.          https://help.shopify.com/
+     en/manual/fulfillment/managing-orders/returns/
+     processing-returns. Accessed 10 September 2026.
+Yao, S., Shinn, N., Razavi, P., and Narasimhan, K. (2024).
+     τ-bench: A benchmark for tool-agent-user interaction
+     in real-world domains. arXiv:2406.12045.
+

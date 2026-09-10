@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-09-10T21:46:57.696665+00:00",
+  "defect": "Secondary task-completion win/loss labels inherited the loss convention, treating fewer completed tasks as a win.",
+  "correction": "Use higher-is-better direction only for task_completed; paired differences, bootstrap draws/intervals and all simulation outputs are unchanged.",
+  "affected_outputs": "Only wins/losses columns in secondary task_completed rows of paired_comparisons.csv and variant_changes.csv. Initial post-hoc tables retained separately.",
+  "unaffected": [
+    "primary operational-loss comparison",
+    "all operational-loss results",
+    "task-completion values and paired differences",
+    "GPU preparation",
+    "estimator",
+    "policies",
+    "operational conditions",
+    "source selection"
+  ],
+  "changes": [
+    {
+      "path": "overseeing/retail/robustness_analysis.py",
+      "before_sha256": "9876d303a714615209421bafa29da3bf5a803e49b5b6402f09cd132689ff7da2",
+      "after_sha256": "69bcb8a03378c6b91d351cd6025c3b2807fb41c0deac32949d7552da94e3f43f"
+    },
+    {
+      "path": "tests/test_robustness.py",
+      "before_sha256": "d27cd98dfeb5bb33d3da787ec80615d15082f7a61b69fc284da14211018e1de2",
+      "after_sha256": "7bc5075e3984869b1ee6d2cab9f3247a4ff1c219d08134d7170222078cfc5833"
+    }
+  ],
+  "note": "Frozen source snapshots remain unchanged. This reporting-direction repair does not authorize new inference or redesign."
+}

@@ -52,7 +52,7 @@ for cohort in ('fresh','post_hoc_stage5'):
     if failure:
         selected['preparation_failure']={k:failure[k] for k in ('bundle_id','replicate','case_id','failure')}
         texts+=['## First preparation failure','',failure['case_id']+' in '+failure['bundle_id']+'_r'+str(failure['replicate']),
-            '',str(failure['failure'])+'; no staged transaction, no reviewer request.','',
+            '',(failure['failure'] or 'Workflow finished without staging; no runtime exception')+'; no staged transaction, no reviewer request.','',
             '| Step | Tool | Result |','|---:|---|---|']
         for i,event in enumerate(failure['events']):
             response=str(event.get('response',event.get('result',''))).replace('|','/').replace('\n',' ')[:180]

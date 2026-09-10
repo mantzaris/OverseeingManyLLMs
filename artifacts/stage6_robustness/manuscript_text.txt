@@ -1,0 +1,507 @@
+ Planning Shared Review for Language Model Workflows with Expiring
+                     Intervention Opportunities
+
+                                             Anonymous Submission
+
+
+
+Keywords:     Language Model Agents, Review Scheduling, Decision Support, Tool Workflows, Resource Allocation.
+
+Abstract:     A shared reviewer must decide both which language model errors merit intervention and which can still be
+              addressed in time. We formulate review allocation using finite service duration, public risk estimates and
+              deadline-dependent preventable loss. We implement a transparent queue-order planner and compare it with
+              arrival, urgency, risk and greedy benefit rules. Frozen maintenance experiments show a conditional planning
+              benefit. With two-tick reviews, search reduces mean loss relative to greedy by 1.313 points in a constructed
+              competition workload, while the original workload comparison is close to zero. An adapted retail study uses
+              genuine multistep tool workflows and identical prepared transactions across policies. Its primary comparison
+              is unfavorable to search, with a difference of +0.250 points and a 95% paired interval of [−0.333, 1.000]. We
+              then examine restricted reviewer authority and complexity-dependent review time on fresh source cases and
+              saved preparations. Together, the studies separate gains from expiring review opportunities from effects of
+              risk ranking, capacity, objective choice and the reviewer’s power to complete a task.
+
+
+
+1    INTRODUCTION                                              and risk estimates.
+                                                                   The contributions are threefold. First, we give
+Several agents may each have a reasonable request for          an executable formulation that connects public re-
+assistance, yet one reviewer cannot address them all           view requests to an application-specific preventable-
+before their actions take effect. Reviewing the request        loss function, while keeping hidden correctness labels
+with the largest immediate expected benefit may con-           outside scheduling. Second, we implement two com-
+sume the only remaining slot for another useful in-            plementary evaluation protocols: fresh maintenance
+tervention. Conversely, planning an elaborate review           trajectories with feedback-dependent agent histories,
+order may accomplish no more than earliest-deadline-           and retail allocation on identical prepared transac-
+first when capacity is sufficient, or may protect a cor-       tions. Third, we provide frozen paired evidence of
+rect transaction while a later mistake expires.                both planning gains and limits, including an unfa-
+     These possibilities arise in workflows where in-          vorable practical primary result and a focused oper-
+tervention has a service time and a boundary beyond            ational robustness study. Exact enumeration supplies
+which it cannot undo a consequence. A maintenance              an interpretable small-queue planner. The contribu-
+correction can stop future downtime without erasing            tion concerns the formulation, integration and empir-
+downtime already incurred. A retail approval gate              ical analysis rather than a new exhaustive scheduling
+can prevent a mistaken transaction from being posted,          algorithm.
+but may lack authority to replace it with the intended
+transaction. The value of a review therefore depends
+on when it finishes and what the reviewer is allowed           2     RELATED WORK
+to do.
+     We ask when planning the order of a finite shared         Help-seeking, communication and constrained defer-
+review queue improves outcomes over greedy benefit             ral address related parts of the oversight problem.
+allocation and earliest-deadline-first. We also exam-          KnowNo uses calibrated prediction sets to decide
+ine how risk estimates, capacity and the performance           when a language model planner should request help
+objective qualify any benefit. Our evidence combines           (Ren et al., 2023). Its request-admission mechanism
+a controlled civilian maintenance simulation with              and coverage assumptions differ from ordering an al-
+multistep retail workflows on a local adapted bench-           ready admitted queue. Our uncertainty-first baseline
+mark backend. A follow-up changes reviewer author-             ranks estimated error probability; it does not repro-
+ity and review time separately, preserving preparation         duce KnowNo or provide a conformal guarantee.
+    Value of Information evaluates clarification by its    gle nonpreemptive reviewer processes one request at
+expected decision utility relative to communication        a time. Definitive diagnosis becomes available only
+cost (Dong et al., 2026). We similarly express in-         when that review finishes.
+tervention value through an explicit objective, but al-        Let Gi (T ) be the preventable consequence if re-
+locate a reviewer among competing pending transac-         quest i is initially wrong and an effective review com-
+tions rather than choose a clarification question. One     pletes at time T . The expected benefit is
+Human, N Agents studies a limited audit budget un-                              Bi (T ) = pi Gi (T ).           (1)
+der miscalibrated and correlated confidence (Zavattari
+                                                           Eligibility requires release and positive benefit from
+et al., 2026). That work directly establishes shared au-
+                                                           starting now, Bi (t + si ) > 0. A cutoff equality is
+diting as prior research. Our focus is finite-duration
+                                                           timely. Consequences incurred before completion re-
+intervention before a posting or correction cutoff, in-
+                                                           main incurred. The reviewer is perfect in diagnosis
+cluding the difference between blocking an error and
+                                                           throughout these experiments, while its corrective au-
+completing a task.
+                                                           thority is varied explicitly in retail.
+    DeCCaF learns expert correctness and uses cost-
+sensitive constrained allocation across experts (Alves
+et al., 2024). We retain a single idealized reviewer to    3.1    Policies and Planning
+isolate sequencing and intervention authority. These
+are conceptual comparisons of mechanisms, not re-          FCFS selects the earliest eligible arrival. Earliest-
+productions of those complete systems. Author-             deadline-first (EDF) selects the earliest cutoff.
+linked implementations of KnowNo, Value of Infor-          Uncertainty-first selects the largest pi . Delay-aware
+mation and DeCCaF were inspected. No author-               greedy selects the largest Bi (t + si ). Queue-order
+linked released implementation for One Human, N            search enumerates ordered subsets π of the eligible
+Agents was located in the checked paper and project        current queue and maximizes
+                                                                                               !
+                                                                            |π|           k
+searches.
+    Classical scheduling already studies deadlines,                         ∑ Bπk    t + ∑ sπ j   .             (2)
+                                                                           k=1           j=1
+processing time and weighted consequences. Hariri et
+al. consider weighted late work, meaning processing        It dispatches the first request and replans when free.
+performed after a due date (Hariri et al., 1995). Guo et   It does not plan with unreleased arrivals or hidden la-
+al. analyze a Pareto tradeoff between weighted tardy-      bels, and it is not a full-horizon optimal-control so-
+job counts and weighted late work (Guo et al., 2022).      lution. Ties prefer fewer reviews and then the de-
+Our losses differ, but the connection explains why ur-     clared lexicographic arrival, agent and request order.
+gency, count objectives and cost objectives can favor      Value sums use stable summation. Historical numer-
+different schedules. Exhaustive current-queue search       ical audits distinguish exactly co-optimal tie differ-
+is an established method for a bounded scheduling          ences from positive decision regret.
+                                                                             q
+problem.                                                       There are ∑k=0 q!/(q − k)! ordered subsets for
+    The retail substrate is τ-bench, which supplies in-    q eligible requests. This is 16 at three requests
+teractive tasks, domain policies, database tools and       and 1,957 at six. We enumerate them all without
+annotated final-state validation (Yao et al., 2024). We    queue truncation. Retail additionally includes a no-
+reuse its pinned retail implementation while chang-        review control with the same automatic safeguards.
+ing the user interaction and adding staging, cutoffs       Maintenance includes a myopic-benefit baseline; its
+and review. This adaptation makes transaction review       terminal-only greedy equivalence is checked rather
+testable while retaining genuine retrieval, item selec-    than presented as independent evidence.
+tion, payment and mutation semantics.
+                                                           3.2    Pairing and Interpretation
+                                                           An exogenous scenario fixes jobs or source cases,
+3    REVIEW ALLOCATION                                     arrivals, deadlines and costs. A policy run is not
+     MODEL                                                 an independent scenario. Maintenance conditions
+                                                           share exogenous streams but receive fresh genera-
+A released review request i exposes an arrival time        tions and separate feedback histories. Retail condi-
+ai , a cutoff di , a proposed action, review duration      tions share a saved prepared transaction within a gen-
+si , public consequence parameters and an estimated        eration replicate because no model generation follows
+initial-error probability pi . The scheduler sees only     staging. Thus retail isolates allocation on identical in-
+released requests. It cannot inspect a hidden correct      puts, while maintenance measures integrated trajecto-
+action, a future job or a future model output. A sin-      ries that may also differ in model behavior.
+    For each declared primary comparison, we com-             for agreement and pooled 18/98 for sparse disagree-
+pute scenario-level paired loss differences and a per-        ment.
+centile interval from 2,000 bootstrap resamples. Re-              Alternative estimates use pooled risk or a public
+tail first averages three generation replicates within        analytical reference with knowledge of the synthetic
+each source bundle. All conditions for a scenario are         observation model. Following agreeing clues has er-
+resampled together. Other contrasts are secondary,            ror probability 1/7; following the stronger disagree-
+with no multiplicity adjustment. A wide interval              ing clue has error probability 3/11. Choosing the
+spanning zero is uncertainty about the effect, not evi-       opposite action gives the complementary probability.
+dence of equivalence.                                         The reference does not inspect the realized fault. Both
+                                                              samples are retained in every condition. Prediction
+                                                              rescoring uses saved outputs; policy comparisons un-
+4     CONTROLLED                                              der alternative risk use actual new trajectories.
+                                                                  The frozen evaluation contains 2,752 episodes.
+      MAINTENANCE STUDY                                       Original and competition workloads each use 64 sce-
+                                                              narios and six policies at one- and two-tick reviews.
+The maintenance environment exposes binary ven-               Alternative-risk comparisons use the first 32 scenar-
+tilation faults through two independent noisy clues.          ios of each workload for greedy and search. Larger-
+Faults have equal prior probability, with clue accura-        workload comparisons use 32 scenarios with four
+cies 0.8 and 0.6. An agent chooses a filter replace-          policies across both team sizes and capacities. A
+ment or sensor reset from a public manual. Two fresh          separately declared objective study uses 16 scenar-
+model samples are drawn per job. The first action             ios. The development and evaluation partitions re-
+executes; the second supplies agreement information.          main separate.
+Review may correct the executed action and provide
+definitive feedback for later jobs.
+     An initially wrong action incurs downtime rate ci        4.2    Results and Boundary Conditions
+until correction or deadline, plus terminal incorrect-
+                                                              Table 1 reports central search–greedy contrasts. At
+closure penalty Ki . A timely correction at T prevents
+                                                              two ticks, search gains in constructed competition but
+         Gi (T ) = 1[T ≤ di ]{ci (di − T ) + Ki }.     (3)    has little measured advantage in the original work-
+The original workload uses three agents, two jobs             load. It wins, ties and loses against greedy on 15,
+each and a 12-tick horizon. Releases occur at wave            42 and 7 competition scenarios, versus 3, 59 and
+bases 0 and 6 with zero-or-one jitter. Relative win-          2 original scenarios. Search versus EDF in two-
+dows are drawn from 1, 2 and 5, downtime rates from           tick competition is −2.5625 points, with interval
+0, 1 and 3, and terminal penalties from 0 and 8.              [−4.0000, −1.3125]. At one tick, search and EDF
+    A constructed competition workload releases all           both attain zero competition loss despite different re-
+three jobs together at 0 and 6. Each wave indepen-            view sequences on 62 of 64 scenarios.
+dently permutes windows 2, 4 and 5 and penalties 4,               The larger workload gives a stronger one-tick
+8 and 12, with zero downtime. It was motivated by             planning benefit and a small, uncertain two-tick dif-
+limited competition in earlier development, then eval-        ference. Reduced capacity does not monotonically
+uated on new frozen scenarios. A larger workload has          increase the value of planning. Some requests are al-
+three or six agents, three jobs each, a 24-tick horizon       ready infeasible when the reviewer becomes free. In
+and waves at 0, 8 and 16 with independent zero-or-            the original two-tick search runs, only 32 of 156 dis-
+one jitter. Windows are 2, 4 and 6, downtime rates 0,         patches have multiple eligible requests, whereas com-
+1 and 3, and penalties 0, 4, 8 and 12. Stable per-agent       petition has 224 of 256. Such public contention is a
+streams pair the first three agents across team sizes.        prerequisite for many sequencing effects, but it does
+Public assignments are independent of hidden faults.          not guarantee competing actual errors.
+                                                                  Risk calibration and allocation utility diverge. The
+                                                              frozen estimator predicts roughly 0.15 error while
+4.1    Risk and Frozen Evaluation                             observed errors reach about 0.25–0.32. On two-
+                                                              tick search trajectories, analytical risk improves Brier
+The primary risk estimate is an agreement-bin estima-         score from 0.213 to 0.157 in the original workload
+tor fit on an earlier development set. Laplace smooth-        and from 0.200 to 0.164 in competition. Yet fresh
+ing gives (e + 1)/(n + 2) for e errors among n jobs;          matched-prefix alternative-risk rollouts yield no con-
+bins with fewer than ten examples use pooled calibra-         sistent allocation gain. Better probability scores alone
+tion risk. Initial first-action labels are included regard-   do not establish better counterfactual policy perfor-
+less of review selection. The frozen values are 13/89
+Table 1: Frozen maintenance results. Differences are search minus greedy mean loss with 95% paired scenario-bootstrap
+intervals. Workload distributions are analyzed separately.
+      Workload        Agents / scenarios   Review ticks     Search    Greedy      EDF    Paired difference
+      Original        3 / 64                          2      7.328     7.422     7.656   −0.094 [−0.563, 0.344]
+      Competition     3 / 64                          2      1.688     3.000     4.250   −1.313 [−2.250, −0.438]
+      Competition     3 / 64                          1      0.000     0.375     0.000   −0.375
+      Larger          6 / 32                          1     16.188    22.375    23.688   −6.188 [−9.376, −3.281]
+      Larger          6 / 32                          2     36.563    36.781    46.000   −0.219 [−2.313, 1.969]
+
+
+mance.                                                          5.1    Intervention Boundary and
+    Weighted cost also differs from task correctness.                  Objective
+In the six-agent one-tick workload, search has lower
+loss than EDF but more incorrect closures. Adding a             A valid mutation is staged on a copy of the account
+declared penalty λ per incorrect closure to the search          state. Three independently prepared transactions then
+objective changes both intervention benefit and eligi-          enter a simulated processing batch at arrival slots 0,
+bility. With λ = 8 rather than zero, original cost in-          0 and 1. Relative windows 2, 4 and 5 and processing
+creases by 1.75 points [0.188, 3.438], while incorrect          weights 4, 8 and 12 are separately permuted. At com-
+closures decrease by 0.75 [0.375, 1.125] per scenario.          pleted review, a perfect corrective reviewer substitutes
+The common augmented objective L + 8U improves                  the annotated transaction and commits it. Otherwise
+by 4.25 points, where U counts incorrect closures.              the original proposal posts at cutoff. A posted con-
+At two ticks this improvement weakens and the aug-              sequence cannot be erased by a later review. An un-
+mented objective is slightly worse. This is a tradeoff          staged preparation has no review request.
+between objectives, not a universally superior policy.              The retail loss is
+                                                                               L = ∑{4(1 −Ci ) +Wi Mi },            (4)
+                                                                                    i
+5    ADAPTED RETAIL
+                                                                where Ci denotes annotated task completion and Mi
+     TRANSACTION STUDY                                          a wrong committed transaction. Wi is a public pro-
+                                                                cessing/rework consequence weight. For corrective
+We pin τ-bench retail revision 59a200c6d575 and re-             review,
+tain its policy, tools, task records and final-state val-
+idator semantics. Supported families are cancellation,                     Gcorrect
+                                                                            i       (T ) = 1[T ≤ di ](4 +Wi ).      (5)
+pending-order item modification and delivered-order             These are synthetic consequence points and abstract
+returns/exchanges. Agents authenticate, retrieve ac-            service times. They do not estimate retailer money or
+count and order details, inspect available variants, re-        human speed.
+quest confirmation and invoke a mutation tool. The                  The boundary is coherent for a service that can
+tool arguments identify actual local database records.          gate tool dispatch, but its scope matters. The up-
+Upstream status, inventory, item compatibility, pay-            stream tools themselves mutate state immediately.
+ment and balance checks remain enabled. Added                   Return and exchange tools create requests, not com-
+target-blind guards require ownership, prior retrieval,         pleted physical returns. Platform documentation dis-
+nonempty transactions and exact-argument confirma-              tinguishes order editing, cancellation and later re-
+tion.                                                           turn processing (Shopify, 2026b; Shopify, 2026a;
+    A scripted customer exposes the original opera-             Shopify, 2026c). It supports multiple operational
+tional instruction and confirms displayed proposals             stages, not our numerical deadlines or an assertion
+without independently auditing backend identifiers.             that every posted request causes irreversible phys-
+Personality directions are removed. The supported               ical harm. Here irreversibility means that an in-
+cases require one state-changing transaction and no             curred posting consequence is not refunded within the
+additional textual answer. This bounds the workflow             episode.
+while preserving multiple retrieval and interpretation              The original reviewer can replace the full transac-
+steps. The experiment is an adapted benchmark study,            tion without another customer conversation. This is
+with no official τ-bench score implied.                         stronger than approval. The upstream policy requires
+                                                                confirmation of consequential details, so correcting a
+                                                                previously confirmed wrong proposal is an explicit
+                                                                authority assumption. The follow-up below isolates
+                                                            Table 2: Original retail mean loss and correct tasks. Two-
+this assumption. Exact final-state equality is also         tick correct counts have denominator 288.
+stricter than some notions of operational equivalence:
+reason, payment and item-list differences can fail an           Policy         1 tick   2 ticks   Correct, 2 ticks
+annotated task even when an order status changes as             No review      8.333     8.333                182
+intended.                                                       FCFS           2.292     5.000                210
+                                                                EDF            2.292     4.583                215
+                                                                Uncertainty    2.292     3.458                223
+5.2    Development and Pairing                                  Greedy         2.292     3.458                223
+                                                                Search         2.292     3.708                222
+The original retail study selects 24 development and
+96 evaluation cases from training records, with 120
+distinct customer accounts. Source-order selection               At one tick every review policy corrects all 51
+and annotated-transaction checks precede model out-         staged errors, matching a parallel-perfect-review ref-
+puts. The evaluation contains 32 three-case bun-            erence. Remaining loss is exactly 55 unstaged failures
+dles with three fresh preparation replicates, yielding      times four points. Different orders therefore need not
+288 GPU workflows. Six policies and two capaci-             change realized loss. Search and greedy sequences
+ties share each prepared transaction, producing 1,152       differ in 47 of 96 two-tick runs, while only three
+paired policy episodes. These are 32 independent            bundle-mean differences are nonzero. On search’s
+source bundles for paired analysis, not 1,152 indepen-      states they choose different heads at 47 of 103 com-
+dent scenarios. Broad templates remain shared and           petitive dispatches. Only four two-tick search dis-
+public records may have appeared in model training.         patches contain two initially wrong eligible requests,
+    A development-only risk estimator uses public           counted retrospectively with labels excluded from
+workflow family and a flag for non-high confidence          scheduling.
+or an earlier automatic rejection. All 64 staged cali-           Risk improves aggregate Brier score over pooled
+bration proposals are flagged. The smoothed risks are       calibration risk, 0.15585 versus 0.17153, with AU-
+0.0400 for cancellation, 0.2917 for modification and        ROC 0.7096. Its family ranking nevertheless reverses
+0.4762 for returns/exchanges. Sparse bins use pooled        between modification and returns/exchanges. Ob-
+risk 0.2424. Initial labels precede correction and in-      served modification error is 24/58, above predicted
+clude all staged proposals regardless of review. Eight      0.2917, while returns/exchanges have 27/88 errors,
+unstaged development failures remain in outcome re-         below predicted 0.4762. Every staged cancellation is
+porting but do not have a conditional staged-proposal       correct. Better aggregate scoring does not ensure the
+risk label. No evaluation label updates this estimator.     relevant dispatch ranking.
+    All application inference uses the same pinned               Automatic guards block 778 tool calls, includ-
+Qwen2.5-7B-Instruct revision in BF16 on one RTX             ing 338 attempted mutations. Valid semantic errors
+6000 Ada, with zero CPU model offloading. Temper-           still include wrong available variants and omitted re-
+ature is 0.3 and top-p is 1.0. Retail uses one structured   quested items. Of the 55 unstaged failures, 50 exhaust
+sample per tool turn, a 16,384-token server context,        the step limit, four finish without staging and one ex-
+at most 15,872 input tokens and 512 output tokens,          hausts a generation retry. Modification contributes 38
+and a 14-call workflow limit. This differs from main-       failures. These errors establish a preparation bottle-
+tenance’s two action samples per job. Host orches-          neck outside the transaction reviewer’s scope.
+tration, tokenization, scoring and scheduling run on
+CPU.
+                                                            6    OPERATIONAL ROBUSTNESS
+5.3    Original Retail Results                                   STUDY
+Of 288 preparations, 233 stage a transaction, 182 are       A source-based methodological review identified cor-
+initially correct and 51 stage a wrong valid transac-       rective authority, confirmation, family-specific pro-
+tion. Fifty-five never stage. Table 2 retains every         cessing stages, review complexity and consequence
+failure. The primary two-tick search minus greedy           valuation as unresolved assumptions. It was not inde-
+difference is +0.2500 points, with a 95% paired in-         pendent human expert validation. We froze two one-
+terval of [−0.3333, 1.0000]. Search wins on one bun-        factor changes, retaining the original condition at both
+dle, ties on 29 and loses on two. It completes 190 re-      base capacities, the same six policies and the frozen
+views versus greedy’s 169, but corrects 40 errors ver-      application estimator.
+sus 41. The point estimate is unfavorable and does not
+demonstrate a population disadvantage or advantage.
+6.1   Authority and Complexity Changes                    under restricted authority at base duration two. We
+                                                          average replicates within each of the eight bundles
+Under restricted authority, a completed review per-       and use 2,000 common-index bootstrap draws with
+fectly detects whether the staged proposal is wrong.      seed 20260916. Individual bundle differences accom-
+A correct proposal is approved unchanged. A wrong         pany the interval. The same variants applied to the
+proposal is blocked, leaving the account unchanged        earlier 32 bundles are explicitly post hoc saved-data
+and the service unresolved. It is removed from the        sensitivity, analyzed separately and never pooled with
+queue and cannot post later. Blocking counts neither      the fresh cases.
+as task completion nor correction. The preventable
+loss is therefore                                         6.3    Fresh Results
+              Gblock
+               i     (T ) = 1[T ≤ di ]Wi .         (6)
+                                                          All 72 workflow attempts are retained. Fifty-one
+The missing service benefit is substantive. Since Wi      stage a transaction, 39 are initially correct and 12
+varies, replacing 4 +Wi by Wi is not a uniform rescal-    stage a wrong valid transaction. Twenty-one do not
+ing and can change risk-weighted rankings. Perfect        stage, comprising 18 step-limit failures and three fin-
+detection remains idealized, and labels are still un-     ishes without a transaction. All 675 GPU generations
+available before completed review.                        succeed, with no retry. Table 3 gives every policy and
+    The separate complexity condition retains full cor-   condition.
+rection authority and uses                                    The primary restricted-authority difference is
+      si = s + 1[proposed item-list length ≥ 2],   (7)    +1.667 loss points for search minus greedy, with a
+                                                          95% paired interval of [0.000, 4.667]. Search wins
+where s is one or two ticks. This public proxy cap-
+                                                          on zero bundles, ties on six and loses on two. The
+tures an additional item-checking burden without fit-
+                                                          eight bundle-mean differences in numerical order are
+ting review times. A mistaken omission may reduce
+                                                          0, 0, 0, 0, 0, 0, 1.333, 12.000. The wide interval reflects
+the apparent complexity, which is retained as a limi-
+                                                          a small, sparse sample and does not establish equiva-
+tation. Arrivals, cutoffs, consequence weights, prepa-
+                                                          lence or a general population disadvantage.
+ration and risk remain unchanged. We do not evaluate
+                                                              Search blocks eight wrong transactions versus
+an authority-by-complexity factorial design.
+                                                          greedy’s twelve and lets four wrong transactions post.
+     Two outcomes follow mathematically. No-review
+                                                          Both complete 39 of 72 tasks because blocking can-
+loss is invariant across variants. Under perfect block-
+                                                          not complete a wrong or unstaged request. Search
+ing, every policy’s correct-task count equals the ini-
+                                                          performs 44 reviews versus 42, consuming 88 ver-
+tially correct staged count, since neither a wrong nor
+                                                          sus 84 ticks. Its loss is 172 points versus 132, or
+an unstaged request can be completed by blocking.
+                                                          7.167 versus 5.500 per three-case run. EDF has mean
+These invariances are semantic checks rather than em-
+                                                          loss 7.000. The secondary search–EDF difference is
+pirical discoveries.
+                                                          +0.167 [0.000, 0.500], with seven bundle ties and one
+                                                          loss.
+6.2   Fresh Source Cases and Analysis                         At one tick, every review policy prevents every
+                                                          staged error in all three variants. Correction and com-
+We audit all 500 train, 20 dev and 115 test records       plexity time reach the 21-unstaged-failure floor of 84
+at the pinned revision, excluding all 120 Stage 5         loss points. Blocking instead retains unresolved ser-
+accounts across source splits. Eligibility retains        vice loss for all 33 initially unsuccessful requests, to-
+the original explicit-instruction, supported single-      taling 132 points. These distinct floors follow from
+transaction criteria and source-intent consistency        corrective authority, not from a better scheduling rule.
+checks. Only ten unused eligible modification ac-             At two ticks, full correction gives search minus
+counts remain, so a 16-bundle design is infeasible.       greedy +2.333 [0.000, 6.333]. The complexity variant
+The declared fallback selects eight globally disjoint     has the same paired difference while increasing both
+bundles from 24 training cases, reserving modifica-       policies’ loss by one third of a point. Only six staged
+tion first and then cancellation and returns/exchanges    proposals from four cases trigger the added tick, in-
+in source order. The source pool is not filtered using    cluding two initially wrong proposals. This limited
+model outcomes or expected scheduling gains.              exposure bounds what the complexity null contrast
+    Three fresh replicates yield 72 workflow attempts.    establishes.
+The same preparations feed six policies, two base du-         Approve/block leaves every fresh review sequence
+rations and three operational variants, giving 864 pol-   unchanged relative to correction. Its smaller search–
+icy episodes without repeated GPU calls for schedul-      greedy loss difference is therefore explained by the
+ing. The primary comparison is search minus greedy
+Table 3: Fresh follow-up mean loss. Each cell represents 24 runs on eight source bundles. C and X are correct-task totals at
+base duration two for correction and complexity time, with denominator 72. Approve/block completes 39 tasks under every
+policy. No-review inputs are identical across conditions.
+                                       Correction      Approve/block      Complexity time     Correct
+                     Policy         1 tick 2 ticks     1 tick 2 ticks     1 tick   2 ticks    C    X
+                     No review      9.833     9.833    9.833     9.833    9.833      9.833    39   39
+                     FCFS           3.500     5.500    5.500     7.000    3.500      5.833    48   47
+                     EDF            3.500     5.500    5.500     7.000    3.500      5.833    48   47
+                     Uncertainty    3.500     3.500    5.500     5.500    3.500      3.833    51   50
+                     Greedy         3.500     3.500    5.500     5.500    3.500      3.833    51   50
+                     Search         3.500     5.833    5.500     7.167    3.500      6.167    47   46
+
+
+changed preventable consequence, not an observed                 6.5     Saved-Preparation Sensitivity
+improvement in allocation. The benefit functions can
+produce different rankings in arithmetic cases, but do           The separate post hoc analysis replays all 1,152
+not do so in these fresh trajectories.                           original reference traces exactly and adds the de-
+                                                                 clared variants on the same 288 preparations. At
+6.4    Scheduling Mechanism and Error                            base duration two, restricted-authority search mi-
+                                                                 nus greedy is +0.125 [−0.167, 0.500], with one win,
+       Ranking                                                   29 ties and two losses. Complexity time gives
+                                                                 +0.500 [−0.083, 1.250], with one win, 28 ties and
+Search and greedy review sequences differ in six of              three losses. These results do not replace the origi-
+24 fresh runs at base duration two, versus one search–           nal +0.250 primary comparison. Blocking changes
+EDF difference. On search’s states, 19 dispatches                search’s actual sequence in only two of 96 runs rela-
+have multiple eligible requests and six have different           tive to correction. The first saved-data benefit remains
+greedy/search heads. These are repeated states for de-           available as a trace alongside the fresh null and unfa-
+scriptive analysis, not additional independent obser-
+                                                                 vorable examples.
+vations.
+    The first unfavorable example is bundle 06, repli-
+cate 2. At tick zero, search reviews a correct cancel-
+lation with cutoff two, planning to preserve both cur-           7     DISCUSSION
+rently available opportunities. Greedy instead blocks
+the wrong modification by tick two. A correct ex-                Planning helps when valuable interventions compete
+change arrives at tick one. When search becomes                  for time and ordering preserves opportunities that
+free, its frozen estimate prioritizes that exchange, and         greedy selection would lose. Constructed mainte-
+the modification posts at tick five. Search loss is              nance competition provides that condition. The orig-
+eight versus greedy’s four. The primary example rule             inal maintenance workload and the retail study show
+finds no fresh search benefit. The first tie contains a          why a favorable mechanism does not imply a general
+blocked incomplete return and an unstaged modifica-              policy ranking. Public contention can involve correct
+tion, giving equal loss eight.                                   requests, some errors are already infeasible, and later
+    The frozen estimator’s aggregate Brier score is              arrivals are outside the planner’s current state.
+0.17144, versus 0.17998 for its pooled estimate; AU-                 Capacity changes the opportunity set. When ev-
+ROC is 0.6581. Yet modification has eight errors                 ery useful queued error can be corrected, simple re-
+among 13 staged proposals, versus four among 18                  view policies can match search despite different or-
+returns/exchanges, while predicted risks rank those              ders. When capacity is severely constrained, too
+families in the opposite order. All 20 staged cancel-            few feasible combinations may remain for ordering to
+lations are correct. This retrospective evidence helps           help. More completed reviews can then coexist with
+explain the unfavorable trace without granting labels            fewer corrections. The meaningful outcome is pre-
+to the scheduler or refitting on evaluation data. Eight          ventable operational consequence, not sequence di-
+source cases produce different proposals across the              versity alone.
+three replicates, and four have mixed initial correct-               The reviewer objective and authority must also be
+ness.                                                            explicit. A search policy that optimizes weighted cost
+                                                                 can close fewer jobs correctly. A block-only reviewer
+                                                                 can prevent processing harm while leaving service un-
+                                                                 finished. These outcomes are consistent with their ob-
+                             Base review: 1 tick                                          Base review: 2 ticks
+         Correction                                                   Correction
+
+
+
+
+     Approve/block                                                Approve/block
+
+
+
+
+    Complexity time                                             Complexity time
+                        0         2        4         6                               0         2        4         6
+                            Search minus greedy loss                                     Search minus greedy loss
+
+Figure 1: Fresh operational sensitivity. Points are search minus greedy mean loss; bars are 95% paired bundle-bootstrap
+intervals. Only approve/block at base duration two is primary. Degenerate one-tick intervals describe ties in this sample, not
+population equivalence.
+
+
+jectives and should not be converted into claims of               AI ASSISTANCE AND
+universal superiority. The robustness study isolates              REPRODUCIBILITY
+these mechanisms without changing risk estimates or
+agent preparation.                                                OpenAI Codex assisted implementation, test and
+    Our evidence is limited to one model, bounded                 analysis code, source checking, figure code, and draft-
+workloads and perfect diagnosis. Synthetic fault                  ing and revision throughout this manuscript and sup-
+generation gives a transparent observation model,                 plement (OpenAI, 2026). Numerical results derive
+while public retail source cases offer genuine tools              from logged GPU generations and deterministic sim-
+but shared templates and possible training exposure.              ulation, with declared tests and replay checks. Fig-
+Scripted confirmation and complete-transaction cor-               ures plot those saved measurements. AI is not an au-
+rection simplify customer interaction. Deadlines, pro-            thor. Human authors remain responsible for verifi-
+cessing weights and complexity times are constructed              cation, interpretation and submission. Source snap-
+quantities. Exact annotated equality can overstate                shots, declarations, raw evidence, ledgers and re-
+some operational distinctions. No measured human                  production commands accompany the local research
+review performance, retailer savings or large-queue               package. Previously disclosed publication redactions
+scalability follows.                                              remove unsolicited credential-like model text from
+                                                                  auxiliary arguments and prompt histories, preserv-
+                                                                  ing original hashes and unchanged transactions, la-
+8    CONCLUSION                                                   bels and outcomes. Exact originals remain on the au-
+                                                                  thorized pod. Deterministic replay does not promise
+Shared review can be studied as a timed intervention              bitwise regeneration from a seed.
+problem with an application-specific preventable-loss
+function. The resulting framework exposes differ-
+ences between uncertainty, urgency, expected benefit              REFERENCES
+and queue planning while preserving the information
+boundary. Frozen maintenance evidence supports a                  Alves, J. V., Leitão, D., Jesus, S., Sampaio, M. O. P.,
+conditional planning benefit and objective tradeoffs.                  Liébana, J., Saleiro, P., Figueiredo, M. A. T., and
+The retail primary result is unfavorable to search, and                Bizarro, P. (2024). Cost-sensitive learning to defer to
+its operational follow-up tests what changes when re-                  multiple experts with workload constraints. Transac-
+                                                                       tions on Machine Learning Research.
+view can block rather than complete a transaction.
+                                                                  Dong, Y. R., Hu, T., Hui, Z., Zhang, C., Vulić, I.,
+The combined evidence supports analyzing capacity,                     Bobu, A., and Collier, N. (2026). Value of informa-
+error ranking and corrective authority together when                   tion: A framework for human-agent communication.
+designing oversight for language model workflows.                      arXiv:2601.06407.
+                                                                  Guo, S., Lu, L., Yuan, J., Ng, C. T., and Cheng, T. C. E.
+                                                                       (2022). Pareto-scheduling with double-weighted jobs
+                                                                       to minimize the weighted number of tardy jobs and
+     total weighted late work. Naval Research Logistics,
+     69(5):816–837.
+Hariri, A. M. A., Potts, C. N., and Van Wassenhove, L. N.
+     (1995). Single machine scheduling to minimize to-
+     tal weighted late work. ORSA Journal on Computing,
+     7(2):232–242.
+OpenAI (2026).         Codex.      OpenAI documentation.
+     https://learn.chatgpt.com/docs/codex/cli. Accessed 10
+     September 2026.
+Ren, A. Z., Dixit, A., Bodrova, A., Singh, S., Tu, S., Brown,
+     N., Xu, P., Takayama, L., Xia, F., Varley, J., Xu,
+     Z., Sadigh, D., Zeng, A., and Majumdar, A. (2023).
+     Robots that ask for help: Uncertainty alignment for
+     large language model planners. In Proceedings of
+     the 7th Conference on Robot Learning, volume 229
+     of Proceedings of Machine Learning Research, pages
+     661–682. PMLR.
+Shopify (2026a). Canceling orders. Shopify Help Cen-
+     ter. https://help.shopify.com/en/manual/fulfillment/
+     managing-orders/canceling-orders. Accessed 10
+     September 2026.
+Shopify (2026b). Editing orders. Shopify Help Cen-
+     ter. https://help.shopify.com/en/manual/fulfillment/
+     managing-orders/editing-orders.         Accessed      10
+     September 2026.
+Shopify (2026c).        Processing and managing returns.
+     Shopify Help Center.           https://help.shopify.com/
+     en/manual/fulfillment/managing-orders/returns/
+     processing-returns. Accessed 10 September 2026.
+Yao, S., Shinn, N., Razavi, P., and Narasimhan, K. (2024).
+     τ-bench: A benchmark for tool-agent-user interaction
+     in real-world domains. arXiv:2406.12045.
+Zavattari, C., Tommasi, A., and Prencipe, G. (2026). One
+     human, N agents: Audit-budget allocation for LLM
+     agent fleets under miscalibrated, correlated confi-
+     dence. arXiv:2607.28317.
+

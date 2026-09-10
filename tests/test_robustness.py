@@ -77,6 +77,9 @@ class RobustnessSemantics(unittest.TestCase):
         with self.assertRaises(ValueError):bundle_means(rows[:-1],'operational_loss')
         r=paired_summary([10,3],[[0,0],[1,1],[0,1]])
         self.assertEqual(r['mean_difference'],6.5);self.assertEqual(r['losses'],2)
+        completion=paired_summary([10,3],[[0,0],[1,1],[0,1]],lower_is_better=False)
+        self.assertEqual(completion['wins'],2);self.assertEqual(completion['losses'],0)
+        self.assertEqual(completion['mean_difference'],r['mean_difference'])
 
     def test_source_exclusion_and_frozen_estimator(self):
         record=json.loads(Path('artifacts/stage6_robustness/cases.json').read_text());cases=record['cases']
