@@ -82,3 +82,7 @@ python3 -m overseeing prepare-competition --out artifacts/stage3_competition/run
 ```
 
 The separately recorded Stage 3 authorization lasts at most two hours and remains within the original overall deadline. Earlier command deadlines are unchanged. Stop after this batch; further inference requires a new authorized scope.
+
+## Stage 4 research session
+
+A separately authorized nine-hour research session is underway. The [working report](reports/STAGE4_RESEARCH.md), [register](artifacts/stage4_research/RESEARCH_PLAN.md), and [decisions](artifacts/stage4_research/decisions.jsonl) distinguish development from frozen evaluation. New entry points use a shared 50,000-call / 60,000-attempt ledger and stop inference 90 minutes before the stage deadline. Historical commands retain their previous limits. No claim is made that equal sampling seeds reproduce identical GPU actions.
