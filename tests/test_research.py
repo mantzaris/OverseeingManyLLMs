@@ -146,14 +146,20 @@ class ResearchFoundationChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);start=datetime.now(timezone.utc)
             write_json(root/'authorization.json',dict(name='stage4_research',authorization='explicit_user_request',started_utc=start.isoformat(),deadline_utc=(start+timedelta(hours=9)).isoformat(),inference_cutoff_utc=(start+timedelta(hours=7.5)).isoformat(),limit_hours=9,scheduled_call_limit=50000,attempt_limit=60000))
-            entries=finish_plan([run_entry('fixture','larger',seed,6,policy,2) for seed in (400,401) for policy in ('greedy','delay')])
+            entries=finish_plan([run_entry('fixture','larger',seed,6,policy,2) for seed in (400,401) for policy in ('greedy','delay')]+[run_entry('objective_fixture','larger',402,6,'delay',2,penalty=k) for k in (0,4)])
             prepare_batch(root,'fixture',entries,'Stipulated transport test; not live evidence')
             with patch('overseeing.research_execution.collect_evidence',side_effect=gpu),patch('overseeing.research_execution.server_snapshot',side_effect=metrics),patch.object(GPUClient,'_http',transport),patch('builtins.print'):
                 result=run_batch(root,'fixture',0,'fixture')
             self.assertEqual(result['status'],'completed')
-            audit=audit_batch(root,'fixture');self.assertEqual(audit['completed_replays'],4)
-            self.assertEqual(audit['counts']['scheduled_calls'],144)
-            summary=summarize_batches(root,['fixture'],'fixture');self.assertEqual(summary['completed_episodes'],4)
+            audit=audit_batch(root,'fixture');self.assertEqual(audit['completed_replays'],6)
+            self.assertEqual(audit['counts']['scheduled_calls'],216)
+            summary=summarize_batches(root,['fixture'],'fixture');self.assertEqual(summary['completed_episodes'],6)
+            core=[r for r in summary['policy_outcomes'] if r['policy']=='delay' and r['study']=='core']
+            objective=[r for r in summary['policy_outcomes'] if r['closure_penalty']==0 and r['study']=='objective']
+            self.assertEqual(core[0]['completed_episodes'],2)
+            self.assertEqual(objective[0]['completed_episodes'],1)
+            with self.assertRaisesRegex(ValueError,'Duplicate scenario'):
+                summarize_batches(root,['fixture','fixture'],'duplicate_fixture')
             self.assertEqual(paired_interval([1,1],[400,401]),(1.,1.))
             lo,hi=paired_interval([1,3],[400,401]);lo2,hi2=paired_interval([2,6],[400,401])
             self.assertEqual((lo2,hi2),(2*lo,2*hi))

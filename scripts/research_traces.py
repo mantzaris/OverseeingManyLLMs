@@ -19,7 +19,7 @@ def render_pair(root,batch,left,right,path,reason):
                 j=jobs[e['job_id']];p=j['public'];correct={'filter':'replace_filter','sensor':'reset_sensor'}[j['fault']]
                 details='{}: clues {}; first {}; second {}; initial {} (offline label); p={:.4f}; deadline {}; c={}; K={}'.format(e['job_id'],'/'.join(p['clues']),e['primary'],e['secondary'],'correct' if e['primary']==correct else 'wrong',e['p_error'],p['deadline'],p['cost_per_tick'],p['terminal_cost'])
             elif kind=='planning_decision':
-                details='eligible '+', '.join('{}(d={},p={:.3f},G_now={:.3f})'.format(r['job_id'],r['deadline'],r['p_error'],r['cost_per_tick']*(r['deadline']-e['tick']-r['review_ticks'])+r['terminal_cost']) for r in e['eligible'])+'; choose '+str(e['selected'])
+                details='eligible '+', '.join('{}(d={},p={:.3f},G_at_completion={:.3f})'.format(r['job_id'],r['deadline'],r['p_error'],r['cost_per_tick']*(r['deadline']-e['tick']-r['review_ticks'])+r['terminal_cost']) for r in e['eligible'])+'; choose '+str(e['selected'])
             elif kind=='queue_snapshot':details='waiting '+', '.join(e['pending'])+'; active '+str(e['busy'])
             elif kind=='review_completed':details='{}: {}, applied={}, corrected={}'.format(e['job_id'],e['instructed_action'],e['applied'],e['changed'])
             elif kind=='request_expired':details='{}: {}'.format(e['job_id'],e['category'])
@@ -51,7 +51,7 @@ def main(root,batch,label):
             selected.append(dict(workload=workload,direction=direction,seed=seed,fallback_tie=fallback,loss_difference=float(p['loss_difference']),file=filename,first_action_differences=int(p['primary_action_differences']),different_observations=int(p['different_observations']),identical_request_first_action_differences=int(p['identical_request_primary_differences'])))
     for workload in ('competition','larger'):
         for duration in (1,2):
-            candidates=[r for r in pairs if r['kind']=='objective' and r['workload']==workload and r['left'].endswith('|lambda8') and int(r['review_ticks'])==duration and r['loss_difference']!='' and float(r['loss_difference'])>0 and float(r['incorrect_difference'])<0]
+            candidates=[r for r in pairs if r['kind']=='objective' and r['workload']==workload and r['left'].endswith('|lambda8|objective') and int(r['review_ticks'])==duration and r['loss_difference']!='' and float(r['loss_difference'])>0 and float(r['incorrect_difference'])<0]
             candidates.sort(key=lambda r:int(r['seed']))
             if not candidates:
                 selected.append(dict(workload=workload,direction='objective_tradeoff',review_ticks=duration,status='no lambda8 lower-count/higher-cost example'));continue

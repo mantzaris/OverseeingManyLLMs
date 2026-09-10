@@ -2,7 +2,7 @@
 
 The nine-hour stage started **2026-09-10 03:48:53 UTC**, with a hard finish at **12:48:53 UTC** and inference cutoff **11:18:53 UTC**, reserving 90 minutes for reporting. Historical clocks and command limits remain unchanged. A single append-only ledger enforces 50,000 scheduled calls and 60,000 generation attempts. Every ordinary call permits at most one retry. [Authorization](../artifacts/stage4_research/authorization.json), [initial register](../artifacts/stage4_research/RESEARCH_PLAN.md), [decision log](../artifacts/stage4_research/decisions.jsonl).
 
-This milestone contains the verified foundation and declarations; it is not the completed research report. No evaluation has begun. The cost-versus-correctness branch is now selected and the full evaluation matrix is frozen.
+This milestone contains the verified foundation and declarations; it is not the completed research report. The cost-versus-correctness branch is selected and the full frozen evaluation is running. Its outcomes have not yet been analyzed.
 
 ## Foundation findings
 
@@ -32,3 +32,9 @@ All 256 initial pilot episodes and 48 objective pilot episodes completed and rep
 The initial pilot found two mixed-action request-hash groups among 640 repeated groups; the objective pilot found three among 296. No stabilization reruns were made. Frozen s=2 search/greedy losses tied on both original and competition pilots. On six-agent s=1 pilot scenarios, search cost 63 with 67 correct closures, versus EDF cost 95 with 69; two of four scenarios had lower cost but more incorrect closures. This repeated objective tradeoff motivated branch A. Its one fixed pilot iteration (λ=0,4,8) produced mostly ties and small cost increases, so the grid remains unchanged.
 
 The [evaluation freeze](../artifacts/stage4_research/evaluation_freeze.json) declares all full core prefixes and 16 objective-extension scenarios per workload: 2,752 evaluation episodes, 43,008 calls, and 48,320 session calls including all prior work. The forecast uses 1.5 times measured p95 end-to-end episode seconds/call plus 30 minutes contingency and fits before the inference cutoff. No evaluation labels are used for method or sample-size choices. [Current register](../artifacts/stage4_research/EXPERIMENT_REGISTER.md).
+
+## Reporting audit milestone during execution
+
+The analysis now keys core and objective-extension cohorts separately, so their distinct λ=0 seed sets cannot be pooled. A regression check also rejects duplicate scenario rows. This reporting repair does not change the running generator, inference, estimator, policy, or declared analysis comparison.
+
+An exact-rational same-state audit of 4,001 saved development public states found zero expected-value regret for floating search heads, with four deviations from the exact canonical tie preference. Ten uniform frozen-to-pooled scaling changes among 1,771 uniform-risk states all chose exactly co-optimal heads. Thus the `math.fsum` repair removes order-dependent sequential addition but does not imply exact rational tie arithmetic. Such numerical changes carry no new risk-ranking information. Frozen execution is retained, and evaluation receives the same audit. These are public-state checks, not additional trajectories. [Numerical audit](../artifacts/stage4_research/numerical_audits/development_summary.json).

@@ -10,7 +10,7 @@ All 56 episodes completed and replayed: **672 experimental generations plus one 
 
 ## Inspect and verify
 
-Host code requires Python 3.8+ and the standard library. These commands perform no model inference:
+Core host simulation and replay require Python 3.8+ and the standard library. Stage 4 summaries and its integration checks also use NumPy; figure rendering uses Matplotlib (`requirements-analysis.txt`). Exact analysis versions are saved with the research artifacts. These commands perform no model inference:
 
 ```bash
 python3 -m unittest discover -s tests -v

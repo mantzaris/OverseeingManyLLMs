@@ -14,7 +14,7 @@ from .research_risk import ESTIMATOR_FILE_HASH,load_risk
 from .research_scheduler import ResearchScheduler
 
 COUNT_FIELDS=('scheduled_calls','attempts','retries','failed_attempts','unfinished_attempts','prompt_tokens','completion_tokens','unknown_token_attempts')
-CONDITION_FIELDS=('workload','agents','review_ticks','risk','policy','closure_penalty')
+CONDITION_FIELDS=('workload','agents','review_ticks','risk','policy','closure_penalty','study')
 
 
 def existing_evidence(path):
@@ -130,6 +130,8 @@ def audit_batch(root,name):
             correct_jobs=last.get('correct_jobs') if complete else None,incorrect_jobs=entry['jobs']-last['correct_jobs'] if complete else None,
             reviews_completed=sum(e['event']=='review_completed' for e in events),corrections=sum(e['event']=='review_completed' and e['changed'] for e in events),
             review_utilization=last.get('review_busy_ticks',0)/entry['horizon'],expired_requests=len(expired),
+            initially_infeasible_expiries=sum(e['category']=='infeasible_at_arrival' for e in expired),
+            zero_value_expiries=sum(e['category']=='zero_value' for e in expired),
             missed_opportunities=sum(e['category']=='opportunity_lost_while_waiting' for e in expired),
             wrong_missed_opportunities=sum(e['category']=='opportunity_lost_while_waiting' and e['initial_proposal_wrong'] for e in expired),
             max_outstanding=max((len(e['pending'])+int(e['busy'] is not None) for e in events if e['event']=='queue_snapshot'),default=0),
@@ -193,7 +195,7 @@ def read_csv(path):
 
 def numeric_records(path):
     rows=read_csv(path)
-    integers=('seed','agents','review_ticks','closure_penalty','jobs','horizon','execution_index','planned_calls','correct_jobs','incorrect_jobs','reviews_completed','corrections','expired_requests','missed_opportunities','wrong_missed_opportunities','objective_missed_opportunities','max_outstanding','agent_id','closed_jobs','initial_errors','tick','pending_count','eligible_count','ordered_subsets_evaluated','initial_error')+COUNT_FIELDS
+    integers=('seed','agents','review_ticks','closure_penalty','jobs','horizon','execution_index','planned_calls','correct_jobs','incorrect_jobs','reviews_completed','corrections','expired_requests','initially_infeasible_expiries','zero_value_expiries','missed_opportunities','wrong_missed_opportunities','objective_missed_opportunities','max_outstanding','agent_id','closed_jobs','initial_errors','tick','pending_count','eligible_count','ordered_subsets_evaluated','initial_error')+COUNT_FIELDS
     for row in rows:
         for key,value in list(row.items()):
             if value=='':row[key]=None
@@ -204,11 +206,12 @@ def numeric_records(path):
 
 
 def condition(row):
-    return tuple(row[key] for key in CONDITION_FIELDS)
+    study=row.get('study') or ('objective' if row.get('phase','').startswith('objective_') else 'core')
+    return tuple(row[key] for key in CONDITION_FIELDS[:-1])+(study,)
 
 
 def condition_label(key):
-    return '{}|a{}|s{}|{}|{}|lambda{}'.format(*key)
+    return '{}|a{}|s{}|{}|{}|lambda{}'.format(*key[:6])+('' if key[6]=='core' else '|'+key[6])
 
 
 _BOOTSTRAP_INDICES={}
@@ -235,6 +238,8 @@ def summarize_batches(root,names,label):
     for row in episodes:groups[condition(row)].append(row)
     outcomes=[]
     for key,group in sorted(groups.items()):
+        if len(group)!=len({r['seed'] for r in group}):
+            raise ValueError('Duplicate scenario within a study condition: '+condition_label(key))
         complete=[r for r in group if r['status']=='completed'];n=len(complete)
         losses=[r['total_loss'] for r in complete];seeds=[r['seed'] for r in complete]
         low,high=paired_interval(losses,seeds)
@@ -247,6 +252,8 @@ def summarize_batches(root,names,label):
             mean_incorrect_jobs=sum(r['incorrect_jobs'] for r in complete)/n if n else None,
             corrections=sum(r['corrections'] for r in complete),reviews_completed=sum(r['reviews_completed'] for r in complete),
             review_utilization=sum(r['review_utilization'] for r in complete)/n if n else None,
+            initially_infeasible_expiries=sum(r['initially_infeasible_expiries'] for r in complete),
+            zero_value_expiries=sum(r['zero_value_expiries'] for r in complete),
             missed_opportunities=sum(r['missed_opportunities'] for r in complete),wrong_missed_opportunities=sum(r['wrong_missed_opportunities'] for r in complete),
             objective_missed_opportunities=sum(r['objective_missed_opportunities'] for r in complete),
             mean_augmented_loss=sum(r['augmented_loss'] for r in complete)/n if n else None,
@@ -285,22 +292,22 @@ def summarize_batches(root,names,label):
     comparisons,paired=[],[]
     comparison_keys=[]
     for key in groups:
-        workload,agent_count,duration,risk,policy,penalty=key
+        workload,agent_count,duration,risk,policy,penalty,study=key
         if policy=='delay':
             for comparator in ('greedy','edf','fcfs','uncertainty','myopic'):
-                other=(workload,agent_count,duration,risk,comparator,penalty)
+                other=(workload,agent_count,duration,risk,comparator,penalty,study)
                 if other in groups:comparison_keys.append(('policy',key,other))
         if risk in ('pooled','analytical'):
-            other=(workload,agent_count,duration,'frozen',policy,penalty)
+            other=(workload,agent_count,duration,'frozen',policy,penalty,study)
             if other in groups:comparison_keys.append(('risk',key,other))
         if penalty in (4,8):
-            other=(workload,agent_count,duration,risk,policy,0)
+            other=(workload,agent_count,duration,risk,policy,0,study)
             if other in groups:comparison_keys.append(('objective',key,other))
         if duration==2:
-            other=(workload,agent_count,1,risk,policy,penalty)
+            other=(workload,agent_count,1,risk,policy,penalty,study)
             if other in groups:comparison_keys.append(('duration',key,other))
         if agent_count==6:
-            other=(workload,3,duration,risk,policy,penalty)
+            other=(workload,3,duration,risk,policy,penalty,study)
             if other in groups:comparison_keys.append(('capacity',key,other))
     for kind,left,right in sorted(set(comparison_keys)):
         common=sorted(set(by_condition[left])&set(by_condition[right]));valid=[];losses=[];wrong=[];norm=[];seq=[]
@@ -308,7 +315,7 @@ def summarize_batches(root,names,label):
             a,b=by_condition[left][seed],by_condition[right][seed]
             complete=a['status']==b['status']=='completed'
             delta=a['total_loss']-b['total_loss'] if complete else None
-            item=dict(kind=kind,workload=left[0],seed=seed,left=condition_label(left),right=condition_label(right),review_ticks=left[2],risk=left[3],agents=left[1],
+            item=dict(kind=kind,study=left[6],workload=left[0],seed=seed,left=condition_label(left),right=condition_label(right),review_ticks=left[2],risk=left[3],agents=left[1],
                 loss_difference=delta,incorrect_difference=a['incorrect_jobs']-b['incorrect_jobs'] if complete else None,
                 loss_per_job_difference=a['total_loss']/a['jobs']-b['total_loss']/b['jobs'] if complete else None,
                 lower_bound=delta if complete else (a['accrued_loss'] or 0)-b['loss_upper_bound'],
@@ -325,8 +332,8 @@ def summarize_batches(root,names,label):
                 valid.append(seed);losses.append(delta);wrong.append(item['incorrect_difference']);norm.append(item['loss_per_job_difference'])
                 seq.append(by_order[left][seed]!=by_order[right][seed])
         low,high=paired_interval(losses,valid);wl,wh=paired_interval(wrong,valid);nl,nh=paired_interval(norm,valid)
-        primary=kind=='policy' and left[0] in ('original','competition') and left[2]==2 and left[3]=='frozen' and right[4]=='greedy' and left[5]==0
-        comparison=dict(kind=kind,workload=left[0],agents=left[1],review_ticks=left[2],risk=left[3],left=condition_label(left),right=condition_label(right),primary=primary,
+        primary=kind=='policy' and left[0] in ('original','competition') and left[2]==2 and left[3]=='frozen' and right[4]=='greedy' and left[5]==0 and left[6]=='core'
+        comparison=dict(kind=kind,study=left[6],workload=left[0],agents=left[1],review_ticks=left[2],risk=left[3],left=condition_label(left),right=condition_label(right),primary=primary,
             planned_pairs=len(common),completed_pairs=len(valid),mean_loss_difference=sum(losses)/len(losses) if losses else None,ci_low=low,ci_high=high,
             left_wins=sum(x<0 for x in losses),ties=sum(x==0 for x in losses),left_losses=sum(x>0 for x in losses),actual_order_differences=sum(seq),
             mean_incorrect_difference=sum(wrong)/len(wrong) if wrong else None,incorrect_ci_low=wl,incorrect_ci_high=wh,

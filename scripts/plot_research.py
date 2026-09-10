@@ -85,11 +85,13 @@ def main(root,batch,label):
     branch=[r for r in rows if r['phase']=='objective_evaluation']
     for wi,workload in enumerate(('competition','larger')):
         for di,duration in enumerate((1,2)):
-            ax=axs[wi,di];xs=[];ys=[]
+            ax=axs[wi,di];xs=[];ys=[];annotations=defaultdict(list)
             for penalty in (0,4,8):
                 rs=[r for r in branch if r['workload']==workload and r['review_ticks']==duration and r['closure_penalty']==penalty]
                 x=np.mean([r['incorrect_jobs'] for r in rs]);y=np.mean([r['total_loss'] for r in rs]);xs.append(x);ys.append(y)
-                ax.annotate('λ='+str(penalty),(x,y),xytext=(4,4+penalty),textcoords='offset points',fontsize=8)
+                annotations[(round(float(x),12),round(float(y),12))].append(penalty)
+            for point,penalties in annotations.items():
+                ax.annotate('λ='+','.join(map(str,penalties)),point,xytext=(4,6),textcoords='offset points',fontsize=8)
             ax.plot(xs,ys,'o-',color=COLORS['delay']);ax.set_xlabel('Mean incorrect closures / scenario');ax.set_ylabel('Mean original loss / scenario');ax.set_title('{}; {}-tick reviews'.format(workload.capitalize(),duration));ax.grid(alpha=.2);ax.margins(.25)
     finish(fig,out/'objective_tradeoff','Exploratory extension: 16 new paired scenarios per workload, competition with three agents and larger workload with six. Search uses λ=0,4,8; axes always show original maintenance loss and incorrect closures separately. Lines follow the declared grid and do not assert a Pareto frontier. Scenario-paired intervals and common-objective comparisons are in paired_comparisons.csv.')
     write_json(out/'manifest.json',dict(source_batch=batch,source_label=label,figures=['policy_losses','capacity','risk_estimates','objective_tradeoff'],matplotlib=matplotlib.__version__,numpy=np.__version__,no_new_inference=True))
