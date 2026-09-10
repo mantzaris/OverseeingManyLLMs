@@ -1,0 +1,212 @@
+{
+  "label": "Post-freeze descriptive audit; no method or primary analysis changes",
+  "blocked_tool_calls": 778,
+  "blocked_mutation_calls": 338,
+  "checks": {
+    "adapter_policy_guard": 719,
+    "upstream_backend": 59
+  },
+  "reasons": {
+    "Error: automatic safeguard: retrieve customer profile/payment methods first": 278,
+    "Error: automatic safeguard: obtain explicit confirmation of these exact transaction arguments first": 93,
+    "Error: automatic safeguard: list the complete transaction and confirm all items": 294,
+    "Error: automatic safeguard: authenticate the customer first": 54,
+    "Error: 1008292230 not found": 7,
+    "Error: new item 1008292231 not found or available": 1,
+    "Error: new item 5019835484 not found or available": 1,
+    "Error: new item 7597543861 not found or available": 1,
+    "Error: new item 7869640094 not found or available": 2,
+    "Error: new item 4772738468 not found or available": 4,
+    "Error: new item 9370300555 not found or available": 1,
+    "Error: new item 9417024853 not found or available": 2,
+    "Error: new item 7918497119 not found or available": 5,
+    "Error: 1008292231 not found": 3,
+    "Error: new item 3320557165 not found or available": 1,
+    "Error: product not found": 10,
+    "Error: new item 9647374798 not found or available": 1,
+    "Error: user not found": 6,
+    "Error: new item 7401244629 not found or available": 3,
+    "Error: new item 1008292233 not found or available": 2,
+    "Error: new item 8064888773 not found or available": 1,
+    "Error: new item 8030558068 not found or available": 1,
+    "Error: new item 9973034634 not found or available": 1,
+    "Error: insufficient gift card balance to pay for the new item": 1,
+    "Error: new item 9335834276 not found or available": 1,
+    "Error: new item 3952176596 not found or available": 1,
+    "Error: new item 7903094618 not found or available": 3
+  },
+  "initial_wrong_valid_error_classes": {
+    "wrong_variant_mapping": 45,
+    "wrong_or_incomplete_item_list": 8
+  },
+  "error_classes_can_overlap": true,
+  "automatic_rejections_feature": 762,
+  "distinction": "Blocked invalid calls never commit. Wrong valid transactions violate the annotated task intent while passing active automatic checks. These counts are not a complete natural-language policy-compliance classifier.",
+  "families": [
+    {
+      "family": "cancel",
+      "workflows": 96,
+      "source_cases": 32,
+      "staged": 87,
+      "initial_correct": 87,
+      "initial_wrong_valid": 0,
+      "unstaged_failures": 9,
+      "mean_tool_turns": 7.166666666666667
+    },
+    {
+      "family": "modify",
+      "workflows": 96,
+      "source_cases": 32,
+      "staged": 58,
+      "initial_correct": 34,
+      "initial_wrong_valid": 24,
+      "unstaged_failures": 38,
+      "mean_tool_turns": 10.322916666666666
+    },
+    {
+      "family": "return_exchange",
+      "workflows": 96,
+      "source_cases": 32,
+      "staged": 88,
+      "initial_correct": 61,
+      "initial_wrong_valid": 27,
+      "unstaged_failures": 8,
+      "mean_tool_turns": 8.03125
+    }
+  ],
+  "intended_tool_outcomes": [
+    {
+      "intended_tool": "cancel_pending_order",
+      "workflows": 96,
+      "source_cases": 32,
+      "staged": 87,
+      "initial_correct": 87,
+      "initial_wrong_valid": 0,
+      "unstaged_failures": 9,
+      "mean_tool_turns": 7.166666666666667
+    },
+    {
+      "intended_tool": "exchange_delivered_order_items",
+      "workflows": 48,
+      "source_cases": 16,
+      "staged": 40,
+      "initial_correct": 19,
+      "initial_wrong_valid": 21,
+      "unstaged_failures": 8,
+      "mean_tool_turns": 9.104166666666666
+    },
+    {
+      "intended_tool": "modify_pending_order_items",
+      "workflows": 96,
+      "source_cases": 32,
+      "staged": 58,
+      "initial_correct": 34,
+      "initial_wrong_valid": 24,
+      "unstaged_failures": 38,
+      "mean_tool_turns": 10.322916666666666
+    },
+    {
+      "intended_tool": "return_delivered_order_items",
+      "workflows": 48,
+      "source_cases": 16,
+      "staged": 48,
+      "initial_correct": 42,
+      "initial_wrong_valid": 6,
+      "unstaged_failures": 0,
+      "mean_tool_turns": 6.958333333333333
+    }
+  ],
+  "generation_failed_attempts": 3,
+  "workflow_failure_modes": {
+    "step_limit": 50,
+    "explicit_finish_without_staging": 4,
+    "generation_retry_exhausted": 1
+  },
+  "retrospective_queue_summary": [
+    {
+      "policy": "no_review",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 301,
+      "multiple_initially_wrong_eligible": 20
+    },
+    {
+      "policy": "fcfs",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 7
+    },
+    {
+      "policy": "edf",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 4
+    },
+    {
+      "policy": "uncertainty",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 2
+    },
+    {
+      "policy": "greedy",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 2
+    },
+    {
+      "policy": "search",
+      "review_duration": 1,
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 7
+    },
+    {
+      "policy": "no_review",
+      "review_duration": 2,
+      "dispatches": 606,
+      "multiple_eligible": 212,
+      "multiple_initially_wrong_eligible": 10
+    },
+    {
+      "policy": "fcfs",
+      "review_duration": 2,
+      "dispatches": 424,
+      "multiple_eligible": 87,
+      "multiple_initially_wrong_eligible": 4
+    },
+    {
+      "policy": "edf",
+      "review_duration": 2,
+      "dispatches": 416,
+      "multiple_eligible": 103,
+      "multiple_initially_wrong_eligible": 4
+    },
+    {
+      "policy": "uncertainty",
+      "review_duration": 2,
+      "dispatches": 437,
+      "multiple_eligible": 83,
+      "multiple_initially_wrong_eligible": 2
+    },
+    {
+      "policy": "greedy",
+      "review_duration": 2,
+      "dispatches": 437,
+      "multiple_eligible": 83,
+      "multiple_initially_wrong_eligible": 2
+    },
+    {
+      "policy": "search",
+      "review_duration": 2,
+      "dispatches": 416,
+      "multiple_eligible": 103,
+      "multiple_initially_wrong_eligible": 4
+    }
+  ],
+  "retrospective_boundary": "Initial error labels are used only for this offline descriptive audit, never scheduler or agent inputs."
+}

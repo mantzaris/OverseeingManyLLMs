@@ -17,7 +17,7 @@ in [the vendored package](../third_party/tau_bench/UPSTREAM.json).
 | Tool serialization | Upstream parameter schemas | JSON tool envelopes with reported confidence; explicit confirmation and finish interfaces. One tool call per model turn. Longer context and output cap declared separately from maintenance. |
 | Review opportunity | Our extension | Guarded proposed mutation is staged without changing the database. Three independently prepared transactions enter a processing batch at public slots 0/0/1. |
 | Processing cutoff | Our extension | Public relative windows 2/4/5 represent order-processing, change-lock or reverse-logistics batch cutoffs. A completed review commits its corrected transaction immediately; otherwise the staged proposal posts at the cutoff. Completion exactly at cutoff is timely. No later rollback is allowed. |
-| Simulated reviewer | Our idealization | One nonpreemptive reviewer, duration 2 (primary) or 1 (secondary). Only a completed review may use the private annotated target and correct the full transaction. Preparation failures without a valid staged transaction cannot be rescued. |
+| Simulated reviewer | Our idealization | One nonpreemptive reviewer, duration 2 (primary) or 1 (secondary). Only a completed review may use the private annotated target and correct the full transaction. Preparation failures without a valid staged transaction cannot be rescued. Reviewer approval is assumed sufficient to restore the original recorded customer intent; further customer confirmation is not modeled. Upstream tool checks run again on commitment. |
 | Operational objective | Our declared points | Four points for an unresolved service request, plus a public 4/8/12-point processing/rework consequence for a wrong posted transaction. These are synthetic consequence weights, not observed dollars or actual retailer penalties. |
 | Paired policy evaluation | Our design | Reuse the same GPU-prepared transactions across all policies/capacities because no model generation follows staging. Three fresh workflow replicates measure generation variability. This does not test feedback-dependent multi-job agent behavior. |
 
@@ -25,6 +25,8 @@ Exact task IDs, original instructions/actions, exclusion reasons and partition
 groups are in [cases.json](../artifacts/stage5_practical/cases.json). A first
 pre-inference selection bug admitted repeated customers; its failed declaration
 is preserved and the unique-account test repaired it before any generation.
+The development set has eight cancellation, eight modification, three return and five exchange cases. Evaluation has 32 cancellation, 32 modification, 16 return and 16 exchange cases. A [separate source-intent audit](../artifacts/stage5_practical/source_intent_audit.json) checks all 120 target orders, reasons, payment destinations, item names and option mappings without using model outputs; it finds no inconsistency.
+
 Broad workflow templates are shared across partitions, so this is held-out
 **source-case** evaluation, not held-out workflow-template generalization.
 

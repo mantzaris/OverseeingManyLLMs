@@ -1,0 +1,212 @@
+{
+  "automatic_rejections_feature": 762,
+  "blocked_mutation_calls": 338,
+  "blocked_tool_calls": 778,
+  "checks": {
+    "adapter_policy_guard": 719,
+    "upstream_backend": 59
+  },
+  "distinction": "Blocked invalid calls never commit. Wrong valid transactions violate the annotated task intent while passing active automatic checks. These counts are not a complete natural-language policy-compliance classifier.",
+  "error_classes_can_overlap": true,
+  "families": [
+    {
+      "family": "cancel",
+      "initial_correct": 87,
+      "initial_wrong_valid": 0,
+      "mean_tool_turns": 7.166666666666667,
+      "source_cases": 32,
+      "staged": 87,
+      "unstaged_failures": 9,
+      "workflows": 96
+    },
+    {
+      "family": "modify",
+      "initial_correct": 34,
+      "initial_wrong_valid": 24,
+      "mean_tool_turns": 10.322916666666666,
+      "source_cases": 32,
+      "staged": 58,
+      "unstaged_failures": 38,
+      "workflows": 96
+    },
+    {
+      "family": "return_exchange",
+      "initial_correct": 61,
+      "initial_wrong_valid": 27,
+      "mean_tool_turns": 8.03125,
+      "source_cases": 32,
+      "staged": 88,
+      "unstaged_failures": 8,
+      "workflows": 96
+    }
+  ],
+  "generation_failed_attempts": 3,
+  "initial_wrong_valid_error_classes": {
+    "wrong_or_incomplete_item_list": 8,
+    "wrong_variant_mapping": 45
+  },
+  "intended_tool_outcomes": [
+    {
+      "initial_correct": 87,
+      "initial_wrong_valid": 0,
+      "intended_tool": "cancel_pending_order",
+      "mean_tool_turns": 7.166666666666667,
+      "source_cases": 32,
+      "staged": 87,
+      "unstaged_failures": 9,
+      "workflows": 96
+    },
+    {
+      "initial_correct": 19,
+      "initial_wrong_valid": 21,
+      "intended_tool": "exchange_delivered_order_items",
+      "mean_tool_turns": 9.104166666666666,
+      "source_cases": 16,
+      "staged": 40,
+      "unstaged_failures": 8,
+      "workflows": 48
+    },
+    {
+      "initial_correct": 34,
+      "initial_wrong_valid": 24,
+      "intended_tool": "modify_pending_order_items",
+      "mean_tool_turns": 10.322916666666666,
+      "source_cases": 32,
+      "staged": 58,
+      "unstaged_failures": 38,
+      "workflows": 96
+    },
+    {
+      "initial_correct": 42,
+      "initial_wrong_valid": 6,
+      "intended_tool": "return_delivered_order_items",
+      "mean_tool_turns": 6.958333333333333,
+      "source_cases": 16,
+      "staged": 48,
+      "unstaged_failures": 0,
+      "workflows": 48
+    }
+  ],
+  "label": "Post-freeze descriptive audit; no method or primary analysis changes",
+  "reasons": {
+    "Error: 1008292230 not found": 7,
+    "Error: 1008292231 not found": 3,
+    "Error: automatic safeguard: authenticate the customer first": 54,
+    "Error: automatic safeguard: list the complete transaction and confirm all items": 294,
+    "Error: automatic safeguard: obtain explicit confirmation of these exact transaction arguments first": 93,
+    "Error: automatic safeguard: retrieve customer profile/payment methods first": 278,
+    "Error: insufficient gift card balance to pay for the new item": 1,
+    "Error: new item 1008292231 not found or available": 1,
+    "Error: new item 1008292233 not found or available": 2,
+    "Error: new item 3320557165 not found or available": 1,
+    "Error: new item 3952176596 not found or available": 1,
+    "Error: new item 4772738468 not found or available": 4,
+    "Error: new item 5019835484 not found or available": 1,
+    "Error: new item 7401244629 not found or available": 3,
+    "Error: new item 7597543861 not found or available": 1,
+    "Error: new item 7869640094 not found or available": 2,
+    "Error: new item 7903094618 not found or available": 3,
+    "Error: new item 7918497119 not found or available": 5,
+    "Error: new item 8030558068 not found or available": 1,
+    "Error: new item 8064888773 not found or available": 1,
+    "Error: new item 9335834276 not found or available": 1,
+    "Error: new item 9370300555 not found or available": 1,
+    "Error: new item 9417024853 not found or available": 2,
+    "Error: new item 9647374798 not found or available": 1,
+    "Error: new item 9973034634 not found or available": 1,
+    "Error: product not found": 10,
+    "Error: user not found": 6
+  },
+  "retrospective_boundary": "Initial error labels are used only for this offline descriptive audit, never scheduler or agent inputs.",
+  "retrospective_queue_summary": [
+    {
+      "dispatches": 606,
+      "multiple_eligible": 301,
+      "multiple_initially_wrong_eligible": 20,
+      "policy": "no_review",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 7,
+      "policy": "fcfs",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 4,
+      "policy": "edf",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 2,
+      "policy": "uncertainty",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 2,
+      "policy": "greedy",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 115,
+      "multiple_initially_wrong_eligible": 7,
+      "policy": "search",
+      "review_duration": 1
+    },
+    {
+      "dispatches": 606,
+      "multiple_eligible": 212,
+      "multiple_initially_wrong_eligible": 10,
+      "policy": "no_review",
+      "review_duration": 2
+    },
+    {
+      "dispatches": 424,
+      "multiple_eligible": 87,
+      "multiple_initially_wrong_eligible": 4,
+      "policy": "fcfs",
+      "review_duration": 2
+    },
+    {
+      "dispatches": 416,
+      "multiple_eligible": 103,
+      "multiple_initially_wrong_eligible": 4,
+      "policy": "edf",
+      "review_duration": 2
+    },
+    {
+      "dispatches": 437,
+      "multiple_eligible": 83,
+      "multiple_initially_wrong_eligible": 2,
+      "policy": "uncertainty",
+      "review_duration": 2
+    },
+    {
+      "dispatches": 437,
+      "multiple_eligible": 83,
+      "multiple_initially_wrong_eligible": 2,
+      "policy": "greedy",
+      "review_duration": 2
+    },
+    {
+      "dispatches": 416,
+      "multiple_eligible": 103,
+      "multiple_initially_wrong_eligible": 4,
+      "policy": "search",
+      "review_duration": 2
+    }
+  ],
+  "workflow_failure_modes": {
+    "explicit_finish_without_staging": 4,
+    "generation_retry_exhausted": 1,
+    "step_limit": 50
+  }
+}

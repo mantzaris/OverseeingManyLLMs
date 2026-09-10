@@ -1,0 +1,20 @@
+{
+  "changes": [
+    {
+      "after_sha256": "1bb50117eeaf4197622159e9349f6fb59a44a08bba48142400f7d2a552412392",
+      "before_sha256": "76a865668c077a1d5edd31bc384d528496021ae91e8ad46d62479b8a37044200",
+      "diff": "--- scripts/plot_retail.py (frozen)\n+++ scripts/plot_retail.py (presentation)\n@@ -49,7 +49,7 @@\n     axes[0].scatter(i,float(r['observed_error_rate']),marker='o',color='#CC6677',label='Observed error rate' if i==0 else None)\n     axes[0].annotate('n='+r['examples'],(i,max(float(r['predicted_probability']),float(r['observed_error_rate']))),xytext=(0,6),textcoords='offset points',ha='center',fontsize=6)\n axes[0].set_xticks(range(len(bins)));axes[0].set_xticklabels([r['family'].replace('return_exchange','return/exch')+'\\n'+('flagged' if r['uncertain']=='True' else 'high/no flag') for r in bins],fontsize=6)\n-axes[0].set_ylim(0,min(1,max([float(r['observed_error_rate']) for r in bins]+[.2])+.15));axes[0].set_ylabel('Error probability');axes[0].legend(fontsize=6,frameon=False)\n+axes[0].set_ylim(0,min(1,max([float(r['observed_error_rate']) for r in bins]+[.2])+.15));axes[0].set_ylabel('Error probability');axes[0].legend(fontsize=6,frameon=False,loc='upper left')\n counts=[sum(int(r['successful_tasks'])==i for r in variation) for i in range(4)]\n axes[1].bar(range(4),counts,color='#228833');axes[1].set_xticks(range(4));axes[1].set_xlabel('Correct preparations among 3 replicates');axes[1].set_ylabel('Distinct evaluation source cases')\n save(fig,'risk_and_generation_variability')\n",
+      "path": "scripts/plot_retail.py",
+      "reason": "Move risk legend away from the observed n=88 annotation."
+    },
+    {
+      "after_sha256": "da8b5daef206b3c0203c526954ebb919b679b25abe98afed0891bcd82a853f7e",
+      "before_sha256": "256eff26e630c17c7ab312dc18c16ff7247b20eba490d04568e9cb9f7f72445e",
+      "diff": "--- scripts/retail_traces.py (frozen)\n+++ scripts/retail_traces.py (presentation)\n@@ -60,7 +60,7 @@\n             for event in results[policy]['events']:\n                 if event['tick']!=tick:continue\n                 if event['event']=='review_started':parts.append('start '+event['case_id']+' \u2192 '+str(event['completion']))\n-                elif event['event']=='transaction_committed':parts.append(('reviewed commit ' if event['reviewed'] else 'cutoff commit ')+event['case_id']+(' correct' if event['task_completed'] else 'WRONG'))\n+                elif event['event']=='transaction_committed':parts.append(('reviewed commit ' if event['reviewed'] else 'cutoff commit ')+event['case_id']+(' correct' if event['task_completed'] else ' WRONG'))\n             values.append('; '.join(parts) or '\u2014')\n         lines+=['| %d | %s | %s | %s |'%(tick,*values)]\n     lines+=['','Full preparations: [`'+key+'`](../../prepared/'+key+'/workflows.json). Full policy traces: [`'+key+'`](../traces/'+key+'/).','']\n",
+      "path": "scripts/retail_traces.py",
+      "reason": "Separate request identifiers from WRONG in readable queue tables."
+    }
+  ],
+  "recorded_utc": "2026-09-10T16:37:41.883344+00:00",
+  "scope": "Rendering only; no data, scoring, inference, policies, risk or analysis-definition change."
+}

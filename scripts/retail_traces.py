@@ -60,7 +60,7 @@ for name,selection in selections.items():
             for event in results[policy]['events']:
                 if event['tick']!=tick:continue
                 if event['event']=='review_started':parts.append('start '+event['case_id']+' → '+str(event['completion']))
-                elif event['event']=='transaction_committed':parts.append(('reviewed commit ' if event['reviewed'] else 'cutoff commit ')+event['case_id']+(' correct' if event['task_completed'] else 'WRONG'))
+                elif event['event']=='transaction_committed':parts.append(('reviewed commit ' if event['reviewed'] else 'cutoff commit ')+event['case_id']+(' correct' if event['task_completed'] else ' WRONG'))
             values.append('; '.join(parts) or '—')
         lines+=['| %d | %s | %s | %s |'%(tick,*values)]
     lines+=['','Full preparations: [`'+key+'`](../../prepared/'+key+'/workflows.json). Full policy traces: [`'+key+'`](../traces/'+key+'/).','']

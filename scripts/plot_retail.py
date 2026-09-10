@@ -49,7 +49,7 @@ for i,r in enumerate(bins):
     axes[0].scatter(i,float(r['observed_error_rate']),marker='o',color='#CC6677',label='Observed error rate' if i==0 else None)
     axes[0].annotate('n='+r['examples'],(i,max(float(r['predicted_probability']),float(r['observed_error_rate']))),xytext=(0,6),textcoords='offset points',ha='center',fontsize=6)
 axes[0].set_xticks(range(len(bins)));axes[0].set_xticklabels([r['family'].replace('return_exchange','return/exch')+'\n'+('flagged' if r['uncertain']=='True' else 'high/no flag') for r in bins],fontsize=6)
-axes[0].set_ylim(0,min(1,max([float(r['observed_error_rate']) for r in bins]+[.2])+.15));axes[0].set_ylabel('Error probability');axes[0].legend(fontsize=6,frameon=False)
+axes[0].set_ylim(0,min(1,max([float(r['observed_error_rate']) for r in bins]+[.2])+.15));axes[0].set_ylabel('Error probability');axes[0].legend(fontsize=6,frameon=False,loc='upper left')
 counts=[sum(int(r['successful_tasks'])==i for r in variation) for i in range(4)]
 axes[1].bar(range(4),counts,color='#228833');axes[1].set_xticks(range(4));axes[1].set_xlabel('Correct preparations among 3 replicates');axes[1].set_ylabel('Distinct evaluation source cases')
 save(fig,'risk_and_generation_variability')

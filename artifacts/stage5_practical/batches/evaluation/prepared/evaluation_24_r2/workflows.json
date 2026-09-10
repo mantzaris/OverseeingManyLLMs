@@ -1,0 +1,531 @@
+[
+  {
+    "automatic_rejections": 2,
+    "bundle_id": "evaluation_24",
+    "case_id": "train:108",
+    "confidence": "high",
+    "counts": {
+      "attempts": 7,
+      "completion_tokens": 482,
+      "prompt_tokens": 27065,
+      "request_wall_seconds": 9.272608941420913,
+      "scheduled_calls": 7,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "first_name": "Lei",
+            "last_name": "Anderson",
+            "zip": "76192"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_name_zip"
+        },
+        "response": "lei_anderson_8271",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W4072946"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W4072946\", \"user_id\": \"lei_anderson_8271\", \"address\": {\"address1\": \"420 Elm Street\", \"address2\": \"Suite 609\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"91395\"}, \"items\": [{\"name\": \"Hiking Boots\", \"product_id\": \"7363354090\", \"item_id\": \"8106223139\", \"price\": 249.12, \"options\": {\"size\": \"9\", \"material\": \"leather\", \"waterproof\": \"yes\"}}, {\"name\": \"Action Camera\", \"product_id\": \"3377618313\", \"item_id\": \"5436236388\", \"price\": 538.6, \"options\": {\"resolution\": \"1080p\", \"waterproof\": \"yes\", \"color\": \"silver\"}}], \"fulfillments\": [{\"tracking_id\": [\"761805490977\"], \"item_ids\": [\"8106223139\", \"5436236388\"]}], \"status\": \"delivered\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 787.72, \"payment_method_id\": \"paypal_1808675\"}]}",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "8106223139",
+              "5436236388"
+            ],
+            "order_id": "#W4072946",
+            "payment_method_id": "paypal_1808675"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "lei_anderson_8271"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"Lei\", \"last_name\": \"Anderson\"}, \"address\": {\"address1\": \"461 Willow Lane\", \"address2\": \"Suite 823\", \"city\": \"Fort Worth\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"76192\"}, \"email\": \"lei.anderson3132@example.com\", \"payment_methods\": {\"paypal_1808675\": {\"source\": \"paypal\", \"id\": \"paypal_1808675\"}}, \"orders\": [\"#W1866533\", \"#W7242815\", \"#W4072946\", \"#W6002467\"]}",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "8106223139",
+              "5436236388"
+            ],
+            "order_id": "#W4072946",
+            "payment_method_id": "paypal_1808675"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Error: automatic safeguard: obtain explicit confirmation of these exact transaction arguments first",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "item_ids": [
+                  "8106223139",
+                  "5436236388"
+                ],
+                "order_id": "#W4072946",
+                "payment_method_id": "paypal_1808675"
+              },
+              "tool": "return_delivered_order_items"
+            },
+            "all_items_confirmed": true,
+            "summary": "Return Hiking Boots (item id: 8106223139) and Action Camera (item id: 5436236388) from order #W4072946 via PayPal (payment method id: paypal_1808675). The order status will be changed to 'return requested'. You will receive a follow-up email on how to return the items."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is Lei Anderson and your zip code is 76192. Return #W4072946 via paypal_1808675: Hiking Boots; Action Camera;",
+        "staged": false,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 5
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "8106223139",
+              "5436236388"
+            ],
+            "order_id": "#W4072946",
+            "payment_method_id": "paypal_1808675"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+        "step": 6
+      }
+    ],
+    "failure": null,
+    "family": "return_exchange",
+    "features": {
+      "family": "return_exchange",
+      "uncertain": true
+    },
+    "initial_error": false,
+    "initial_state_hash": "fd9e197cc67cf13d0b9b52fdbc61360213833bcc86b94034fdfcff1edf815df8",
+    "initial_task_success": true,
+    "proposal": {
+      "arguments": {
+        "item_ids": [
+          "8106223139",
+          "5436236388"
+        ],
+        "order_id": "#W4072946",
+        "payment_method_id": "paypal_1808675"
+      },
+      "tool": "return_delivered_order_items"
+    },
+    "proposed_state_hash": "5694d891558147fef10126f6910995146fa0a9967eda6dbd7405222912079198",
+    "replicate": 2,
+    "status": "staged",
+    "target_state_hash": "5694d891558147fef10126f6910995146fa0a9967eda6dbd7405222912079198",
+    "tool_steps": 7
+  },
+  {
+    "automatic_rejections": 4,
+    "bundle_id": "evaluation_24",
+    "case_id": "train:258",
+    "confidence": "high",
+    "counts": {
+      "attempts": 9,
+      "completion_tokens": 646,
+      "prompt_tokens": 37114,
+      "request_wall_seconds": 12.442009085789323,
+      "scheduled_calls": 9,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "email": "ava.kovacs4827@example.com"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_email"
+        },
+        "response": "ava_kovacs_3448",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W4184032"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W4184032\", \"user_id\": \"ava_kovacs_3448\", \"address\": {\"address1\": \"993 Laurel Lane\", \"address2\": \"Suite 185\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85052\"}, \"items\": [{\"name\": \"Skateboard\", \"product_id\": \"1968349452\", \"item_id\": \"3877188862\", \"price\": 182.03, \"options\": {\"deck material\": \"plastic\", \"length\": \"31 inch\", \"design\": \"plain\"}}, {\"name\": \"Headphones\", \"product_id\": \"6992792935\", \"item_id\": \"7493556126\", \"price\": 346.97, \"options\": {\"type\": \"over-ear\", \"connectivity\": \"wireless\", \"color\": \"black\"}}, {\"name\": \"Garden Hose\", \"product_id\": \"6679515468\", \"item_id\": \"4764314102\", \"price\": 96.51, \"options\": {\"length\": \"50ft\", \"material\": \"rubber\", \"color\": \"green\"}}, {\"name\": \"Tea Kettle\", \"product_id\": \"9832717871\", \"item_id\": \"8293778132\", \"price\": 100.62, \"options\": {\"material\": \"ceramic\", \"capacity\": \"1.5 liters\", \"stovetop compatibility\": \"electric\"}}], \"fulfillments\": [], \"status\": \"pending\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 726.13, \"payment_method_id\": \"credit_card_9699699\"}]}",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "order_id": "#W4184032",
+            "reason": "ordered by mistake"
+          },
+          "confidence": "high",
+          "tool": "cancel_pending_order"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "ava_kovacs_3448"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"Ava\", \"last_name\": \"Kovacs\"}, \"address\": {\"address1\": \"993 Laurel Lane\", \"address2\": \"Suite 185\", \"city\": \"Phoenix\", \"country\": \"USA\", \"state\": \"AZ\", \"zip\": \"85052\"}, \"email\": \"ava.kovacs4827@example.com\", \"payment_methods\": {\"credit_card_9699699\": {\"source\": \"credit_card\", \"brand\": \"mastercard\", \"last_four\": \"3598\", \"id\": \"credit_card_9699699\"}, \"paypal_7443913\": {\"source\": \"paypal\", \"id\": \"paypal_7443913\"}}, \"orders\": [\"#W4184032\", \"#W6344370\"]}",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "order_id": "#W4184032",
+            "reason": "ordered by mistake"
+          },
+          "confidence": "high",
+          "tool": "cancel_pending_order"
+        },
+        "response": "Error: automatic safeguard: obtain explicit confirmation of these exact transaction arguments first",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 3,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "order_id": "#W4184032",
+                "reason": "ordered by mistake"
+              },
+              "tool": "cancel_pending_order"
+            },
+            "all_items_confirmed": false,
+            "summary": "Cancel order #W4184032 because it was ordered by mistake. The total amount of $726.13 will be refunded to the credit card ending in 3598. The order status will be changed to 'cancelled'."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Error: automatic safeguard: list the complete transaction and confirm all items",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 5
+      },
+      {
+        "automatic_rejections": 4,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "order_id": "#W4184032",
+                "reason": "ordered by mistake"
+              },
+              "tool": "cancel_pending_order"
+            },
+            "all_items_confirmed": false,
+            "summary": "Cancel order #W4184032 because it was ordered by mistake. The total amount of $726.13 will be refunded to the credit card ending in 3598. The order status will be changed to 'cancelled'. The items in the order are: 1 Skateboard (plastic, 31 inch, plain), 1 Headphones (over-ear, wireless, black), 1 Garden Hose (50ft, rubber, green), 1 Tea Kettle (ceramic, 1.5 liters, electric)."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Error: automatic safeguard: list the complete transaction and confirm all items",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 6
+      },
+      {
+        "automatic_rejections": 4,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "order_id": "#W4184032",
+                "reason": "ordered by mistake"
+              },
+              "tool": "cancel_pending_order"
+            },
+            "all_items_confirmed": true,
+            "summary": "Cancel order #W4184032 because it was ordered by mistake. The total amount of $726.13 will be refunded to the credit card ending in 3598. The order status will be changed to 'cancelled'. The items in the order are: 1 Skateboard (plastic, 31 inch, plain), 1 Headphones (over-ear, wireless, black), 1 Garden Hose (50ft, rubber, green), 1 Tea Kettle (ceramic, 1.5 liters, electric). All items have been confirmed for cancellation."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is Ava Kovacs and your email is ava.kovacs4827@example.com. Cancel order #W4184032 because ordered by mistake.",
+        "staged": false,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 7
+      },
+      {
+        "automatic_rejections": 4,
+        "call": {
+          "arguments": {
+            "order_id": "#W4184032",
+            "reason": "ordered by mistake"
+          },
+          "confidence": "high",
+          "tool": "cancel_pending_order"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+        "step": 8
+      }
+    ],
+    "failure": null,
+    "family": "cancel",
+    "features": {
+      "family": "cancel",
+      "uncertain": true
+    },
+    "initial_error": false,
+    "initial_state_hash": "06436d9aa064dcd0010427d8678c5f85e9c0dac0fc10851085da31bda94d06e3",
+    "initial_task_success": true,
+    "proposal": {
+      "arguments": {
+        "order_id": "#W4184032",
+        "reason": "ordered by mistake"
+      },
+      "tool": "cancel_pending_order"
+    },
+    "proposed_state_hash": "8a721ffee0b08df505b72b0030d37d336e66d74368f18f53d656c0365e198a98",
+    "replicate": 2,
+    "status": "staged",
+    "target_state_hash": "8a721ffee0b08df505b72b0030d37d336e66d74368f18f53d656c0365e198a98",
+    "tool_steps": 9
+  },
+  {
+    "automatic_rejections": 1,
+    "bundle_id": "evaluation_24",
+    "case_id": "train:316",
+    "confidence": "high",
+    "counts": {
+      "attempts": 7,
+      "completion_tokens": 448,
+      "prompt_tokens": 31551,
+      "request_wall_seconds": 8.708250334486365,
+      "scheduled_calls": 7,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "first_name": "James",
+            "last_name": "Lee",
+            "zip": "95161"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_name_zip"
+        },
+        "response": "james_lee_5010",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W5356919"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W5356919\", \"user_id\": \"james_lee_5010\", \"address\": {\"address1\": \"303 Elm Avenue\", \"address2\": \"Suite 851\", \"city\": \"Los Angeles\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"90245\"}, \"items\": [{\"name\": \"Jigsaw Puzzle\", \"product_id\": \"1808611083\", \"item_id\": \"9370300555\", \"price\": 45.9, \"options\": {\"pieces\": \"1000\", \"theme\": \"art\", \"difficulty level\": \"expert\"}}], \"fulfillments\": [], \"status\": \"pending\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 45.9, \"payment_method_id\": \"paypal_2684483\"}]}",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "product_id": "1808611083"
+          },
+          "confidence": "high",
+          "tool": "get_product_details"
+        },
+        "response": "{\"name\": \"Jigsaw Puzzle\", \"product_id\": \"1808611083\", \"variants\": {\"3614853563\": {\"item_id\": \"3614853563\", \"options\": {\"pieces\": \"2000\", \"theme\": \"art\", \"difficulty level\": \"intermediate\"}, \"available\": false, \"price\": 46.99}, \"4772738468\": {\"item_id\": \"4772738468\", \"options\": {\"pieces\": \"1000\", \"theme\": \"animals\", \"difficulty level\": \"beginner\"}, \"available\": false, \"price\": 53.91}, \"4068787148\": {\"item_id\": \"4068787148\", \"options\": {\"pieces\": \"500\", \"theme\": \"art\", \"difficulty level\": \"intermediate\"}, \"available\": true, \"price\": 52.01}, \"3112842858\": {\"item_id\": \"3112842858\", \"options\": {\"pieces\": \"1000\", \"theme\": \"fantasy\", \"difficulty level\": \"intermediate\"}, \"available\": true, \"price\": 49.1}, \"7869640094\": {\"item_id\": \"7869640094\", \"options\": {\"pieces\": \"2000\", \"theme\": \"animals\", \"difficulty level\": \"expert\"}, \"available\": false, \"price\": 47.59}, \"1096508426\": {\"item_id\": \"1096508426\", \"options\": {\"pieces\": \"500\", \"theme\": \"art\", \"difficulty level\": \"beginner\"}, \"available\": true, \"price\": 46.13}, \"9237024510\": {\"item_id\": \"9237024510\", \"options\": {\"pieces\": \"500\", \"theme\": \"animals\", \"difficulty level\": \"expert\"}, \"available\": true, \"price\": 53.53}, \"5546244844\": {\"item_id\": \"5546244844\", \"options\": {\"pieces\": \"1500\", \"theme\": \"art\", \"difficulty level\": \"intermediate\"}, \"available\": true, \"price\": 51.59}, \"1008948180\": {\"item_id\": \"1008948180\", \"options\": {\"pieces\": \"1000\", \"theme\": \"art\", \"difficulty level\": \"beginner\"}, \"available\": false, \"price\": 54.34}, \"6245746168\": {\"item_id\": \"6245746168\", \"options\": {\"pieces\": \"1500\", \"theme\": \"animals\", \"difficulty level\": \"intermediate\"}, \"available\": true, \"price\": 46.0}, \"7127170374\": {\"item_id\": \"7127170374\", \"options\": {\"pieces\": \"2000\", \"theme\": \"fantasy\", \"difficulty level\": \"beginner\"}, \"available\": false, \"price\": 52.03}, \"9370300555\": {\"item_id\": \"9370300555\", \"options\": {\"pieces\": \"1000\", \"theme\": \"art\", \"difficulty level\": \"expert\"}, \"available\": false, \"price\": 45.9}, \"9665100170\": {\"item_id\": \"9665100170\", \"options\": {\"pieces\": \"1500\", \"theme\": \"animals\", \"difficulty level\": \"beginner\"}, \"available\": true, \"price\": 45.39}, \"4572024853\": {\"item_id\": \"4572024853\", \"options\": {\"pieces\": \"1000\", \"theme\": \"animals\", \"difficulty level\": \"expert\"}, \"available\": true, \"price\": 53.72}, \"5645314103\": {\"item_id\": \"5645314103\", \"options\": {\"pieces\": \"2000\", \"theme\": \"animals\", \"difficulty level\": \"intermediate\"}, \"available\": true, \"price\": 46.19}, \"9779102705\": {\"item_id\": \"9779102705\", \"options\": {\"pieces\": \"1000\", \"theme\": \"art\", \"difficulty level\": \"intermediate\"}, \"available\": false, \"price\": 54.11}, \"9030221155\": {\"item_id\": \"9030221155\", \"options\": {\"pieces\": \"2000\", \"theme\": \"art\", \"difficulty level\": \"beginner\"}, \"available\": false, \"price\": 51.98}, \"5172162216\": {\"item_id\": \"5172162216\", \"options\": {\"pieces\": \"2000\", \"theme\": \"landscape\", \"difficulty level\": \"intermediate\"}, \"available\": false, \"price\": 48.51}}}",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9370300555"
+            ],
+            "new_item_ids": [
+              "4068787148"
+            ],
+            "order_id": "#W5356919",
+            "payment_method_id": "paypal_2684483"
+          },
+          "confidence": "high",
+          "tool": "modify_pending_order_items"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "james_lee_5010"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"James\", \"last_name\": \"Lee\"}, \"address\": {\"address1\": \"870 Oak Street\", \"address2\": \"Suite 766\", \"city\": \"San Jose\", \"country\": \"USA\", \"state\": \"CA\", \"zip\": \"95161\"}, \"email\": \"james.lee4131@example.com\", \"payment_methods\": {\"paypal_2684483\": {\"source\": \"paypal\", \"id\": \"paypal_2684483\"}}, \"orders\": [\"#W8520591\", \"#W5356919\"]}",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "item_ids": [
+                  "9370300555"
+                ],
+                "new_item_ids": [
+                  "4068787148"
+                ],
+                "order_id": "#W5356919",
+                "payment_method_id": "paypal_2684483"
+              },
+              "tool": "modify_pending_order_items"
+            },
+            "all_items_confirmed": true,
+            "summary": "You are about to modify the Jigsaw Puzzle item in your pending order #W5356919. The item will be changed from {'pieces': '1000', 'theme': 'art', 'difficulty level': 'expert'} to {'pieces': '500', 'difficulty level': 'intermediate'}. The payment method will remain the same as PayPal. Are you sure you want to proceed?"
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is James Lee and your zip code is 95161. For #W5356919, modify Jigsaw Puzzle {'pieces': '1000', 'theme': 'art', 'difficulty level': 'expert'} to {'pieces': '500', 'difficulty level': 'intermediate'}; via paypal_2684483.",
+        "staged": false,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 5
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9370300555"
+            ],
+            "new_item_ids": [
+              "4068787148"
+            ],
+            "order_id": "#W5356919",
+            "payment_method_id": "paypal_2684483"
+          },
+          "confidence": "high",
+          "tool": "modify_pending_order_items"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+        "step": 6
+      }
+    ],
+    "failure": null,
+    "family": "modify",
+    "features": {
+      "family": "modify",
+      "uncertain": true
+    },
+    "initial_error": false,
+    "initial_state_hash": "6a532c469c8d19a9126e26b464ef7251a918c6f268125ccac54fb7ab0f2b71b2",
+    "initial_task_success": true,
+    "proposal": {
+      "arguments": {
+        "item_ids": [
+          "9370300555"
+        ],
+        "new_item_ids": [
+          "4068787148"
+        ],
+        "order_id": "#W5356919",
+        "payment_method_id": "paypal_2684483"
+      },
+      "tool": "modify_pending_order_items"
+    },
+    "proposed_state_hash": "b8d2c8d741d168666713801caa75dfb09e9508dd135b5456b1f943481995de3a",
+    "replicate": 2,
+    "status": "staged",
+    "target_state_hash": "b8d2c8d741d168666713801caa75dfb09e9508dd135b5456b1f943481995de3a",
+    "tool_steps": 7
+  }
+]

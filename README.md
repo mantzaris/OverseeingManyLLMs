@@ -1,12 +1,46 @@
 # OverseeingManyLLMs
 
-A reproducible backbone for studying how one simulated human supervisor allocates review time across three or six LLM agents doing synthetic civilian maintenance tasks. It implements generation, public observations, GPU actions, a frozen agreement estimator, a review queue, six schedulers, corrective interventions, loss scoring, and independent replay.
+A reproducible research framework for allocating one simulated reviewer across LLM agents. It includes synthetic civilian maintenance and an adapted τ-bench retail application with genuine retrieval, confirmation and mutation-tool workflows. Review duration, expiring intervention opportunities, risk estimates and operational loss are explicit; supervision is simulated throughout.
 
-Start with the completed [Stage 4 research report](reports/STAGE4_RESEARCH.md), [research draft](paper/RESEARCH_DRAFT.md), [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
+Start with the [practical application report](reports/STAGE5_PRACTICAL.md), [source/adaptation table](paper/RETAIL_ADAPTATION.md), and completed [Stage 4 research report](reports/STAGE4_RESEARCH.md), [research draft](paper/RESEARCH_DRAFT.md), [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
 
 Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy baseline. Calibration uses 16 FCFS episodes with provisional **p=0.5**; the frozen estimator then drives five policies on eight development scenarios. The declared scope is 56 episodes, 672 experimental calls, and at most one placement generation. A bin with fewer than ten calibration examples uses the smoothed pooled estimate. This development batch is not a held-out effectiveness study.
 
 All 56 episodes completed and replayed: **672 experimental generations plus one placement**, with no retries or failures. Calibration had 87 agreeing pairs (12 errors) and nine disagreeing pairs (five errors), so disagreement used pooled fallback. Validation loss totaled 60 for FCFS/uncertainty-first and 62 for myopic/greedy/queue search; each policy corrected two jobs. Queue search and greedy chose identical review orders on all eight scenarios. These ties and negative results are retained.
+
+## Practical retail application
+
+The Stage 5 study uses 96 evaluation source cases in 32 bundles, three fresh GPU preparation replicates and two review capacities. FCFS, EDF, uncertainty-first, greedy, search and no review receive identical saved transactions; policy replay isolates scheduling without claiming subsequent agent feedback adaptation. A development-only application estimator replaces the maintenance risk model. Upstream tool guards remain active, while only a completed perfect simulated review can correct a staged semantic mistake before its processing cutoff.
+
+All 288 workflow attempts and 1,152 paired policy traces complete and replay. There are 233 staged proposals, 51 initial errors and 55 unstaged failures. **The primary result does not show a search advantage:** two-tick search minus greedy mean loss is +0.2500, 95% paired interval [−0.3333, 1.0000], over 32 bundle means. One-tick review policies all reach the preparation-failure floor.
+
+| Policy | Mean loss, 1 tick | Mean loss, 2 ticks | Correct tasks, 2 ticks / 288 | Wrong commits, 2 ticks |
+|---|---:|---:|---:|---:|
+| No review | 8.3333 | 8.3333 | 182 | 51 |
+| FCFS | 2.2917 | 5.0000 | 210 | 23 |
+| EDF | 2.2917 | 4.5833 | 215 | 18 |
+| Uncertainty-first | 2.2917 | 3.4583 | 223 | 10 |
+| Delay-aware greedy | 2.2917 | 3.4583 | 223 | 10 |
+| Queue-order search | 2.2917 | 3.7083 | 222 | 11 |
+
+The session uses 3,313 GPU attempts across 3,311 calls, with three truncated attempts and two retries. The original inference server remains healthy; the separate retail server is stopped. These are adapted transaction-boundary comparisons with perfect simulated review, not measured human or retailer performance.
+
+Verify saved evidence without inference:
+
+```bash
+python3 -m unittest discover -s tests -p test_retail.py
+python3 scripts/analyze_retail.py audit development_pilot development_revision1 development_calibration evaluation
+python3 scripts/analyze_retail.py score evaluation
+python3 scripts/audit_retail_session.py
+python3 scripts/verify_practical_package.py
+python3 scripts/audit_practical_sources.py
+python3 scripts/summarize_practical_errors.py
+python3 scripts/audit_practical_scheduling.py
+python3 scripts/plot_retail.py
+python3 scripts/retail_traces.py
+```
+
+Figures use Matplotlib. The [frozen declaration](artifacts/stage5_practical/batches/evaluation/declaration.json), raw traces, source snapshots, estimator, ledger and analysis CSVs are under `artifacts/stage5_practical/`. The [report](reports/STAGE5_PRACTICAL.md) records exact historical server/preparation commands and clock limits. Live runs are one-shot and require an unexpired explicit authorization; saved-data verification does not. A disclosed publication redaction removes unsolicited credential-like text from auxiliary tool arguments, responses and later prompts. Exact originals remain on the pod; staged transactions, backend states, labels and scores are unchanged. This is an adapted benchmark study, not an official τ-bench score or a human study.
 
 ## Inspect and verify
 
@@ -61,7 +95,7 @@ These are historical execution commands. Existing outputs and the one-shot execu
 
 The [original backbone report](reports/STAGE1_GPU_BACKBONE.md), [blocked recovery](reports/STAGE1_GPU_RECOVERY.md), and [first L40S live report](reports/STAGE1_GPU_L40S.md) remain available with their original artifacts. All clocks are retained in [implementation_clock.json](reports/implementation_clock.json).
 
-The declared development calibration and fifth baseline are implemented. The separate Stage 3 condition adds deadline-first scheduling and a one-versus-two-tick review comparison. Stage 4 extends this history with frozen evaluation seeds, a larger workload, public risk references, and a research draft. Advanced tasks and real-human validation remain outside the implemented scope. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
+The declared development calibration and fifth baseline are implemented. The separate Stage 3 condition adds deadline-first scheduling and a one-versus-two-tick review comparison. Stage 4 extends this history with frozen evaluation seeds, a larger workload, public risk references, and a research draft. The separate Stage 5 application adds bounded retail transaction workflows; richer interactive application evaluation and real-human validation remain outside the implemented scope. Weights, environments, and credentials are excluded from Git. Nothing is pushed automatically.
 
 ## Stage 3 competition diagnostic
 

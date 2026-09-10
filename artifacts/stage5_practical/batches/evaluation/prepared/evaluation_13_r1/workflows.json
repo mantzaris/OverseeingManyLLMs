@@ -1,0 +1,488 @@
+[
+  {
+    "automatic_rejections": 2,
+    "bundle_id": "evaluation_13",
+    "case_id": "train:067",
+    "confidence": "high",
+    "counts": {
+      "attempts": 8,
+      "completion_tokens": 422,
+      "prompt_tokens": 35918,
+      "request_wall_seconds": 8.182392846792936,
+      "scheduled_calls": 8,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "first_name": "Sofia",
+            "last_name": "Ito",
+            "zip": "19169"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_name_zip"
+        },
+        "response": "sofia_ito_5484",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W5257743"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W5257743\", \"user_id\": \"sofia_ito_5484\", \"address\": {\"address1\": \"118 Cedar Street\", \"address2\": \"Suite 461\", \"city\": \"Philadelphia\", \"country\": \"USA\", \"state\": \"PA\", \"zip\": \"19169\"}, \"items\": [{\"name\": \"Laptop\", \"product_id\": \"4760268021\", \"item_id\": \"1657832319\", \"price\": 2729.32, \"options\": {\"screen size\": \"13-inch\", \"processor\": \"i7\", \"ram\": \"32GB\", \"storage\": \"512GB SSD\", \"color\": \"black\"}}, {\"name\": \"T-Shirt\", \"product_id\": \"9523456873\", \"item_id\": \"9647292434\", \"price\": 53.48, \"options\": {\"color\": \"purple\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}}], \"fulfillments\": [{\"tracking_id\": [\"298714222776\"], \"item_ids\": [\"1657832319\", \"9647292434\"]}], \"status\": \"delivered\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 2782.8, \"payment_method_id\": \"paypal_6882355\"}]}",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "product_id": "9523456873"
+          },
+          "confidence": "high",
+          "tool": "get_product_details"
+        },
+        "response": "{\"name\": \"T-Shirt\", \"product_id\": \"9523456873\", \"variants\": {\"9612497925\": {\"item_id\": \"9612497925\", \"options\": {\"color\": \"blue\", \"size\": \"M\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 50.88}, \"8124970213\": {\"item_id\": \"8124970213\", \"options\": {\"color\": \"purple\", \"size\": \"XL\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 49.67}, \"9354168549\": {\"item_id\": \"9354168549\", \"options\": {\"color\": \"red\", \"size\": \"XXL\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 46.85}, \"5253880258\": {\"item_id\": \"5253880258\", \"options\": {\"color\": \"black\", \"size\": \"XXL\", \"material\": \"polyester\", \"style\": \"v-neck\"}, \"available\": true, \"price\": 49.52}, \"1176194968\": {\"item_id\": \"1176194968\", \"options\": {\"color\": \"black\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 52.88}, \"9647292434\": {\"item_id\": \"9647292434\", \"options\": {\"color\": \"purple\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}, \"available\": true, \"price\": 53.48}, \"8349118980\": {\"item_id\": \"8349118980\", \"options\": {\"color\": \"blue\", \"size\": \"S\", \"material\": \"cotton\", \"style\": \"v-neck\"}, \"available\": true, \"price\": 53.43}, \"5047954489\": {\"item_id\": \"5047954489\", \"options\": {\"color\": \"blue\", \"size\": \"S\", \"material\": \"polyester\", \"style\": \"v-neck\"}, \"available\": false, \"price\": 54.84}, \"3799046073\": {\"item_id\": \"3799046073\", \"options\": {\"color\": \"black\", \"size\": \"XXL\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 53.27}, \"3234800602\": {\"item_id\": \"3234800602\", \"options\": {\"color\": \"red\", \"size\": \"L\", \"material\": \"cotton\", \"style\": \"v-neck\"}, \"available\": true, \"price\": 46.66}, \"3542102174\": {\"item_id\": \"3542102174\", \"options\": {\"color\": \"red\", \"size\": \"S\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": false, \"price\": 47.25}, \"2060066974\": {\"item_id\": \"2060066974\", \"options\": {\"color\": \"black\", \"size\": \"XL\", \"material\": \"cotton\", \"style\": \"crew neck\"}, \"available\": true, \"price\": 51.05}}}",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9647292434"
+            ],
+            "order_id": "#W5257743",
+            "payment_method_id": "paypal_6882355"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "sofia_ito_5484"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"Sofia\", \"last_name\": \"Ito\"}, \"address\": {\"address1\": \"118 Cedar Street\", \"address2\": \"Suite 461\", \"city\": \"Philadelphia\", \"country\": \"USA\", \"state\": \"PA\", \"zip\": \"19169\"}, \"email\": \"sofia.ito3877@example.com\", \"payment_methods\": {\"paypal_6882355\": {\"source\": \"paypal\", \"id\": \"paypal_6882355\"}}, \"orders\": [\"#W5257743\", \"#W7992925\", \"#W1514731\"]}",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9647292434"
+            ],
+            "order_id": "#W5257743",
+            "payment_method_id": "paypal_6882355"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Error: automatic safeguard: obtain explicit confirmation of these exact transaction arguments first",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 5
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "item_ids": [
+                  "9647292434"
+                ],
+                "order_id": "#W5257743",
+                "payment_method_id": "paypal_6882355"
+              },
+              "tool": "return_delivered_order_items"
+            },
+            "all_items_confirmed": true,
+            "summary": "Return T-Shirt (item id: 9647292434) from order #W5257743. The refund will be processed via PayPal (payment method id: paypal_6882355)."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is Sofia Ito and your zip code is 19169. Return #W5257743 via paypal_6882355: T-Shirt;",
+        "staged": false,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 6
+      },
+      {
+        "automatic_rejections": 2,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9647292434"
+            ],
+            "order_id": "#W5257743",
+            "payment_method_id": "paypal_6882355"
+          },
+          "confidence": "high",
+          "tool": "return_delivered_order_items"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+        "step": 7
+      }
+    ],
+    "failure": null,
+    "family": "return_exchange",
+    "features": {
+      "family": "return_exchange",
+      "uncertain": true
+    },
+    "initial_error": false,
+    "initial_state_hash": "09770bb9bb600a71f3cc21a13a9940fcd637730adeedcdc8ab3732dec1503168",
+    "initial_task_success": true,
+    "proposal": {
+      "arguments": {
+        "item_ids": [
+          "9647292434"
+        ],
+        "order_id": "#W5257743",
+        "payment_method_id": "paypal_6882355"
+      },
+      "tool": "return_delivered_order_items"
+    },
+    "proposed_state_hash": "76a3768ca78a0f1e84465a712745e1848e305141cc6b420d3214a863c62feef8",
+    "replicate": 1,
+    "status": "staged",
+    "target_state_hash": "76a3768ca78a0f1e84465a712745e1848e305141cc6b420d3214a863c62feef8",
+    "tool_steps": 8
+  },
+  {
+    "automatic_rejections": 1,
+    "bundle_id": "evaluation_13",
+    "case_id": "train:171",
+    "confidence": "high",
+    "counts": {
+      "attempts": 6,
+      "completion_tokens": 339,
+      "prompt_tokens": 22423,
+      "request_wall_seconds": 6.537108208984137,
+      "scheduled_calls": 6,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "email": "mason.johansson9528@example.com"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_email"
+        },
+        "response": "mason_johansson_2485",
+        "staged": false,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W3358610"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W3358610\", \"user_id\": \"mason_johansson_2485\", \"address\": {\"address1\": \"381 Lakeview Drive\", \"address2\": \"Suite 671\", \"city\": \"Charlotte\", \"country\": \"USA\", \"state\": \"NC\", \"zip\": \"28271\"}, \"items\": [{\"name\": \"Bicycle\", \"product_id\": \"9783735446\", \"item_id\": \"6170152315\", \"price\": 1814.72, \"options\": {\"frame size\": \"small\", \"color\": \"red\", \"type\": \"mountain\"}}, {\"name\": \"Wireless Earbuds\", \"product_id\": \"9924732112\", \"item_id\": \"2757705742\", \"price\": 258.97, \"options\": {\"color\": \"blue\", \"battery life\": \"4 hours\", \"water resistance\": \"IPX7\"}}], \"fulfillments\": [], \"status\": \"pending\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 2073.69, \"payment_method_id\": \"gift_card_6915794\"}]}",
+        "staged": false,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "order_id": "#W3358610",
+                "reason": "no longer needed"
+              },
+              "tool": "cancel_pending_order"
+            },
+            "all_items_confirmed": true,
+            "summary": "Canceling order #W3358610 because no longer needed. The order includes a Bicycle and Wireless Earbuds. The total amount is $2073.69, which will be refunded to the gift card immediately."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "mason_johansson_2485"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"Mason\", \"last_name\": \"Johansson\"}, \"address\": {\"address1\": \"381 Lakeview Drive\", \"address2\": \"Suite 671\", \"city\": \"Charlotte\", \"country\": \"USA\", \"state\": \"NC\", \"zip\": \"28271\"}, \"email\": \"mason.johansson9528@example.com\", \"payment_methods\": {\"gift_card_6915794\": {\"source\": \"gift_card\", \"balance\": 51, \"id\": \"gift_card_6915794\"}}, \"orders\": [\"#W9549057\", \"#W3358610\"]}",
+        "staged": false,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "order_id": "#W3358610",
+                "reason": "no longer needed"
+              },
+              "tool": "cancel_pending_order"
+            },
+            "all_items_confirmed": true,
+            "summary": "Canceling order #W3358610 because no longer needed. The order includes a Bicycle and Wireless Earbuds. The total amount is $2073.69, which will be refunded to the gift card immediately."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is Mason Johansson and your email is mason.johansson9528@example.com. Cancel order #W3358610 because no longer needed.",
+        "staged": false,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "order_id": "#W3358610",
+            "reason": "no longer needed"
+          },
+          "confidence": "high",
+          "tool": "cancel_pending_order"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+        "step": 5
+      }
+    ],
+    "failure": null,
+    "family": "cancel",
+    "features": {
+      "family": "cancel",
+      "uncertain": true
+    },
+    "initial_error": false,
+    "initial_state_hash": "35a65ce8e22975cefacf84068f58573da883622548da8943ae4004dc098464e3",
+    "initial_task_success": true,
+    "proposal": {
+      "arguments": {
+        "order_id": "#W3358610",
+        "reason": "no longer needed"
+      },
+      "tool": "cancel_pending_order"
+    },
+    "proposed_state_hash": "d5a1b41e413f04bbda39fca42ab4f1d7c623367f86c0dd1e2fe4f836eba700d2",
+    "replicate": 1,
+    "status": "staged",
+    "target_state_hash": "d5a1b41e413f04bbda39fca42ab4f1d7c623367f86c0dd1e2fe4f836eba700d2",
+    "tool_steps": 6
+  },
+  {
+    "automatic_rejections": 1,
+    "bundle_id": "evaluation_13",
+    "case_id": "train:163",
+    "confidence": "high",
+    "counts": {
+      "attempts": 7,
+      "completion_tokens": 411,
+      "prompt_tokens": 29919,
+      "request_wall_seconds": 8.082423845306039,
+      "scheduled_calls": 7,
+      "unknown_token_attempts": 0
+    },
+    "events": [
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "first_name": "Anya",
+            "last_name": "Lee",
+            "zip": "78227"
+          },
+          "confidence": "high",
+          "tool": "find_user_id_by_name_zip"
+        },
+        "response": "anya_lee_8315",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 0
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "order_id": "#W2989580"
+          },
+          "confidence": "high",
+          "tool": "get_order_details"
+        },
+        "response": "{\"order_id\": \"#W2989580\", \"user_id\": \"anya_lee_8315\", \"address\": {\"address1\": \"912 Elm Avenue\", \"address2\": \"Suite 936\", \"city\": \"San Antonio\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78227\"}, \"items\": [{\"name\": \"Pet Bed\", \"product_id\": \"2747247837\", \"item_id\": \"5109407456\", \"price\": 182.48, \"options\": {\"size\": \"small\", \"material\": \"fleece\", \"color\": \"grey\"}}, {\"name\": \"Air Purifier\", \"product_id\": \"3821016478\", \"item_id\": \"3676786561\", \"price\": 502.7, \"options\": {\"room size\": \"small\", \"filter type\": \"HEPA\", \"features\": \"quiet operation\"}}, {\"name\": \"Desk Lamp\", \"product_id\": \"6817146515\", \"item_id\": \"5320792178\", \"price\": 135.24, \"options\": {\"color\": \"black\", \"brightness\": \"medium\", \"power source\": \"AC adapter\"}}, {\"name\": \"Water Bottle\", \"product_id\": \"8310926033\", \"item_id\": \"8538875209\", \"price\": 45.13, \"options\": {\"capacity\": \"500ml\", \"material\": \"glass\", \"color\": \"black\"}}, {\"name\": \"Fleece Jacket\", \"product_id\": \"8560156827\", \"item_id\": \"9385662952\", \"price\": 159.92, \"options\": {\"size\": \"L\", \"color\": \"black\", \"zipper\": \"full\"}}], \"fulfillments\": [], \"status\": \"pending\", \"payment_history\": [{\"transaction_type\": \"payment\", \"amount\": 1025.47, \"payment_method_id\": \"paypal_3728317\"}]}",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 1
+      },
+      {
+        "automatic_rejections": 0,
+        "call": {
+          "arguments": {
+            "product_id": "8560156827"
+          },
+          "confidence": "high",
+          "tool": "get_product_details"
+        },
+        "response": "{\"name\": \"Fleece Jacket\", \"product_id\": \"8560156827\", \"variants\": {\"8590708195\": {\"item_id\": \"8590708195\", \"options\": {\"size\": \"XL\", \"color\": \"navy\", \"zipper\": \"half\"}, \"available\": true, \"price\": 157.61}, \"9385662952\": {\"item_id\": \"9385662952\", \"options\": {\"size\": \"L\", \"color\": \"black\", \"zipper\": \"full\"}, \"available\": true, \"price\": 159.92}, \"5992316252\": {\"item_id\": \"5992316252\", \"options\": {\"size\": \"S\", \"color\": \"red\", \"zipper\": \"half\"}, \"available\": true, \"price\": 141.29}, \"8161321868\": {\"item_id\": \"8161321868\", \"options\": {\"size\": \"XS\", \"color\": \"navy\", \"zipper\": \"full\"}, \"available\": true, \"price\": 152.45}, \"7528037711\": {\"item_id\": \"7528037711\", \"options\": {\"size\": \"XL\", \"color\": \"navy\", \"zipper\": \"full\"}, \"available\": true, \"price\": 157.86}, \"8733974883\": {\"item_id\": \"8733974883\", \"options\": {\"size\": \"L\", \"color\": \"red\", \"zipper\": \"half\"}, \"available\": true, \"price\": 153.18}, \"4728397765\": {\"item_id\": \"4728397765\", \"options\": {\"size\": \"M\", \"color\": \"black\", \"zipper\": \"full\"}, \"available\": false, \"price\": 149.48}}}",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 2
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9385662952"
+            ],
+            "new_item_ids": [
+              "8590708195"
+            ],
+            "order_id": "#W2989580",
+            "payment_method_id": "paypal_3728317"
+          },
+          "confidence": "high",
+          "tool": "modify_pending_order_items"
+        },
+        "response": "Error: automatic safeguard: retrieve customer profile/payment methods first",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 3
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "user_id": "anya_lee_8315"
+          },
+          "confidence": "high",
+          "tool": "get_user_details"
+        },
+        "response": "{\"name\": {\"first_name\": \"Anya\", \"last_name\": \"Lee\"}, \"address\": {\"address1\": \"912 Elm Avenue\", \"address2\": \"Suite 936\", \"city\": \"San Antonio\", \"country\": \"USA\", \"state\": \"TX\", \"zip\": \"78227\"}, \"email\": \"anya.lee3013@example.com\", \"payment_methods\": {\"paypal_3728317\": {\"source\": \"paypal\", \"id\": \"paypal_3728317\"}}, \"orders\": [\"#W3176007\", \"#W1335809\", \"#W2989580\"]}",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 4
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "action": {
+              "arguments": {
+                "item_ids": [
+                  "9385662952"
+                ],
+                "new_item_ids": [
+                  "8590708195"
+                ],
+                "order_id": "#W2989580",
+                "payment_method_id": "paypal_3728317"
+              },
+              "tool": "modify_pending_order_items"
+            },
+            "all_items_confirmed": true,
+            "summary": "For order #W2989580, we will modify the Fleece Jacket from size L, color black, zipper full to size XL, color navy. The payment method will be changed to PayPal. Please confirm if this is correct."
+          },
+          "confidence": "high",
+          "tool": "request_confirmation"
+        },
+        "response": "Yes, please proceed with my requested changes. My name is Anya Lee and your zip code is 78227. For #W2989580, modify Fleece Jacket {'size': 'L', 'color': 'black', 'zipper': 'full'} to {'size': 'XL', 'color': 'navy'}; via paypal_3728317.",
+        "staged": false,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 5
+      },
+      {
+        "automatic_rejections": 1,
+        "call": {
+          "arguments": {
+            "item_ids": [
+              "9385662952"
+            ],
+            "new_item_ids": [
+              "8590708195"
+            ],
+            "order_id": "#W2989580",
+            "payment_method_id": "paypal_3728317"
+          },
+          "confidence": "high",
+          "tool": "modify_pending_order_items"
+        },
+        "response": "Transaction validated and STAGED for processing. No database change has committed yet.",
+        "staged": true,
+        "state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+        "step": 6
+      }
+    ],
+    "failure": null,
+    "family": "modify",
+    "features": {
+      "family": "modify",
+      "uncertain": true
+    },
+    "initial_error": true,
+    "initial_state_hash": "431c408de6e8953ead521e8af0fb4b2d3a09a6472ce2976493013c0fd947ee5f",
+    "initial_task_success": false,
+    "proposal": {
+      "arguments": {
+        "item_ids": [
+          "9385662952"
+        ],
+        "new_item_ids": [
+          "8590708195"
+        ],
+        "order_id": "#W2989580",
+        "payment_method_id": "paypal_3728317"
+      },
+      "tool": "modify_pending_order_items"
+    },
+    "proposed_state_hash": "7e1efe5df6038fd3383f7537f1590bed81cc0fe7aeb7768e02ed8da1770bafef",
+    "replicate": 1,
+    "status": "staged",
+    "target_state_hash": "91b2fe302b9468516a238b901688c1b97fd47ef97fd9803e937d7eeda628e4e4",
+    "tool_steps": 7
+  }
+]
