@@ -1,0 +1,65 @@
+{
+  "overall_started_utc": "2026-09-09T15:38:57+00:00",
+  "overall_deadline_utc": "2026-09-11T03:38:57+00:00",
+  "overall_limit_hours": 36,
+  "stage1_started_utc": "2026-09-09T15:38:57+00:00",
+  "stage1_deadline_utc": "2026-09-09T19:38:57+00:00",
+  "stage1_limit_hours": 4,
+  "stage1_reported_utc": "2026-09-09T16:09:59+00:00",
+  "stage1_elapsed_seconds_at_report": 1862,
+  "stage1_result": "local_checks_passed_gpu_blocked",
+  "stage1_finish_marker": "The Stage 1 Git commit's committer timestamp; report checkpoint precedes final Git verification.",
+  "recovery_stages": [
+    {
+      "name": "stage1_gpu_recovery",
+      "started_utc": "2026-09-09T17:58:37+00:00",
+      "deadline_utc": "2026-09-09T19:58:37+00:00",
+      "limit_hours": 2,
+      "overall_elapsed_seconds_at_start": 8380,
+      "overall_remaining_seconds_at_start": 121220,
+      "connection_check_finished_utc": "2026-09-09T18:01:15+00:00",
+      "result": "gpu_blocked_by_execution_environment_socket_restriction",
+      "report": "reports/STAGE1_GPU_RECOVERY.md",
+      "artifacts": "artifacts/stage1_gpu_recovery/",
+      "finish_marker": "The recovery Git commit's committer timestamp; the report checkpoint precedes final Git verification.",
+      "note": "New user-authorized two-hour recovery stage within the unchanged overall 36-hour window. Original Stage 1 timestamps and CLI deadline enforcement are preserved. No inference was launched.",
+      "reported_utc": "2026-09-09T18:04:11+00:00",
+      "elapsed_seconds_at_report": 334,
+      "overall_elapsed_seconds_at_report": 8714,
+      "overall_remaining_seconds_at_report": 120886
+    }
+  ],
+  "note": "Elapsed clocks start at implementation authorization and do not reset after retries. This stage does not authorize later calibration or evaluation.",
+  "continuation_stages": [
+    {
+      "name": "stage1_gpu_live",
+      "authorization": "explicit_user_request",
+      "started_utc": "2026-09-09T23:42:54+00:00",
+      "deadline_utc": "2026-09-10T01:42:54+00:00",
+      "limit_hours": 2,
+      "report": "reports/STAGE1_GPU_LIVE.md",
+      "artifacts": "artifacts/stage1_gpu_live/",
+      "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. No calibration or additional seeds.",
+      "reported_utc": "2026-09-09T23:57:40.560414+00:00",
+      "elapsed_seconds_at_report": 886.56,
+      "result": "live_gpu_demo_completed_four_replays_verified",
+      "experimental_requests": 48,
+      "placement_requests": 1,
+      "inference_retries": 0,
+      "finish_marker": "The task Git commit's committer timestamp; report checkpoint precedes final Git verification."
+    },
+    {
+      "name": "stage1_gpu_live_rtx6000_ada",
+      "authorization": "explicit_user_request",
+      "started_utc": "2026-09-10T00:24:04+00:00",
+      "deadline_utc": "2026-09-10T02:24:04+00:00",
+      "limit_hours": 2,
+      "overall_elapsed_seconds_at_start": 31507.0,
+      "overall_remaining_seconds_at_start": 98093.0,
+      "report": "reports/STAGE1_GPU_LIVE.md",
+      "artifacts": "artifacts/stage1_gpu_live/rtx6000_ada_20260910T002404Z/",
+      "scope": "One placement request; seed 100, four policies once, 48 scheduled experimental calls with at most one retry each. Basics and mechanics only; no calibration, new seeds, or additional baselines.",
+      "previous_live_report": "reports/STAGE1_GPU_L40S.md"
+    }
+  ]
+}

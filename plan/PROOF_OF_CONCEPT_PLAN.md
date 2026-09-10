@@ -2,6 +2,8 @@
 
 Proposed for external review, 2026-09-09. Planning only; implementation requires subsequent authorization. Its single 36-hour clock includes setup and failed attempts.
 
+**Implementation note, 2026-09-10:** The user subsequently authorized bounded Stage 1 continuations. The original A100 allocation assumptions below are historical. The current pod has one verified **RTX 6000 Ada Generation (49,140 MiB, compute capability 8.9)**; the prior completed continuation used an L40S. The implementation supports these two verified 48 GB GPUs with native CUDA BF16 and the same pinned model, one-GPU serving, 0.5 memory reservation, and zero CPU offload/swap. See the [current report](../reports/STAGE1_GPU_LIVE.md), [preserved L40S report](../reports/STAGE1_GPU_L40S.md), and [unchanged overall clock plus separate continuation records](../reports/implementation_clock.json). The larger experiment matrix and later CLI contract below remain planned, not authorization for this stage.
+
 ## Objective and claim boundary
 
 Demonstrate whether accounting for review duration and declining intervention value can improve allocation of one simulated supervisor across three LLM agents. Use synthetic campus ventilation maintenance, with no defense assumptions.

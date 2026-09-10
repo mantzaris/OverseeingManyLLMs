@@ -1,0 +1,34 @@
+{"event": "episode_started", "evidence": "stipulated_mechanics_only", "p_error": 0.5, "planned_calls": 0, "policy": "uncertainty", "review_ticks": 2, "scenario": {"horizon": 12, "jobs": [{"fault": "filter", "public": {"agent_id": 0, "clues": ["sensor", "sensor"], "cost_per_tick": 0, "deadline": 2, "job_id": "A", "release": 0, "terminal_cost": 8}}, {"fault": "filter", "public": {"agent_id": 1, "clues": ["sensor", "sensor"], "cost_per_tick": 0, "deadline": 5, "job_id": "B", "release": 0, "terminal_cost": 12}}], "seed": -3}, "scenario_hash": "711d26d35fef192cba117f5e66fd0f1686a21a6c2e930434860896dac46fb8c4", "seq": 0, "tick": 0, "wall_utc": "2026-09-10T00:31:03.879377+00:00"}
+{"event": "observation", "job_id": "A", "public_observation": {"history": [], "job": {"agent_id": 0, "clues": ["sensor", "sensor"], "cost_per_tick": 0, "deadline": 2, "job_id": "A", "release": 0, "terminal_cost": 8}, "tick": 0}, "seq": 1, "tick": 0, "wall_utc": "2026-09-10T00:31:03.883749+00:00"}
+{"agreement": true, "event": "proposal", "evidence": "stipulated_mechanics_only", "job_id": "A", "p_error": 0.5, "primary": "reset_sensor", "secondary": "reset_sensor", "seq": 2, "tick": 0, "wall_utc": "2026-09-10T00:31:03.887756+00:00"}
+{"event": "request_queued", "request": {"agent_id": 0, "cost_per_tick": 0, "deadline": 2, "job_id": "A", "p_error": 0.5, "proposal": "reset_sensor", "requested_at": 0, "review_ticks": 2, "terminal_cost": 8}, "seq": 3, "tick": 0, "wall_utc": "2026-09-10T00:31:03.891446+00:00"}
+{"event": "observation", "job_id": "B", "public_observation": {"history": [], "job": {"agent_id": 1, "clues": ["sensor", "sensor"], "cost_per_tick": 0, "deadline": 5, "job_id": "B", "release": 0, "terminal_cost": 12}, "tick": 0}, "seq": 4, "tick": 0, "wall_utc": "2026-09-10T00:31:03.895777+00:00"}
+{"agreement": true, "event": "proposal", "evidence": "stipulated_mechanics_only", "job_id": "B", "p_error": 0.5, "primary": "reset_sensor", "secondary": "reset_sensor", "seq": 5, "tick": 0, "wall_utc": "2026-09-10T00:31:03.900185+00:00"}
+{"event": "request_queued", "request": {"agent_id": 1, "cost_per_tick": 0, "deadline": 5, "job_id": "B", "p_error": 0.5, "proposal": "reset_sensor", "requested_at": 0, "review_ticks": 2, "terminal_cost": 12}, "seq": 6, "tick": 0, "wall_utc": "2026-09-10T00:31:03.904707+00:00"}
+{"event": "review_started", "finish": 2, "job_id": "A", "seq": 7, "start": 0, "tick": 0, "wall_utc": "2026-09-10T00:31:03.908377+00:00"}
+{"busy": {"finish": 2, "job_id": "A", "start": 0}, "event": "queue_snapshot", "pending": ["B"], "seq": 8, "tick": 0, "wall_utc": "2026-09-10T00:31:03.912577+00:00"}
+{"event": "interval_scored", "job_id": "A", "loss": 0, "seq": 9, "tick": 0, "wall_utc": "2026-09-10T00:31:03.916150+00:00"}
+{"event": "interval_scored", "job_id": "B", "loss": 0, "seq": 10, "tick": 0, "wall_utc": "2026-09-10T00:31:03.920381+00:00"}
+{"busy": {"finish": 2, "job_id": "A", "start": 0}, "event": "queue_snapshot", "pending": ["B"], "seq": 11, "tick": 1, "wall_utc": "2026-09-10T00:31:03.925200+00:00"}
+{"event": "interval_scored", "job_id": "A", "loss": 0, "seq": 12, "tick": 1, "wall_utc": "2026-09-10T00:31:03.929311+00:00"}
+{"event": "interval_scored", "job_id": "B", "loss": 0, "seq": 13, "tick": 1, "wall_utc": "2026-09-10T00:31:03.932728+00:00"}
+{"applied": true, "changed": true, "event": "review_completed", "instructed_action": "replace_filter", "job_id": "A", "late": false, "seq": 14, "tick": 2, "wall_utc": "2026-09-10T00:31:03.936538+00:00"}
+{"action": "replace_filter", "correct": true, "event": "job_closed", "job_id": "A", "job_loss": 0, "seq": 15, "terminal_loss": 0, "tick": 2, "wall_utc": "2026-09-10T00:31:03.941355+00:00"}
+{"event": "review_started", "finish": 4, "job_id": "B", "seq": 16, "start": 2, "tick": 2, "wall_utc": "2026-09-10T00:31:03.946114+00:00"}
+{"busy": {"finish": 4, "job_id": "B", "start": 2}, "event": "queue_snapshot", "pending": [], "seq": 17, "tick": 2, "wall_utc": "2026-09-10T00:31:03.950321+00:00"}
+{"event": "interval_scored", "job_id": "B", "loss": 0, "seq": 18, "tick": 2, "wall_utc": "2026-09-10T00:31:03.954362+00:00"}
+{"busy": {"finish": 4, "job_id": "B", "start": 2}, "event": "queue_snapshot", "pending": [], "seq": 19, "tick": 3, "wall_utc": "2026-09-10T00:31:03.958487+00:00"}
+{"event": "interval_scored", "job_id": "B", "loss": 0, "seq": 20, "tick": 3, "wall_utc": "2026-09-10T00:31:03.962545+00:00"}
+{"applied": true, "changed": true, "event": "review_completed", "instructed_action": "replace_filter", "job_id": "B", "late": false, "seq": 21, "tick": 4, "wall_utc": "2026-09-10T00:31:03.966971+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 22, "tick": 4, "wall_utc": "2026-09-10T00:31:03.970664+00:00"}
+{"event": "interval_scored", "job_id": "B", "loss": 0, "seq": 23, "tick": 4, "wall_utc": "2026-09-10T00:31:03.974463+00:00"}
+{"action": "replace_filter", "correct": true, "event": "job_closed", "job_id": "B", "job_loss": 0, "seq": 24, "terminal_loss": 0, "tick": 5, "wall_utc": "2026-09-10T00:31:03.978278+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 25, "tick": 5, "wall_utc": "2026-09-10T00:31:03.981942+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 26, "tick": 6, "wall_utc": "2026-09-10T00:31:03.985474+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 27, "tick": 7, "wall_utc": "2026-09-10T00:31:03.991479+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 28, "tick": 8, "wall_utc": "2026-09-10T00:31:03.998712+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 29, "tick": 9, "wall_utc": "2026-09-10T00:31:04.004142+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 30, "tick": 10, "wall_utc": "2026-09-10T00:31:04.007454+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 31, "tick": 11, "wall_utc": "2026-09-10T00:31:04.011049+00:00"}
+{"busy": null, "event": "queue_snapshot", "pending": [], "seq": 32, "tick": 12, "wall_utc": "2026-09-10T00:31:04.014732+00:00"}
+{"accrued_loss": 0, "attempts": 0, "completion_tokens": 0, "correct_jobs": 2, "corrections": 2, "episode_wall_seconds": 0.138924, "error": null, "event": "episode_finished", "evidence": "stipulated_mechanics_only", "expired_requests": 0, "incomplete_service": null, "jobs_closed": 2, "late_returns": 0, "loss_upper_bound": 20, "planned_calls": 0, "policy": "uncertainty", "prompt_tokens": 0, "request_wall_seconds": 0.0, "review_busy_ticks": 4, "reviews_completed": 2, "reviews_started": 2, "scenario_hash": "711d26d35fef192cba117f5e66fd0f1686a21a6c2e930434860896dac46fb8c4", "scheduled_calls": 0, "seed": -3, "seq": 33, "simulated_ticks_completed": 12, "status": "completed", "tick": 12, "total_loss": 0, "unknown_token_attempts": 0, "wall_utc": "2026-09-10T00:31:04.018189+00:00"}
