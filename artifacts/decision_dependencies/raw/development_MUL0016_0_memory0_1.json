@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0016_0_memory0_1",
+      "elapsed_seconds": 1.8644071969902143,
+      "request_sha256": "11b4a661c6308378c63a89e7ac1c4c99dee4ef897ab060e435f223bd560dfb7a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"cheap\"},{\"id\":\"q1_2\",\"value\":\"4\"},{\"id\":\"q1_3\",\"value\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_5\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112402,
+        "id": "chatcmpl-ad3bcdc33526465a8bee1e3421a5faaa",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 536,
+          "prompt_tokens_details": null,
+          "total_tokens": 619
+        }
+      },
+      "scheduled_attempt": 48,
+      "started_utc": "2026-09-11T07:40:02.281871+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0016_0_memory0_1",
+  "prompt_tokens": 536,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I need a cheap hotel in the city centre.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":2,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"I need a cheap hotel in the city centre.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":2,\"value\":\"cheap\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"I need a hotel that has free parking\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":0,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"I need a hotel that has free wifi\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":0,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"Alexander bed and breakfast is a guesthouse\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":5,\"value\":\"guesthouse\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"it has a 4 star rating\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":5,\"value\":\"4\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 104711,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "11b4a661c6308378c63a89e7ac1c4c99dee4ef897ab060e435f223bd560dfb7a",
+  "status": "ok"
+}

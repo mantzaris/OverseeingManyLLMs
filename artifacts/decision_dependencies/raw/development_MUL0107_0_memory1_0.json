@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0107_0_memory1_0",
+      "elapsed_seconds": 1.84513291309122,
+      "request_sha256": "deb74ea8d12c3dbb2c48eaa3188f4660f31bc0a61c7a40ded42db2b3755ff4c0",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q0_0\",\"value\":\"east\"},{\"id\":\"q0_1\",\"value\":\"moderate\"},{\"id\":\"q0_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q0_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q0_4\",\"value\":\"fen ditton\"},{\"id\":\"q0_5\",\"value\":\"italian\"},{\"id\":\"q0_6\",\"value\":\"moderate\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112567,
+        "id": "chatcmpl-cd612df67c904d70b3121e0a880d74b8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 613,
+          "prompt_tokens_details": null,
+          "total_tokens": 700
+        }
+      },
+      "scheduled_attempt": 110,
+      "started_utc": "2026-09-11T07:42:47.573200+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0107_0_memory1_0",
+  "prompt_tokens": 613,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"moderately priced hotel in the East\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":0,\"value\":\"moderate\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"moderately priced guesthouse in the east\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":0,\"value\":\"east\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"Do they have free parking\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":4,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"Do they have free parking and internet\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":4,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"Can you also suggest an Italian restaurant that's also moderately priced\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":6,\"value\":\"italian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"Can you also suggest an Italian restaurant that's also moderately priced\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":6,\"value\":\"moderate\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I show Pizza Hut Fen Ditton located at Cambridge Retail Park Newmarket Road Fen Ditton in the east\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":7,\"value\":\"fen ditton\"}],\"queries\":[{\"id\":\"q0_0\",\"text\":\"Which part of town should the hotel be in?\"},{\"id\":\"q0_1\",\"text\":\"What price range should the hotel match?\"},{\"id\":\"q0_2\",\"text\":\"How many stars should the hotel have?\"},{\"id\":\"q0_3\",\"text\":\"Should the accommodation be a hotel or a guesthouse?\"},{\"id\":\"q0_4\",\"text\":\"Which part of town should the restaurant be in?\"},{\"id\":\"q0_5\",\"text\":\"What food should the restaurant serve?\"},{\"id\":\"q0_6\",\"text\":\"What price range should the restaurant match?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 81608,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "deb74ea8d12c3dbb2c48eaa3188f4660f31bc0a61c7a40ded42db2b3755ff4c0",
+  "status": "ok"
+}

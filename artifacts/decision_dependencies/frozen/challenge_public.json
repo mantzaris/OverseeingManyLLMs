@@ -1,0 +1,206 @@
+[
+  {
+    "family": "ordinary",
+    "id": "challenge_00",
+    "messages": [
+      {
+        "role": "user",
+        "text": "Keep the hotel cheap. I do not need any restaurant recommendations.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "Which spending band applies to accommodation?"
+    }
+  },
+  {
+    "family": "different_domains",
+    "id": "challenge_01",
+    "messages": [
+      {
+        "role": "user",
+        "text": "Use a cheap hotel, but an expensive restaurant.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "Which spending band applies to eating out?"
+    }
+  },
+  {
+    "family": "revision",
+    "id": "challenge_02",
+    "messages": [
+      {
+        "role": "user",
+        "text": "I wanted a cheap hotel earlier. Change that to an expensive hotel now.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match?"
+    }
+  },
+  {
+    "family": "undecided_conflict",
+    "id": "challenge_03",
+    "messages": [
+      {
+        "role": "user",
+        "text": "For the hotel, one organizer requires cheap and another requires expensive. I have not decided which requirement to follow.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match?"
+    }
+  },
+  {
+    "family": "preference_not_approval",
+    "id": "challenge_04",
+    "messages": [
+      {
+        "role": "user",
+        "text": "The hotel should be cheap. I have not authorized any booking.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "approval",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "May I place a non-refundable hotel booking now?"
+    }
+  },
+  {
+    "family": "specific_approval",
+    "id": "challenge_05",
+    "messages": [
+      {
+        "role": "user",
+        "text": "I approve booking the Ashley Hotel for this request only. Other bookings need a new approval.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "approval",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "May I now book a different hotel?"
+    }
+  },
+  {
+    "family": "explicit_exception",
+    "id": "challenge_06",
+    "messages": [
+      {
+        "role": "user",
+        "text": "Use cheap hotels except for the conference night, when an expensive hotel is acceptable.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match for an ordinary night?"
+    }
+  },
+  {
+    "family": "paraphrased_exception",
+    "id": "challenge_07",
+    "messages": [
+      {
+        "role": "user",
+        "text": "The premium hotel budget is reserved for the workshop evening. Accommodation on the ordinary nights must stay cheap.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "For the workshop evening, what hotel price range is authorized?"
+    }
+  },
+  {
+    "family": "similar_project",
+    "id": "challenge_08",
+    "messages": [
+      {
+        "role": "user",
+        "text": "This trip needs a cheap hotel. The expensive hotel instruction belongs to a different project.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match on this trip?"
+    }
+  },
+  {
+    "family": "inference_not_instruction",
+    "id": "challenge_09",
+    "messages": [
+      {
+        "role": "user",
+        "text": "The hotel agent guessed that I wanted an expensive hotel. I have not told it my preferred price range.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match?"
+    }
+  },
+  {
+    "family": "revocation",
+    "id": "challenge_10",
+    "messages": [
+      {
+        "role": "user",
+        "text": "I previously wanted a cheap hotel. Withdraw that preference; I have not selected a new price range.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "What price range should the hotel match?"
+    }
+  },
+  {
+    "family": "explicit_reference",
+    "id": "challenge_11",
+    "messages": [
+      {
+        "role": "user",
+        "text": "Use a moderate hotel. The restaurant should be in the same price range as the hotel.",
+        "turn": 0
+      }
+    ],
+    "operation_kind": "preference",
+    "project": "trip",
+    "query": {
+      "id": "q",
+      "text": "Which spending band applies to eating out?"
+    }
+  }
+]

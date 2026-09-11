@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0012_0_memory1_1",
+      "elapsed_seconds": 2.1024952200241387,
+      "request_sha256": "5f0289af675a8bb5a349ff84b9e57965efceb1b007e13ed4426af0fe2a6db80b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"north\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_5\",\"value\":\"indian\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112349,
+        "id": "chatcmpl-11c93009094f4225ac8ba5e9bfadaf3d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 585,
+          "prompt_tokens_details": null,
+          "total_tokens": 669
+        }
+      },
+      "scheduled_attempt": 28,
+      "started_utc": "2026-09-11T07:39:09.437922+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0012_0_memory1_1",
+  "prompt_tokens": 585,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"I need information on a hotel that includes free parking please.\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":0,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"I also need free wifi, and it needs to be a hotel, not a guesthouse or anything like that.\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":2,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"I also need free wifi, and it needs to be a hotel, not a guesthouse or anything like that.\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":2,\"value\":\"hotel\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"The Ashley Hotel is in the north area of town in the moderate price range with internet and parking.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":3,\"value\":\"north\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"How about an Indian restaurant in the centre?\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":10,\"value\":\"indian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"How about an Indian restaurant in the centre? In the expensive range.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":10,\"value\":\"expensive\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 116604,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5f0289af675a8bb5a349ff84b9e57965efceb1b007e13ed4426af0fe2a6db80b",
+  "status": "ok"
+}

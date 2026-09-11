@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0016_0_history0_1",
+      "elapsed_seconds": 1.8665415870491415,
+      "request_sha256": "38ad031c61c285e2f982e37ec8c7e3d3e8b989a3b1ad1f9d3c07dba9cea8deb2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"city centre\"},{\"id\":\"q1_1\",\"value\":\"cheap\"},{\"id\":\"q1_2\",\"value\":\"4\"},{\"id\":\"q1_3\",\"text\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"city centre\"},{\"id\":\"q1_5\",\"value\":\"african\"},{\"id\":\"q1_6\",\"value\":\"cheap\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112400,
+        "id": "chatcmpl-e51add00646d489d849af22a7d57cab1",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 86,
+          "prompt_tokens": 486,
+          "prompt_tokens_details": null,
+          "total_tokens": 572
+        }
+      },
+      "scheduled_attempt": 47,
+      "started_utc": "2026-09-11T07:40:00.140527+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0016_0_history0_1",
+  "prompt_tokens": 486,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: While in Cambridge I need a hotel that has free parking and free wifi. \n1 ASSISTANT: There are 29 hotels that meet your needs. Would you like to narrow your search by area and/or price range?\n2 USER: Yes, please. I need a cheap hotel in the city centre.\n3 ASSISTANT: The Alexander Bed and Breakfast and the El Shaddai both fit your specifications. Would you like me to book either of those?\n4 USER: Alexander Bed and Breakfast sounds nice. What kind of hotel is it? \n5 ASSISTANT: Alexander bed and breakfast is a guesthouse, it has a 4 star rating. Would you like me to book you a room?\n6 USER: No, but I would like the address, please.\n7 ASSISTANT: The Alexander Bed & Breakfast is located at 56 saint barnabas road. Can I help you with something else today?\n8 USER: I also need an international restaurant in the same price range as the hotel.\n9 ASSISTANT: I have an African restaurant and some European restaurants located in the city centre. Any preferences?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 104701,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "38ad031c61c285e2f982e37ec8c7e3d3e8b989a3b1ad1f9d3c07dba9cea8deb2",
+  "status": "ok"
+}

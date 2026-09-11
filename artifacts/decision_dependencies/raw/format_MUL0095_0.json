@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "format_MUL0095_0",
+      "elapsed_seconds": 3.728964759968221,
+      "request_sha256": "f999f2f431f7e2ab173de1acf6f076095448021d5d5843277cd3cbb280f42f3c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"price_range\",\"value\":\"moderate\",\"turn\":6,\"quote\":\"How about a moderate price range?\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":6,\"quote\":\"I would like a guesthouse with free parking.\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":6,\"quote\":\"I would like a guesthouse with free parking.\"},{\"domain\":\"restaurant\",\"slot\":\"price_range\",\"value\":\"moderate\",\"turn\":16,\"quote\":\"Yes, it should also be moderate priced.\"},{\"domain\":\"restaurant\",\"slot\":\"cuisine\",\"value\":\"international\",\"turn\":16,\"quote\":\"Somewhere that serves international food please.\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":8,\"quote\":\"is there a persian restaurant near the centre of the location?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789111928,
+        "id": "chatcmpl-62589f8301d1490c87092d861e2be88a",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 185,
+          "prompt_tokens": 768,
+          "prompt_tokens_details": null,
+          "total_tokens": 953
+        }
+      },
+      "scheduled_attempt": 15,
+      "started_utc": "2026-09-11T07:32:08.112485+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "format_MUL0095_0",
+  "prompt_tokens": 768,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a hotel in Cambridge that has free parking and is in the expensive price range.\n1 ASSISTANT: I found five expensive hotels with free parking.  What part of town are you wanting to stay in?\n2 USER: Are any of them guest Houses?\n3 ASSISTANT: I would like a guesthouse with free parking.  Do any of those 5 fit that?\n4 USER: I am looking for a guesthouse in the expensive price range with free parking.\n5 ASSISTANT: I'm sorry, there are no expensive guesthouses with free parking.  Would you like to change one of your parameters and search for a moderate guesthouse?\n6 USER: How about a moderate price range?\n7 ASSISTANT: I have the Archway house, it is a guesthouse in the moderate price range and has free parking.\n8 USER: What is the full phone number and area code of the Archway house?  Also, is there a persian restaurant near the centre of the location?\n9 ASSISTANT: The phone number is 01223575314. What price range would you like the persian restaurant to be?\n10 USER: Also expensive. May I have the post code and area of the Archway house as well?\n11 ASSISTANT: The Archway house is in the north area and the postcode is  cb43pe. \n12 USER: Thank you. Did you locate a persian restaurant?\n13 ASSISTANT: There are no persian restaurants. Would you like to try something else?\n14 USER: Somewhere that serves international food please.\n15 ASSISTANT: Sure I have three restaurants to choose from. Do you have a price range preference?\n16 USER: Yes, it should also be moderate priced.\n17 ASSISTANT: I have found 2 restaurants, The Varsity or Bloomsbury. Which one would you prefer.\n18 USER: Which one has tables available for 3 people at 15:00 on Friday? \n19 ASSISTANT: The varsity restaurant does, reference number is SPYMN3FB\n20 USER: Thank you for all of your help!\n21 ASSISTANT: You are quite welcome! Is there anything else I can assist you with today?\n22 USER: No.  You have been quite helpful.  Thank you so much!\n23 ASSISTANT: You are welcome! Goodbye!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 80501,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "f999f2f431f7e2ab173de1acf6f076095448021d5d5843277cd3cbb280f42f3c",
+  "status": "ok"
+}

@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0032_0_extract0",
+      "elapsed_seconds": 2.1980949480785057,
+      "request_sha256": "b1df53f0c4016636ec4a3f64109d3b613a699b6137bd62f8fed102534fea0684",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":4,\"quote\":\"I require a moderately priced French restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":4,\"quote\":\"I require a moderately priced French restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"french\",\"turn\":0,\"quote\":\"D you know of any restaurants nearby that serve French cuisine?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112413,
+        "id": "chatcmpl-4bb6118a517740aaaba66d061e6a58b8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 104,
+          "prompt_tokens": 397,
+          "prompt_tokens_details": null,
+          "total_tokens": 501
+        }
+      },
+      "scheduled_attempt": 53,
+      "started_utc": "2026-09-11T07:40:13.024797+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0032_0_extract0",
+  "prompt_tokens": 397,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: D you know of any restaurants nearby that serve French cuisine?  I don't mind paying a little extra for quality food and service, any recommendations are welcome.\n1 ASSISTANT: I have two restaurants that fit your criteria, Restaurant Two Two and Cote. Which can I book for you?\n2 USER: Are those both in the moderate price range?\n3 ASSISTANT: No, those are both in the expensive price range. Are either of those acceptable?\n4 USER: I require a moderately priced French restaurant in the center of town.\n5 ASSISTANT: I am sorry. There are no restaurants which meet that criteria in the centre of town. Would you like me to search for other options?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 139938,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b1df53f0c4016636ec4a3f64109d3b613a699b6137bd62f8fed102534fea0684",
+  "status": "ok"
+}

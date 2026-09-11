@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0016_0_extract0",
+      "elapsed_seconds": 3.5127002981025726,
+      "request_sha256": "08394868f42e06d0c393be86d09e788b18d8925a22327f7dda89bff4b763bf02",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"city centre\",\"turn\":2,\"quote\":\"I need a cheap hotel in the city centre.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":2,\"quote\":\"I need a cheap hotel in the city centre.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":0,\"quote\":\"I need a hotel that has free parking\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":0,\"quote\":\"I need a hotel that has free wifi\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":5,\"quote\":\"Alexander bed and breakfast is a guesthouse\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":5,\"quote\":\"it has a 4 star rating\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112381,
+        "id": "chatcmpl-f9acce529307427289cf44479f74bff8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 175,
+          "prompt_tokens": 484,
+          "prompt_tokens_details": null,
+          "total_tokens": 659
+        }
+      },
+      "scheduled_attempt": 41,
+      "started_utc": "2026-09-11T07:39:41.390285+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0016_0_extract0",
+  "prompt_tokens": 484,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: While in Cambridge I need a hotel that has free parking and free wifi. \n1 ASSISTANT: There are 29 hotels that meet your needs. Would you like to narrow your search by area and/or price range?\n2 USER: Yes, please. I need a cheap hotel in the city centre.\n3 ASSISTANT: The Alexander Bed and Breakfast and the El Shaddai both fit your specifications. Would you like me to book either of those?\n4 USER: Alexander Bed and Breakfast sounds nice. What kind of hotel is it? \n5 ASSISTANT: Alexander bed and breakfast is a guesthouse, it has a 4 star rating. Would you like me to book you a room?\n6 USER: No, but I would like the address, please.\n7 ASSISTANT: The Alexander Bed & Breakfast is located at 56 saint barnabas road. Can I help you with something else today?\n8 USER: I also need an international restaurant in the same price range as the hotel.\n9 ASSISTANT: I have an African restaurant and some European restaurants located in the city centre. Any preferences?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 104680,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "08394868f42e06d0c393be86d09e788b18d8925a22327f7dda89bff4b763bf02",
+  "status": "ok"
+}

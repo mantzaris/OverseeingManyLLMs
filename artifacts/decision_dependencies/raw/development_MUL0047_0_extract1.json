@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0047_0_extract1",
+      "elapsed_seconds": 5.7990833999356255,
+      "request_sha256": "6af9cb75d68220c7bbcd6bd2680db834d41f9602d6391d643d5e1e2723475e21",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"african\",\"turn\":4,\"quote\":\"Well, can I get some african food instead?\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"I'm looking for a restaurant in the centre serving Welsh food.\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":8,\"quote\":\"Is it in he expensive range?\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":16,\"quote\":\"Can you confirm the area of that hotel?\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":12,\"quote\":\"I will need a hotel reservation in a hotel that offers free wifi.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":12,\"quote\":\"I would like the hotel also to be expensive with at least a 4 star rating.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":12,\"quote\":\"I would like the hotel also to be expensive with at least a 4 star rating.\"},{\"domain\":\"taxi\",\"slot\":\"color\",\"value\":\"red\",\"turn\":16,\"quote\":\"Look for a Red Volvo.\"},{\"domain\":\"taxi\",\"slot\":\"type\",\"value\":\"volvo\",\"turn\":16,\"quote\":\"Look for a Red Volvo.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112511,
+        "id": "chatcmpl-3aaa73db02fb4365bc0d5c5d4a7922f9",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 293,
+          "prompt_tokens": 860,
+          "prompt_tokens_details": null,
+          "total_tokens": 1153
+        }
+      },
+      "scheduled_attempt": 90,
+      "started_utc": "2026-09-11T07:41:51.097214+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0047_0_extract1",
+  "prompt_tokens": 860,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a restaurant in the centre serving Welsh food.\n1 ASSISTANT: Unfortunately, I don't see any restaurants that meet your needs. Would you like to broaden your search area?\n2 USER: Sure, I guess so. \n3 ASSISTANT: I'm sorry I am still not finding anything. is there another type of food you would be interested in looking for?\n4 USER: Well, can I get some african food instead?\n5 ASSISTANT: The Bedouin fits that description. Would you like any more information about the restaurant or assistance booking a visit?\n6 USER: Is it in he expensive range? If it is I would like to book a table for 7 at 1:00 on Sunday.\n7 ASSISTANT: It is expensive, yes. May I ask you to repeat the exact time you would like to book a table for?\n8 USER: Yes, I want to book a table for 19:00.\n9 ASSISTANT: I was unable to complete your booking. Would you like to try and book for another day or for another time slot?\n10 USER: Yes, can you see if there is a booking available at 18:00 instead? I will also need to make a hotel reservation in a hotel that offers free wifi. \n11 ASSISTANT: There are nine hotels with wifi offered. What price range are you looking for? In the meantime, I will also attempt your restaurant booking.\n12 USER: I would like the hotel also to be expensive with at least a 4 star rating.  I will need a reference number for my reservation.\n13 ASSISTANT: Your table is booked at the Bedouin for 18:00 on Sunday. Reference number WG0TBBPF. I see that the University arms hotel is in the same area. \n14 USER: Can I have the University arms hotel's phone number and address?\n15 ASSISTANT: The address for the University Arms Hotel is Regent Street and the phone number is 01223351241. Would you like me to make a reservation for you?\n16 USER: Can you confirm the area of that hotel?  I also need a taxi to go from the hotel to Bedouin, I will need to arrive by 18:00.\n17 ASSISTANT: The University Arms is located in the Centre. I have also booked you a taxi. Look for a Red Volvo. The taxi's contact number is 07835109126. Will you need anything else?\n18 USER: Nope that should be it thanks\n19 ASSISTANT: Great, I hope I was able to assist you with everything you needed. Have a good day.\n20 USER: Thank you for your help.\n21 ASSISTANT: You are very welcome. Enjoy your stay!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 158370,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "6af9cb75d68220c7bbcd6bd2680db834d41f9602d6391d643d5e1e2723475e21",
+  "status": "ok"
+}

@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0032_0_history0_1",
+      "elapsed_seconds": 1.8397104009054601,
+      "request_sha256": "ec8e89300d18d81e114dc4306c09dc5ae5f913176d02dc681ccbe02d8a88a1c7",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"french\"},{\"id\":\"q1_6\",\"value\":\"moderate\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112430,
+        "id": "chatcmpl-da94d367ca894c3087859fd6b39354b7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 399,
+          "prompt_tokens_details": null,
+          "total_tokens": 483
+        }
+      },
+      "scheduled_attempt": 59,
+      "started_utc": "2026-09-11T07:40:29.881010+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0032_0_history0_1",
+  "prompt_tokens": 399,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: D you know of any restaurants nearby that serve French cuisine?  I don't mind paying a little extra for quality food and service, any recommendations are welcome.\n1 ASSISTANT: I have two restaurants that fit your criteria, Restaurant Two Two and Cote. Which can I book for you?\n2 USER: Are those both in the moderate price range?\n3 ASSISTANT: No, those are both in the expensive price range. Are either of those acceptable?\n4 USER: I require a moderately priced French restaurant in the center of town.\n5 ASSISTANT: I am sorry. There are no restaurants which meet that criteria in the centre of town. Would you like me to search for other options?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 139959,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ec8e89300d18d81e114dc4306c09dc5ae5f913176d02dc681ccbe02d8a88a1c7",
+  "status": "ok"
+}

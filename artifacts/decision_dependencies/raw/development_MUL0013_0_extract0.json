@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0013_0_extract0",
+      "elapsed_seconds": 2.2687536539742723,
+      "request_sha256": "b0829b3726c83ffbaefdc4e918ab96cfff34214d07fe726a74d79dceeb954b52",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":2,\"quote\":\"The location is not important as long as it is a guesthouse.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":0,\"quote\":\"free parking\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":0,\"quote\":\"free wifi\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":3,\"quote\":\"4 star\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112352,
+        "id": "chatcmpl-00d9d8a4c4d74a848aeb292d220ebee5",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 103,
+          "prompt_tokens": 377,
+          "prompt_tokens_details": null,
+          "total_tokens": 480
+        }
+      },
+      "scheduled_attempt": 29,
+      "started_utc": "2026-09-11T07:39:11.811833+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0013_0_extract0",
+  "prompt_tokens": 377,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, Im looking to find a local hotel that has free parking and free wifi...\n1 ASSISTANT: sure, there are multiple hotels to choose from. may i ask where you are located?\n2 USER: The location is not important as long as it is a guesthouse.\n3 ASSISTANT: We have the archway house in the north that is 4 star and offers free parking and internet. Does this work?\n4 USER: Sounds good so far... what is the price range?\n5 ASSISTANT: The archway guesthouse is moderately priced. Would you like to book a room?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 161035,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b0829b3726c83ffbaefdc4e918ab96cfff34214d07fe726a74d79dceeb954b52",
+  "status": "ok"
+}

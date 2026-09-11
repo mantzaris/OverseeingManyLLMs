@@ -1,0 +1,70 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "probe_01_0",
+      "elapsed_seconds": 4.634801104082726,
+      "request_sha256": "c597ca7124c94bdf5fba806a248933d1707997db62aa5a155fb24fe4e31510d9",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "[{\"records\":[{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":0,\"quote\":\"I need information on a hotel that includes free parking please.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":2,\"quote\":\"I also need free wifi, and it needs to be a hotel, not a guesthouse or anything like that.\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"hotel\",\"turn\":2,\"quote\":\"I also need free wifi, and it needs to be a hotel, not a guesthouse or anything like that.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"north\",\"turn\":3,\"quote\":\"The Ashley Hotel is in the north area of town in the moderate price range with internet and parking.\"},{\"domain\":\"restaurant\",\"slot\":\"cuisine\",\"value\":\"indian\",\"turn\":10,\"quote\":\"How about an Indian restaurant in the centre?\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":10,\"quote\":\"How about an Indian restaurant in the centre? In the expensive range.\"}]}]",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789111791,
+        "id": "chatcmpl-cf047963b4f242018ea49b1ada9caff3",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 230,
+          "prompt_tokens": 731,
+          "prompt_tokens_details": null,
+          "total_tokens": 961
+        }
+      },
+      "scheduled_attempt": 3,
+      "started_utc": "2026-09-11T07:29:51.061050+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "probe_01_0",
+  "prompt_tokens": 731,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need information on a hotel that includes free parking please.\n1 ASSISTANT: There are 29 hotels that meet your needs. Would you like to narrow your search by area and/or price range?\n2 USER: I also need free wifi, and it needs to be a hotel, not a guesthouse or anything like that.\n3 ASSISTANT: The Ashley Hotel is in the north area of town in the moderate price range with internet and parking. Would you like to book a room?\n4 USER: Yes please, for 5 people and 4 nights on Friday. \n5 ASSISTANT: The booking for Ashley Hotel was successful.\nReference number is : 0M3JW724.\n6 USER: Thank you for your help. Can I find a place to eat, I'm looking for a place serving christmas food in the centre. \n7 ASSISTANT: I'm very sorry but there are no restaurants serving Christmas food in the centre. Is there another area I could look in for you, or another type of cuisine?\n8 USER: No, I really wanted Christmas food in town centre, can you look for an expensive one?\n9 ASSISTANT: I am very sorry, but there are are no restaurants that serve expensive Christmas food in the centre. Are you sure you don't want me to look in another area?\n10 USER: How about an Indian restaurant in the centre? In the expensive range.\n11 ASSISTANT: There are several Indian options in the expensive price range in the town centre. How about The Golden Curry?\n12 USER: Yes, please give me their phone number.\n13 ASSISTANT: Of course! The Golden Curry can be reached at 01223329432. May I help you with anything else?\n14 USER: I also need a taxi from the restaurant to the hotel. I'd like to leave the restaurant by 5:00.\n15 ASSISTANT: Sure! Look for a white volvo to pick you up. In case you need it, the contact number is 07979170593. May I help you with anything else?\n16 USER: That's all I needed. Thank you!\n17 ASSISTANT: Thank you. Enjoy your visit.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "seed": 80401,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c597ca7124c94bdf5fba806a248933d1707997db62aa5a155fb24fe4e31510d9",
+  "status": "ok"
+}

@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0039_0_extract1",
+      "elapsed_seconds": 6.6512929879827425,
+      "request_sha256": "ed80b748d4a1bd4929a8fbb19b37880292d69d84deb005d62464a3708fdbdcd8",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":0,\"quote\":\"Is there any hotel in the area with 4 stars and I can get for cheap price\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":0,\"quote\":\"Is there any hotel in the area with 4 stars and I can get for cheap price\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":2,\"quote\":\"OK, can I have their phone number? Oh, and they have free wifi, right?\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":4,\"quote\":\"OK, can I have their phone number? Oh, and they have free wifi, right?\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"east\",\"turn\":6,\"quote\":\"I'm also looking for a restaurant in the east that serves Indian food\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"indian\",\"turn\":6,\"quote\":\"I'm also looking for a restaurant in the east that serves Indian food\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"any\",\"turn\":8,\"quote\":\"The price range doesn't matter. Can you give me a few names to choose from?\"},{\"domain\":\"restaurant\",\"slot\":\"name\",\"value\":\"curry prince\",\"turn\":10,\"quote\":\"I don't need a table, but can I get the address, postcode and price range for Curry Prince?\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":13,\"quote\":\"What is the price range for The Curry Prince?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112447,
+        "id": "chatcmpl-5f4c00a7e05848bc9b7a0fae22b846be",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 341,
+          "prompt_tokens": 714,
+          "prompt_tokens_details": null,
+          "total_tokens": 1055
+        }
+      },
+      "scheduled_attempt": 66,
+      "started_utc": "2026-09-11T07:40:47.124768+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0039_0_extract1",
+  "prompt_tokens": 714,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Is there any hotel in the area with 4 stars and I can get for cheap price. \n1 ASSISTANT: I found the Cambridge Belfry, a 4 star cheap hotel.  Would you like to book?\n2 USER: I would just like to know first if this place includes free parking?\n3 ASSISTANT: Yes it does include free parking. \n4 USER: OK, can I have their phone number? Oh, and they have free wifi, right?\n5 ASSISTANT: Yes, they do offer free WiFi. The number is 01954714600\n6 USER: I'm also looking for a restaurant in the east that serves Indian food.\n7 ASSISTANT: There are four restaurants that match your search. What price range would you like?\n8 USER: The price range doesn't matter. Can you give me a few names to choose from?\n9 ASSISTANT: The choices are Curry Prince, Pipasha Restaurant, Rajmahal, and Sitar Tandoori. Would you like to book a table at one of these?\n10 USER: I don't need a table, but can I get the address, postcode and price range for Curry Prince?\n11 ASSISTANT: Yes sure. The Curry Prince's telephone number is 01223566388. And their address and postcode are 451 Newmarket Road Fen Ditton cb58jj.\n12 USER: What is the price range for The Curry Prince?\n13 ASSISTANT: The price range is moderate. \n14 USER: Thanks! Now, can I get a taxi from the Cambridge Belfry to the Curry Prince? I need to leave the hotel by 4:00.\n15 ASSISTANT: I was able to book that taxi for you. You will be riding in a Blue Audi. Their number is 07768403851. Can I help you with something else?\n16 USER: That was everything I needed, Thanks for everything and please take care!\n17 ASSISTANT: Happy to be of service, and thanks for using the Cambridge TownInfo centre. Have a wonderful day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 146230,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ed80b748d4a1bd4929a8fbb19b37880292d69d84deb005d62464a3708fdbdcd8",
+  "status": "ok"
+}

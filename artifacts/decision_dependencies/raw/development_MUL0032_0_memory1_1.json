@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0032_0_memory1_1",
+      "elapsed_seconds": 1.7578908490249887,
+      "request_sha256": "a3be4e72023dfa65e6caa7bb68a9dc329f651d8d8f4fcef1c38ea08020f41bcb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"moderate\"},{\"id\":\"q1_2\",\"value\":\"0\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"chinese\"},{\"id\":\"q1_6\",\"value\":\"moderate\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112441,
+        "id": "chatcmpl-985315eba3674024bec27583d031d99e",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 678,
+          "prompt_tokens_details": null,
+          "total_tokens": 763
+        }
+      },
+      "scheduled_attempt": 64,
+      "started_utc": "2026-09-11T07:40:40.900424+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0032_0_memory1_1",
+  "prompt_tokens": 678,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I'm also looking for a restaurant that serves French food in the center of town.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":4,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"How about one that serves Chinese food?\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":6,\"value\":\"chinese\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"I require a moderately priced Chinese restaurant in the center of town.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":4,\"value\":\"moderate\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I would like it to be a hotel and in the same area as the restaurant.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":10,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"Can you help me find one?\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":8,\"value\":\"moderate\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"I would like it to be a hotel and in the same area as the restaurant.\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":10,\"value\":\"hotel\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"Cityroomz is a hotel in town centre and moderately priced. It also offers internet.\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":11,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"it has a zero star rating\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":13,\"value\":\"0\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 139971,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "a3be4e72023dfa65e6caa7bb68a9dc329f651d8d8f4fcef1c38ea08020f41bcb",
+  "status": "ok"
+}

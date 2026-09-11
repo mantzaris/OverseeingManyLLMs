@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0039_0_extract0",
+      "elapsed_seconds": 3.7369864999782294,
+      "request_sha256": "51d48a39a38c8107f4ec716956ef949a4f3a3ec78808a6ea9c863abbf2cf85d5",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":0,\"quote\":\"Is there any hotel in the area with 4 stars and I can get for cheap price\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":0,\"quote\":\"Is there any hotel in the area with 4 stars and I can get for cheap price\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":2,\"quote\":\"OK, can I have their phone number? Oh, and they have free wifi, right?\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"east\",\"turn\":6,\"quote\":\"I'm also looking for a restaurant in the east that serves Indian food\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"indian\",\"turn\":6,\"quote\":\"I'm also looking for a restaurant in the east that serves Indian food\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112443,
+        "id": "chatcmpl-45ff844f1ccb48e4a7b95dec3ca75654",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 187,
+          "prompt_tokens": 421,
+          "prompt_tokens_details": null,
+          "total_tokens": 608
+        }
+      },
+      "scheduled_attempt": 65,
+      "started_utc": "2026-09-11T07:40:42.940347+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0039_0_extract0",
+  "prompt_tokens": 421,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Is there any hotel in the area with 4 stars and I can get for cheap price. \n1 ASSISTANT: I found the Cambridge Belfry, a 4 star cheap hotel.  Would you like to book?\n2 USER: I would just like to know first if this place includes free parking?\n3 ASSISTANT: Yes it does include free parking. \n4 USER: OK, can I have their phone number? Oh, and they have free wifi, right?\n5 ASSISTANT: Yes, they do offer free WiFi. The number is 01954714600\n6 USER: I'm also looking for a restaurant in the east that serves Indian food.\n7 ASSISTANT: There are four restaurants that match your search. What price range would you like?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 146229,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "51d48a39a38c8107f4ec716956ef949a4f3a3ec78808a6ea9c863abbf2cf85d5",
+  "status": "ok"
+}

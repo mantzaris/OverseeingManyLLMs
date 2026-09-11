@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0046_0_extract1",
+      "elapsed_seconds": 6.553656128933653,
+      "request_sha256": "bbc25579446550686d27644b829015ca20aab1b1bd4891e2a9564a2b9dfcb1b2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"thai\",\"turn\":2,\"quote\":\"yes, how about thai food?\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":6,\"quote\":\"Can I get the price range\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":6,\"quote\":\"Can I get the price range\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":10,\"quote\":\"I am looking for a guesthouse in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":10,\"quote\":\"I am looking for a guesthouse in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":10,\"quote\":\"I am looking for a guesthouse in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"west\",\"turn\":10,\"quote\":\"I am looking for a guesthouse in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":12,\"quote\":\"Is there one that is moderately priced in the same area?\"},{\"domain\":\"hotel\",\"slot\":\"postcode\",\"value\":\"cb39lh\",\"turn\":13,\"quote\":\"The postcode for hobsons house is cb39lh\"},{\"domain\":\"hotel\",\"slot\":\"phone\",\"value\":\"01223304906\",\"turn\":13,\"quote\":\"The postcode for hobsons house is cb39lh\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112480,
+        "id": "chatcmpl-9da89b9c928d4436bfc7ca7c9debdca7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 337,
+          "prompt_tokens": 642,
+          "prompt_tokens_details": null,
+          "total_tokens": 979
+        }
+      },
+      "scheduled_attempt": 78,
+      "started_utc": "2026-09-11T07:41:19.682256+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0046_0_extract1",
+  "prompt_tokens": 642,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you tell me if there are any restuarants in the west side that have singaporean food?\n1 ASSISTANT: I'm sorry, but there are no singaporean restaurants in all of cambridge. Would you like to try a different type of cuisine?\n2 USER: yes, how about thai food?, thanks for checking.\n3 ASSISTANT: Sala thong is a thai restaurant on the west side at 35 Newnham Road.\n4 USER: Can I get the price range, postcode, and phone number for them?\n5 ASSISTANT: It is expensive. Postcode is cb39ey and phone number is 01223323178.\n6 USER: Thank you. I need to book a expensive hotel that has free wifi, can you help me?\n7 ASSISTANT: I've got 5 hotels that meet those criteria. Is there a particular part of town you were interested in staying in?\n8 USER: I am looking for a guesthouse in the same area as the restaurant.\n9 ASSISTANT: There are no guesthouses that meet that criteria, would you like information about the hotel options?\n10 USER: Is there one that is moderately priced in the same area?\n11 ASSISTANT: There is! Hobsons House is a 3-star, moderately-priced guesthouse with free internet and parking. Would you like me to book it for you?\n12 USER: No, I just need the phone number and postcode, please.\n13 ASSISTANT: The postcode for hobsons house is cb39lh, phone 01223304906.  Is there anything else I can help you with today?\n14 USER: No, I think that covers it, thank you for your time.\n15 ASSISTANT: Thank you. Have a good day, goodbye.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 161802,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "bbc25579446550686d27644b829015ca20aab1b1bd4891e2a9564a2b9dfcb1b2",
+  "status": "ok"
+}

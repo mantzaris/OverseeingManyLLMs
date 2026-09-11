@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0013_0_history0_1",
+      "elapsed_seconds": 1.874651647056453,
+      "request_sha256": "c6c2dab127fcc1f425137a1ee2cf705f76e74c704cbd7027ad08092f62f9efde",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"moderate\"},{\"id\":\"q1_2\",\"value\":\"4\"},{\"id\":\"q1_3\",\"value\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_5\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112368,
+        "id": "chatcmpl-210a92d87e9d4989874215ba77dad988",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 379,
+          "prompt_tokens_details": null,
+          "total_tokens": 463
+        }
+      },
+      "scheduled_attempt": 35,
+      "started_utc": "2026-09-11T07:39:28.180324+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0013_0_history0_1",
+  "prompt_tokens": 379,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, Im looking to find a local hotel that has free parking and free wifi...\n1 ASSISTANT: sure, there are multiple hotels to choose from. may i ask where you are located?\n2 USER: The location is not important as long as it is a guesthouse.\n3 ASSISTANT: We have the archway house in the north that is 4 star and offers free parking and internet. Does this work?\n4 USER: Sounds good so far... what is the price range?\n5 ASSISTANT: The archway guesthouse is moderately priced. Would you like to book a room?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 161056,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c6c2dab127fcc1f425137a1ee2cf705f76e74c704cbd7027ad08092f62f9efde",
+  "status": "ok"
+}

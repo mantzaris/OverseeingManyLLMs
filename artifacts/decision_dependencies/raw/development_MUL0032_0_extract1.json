@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0032_0_extract1",
+      "elapsed_seconds": 5.3603361919522285,
+      "request_sha256": "26fa603e56443a6ea6eea56a72b33135a73abdb10b51a18519cfacf59cbbdb82",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":4,\"quote\":\"I'm also looking for a restaurant that serves French food in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"chinese\",\"turn\":6,\"quote\":\"How about one that serves Chinese food?\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":4,\"quote\":\"I require a moderately priced Chinese restaurant in the center of town.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":10,\"quote\":\"I would like it to be a hotel and in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":8,\"quote\":\"Can you help me find one?\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"hotel\",\"turn\":10,\"quote\":\"I would like it to be a hotel and in the same area as the restaurant.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":11,\"quote\":\"Cityroomz is a hotel in town centre and moderately priced. It also offers internet.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"0\",\"turn\":13,\"quote\":\"it has a zero star rating\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112415,
+        "id": "chatcmpl-08d5605b06d14d31859aadd46972677b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 271,
+          "prompt_tokens": 733,
+          "prompt_tokens_details": null,
+          "total_tokens": 1004
+        }
+      },
+      "scheduled_attempt": 54,
+      "started_utc": "2026-09-11T07:40:15.499335+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0032_0_extract1",
+  "prompt_tokens": 733,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: D you know of any restaurants nearby that serve French cuisine?  I don't mind paying a little extra for quality food and service, any recommendations are welcome.\n1 ASSISTANT: I have two restaurants that fit your criteria, Restaurant Two Two and Cote. Which can I book for you?\n2 USER: Are those both in the moderate price range?\n3 ASSISTANT: No, those are both in the expensive price range. Are either of those acceptable?\n4 USER: I require a moderately priced French restaurant in the center of town.\n5 ASSISTANT: I am sorry. There are no restaurants which meet that criteria in the centre of town. Would you like me to search for other options?\n6 USER: How about one that serves Chinese food? Could I get their phone number and post code as well?\n7 ASSISTANT: It looks like there are three: jinling noodle bar (01223566188, postcode cb23pp), lan hong house (01223350420, postcode cb12lf), and shanghai family restaurant (01223301761, postcode cb11dg)\n8 USER: Thanks, I'm also looking for a hotel in the same price range. Can you help me find one?\n9 ASSISTANT: There are 18 moderately priced hotels with vacancies. Do you have any other criteria for choosing a hotel?\n10 USER: I would like it to be a hotel and in the same area as the restaurant. I don't need free parking. \n11 ASSISTANT: Cityroomz is a hotel in town centre and moderately priced.  It also offers internet. Would you like me to make a reservation for you?\n12 USER: Can I just get the address, and star rating of the hotel?\n13 ASSISTANT: Of course, the address is sleeperz hotel, station road, it has a zero star rating, does this fit your needs?\n14 USER: Yes, thank you so much. \n15 ASSISTANT: You're welcome.  May I help you with anything else?\n16 USER: No, that is all for today. Have a nice day.\n17 ASSISTANT: Thank you. You as well. ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 139939,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "26fa603e56443a6ea6eea56a72b33135a73abdb10b51a18519cfacf59cbbdb82",
+  "status": "ok"
+}

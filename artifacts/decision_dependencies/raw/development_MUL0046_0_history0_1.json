@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0046_0_history0_1",
+      "elapsed_seconds": 2.161347738932818,
+      "request_sha256": "38b2e76977e4d81e8edb5f1612284216ee427dfbb1fd500403da0662397594cc",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"west\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"text\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"west\"},{\"id\":\"q1_5\",\"value\":\"thai\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789112496,
+        "id": "chatcmpl-a2ff6cb731b94c8d869b3b38d98f700b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 495,
+          "prompt_tokens_details": null,
+          "total_tokens": 580
+        }
+      },
+      "scheduled_attempt": 83,
+      "started_utc": "2026-09-11T07:41:36.377448+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0046_0_history0_1",
+  "prompt_tokens": 495,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you tell me if there are any restuarants in the west side that have singaporean food?\n1 ASSISTANT: I'm sorry, but there are no singaporean restaurants in all of cambridge. Would you like to try a different type of cuisine?\n2 USER: yes, how about thai food?, thanks for checking.\n3 ASSISTANT: Sala thong is a thai restaurant on the west side at 35 Newnham Road.\n4 USER: Can I get the price range, postcode, and phone number for them?\n5 ASSISTANT: It is expensive. Postcode is cb39ey and phone number is 01223323178.\n6 USER: Thank you. I need to book a expensive hotel that has free wifi, can you help me?\n7 ASSISTANT: I've got 5 hotels that meet those criteria. Is there a particular part of town you were interested in staying in?\n8 USER: I am looking for a guesthouse in the same area as the restaurant.\n9 ASSISTANT: There are no guesthouses that meet that criteria, would you like information about the hotel options?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 161822,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "38b2e76977e4d81e8edb5f1612284216ee427dfbb1fd500403da0662397594cc",
+  "status": "ok"
+}
