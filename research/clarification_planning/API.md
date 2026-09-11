@@ -18,7 +18,7 @@ print(api.act('finish')['work'])
 
 These example responses are scripted, not participant observations. To answer
 narrowly, use `api.answer(value, only_task='Website implementation')`. That creates
-a distinct scoped record and consumes one answer. Other deliverables do not
+a distinct scoped record and consumes two units: one for the value and one for changing its proposed scope. The operation is rejected if both units are unavailable. Answering within the already stated scope costs one unit. Other deliverables do not
 silently inherit it. `api.defer()` also consumes one answer because an actual
 question was posed and the user reported that it could not be resolved. It leaves
 work visible. `api.act('ask', id='meeting')` overrides selection while retaining

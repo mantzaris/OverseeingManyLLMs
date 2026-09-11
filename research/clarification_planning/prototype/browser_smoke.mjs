@@ -1,6 +1,8 @@
 // Real browser interactions, explicitly scripted rather than participant evidence.
 import fs from 'node:fs';import {spawn} from 'node:child_process';
-const out='artifacts/clarification_planning/interface';fs.mkdirSync(out,{recursive:true});
+const out=process.argv[2]||'/tmp/clarification-browser-demo';fs.mkdirSync(out,{recursive:true});
+let occupied=false;try{await fetch('http://127.0.0.1:9231/json/version');occupied=true}catch{}
+if(occupied)throw Error('Debug port 9231 is in use; refusing to attach to an unrelated browser');
 const child=spawn('/opt/google/chrome/google-chrome',['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--no-first-run','--user-data-dir=/tmp/clarification-browser-'+process.pid,'--remote-debugging-port=9231','about:blank'],{stdio:'ignore'});
 const wait=ms=>new Promise(r=>setTimeout(r,ms));let ws;
 try{
@@ -25,7 +27,9 @@ try{
  assert(await js("state.work.filter(w=>w.registered_release==='needs_revalidation').length===3"),'Changed decision identifies three stale releases');await screenshot('revision_impact');
  await js("action({action:'reset',method:'depth2',budget:2})");await js("action({action:'next'})");
  await js("(()=>{const f=document.querySelector('#answer-form');f.elements.value.value='large_print';f.elements.only_task.value='Website implementation';f.requestSubmit()})()");await wait(150);
- assert(await js("state.records.find(r=>r.id==='Website implementation::accessibility').allowed_tasks.length===1"),'Request-specific scope');await screenshot('narrow_answer');
+ assert(await js("state.records.find(r=>r.id==='Website implementation::accessibility').allowed_tasks.length===1"),'Request-specific scope');
+ assert(await js("state.remaining_budget===0"),'Value and changed scope count as two decisions');await screenshot('narrow_answer');
+ await js("action({action:'reset',method:'depth2',budget:1})");
  await js("action({action:'next'})");await js("action({action:'defer'})");
  assert(await js("state.remaining_budget===0 && state.work.some(w=>w.status==='Deferred')"),'Unresolved response costs an answer and leaves visible work');
  await js("action({action:'reset',method:'depth1',budget:2})");await js("action({action:'next'})");

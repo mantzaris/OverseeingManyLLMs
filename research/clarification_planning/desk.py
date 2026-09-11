@@ -86,6 +86,9 @@ class Desk:
         if old.kind=='scope':raise ValueError('A scope answer already concerns the named exception; answer its explicit question')
         task=next((t for t in p.tasks if t.id==task_id),None)
         if task is None or not any(i in p.deps(o) for o in task.options):raise ValueError('This work does not depend on the displayed question')
+        if c.spent+old.cost+1>c.budget:raise ValueError('Changing scope and answering the value require two available answer units')
+        c.spent+=1
+        c.events.append(dict(kind='scope_answer_received',id=old.id,only_task=task_id,cost=1,spent=c.spent))
         key=task_id+'::'+old.id;new=Factor(**dict(old.__dict__,id=key,scope='Only '+task_id,allowed_tasks=(task_id,)))
         factors=list(p.factors)+[new];tasks=[]
         for t in p.tasks:

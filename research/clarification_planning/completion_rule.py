@@ -25,4 +25,3 @@ class MinimumCompletion(Planner):
                     blocks.append((cost,-gain/cost,task.id,tuple(self.factors[i].id for i in block),block))
                 if blocks:options.extend(blocks);break
         return min(options)[-1][0] if options else None
-

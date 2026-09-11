@@ -68,6 +68,19 @@ def run(root=None):
         r=[r for r in refs if r['depth']==2 and r['construction']=='dependency' and r['width']==width]
         gaps.append(dict(width=width,comparisons=len(r),positive_pruning_gaps=sum(x['pruning_gap']>1e-8 for x in r),max_gap=max(x['pruning_gap'] for x in r),mean_gap=np.mean([x['pruning_gap'] for x in r])))
     csv_write(out/'pruning_summary.csv',gaps)
+    variation=[]
+    for case in case_map.values():
+        preps=[read(ART/'prepared'/('evaluation_'+case['id'][:-5]+'_'+str(rep)+'.json')) for rep in range(2)]
+        for backend in ['extract','memory','history']:
+            values=[predictions(case,p,backend) for p in preps]
+            variation.append(dict(id=case['id'],backend=backend,changed_fields=sum(values[0].get(k)!=values[1].get(k) for k in case['fields']),fields=len(case['fields'])))
+    csv_write(out/'generation_variation.csv',variation)
+    distribution=[]
+    for method in ['depth2','one_step','semantic_memory','full_history','completion']:
+        for case in case_map.values():
+            pair=sorted([r for r in core if r['id']==case['id'] and r['method']==method and r['budget']==2 and r['error_weight']==4],key=lambda r:r['replicate'])
+            distribution.append(dict(id=case['id'],method=method,replicate0_loss=pair[0]['loss'],replicate1_loss=pair[1]['loss'],difference=pair[1]['loss']-pair[0]['loss']))
+    csv_write(out/'replicate_variation.csv',distribution)
     # Save the actual trace details behind all first-qualifying selections.
     selected=read(out/'examples.json')['selection'];wanted=set(x for x in selected.values() if x);examples=[]
     with gzip.open(ART/'evaluation/traces.jsonl.gz','rt') as f:

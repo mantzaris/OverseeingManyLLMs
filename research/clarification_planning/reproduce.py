@@ -61,7 +61,7 @@ def same(path,original):
 def reproduce(figures=False,output=None):
     verify(require_commit=True)
     dest=Path(output or tempfile.mkdtemp(prefix='clarification-replay-'))
-    if dest.resolve()==ART.resolve() or ART.resolve() in dest.resolve().parents:raise ValueError('Reproduction must use a separate output tree')
+    if dest.resolve()==ROOT.resolve() or ROOT.resolve() in dest.resolve().parents:raise ValueError('Reproduction must use an output tree outside this repository')
     dest.mkdir(parents=True,exist_ok=True)
     result={'frozen_inputs':'passed','raw':verify_raw(dest/'reconstructed'),'new_generations':0}
     with contextlib.redirect_stdout(io.StringIO()):

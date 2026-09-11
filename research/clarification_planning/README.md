@@ -41,7 +41,7 @@ A short walkthrough:
 5. Start a comparison with one-step VoI and budget two. It first asks the independent partner export format, then the meeting preference. It completes two independent tasks in this authored example.
 6. Start another run and answer accessibility only for `Website implementation`. The test plan and publishing guide do not silently receive that narrow answer. An unresolved response consumes an answer unit and leaves affected work deferred.
 
-These examples establish interface and protocol behavior, not participant benefits. [API.md](API.md) includes a Python adapter, direct public task registration and the HTTP actions. Screenshots and a real scripted browser log are under `artifacts/clarification_planning/interface/`.
+Changing the displayed scope and supplying its value consumes two units. To test an unresolved response separately, restart with budget one and select “I cannot resolve this now.” These examples establish interface and protocol behavior, not participant benefits. [API.md](API.md) includes a Python adapter, direct public task registration and the HTTP actions. Screenshots and a real scripted browser log are under `artifacts/clarification_planning/interface/`.
 
 ## Focused checks and independent source verification
 
@@ -53,6 +53,14 @@ python3 -m unittest \
 python3 -m research.clarification_planning.verify_source --download
 bash paper/clarification_planning/build.sh
 ```
+
+A scripted browser walkthrough is also available while the local server is running:
+
+```bash
+node research/clarification_planning/prototype/browser_smoke.mjs /tmp/clarification-browser-demo
+```
+
+It requires the recorded local Chrome installation and Node 22, refuses an occupied debug port, and saves new screenshots and interactions outside historical artifacts. Fifteen checks exercise the displayed prototype; they are not participant observations.
 
 The source check downloads the pinned approximately 14 MB MultiWOZ archive into `/tmp/clarification-source/`, verifies its SHA-256, and compares selected dialogues, label derivation, split membership and database files. It does not overwrite source artifacts or perform inference. To use an existing archive, supply `--archive /path/to/MULTIWOZ2.4.zip` without `--download`. The MIT license and exact URLs are in the data provenance manifest. The manuscript build requires a standard TeX Live installation with `pdflatex` and `bibtex`; it changes only `paper/clarification_planning/`.
 

@@ -22,6 +22,7 @@ plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.titlesize':
 
 def save(fig,out,name):
     fig.savefig(out/(name+'.pdf'),bbox_inches='tight');fig.savefig(out/(name+'.svg'),bbox_inches='tight');fig.savefig(out/(name+'.png'),bbox_inches='tight',dpi=240);plt.close(fig)
+    svg=out/(name+'.svg');svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
 
 def line(ax,data,metric,methods,error=4):
     budgets=[0,1,2,4,6,'unlimited'];x=np.arange(6)
@@ -55,11 +56,12 @@ def performance(out,data):
     axes[0].set_title('Source-grounded task correctness');axes[1].set_title('Simulated wrong / unfinished loss')
     handles,labels=axes[0].get_legend_handles_labels();fig.legend(handles,labels,loc='lower center',ncol=3,bbox_to_anchor=(.5,.005),frameon=False)
     fig.tight_layout(rect=(0,.18,1,1));save(fig,out,'empirical_quality_budget')
-    fig,axes=plt.subplots(1,3,figsize=(8.2,2.9))
+    fig,axes=plt.subplots(1,3,figsize=(8.2,3.35))
     for ax,metric,label in zip(axes,['incorrect','unfinished','questions'],['Incorrect releases / dialogue','Unfinished tasks / dialogue','Additional answers / dialogue']):
         line(ax,data,metric,['semantic_memory','one_step','completion','depth2']);ax.set_ylabel(label)
     fig.suptitle('Empirical components: generated interpretation, simulated clarification',fontsize=10)
-    fig.tight_layout(rect=(0,0,1,.88));save(fig,out,'empirical_components')
+    fig.legend(*axes[0].get_legend_handles_labels(),loc='lower center',ncol=4,bbox_to_anchor=(.5,.005),frameon=False)
+    fig.tight_layout(rect=(0,.13,1,.88));save(fig,out,'empirical_components')
 
 
 def synthetic_map(out,root):

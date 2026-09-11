@@ -8,11 +8,17 @@ class DeskTests(unittest.TestCase):
     def test_scope_can_be_narrowed_without_propagation(self):
         d=Desk();d.act({'action':'next'});q=d.state()['question'];original=q['id'];task=q['enables'][0]
         s=d.act({'action':'answer','value':'user_requirement','only_task':task})
-        self.assertEqual(s['spent'],1)
+        self.assertEqual(s['spent'],2)
         c=d.controller;p=c.planner
         self.assertFalse(c.state.revealed&(1<<p.index[original]))
         record=next(r for r in s['records'] if r['id']==task+'::'+original)
         self.assertEqual(record['allowed_tasks'],[task]);self.assertEqual(record['affected'],[task])
+
+    def test_narrow_answer_needs_value_and_scope_budget(self):
+        d=Desk();d.act({'action':'reset','budget':1})
+        d.act({'action':'ask','id':'accessibility'});before=d.state()
+        with self.assertRaises(ValueError):d.act({'action':'answer','value':'screen_reader','only_task':'Website implementation'})
+        self.assertEqual(d.state(),before)
 
     def test_unresolved_visible_and_costed(self):
         d=Desk();d.act({'action':'next'});d.act({'action':'defer'})

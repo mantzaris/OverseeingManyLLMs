@@ -82,7 +82,7 @@ At each node, at most eight factors are expanded. When eight or fewer are availa
 
 \paragraph{Budget adherence.} Initially expenditure is zero. Proposal and response handlers both reject unaffordable questions. A resolved or unresolved response adds its positive cost exactly once. Induction over events gives expenditure at most $B$ after every response, independently of which response branch occurs. Revisions do not create additional budget. Unsolicited user updates are logged separately from solicited clarifications.
 
-\paragraph{Represented scope and versions.} Every release registers the versions of its consumed value and applicability records. A changed dependency invalidates that release, while unrelated records retain their versions. The release guard rejects a mismatch. The online implementation, SafeProtocol, increments versions for both explicit revisions and newly resolved answers following an earlier release. This invariant assumes complete registered dependencies and use of the guard. It does not prove semantic applicability or discover an omitted dependency. A version-update defect in the initial interactive implementation was repaired separately; terminal-only experimental outcomes are unaffected.
+\paragraph{Represented scope and versions.} Every release registers the versions of its consumed value and applicability records. A changed dependency invalidates that release, while unrelated records retain their versions. The release guard rejects a mismatch. The online implementation, SafeProtocol, increments versions for both explicit revisions and newly resolved answers following an earlier release. It also checks explicit exceptions on applicability records. This invariant assumes complete registered dependencies and use of the guard. It does not prove semantic applicability or discover an omitted dependency. A version-update defect in the initial interactive implementation was repaired separately; terminal-only experimental outcomes are unaffected.
 
 \paragraph{Complementarity counterexample.} Let two independent uniform binary answers $q_1,q_2$ jointly determine three distinct deliverables. A third answer $q_3$ determines a fourth. At $e=4,d=1$, a task with any unknown binary requirement defers. Clarifying $q_1$ alone saves zero, but clarifying it after $q_2$ saves three. Marginal benefit increases, violating diminishing returns. With two available answers, one-step selection chooses $q_3$ and stops at loss three. Two-step planning chooses $q_1,q_2$ and ends at loss one. This authored example demonstrates a mechanism, not its prevalence.
 
@@ -157,7 +157,7 @@ There are 96 source-derived shortlists with 191 constraints. Seventy-three tasks
 
 However, all required values were already present in source text. Source-checked extraction supplies only 148 of 382 evaluation field preparations, and memory answering supplies 160. Full history supplies 379. Conditional on supplying a value, correctness is 147/148 for extraction, 152/160 for memory, and 363/379 for full history. A total of 143 extracted records fail the public source guard. Asking the user often repairs an extraction or provenance bottleneck rather than obtaining genuinely absent intent.
 
-No annotation establishes a shared decision across domain deliverables. The empirical adapter therefore has zero shared factors across tasks. Request-specific and disabled-scope ablations are identical to the planner here for structural reasons. Depth three cannot exceed depth two at budget two. Generic depth-two search also ties because all empirical candidate sets fit within width eight. These ties provide no evidence for the distinctive candidate construction or scope-acquisition feature.
+No annotation establishes a shared decision across domain deliverables. The empirical adapter therefore has zero shared factors across tasks. Request-specific and disabled-scope ablations are identical to the planner here for structural reasons. Depth three cannot exceed depth two at budget two. Generic depth-two search also ties because all empirical candidate sets fit within width eight. These ties provide no evidence for the distinctive candidate construction or scope-acquisition feature. Memory interpretations differ between generation replicates on 21 fields across 14 dialogues. Planner losses differ in three dialogues, whereas one-step losses differ in eleven. These are different-seed preparations, not a repeated-identical-request test.
 
 Full history's 3 questions versus the planner's 177 are a substantial practical contrast. At primary weights, its additional wrong releases produce higher loss, with an uncertain paired difference. At error weight two, full history is better: planner minus history is $+0.2604$, interval $[0.0417,0.4688]$. At error weight eight, the difference reverses to $-0.8333$, interval $[-1.1250,-0.5417]$. Thus a preference for fewer questions or a different tolerance for incorrect release changes the conclusion. Ideal interpretation completes every task with zero questions. This confirms that clarification is not intrinsically necessary for these complete source conversations.
 
@@ -171,7 +171,7 @@ Corrected scope families and imperfect-response conditions remain visible even w
 Mean measured CPU episode time is 1.34 ms for empirical depth two, 0.65 ms for one step, and 0.55 ms for the declared completion heuristic. Synthetic depth two averages 6.71 ms and depth three 27.89 ms. No evaluated primary or synthetic selection reaches the state cap. These measurements describe small instances on this host, not general fleet scaling.
 
 \section{Prototype, reproducibility, and limitations}
-The local Decision desk exposes selectable planners, a proposed question, its scope, potentially enabled work, whether another answer may be needed, and the remaining budget. It preserves narrowly answered exceptions, unresolved work, manual overrides, revisions, and revocations. Expandable provenance keeps algorithm details outside the main decision flow. A public Python adapter and localhost API support the demonstration. Fourteen browser checks record displayed questions, actions, intervals, and state hashes. These are scripted software interactions, not participant observations.
+The local Decision desk charges a changed scope separately from the value answer, even when they appear on one card. It exposes selectable planners, a proposed question, its scope, potentially enabled work, whether another answer may be needed, and the remaining budget. It preserves narrowly answered exceptions, unresolved work, manual overrides, revisions, and revocations. Expandable provenance keeps algorithm details outside the main decision flow. A public Python adapter and localhost API support the demonstration. Fifteen browser checks record displayed questions, actions, intervals, and state hashes. These are scripted software interactions, not participant observations.
 
 The package preserves every model attempt and deterministic replay trace. It uses 396 calls and 396 attempts, including all 108 development calls and 288 held-out calls, with zero retries or transport/parse failures. Usage is 174,262 prompt and 25,545 completion tokens. Summed generation latency is 604.67 seconds; it is not billed allocation time. CUDA BF16 execution and unchanged zero-offload server arguments are saved. All policy comparisons and audits require zero further generations. Resource clocks are separately recorded and the original 36-hour history remains unchanged.
 
@@ -182,7 +182,7 @@ Budgeted clarification can have complementary value, and a one-step policy can s
 
 \appendix
 \section{Additional paired and diagnostic evidence}
-All plots are generated from saved numerical tables. Teal negative paired differences favor depth two; unfavorable regions remain visible. Figure selection uses the first lexicographic source dialogue with a negative, zero, or positive replicate-averaged loss difference, never the largest effect. Both replicates of each selected dialogue are displayed.
+All plots are generated from saved numerical tables. Teal negative paired differences favor depth two; unfavorable regions remain visible. Figure selection uses the first lexicographic source dialogue with a negative, zero, or positive replicate-averaged loss difference, never the largest effect. Both replicates of each selected dialogue are displayed. This expands the original replicate-zero display without changing the frozen selection of dialogues.
 
 \begin{figure}[H]
 \centering\includegraphics[width=\linewidth]{paired_differences.pdf}
@@ -192,6 +192,22 @@ All plots are generated from saved numerical tables. Teal negative paired differ
 \centering\includegraphics[width=.9\linewidth]{empirical_components.pdf}
 \caption{Empirical wrong and unfinished releases under simulated response budgets. These components remain separate from total loss. The task labels come from benchmark annotations and executable shortlist checks, not a human study.}
 \end{figure}
+\begin{table}[H]
+\centering\small
+\caption{Secondary generation and coverage diagnostics. Coverage counts field preparations, while variation counts source dialogues out of 48. Different generation seeds and, for memory, possibly different extracted inputs are involved.}
+\begin{tabular}{lrrr}\toprule
+Backend & Supplied / 382 & Correct when supplied & Dialogues differing by replicate\\\midrule
+Source-checked extraction &148&147&13\\
+Memory answering &160&152&14\\
+Full-history answering &379&363&4\\\bottomrule
+\end{tabular}
+\end{table}
+The source-guard coverage bottleneck is distinct from a transport failure. Every
+call completed and parsed, but a record can still be rejected or an answer can be
+missing or incorrect. These cases remain in the release and deferral outcomes.
+The values were already stated by source users, so additional questions here
+repair interpretation gaps rather than establish the prevalence of missing intent.
+
 \clearpage
 \begin{figure}[H]
 \centering\includegraphics[width=.98\linewidth,height=.85\textheight,keepaspectratio]{matched_questions.pdf}
