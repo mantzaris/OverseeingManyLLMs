@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run04_w2",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:33.368453+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZCAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[68.175,56.16,82.91,-24.22],\"cool_valve\":[0.059,0.0,0.50128533,0.127],\"damper\":[0.482,0.15,1.0,0.85],\"fan\":[0.5,0.5,0.5,0.0],\"heat_sp\":[50.0,50.0,50.0,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[65.07,58.49,67.78,-8.45],\"outdoor\":[60.185,59.83,60.62,-0.58],\"return\":[70.058,68.97,70.43,-0.73],\"sat\":[65.986,59.39,67.19,-5.12]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"14:59\",\"window_start\":\"14:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 974492826
+    },
+    "response": "{\"id\":\"chatcmpl-1e2b2e56c547481e87e602f98b4624a2\",\"object\":\"chat.completion\",\"created\":1789095033,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Mixed air temperature is within a reasonable range of return and outdoor air temperatures, and there are no clear indications of stuck valves or dampers based on the provided data.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":448,\"total_tokens\":493,\"completion_tokens\":45,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8543912172317505
+  }
+]

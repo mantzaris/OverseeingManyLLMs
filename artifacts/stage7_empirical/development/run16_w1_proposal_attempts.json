@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run16_w1",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:53.247030+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[55.04,55.04,55.04,0.0],\"cool_valve\":[1.0,1.0,1.0,0.0],\"damper\":[0.1,0.1,0.1,0.0],\"fan\":[0.5,0.5,0.5,0.0],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[83.579,82.79,84.47,-0.06],\"outdoor\":[76.719,73.96,78.65,-3.52],\"return\":[82.395,81.09,84.21,0.95],\"sat\":[76.306,73.61,80.19,1.65]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"12:59\",\"window_start\":\"12:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 1051402285
+    },
+    "response": "{\"id\":\"chatcmpl-a0ce8f86b231405682229ee090a15ab0\",\"object\":\"chat.completion\",\"created\":1789095053,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Mixed air temperature is consistently higher than outdoor and return air temperatures, but this alone does not indicate a fault without further context on supply air temperature and setpoints.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":434,\"total_tokens\":478,\"completion_tokens\":44,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8280089776962996
+  }
+]

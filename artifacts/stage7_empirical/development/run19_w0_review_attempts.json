@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run19_w0",
+    "role": "review",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:57.371889+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "Independently review the proposed diagnosis using only the sensor evidence. You may preserve it, correct its category, or abstain. A proposal may be wrong. Do not assume another reviewer has access to additional measurements. Return the same JSON schema.\nEvidence: {\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[63.336,61.82,64.37,-0.27],\"cool_valve\":[0.221,0.16,0.37,0.07],\"damper\":[1.0,1.0,1.0,0.0],\"fan\":[0.5,0.49,0.5,0.0],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[65.772,65.4,66.14,-0.51],\"outdoor\":[63.474,62.89,64.17,-0.77],\"return\":[74.668,74.29,75.15,-0.79],\"sat\":[65.446,63.38,68.28,-2.05]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"10:59\",\"window_start\":\"10:00\"}\nProposal: {\"diagnosis\":\"abstain\",\"reason\":\"Insufficient evidence to determine a fault; supply air temperature (SAT) is within a reasonable range and does not consistently deviate from setpoints.\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 673353168
+    },
+    "response": "{\"id\":\"chatcmpl-84d968b1a741412599bdc7ad93e3bef2\",\"object\":\"chat.completion\",\"created\":1789095057,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Insufficient evidence to determine a fault; supply air temperature (SAT) is within a reasonable range and does not consistently deviate from setpoints.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":533,\"total_tokens\":574,\"completion_tokens\":41,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.7832994684576988
+  }
+]

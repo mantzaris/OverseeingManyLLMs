@@ -1,0 +1,584 @@
+{
+  "frozen_utc": "2026-09-11T02:56:45.134771+00:00",
+  "source_hashes": {
+    "overseeing/hvac.py": "0049e74b8a498b2b28c4c5528c8a9deef7c7c888651f8238bda99e80dbc05e0e",
+    "scripts/hvac_prepare.py": "5a6be6ced9bbda212457d6686d35aa2715ec0d4476b45496489bb15d2b0826bf",
+    "scripts/hvac_infer.py": "7b95071edd97f570360d997625318bb2dc490486a72355aebc51defc0f75c30e",
+    "scripts/hvac_analyze.py": "99fa3b9d050bd03017eee2e45158e2aa255b43b5e485aacb82cd5ae94a5a7c91",
+    "scripts/plot_hvac.py": "247a4f276907457c7377f07a58fcc6884d993d251c4567e1f541e5b3524e604c",
+    "tests/test_hvac.py": "a049176bde92b5de775dc8a2870c1af7019ee7c983429ab96f482b30e7324341",
+    "plan/STAGE7_EMPIRICAL_PLAN.md": "39ae71fe69eab2d5b5c062b89c784299b5bfc29b8c6c215a4d976a2396b8cc99",
+    "artifacts/stage7_empirical/cases.json": "5e6bf3c6c1568e59bdd585f0bda3a8112eb17f591fcd5825bb9893466a802465",
+    "artifacts/stage7_empirical/estimator.json": "64fe59a047cff87b5feabc0d456ad5b6c6c40e8ad59f5a7d0f66eea673766ec2",
+    "artifacts/stage7_empirical/baseline.json": "0c49870dfd05a3ebc0e1a3824af5b87e56d88b0c9c6872e350ac47c33e249482",
+    "artifacts/stage7_empirical/evaluation_public.json": "68c019d147ef3e940ec50e2f6f8314db48031d5f0fbea41bf53112731b57cb97",
+    "artifacts/stage7_empirical/authorization.json": "10fd770005a8597a44ee7e53d79de228b3a06e67b2bbbb94aff3d4d923e4316a",
+    "artifacts/stage7_empirical/provenance.json": "3a4d598fe801148f9f15d681f5eda5ed58844a1734a46b509e57d8b7c647c9cc"
+  },
+  "source_ids": [
+    {
+      "case_id": "run00_w0",
+      "run_id": "run00",
+      "mode": "SZCAV",
+      "date": "3/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run00_w1",
+      "run_id": "run00",
+      "mode": "SZCAV",
+      "date": "3/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run00_w2",
+      "run_id": "run00",
+      "mode": "SZCAV",
+      "date": "3/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run01_w0",
+      "run_id": "run01",
+      "mode": "SZCAV",
+      "date": "3/12/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run01_w1",
+      "run_id": "run01",
+      "mode": "SZCAV",
+      "date": "3/12/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run01_w2",
+      "run_id": "run01",
+      "mode": "SZCAV",
+      "date": "3/12/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run02_w0",
+      "run_id": "run02",
+      "mode": "SZCAV",
+      "date": "3/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run02_w1",
+      "run_id": "run02",
+      "mode": "SZCAV",
+      "date": "3/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run02_w2",
+      "run_id": "run02",
+      "mode": "SZCAV",
+      "date": "3/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run03_w0",
+      "run_id": "run03",
+      "mode": "SZCAV",
+      "date": "3/16/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run03_w1",
+      "run_id": "run03",
+      "mode": "SZCAV",
+      "date": "3/16/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run03_w2",
+      "run_id": "run03",
+      "mode": "SZCAV",
+      "date": "3/16/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run04_w0",
+      "run_id": "run04",
+      "mode": "SZCAV",
+      "date": "3/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run04_w1",
+      "run_id": "run04",
+      "mode": "SZCAV",
+      "date": "3/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run04_w2",
+      "run_id": "run04",
+      "mode": "SZCAV",
+      "date": "3/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run05_w0",
+      "run_id": "run05",
+      "mode": "SZCAV",
+      "date": "3/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run05_w1",
+      "run_id": "run05",
+      "mode": "SZCAV",
+      "date": "3/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run05_w2",
+      "run_id": "run05",
+      "mode": "SZCAV",
+      "date": "3/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run06_w0",
+      "run_id": "run06",
+      "mode": "SZCAV",
+      "date": "3/20/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run06_w1",
+      "run_id": "run06",
+      "mode": "SZCAV",
+      "date": "3/20/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run06_w2",
+      "run_id": "run06",
+      "mode": "SZCAV",
+      "date": "3/20/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run07_w0",
+      "run_id": "run07",
+      "mode": "SZCAV",
+      "date": "3/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run07_w1",
+      "run_id": "run07",
+      "mode": "SZCAV",
+      "date": "3/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run07_w2",
+      "run_id": "run07",
+      "mode": "SZCAV",
+      "date": "3/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run08_w0",
+      "run_id": "run08",
+      "mode": "SZCAV",
+      "date": "3/22/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run08_w1",
+      "run_id": "run08",
+      "mode": "SZCAV",
+      "date": "3/22/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run08_w2",
+      "run_id": "run08",
+      "mode": "SZCAV",
+      "date": "3/22/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run09_w0",
+      "run_id": "run09",
+      "mode": "SZCAV",
+      "date": "3/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run09_w1",
+      "run_id": "run09",
+      "mode": "SZCAV",
+      "date": "3/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run09_w2",
+      "run_id": "run09",
+      "mode": "SZCAV",
+      "date": "3/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run10_w0",
+      "run_id": "run10",
+      "mode": "SZCAV",
+      "date": "3/24/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run10_w1",
+      "run_id": "run10",
+      "mode": "SZCAV",
+      "date": "3/24/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run10_w2",
+      "run_id": "run10",
+      "mode": "SZCAV",
+      "date": "3/24/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run11_w0",
+      "run_id": "run11",
+      "mode": "SZCAV",
+      "date": "3/25/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run11_w1",
+      "run_id": "run11",
+      "mode": "SZCAV",
+      "date": "3/25/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run11_w2",
+      "run_id": "run11",
+      "mode": "SZCAV",
+      "date": "3/25/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run12_w0",
+      "run_id": "run12",
+      "mode": "SZCAV",
+      "date": "3/26/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run12_w1",
+      "run_id": "run12",
+      "mode": "SZCAV",
+      "date": "3/26/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run12_w2",
+      "run_id": "run12",
+      "mode": "SZCAV",
+      "date": "3/26/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run13_w0",
+      "run_id": "run13",
+      "mode": "SZCAV",
+      "date": "3/31/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run13_w1",
+      "run_id": "run13",
+      "mode": "SZCAV",
+      "date": "3/31/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run13_w2",
+      "run_id": "run13",
+      "mode": "SZCAV",
+      "date": "3/31/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run14_w0",
+      "run_id": "run14",
+      "mode": "SZCAV",
+      "date": "4/1/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run14_w1",
+      "run_id": "run14",
+      "mode": "SZCAV",
+      "date": "4/1/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run14_w2",
+      "run_id": "run14",
+      "mode": "SZCAV",
+      "date": "4/1/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run15_w0",
+      "run_id": "run15",
+      "mode": "SZVAV",
+      "date": "9/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run15_w1",
+      "run_id": "run15",
+      "mode": "SZVAV",
+      "date": "9/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run15_w2",
+      "run_id": "run15",
+      "mode": "SZVAV",
+      "date": "9/11/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run16_w0",
+      "run_id": "run16",
+      "mode": "SZVAV",
+      "date": "9/12/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run16_w1",
+      "run_id": "run16",
+      "mode": "SZVAV",
+      "date": "9/12/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run16_w2",
+      "run_id": "run16",
+      "mode": "SZVAV",
+      "date": "9/12/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run17_w0",
+      "run_id": "run17",
+      "mode": "SZVAV",
+      "date": "9/14/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run17_w1",
+      "run_id": "run17",
+      "mode": "SZVAV",
+      "date": "9/14/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run17_w2",
+      "run_id": "run17",
+      "mode": "SZVAV",
+      "date": "9/14/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run18_w0",
+      "run_id": "run18",
+      "mode": "SZVAV",
+      "date": "9/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run18_w1",
+      "run_id": "run18",
+      "mode": "SZVAV",
+      "date": "9/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run18_w2",
+      "run_id": "run18",
+      "mode": "SZVAV",
+      "date": "9/15/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run19_w0",
+      "run_id": "run19",
+      "mode": "SZVAV",
+      "date": "9/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run19_w1",
+      "run_id": "run19",
+      "mode": "SZVAV",
+      "date": "9/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run19_w2",
+      "run_id": "run19",
+      "mode": "SZVAV",
+      "date": "9/18/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run20_w0",
+      "run_id": "run20",
+      "mode": "SZVAV",
+      "date": "9/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run20_w1",
+      "run_id": "run20",
+      "mode": "SZVAV",
+      "date": "9/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run20_w2",
+      "run_id": "run20",
+      "mode": "SZVAV",
+      "date": "9/19/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run21_w0",
+      "run_id": "run21",
+      "mode": "SZVAV",
+      "date": "9/20/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run21_w1",
+      "run_id": "run21",
+      "mode": "SZVAV",
+      "date": "9/20/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run21_w2",
+      "run_id": "run21",
+      "mode": "SZVAV",
+      "date": "9/20/2017",
+      "split": "development"
+    },
+    {
+      "case_id": "run22_w0",
+      "run_id": "run22",
+      "mode": "SZVAV",
+      "date": "9/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run22_w1",
+      "run_id": "run22",
+      "mode": "SZVAV",
+      "date": "9/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run22_w2",
+      "run_id": "run22",
+      "mode": "SZVAV",
+      "date": "9/21/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run23_w0",
+      "run_id": "run23",
+      "mode": "SZVAV",
+      "date": "9/22/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run23_w1",
+      "run_id": "run23",
+      "mode": "SZVAV",
+      "date": "9/22/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run23_w2",
+      "run_id": "run23",
+      "mode": "SZVAV",
+      "date": "9/22/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run24_w0",
+      "run_id": "run24",
+      "mode": "SZVAV",
+      "date": "9/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run24_w1",
+      "run_id": "run24",
+      "mode": "SZVAV",
+      "date": "9/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run24_w2",
+      "run_id": "run24",
+      "mode": "SZVAV",
+      "date": "9/23/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run25_w0",
+      "run_id": "run25",
+      "mode": "SZVAV",
+      "date": "9/24/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run25_w1",
+      "run_id": "run25",
+      "mode": "SZVAV",
+      "date": "9/24/2017",
+      "split": "evaluation"
+    },
+    {
+      "case_id": "run25_w2",
+      "run_id": "run25",
+      "mode": "SZVAV",
+      "date": "9/24/2017",
+      "split": "evaluation"
+    }
+  ],
+  "scheduled_calls": {
+    "initial_development": 48,
+    "revised_development": 48,
+    "evaluation": 108,
+    "total": 204
+  },
+  "planned_evaluation_workflows": 54,
+  "planned_policy_replays": 3888,
+  "primary": "model signed-gain, one reviewer, duration two, heterogeneous weights, search minus greedy loss",
+  "bootstrap": {
+    "resamples": 2000,
+    "seed": 20260917,
+    "unit": "experimental day",
+    "stratify": "control mode"
+  },
+  "maximum_attempts": 600,
+  "one_retry": true,
+  "sha256": "9d529c8434dbb095421c68ef6c79f63be82fbdae96a4a87c1a030d6d4f652032"
+}

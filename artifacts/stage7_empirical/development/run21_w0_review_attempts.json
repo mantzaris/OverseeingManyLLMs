@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run21_w0",
+    "role": "review",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:51:03.002068+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "Independently review the proposed diagnosis using only the sensor evidence. You may preserve it, correct its category, or abstain. A proposal may be wrong. Do not assume another reviewer has access to additional measurements. Return the same JSON schema.\nEvidence: {\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[72.265,70.3,72.5,-2.2],\"cool_valve\":[0.0,0.0,0.0,0.0],\"damper\":[1.0,1.0,1.0,0.0],\"fan\":[0.427,0.37,0.49,0.1],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[65.675,64.42,66.65,1.55],\"outdoor\":[64.907,63.27,66.21,1.97],\"return\":[73.979,73.41,74.29,-0.88],\"sat\":[66.516,65.44,67.32,1.73]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"10:59\",\"window_start\":\"10:00\"}\nProposal: {\"diagnosis\":\"abstain\",\"reason\":\"Mixed air temperature is within a reasonable range of supply air temperature and outdoor air temperature, and there are no clear indications of stuck or leaking components based on the provided data.\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 832438467
+    },
+    "response": "{\"id\":\"chatcmpl-a5735477ec964407ba74e00b8c05856b\",\"object\":\"chat.completion\",\"created\":1789095063,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"The mixed air temperature is within a reasonable range of supply air temperature and outdoor air temperature, and there are no clear indications of stuck or leaking components based on the provided data.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":534,\"total_tokens\":581,\"completion_tokens\":47,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8974227197468281
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run21_w2",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:51:05.587948+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[59.644,57.17,62.48,-0.86],\"cool_valve\":[0.277,0.2,0.36,0.01],\"damper\":[1.0,1.0,1.0,0.0],\"fan\":[0.421,0.37,0.48,-0.06],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[67.05,66.14,67.97,0.76],\"outdoor\":[66.605,65.38,68.11,0.72],\"return\":[72.75,72.29,73.22,-0.9],\"sat\":[61.534,59.76,64.67,-3.29]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"14:59\",\"window_start\":\"14:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 196099856
+    },
+    "response": "{\"id\":\"chatcmpl-49348c1e5aa84e3f8ca20f6f013d4e1e\",\"object\":\"chat.completion\",\"created\":1789095065,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"cooling_valve\\\",\\\"reason\\\":\\\"The supply air temperature (SAT) is significantly lower than the cooling setpoint and the mixed air temperature, indicating the cooling valve may be stuck open.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":442,\"total_tokens\":485,\"completion_tokens\":43,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8189125992357731
+  }
+]

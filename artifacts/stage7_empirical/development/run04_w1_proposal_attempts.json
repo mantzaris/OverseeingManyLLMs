@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run04_w1",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:31.861932+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZCAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[86.0,86.0,86.0,0.0],\"cool_valve\":[0.0,0.0,0.0,0.0],\"damper\":[0.15,0.15,0.15,0.0],\"fan\":[0.5,0.5,0.5,0.0],\"heat_sp\":[66.28,61.81,68.62,-6.19],\"heat_valve\":[0.202,0.0,0.304158244,-0.293],\"mixed\":[66.209,65.78,66.8,0.73],\"outdoor\":[57.77,56.73,59.8,3.06],\"return\":[68.871,68.32,69.42,-0.88],\"sat\":[67.275,66.19,68.6,-1.69]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"12:59\",\"window_start\":\"12:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 1552964888
+    },
+    "response": "{\"id\":\"chatcmpl-adf09d842d2b48b7b2de47c22e0a21d0\",\"object\":\"chat.completion\",\"created\":1789095031,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Insufficient evidence to determine a fault; supply air temperature (SAT) is within expected range given the mixed air temperature and setpoints.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":443,\"total_tokens\":482,\"completion_tokens\":39,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.7335642296820879
+  }
+]

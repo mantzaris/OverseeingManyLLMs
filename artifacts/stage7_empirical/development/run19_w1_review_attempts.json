@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run19_w1",
+    "role": "review",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:59.071706+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "Independently review the proposed diagnosis using only the sensor evidence. You may preserve it, correct its category, or abstain. A proposal may be wrong. Do not assume another reviewer has access to additional measurements. Return the same JSON schema.\nEvidence: {\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[60.876,55.04,64.63,-8.88],\"cool_valve\":[0.305,0.19,0.43,0.18],\"damper\":[1.0,1.0,1.0,0.0],\"fan\":[0.46,0.4,0.5,-0.07],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[66.961,65.74,68.23,1.89],\"outdoor\":[65.535,63.54,67.92,3.03],\"return\":[73.8,72.66,74.28,-1.29],\"sat\":[62.064,56.99,64.7,-6.97]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"12:59\",\"window_start\":\"12:00\"}\nProposal: {\"diagnosis\":\"abstain\",\"reason\":\"Mixed air temperature is consistently higher than supply air temperature and setpoints, but without a clear indication of a stuck or leaking component, no single fault can be definitively diagnosed.\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 755661810
+    },
+    "response": "{\"id\":\"chatcmpl-e416aa9d6b704de4ab5b5193906d9dc2\",\"object\":\"chat.completion\",\"created\":1789095059,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Mixed air temperature is consistently higher than supply air temperature and setpoints, but without a clear indication of a stuck or leaking component, no single fault can be definitively diagnosed.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":538,\"total_tokens\":585,\"completion_tokens\":47,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8924277704209089
+  }
+]

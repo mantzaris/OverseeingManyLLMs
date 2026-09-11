@@ -1,0 +1,60 @@
+{
+  "dataset_title": "Dataset for building fault detection and diagnostics algorithm creation and performance testing",
+  "version": 3,
+  "doi": "10.6084/m9.figshare.11752740.v3",
+  "license": {
+    "value": 2,
+    "name": "CC0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  "landing_url": "https://figshare.com/articles/dataset/LBNLDataSynthesisInventory_pdf/11752740/3",
+  "api": "https://api.figshare.com/v2/articles/11752740/versions/3",
+  "selected_files": [
+    {
+      "id": 21403005,
+      "name": "LBNLDataSynthesisInventory.pdf",
+      "size": 1222383,
+      "is_link_only": false,
+      "download_url": "https://ndownloader.figshare.com/files/21403005",
+      "supplied_md5": "4aa480d3c6a52d60a0f3394ecfdd5d88",
+      "computed_md5": "4aa480d3c6a52d60a0f3394ecfdd5d88",
+      "mimetype": "application/pdf"
+    },
+    {
+      "id": 21403020,
+      "name": "SZCAV.csv",
+      "size": 1582521,
+      "is_link_only": false,
+      "download_url": "https://ndownloader.figshare.com/files/21403020",
+      "supplied_md5": "888bca741aa61fedc5459c667a312598",
+      "computed_md5": "888bca741aa61fedc5459c667a312598",
+      "mimetype": "text/plain"
+    },
+    {
+      "id": 21403023,
+      "name": "SZVAV.csv",
+      "size": 1207524,
+      "is_link_only": false,
+      "download_url": "https://ndownloader.figshare.com/files/21403023",
+      "supplied_md5": "801640dd2dfdc0d4089d1283b2611314",
+      "computed_md5": "801640dd2dfdc0d4089d1283b2611314",
+      "mimetype": "text/plain"
+    }
+  ],
+  "source_type": "Physical FLEXLAB experiments on test cell X3A air handler, two control modes; manually imposed faults; not occupied production operation",
+  "ground_truth": "Inventory Tables 3-3 and 3-4 date-to-component mapping, binary CSV fault column cross-checked offline",
+  "exclusions": [
+    "All simulated CSV files",
+    "RTU and MZVAV experimental files outside bounded scope"
+  ],
+  "transformation": "Three complete 60-minute windows at 10,12,14 local recording hours per run. Preserve degrees F and fractional commands. Summarize mean/min/max/end-start. No statistical preprocessing fit for LLM. Source date, filename, fault indicator and taxonomy label withheld.",
+  "split": "First chronological run of every class within each mode for development; remaining whole days evaluation; all windows of a day kept together",
+  "independence": "26 experimental day blocks on one equipment/test facility, not 26 independent buildings. Three windows within each block are correlated. Conditional day-block inference only.",
+  "sql": {
+    "critic_url": "https://github.com/bird-bench/BIRD-CRITIC-1#dataset-uses",
+    "license": "CC BY-SA 4.0 data; MIT repository code",
+    "limitation": "Public SQLite records omit sol_sql and test_cases; official route requires email. No contact made.",
+    "fallback": "BIRD-SQL public development references and database downloads exist at https://bird-bench.github.io/; separate database audit and valid execution study cannot fit remaining original deadline while completing primary measured study. No SQL inference or empirical claim."
+  },
+  "optional_fraud": "Omitted; synthetic, not measured-data validation"
+}

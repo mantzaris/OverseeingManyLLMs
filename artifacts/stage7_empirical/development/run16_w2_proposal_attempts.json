@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run16_w2",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:50:54.860787+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You diagnose a single-zone air handler from measured sensor summaries. Select exactly one: normal, outdoor_damper, heating_valve, cooling_valve, abstain. Fault categories include stuck or leaking components. Temperatures are degrees Fahrenheit; controls are fractions, not verified physical positions. Compare supply temperature with setpoints and mixed air, and outdoor/return/mixed relationships. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZVAV\",\"n_samples\":60,\"readings\":{\"cool_sp\":[55.04,55.04,55.04,0.0],\"cool_valve\":[1.0,1.0,1.0,0.0],\"damper\":[1.0,1.0,1.0,0.0],\"fan\":[0.5,0.5,0.5,0.0],\"heat_sp\":[53.04,53.04,53.04,0.0],\"heat_valve\":[0.0,0.0,0.0,0.0],\"mixed\":[70.257,69.04,71.57,-0.92],\"outdoor\":[68.916,66.91,70.81,-0.76],\"return\":[83.222,82.52,84.01,0.6],\"sat\":[79.493,76.12,81.86,2.52]},\"sample_interval_minutes\":1,\"statistic_order\":[\"mean\",\"min\",\"max\",\"last_minus_first\"],\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"14:59\",\"window_start\":\"14:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 1099683934
+    },
+    "response": "{\"id\":\"chatcmpl-c1c0de34eee04323893b9a3e91a1a323\",\"object\":\"chat.completion\",\"created\":1789095054,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"abstain\\\",\\\"reason\\\":\\\"Mixed air temperature is within a reasonable range of return and outdoor air temperatures, and there are no clear indications of stuck or leaking components based on the provided data.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":433,\"total_tokens\":477,\"completion_tokens\":44,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.8385225534439087
+  }
+]
