@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT W Vineyards.Name, T.Type FROM Wine_Regions AS V Vineyards JOIN Wine_Regions_Winery_Tours AS WRT ON V Vineyards.RegionID = WRT.WineRegionID JOIN Winery_Tours AS T ON WRT.TourType = T.Type"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the wine regions and the types of tours they offer",
+          "sql": "SELECT W.Name, WT.Type FROM Wine_Regions W JOIN Wine_Regions_Winery_Tours WRT ON W.RegionID = WRT.WineRegionID JOIN Winery_Tours WT ON WRT.TourType = WT.Type"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the tours available in each wine region.",
+          "sql": "SELECT WRT.WineRegionID, WT.Type FROM Wine_Regions_Winery_Tours AS WRT JOIN Winery_Tours AS WT ON WRT.TourType = WT.Type"
+        },
+        {
+          "meaning": "List the tour types offered by each wine region.",
+          "sql": "SELECT WRT.WineRegionID, WRT.TourType FROM Wine_Regions_Winery_Tours AS WRT"
+        },
+        {
+          "meaning": "Display the tour types and their durations for each wine region.",
+          "sql": "SELECT WRT.WineRegionID, WT.Type, WT.Duration FROM Wine_Regions_Winery_Tours AS WRT JOIN Winery_Tours AS WT ON WRT.TourType = WT.Type"
+        }
+      ],
+      "source_quote_sha256": "f713d5d65782dba476fe5e35241a8056ffced82fae0886c162183544b7f7cd6d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1457",
+  "public_hash": "e25e126986d065138b80b86cc9c1f23b172274245cb18540189921b9163895b0",
+  "rep": 1,
+  "split": "evaluation"
+}

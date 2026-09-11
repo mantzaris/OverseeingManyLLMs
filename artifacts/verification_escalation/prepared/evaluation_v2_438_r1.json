@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Name, Location FROM Beach_Clubs WHERE Beach_id = (SELECT id FROM Beaches WHERE PhoneNumber = '555-555-5555') UNION SELECT name, Item FROM Watersports_Rentals WHERE Beach_id = (SELECT id FROM Beaches WHERE PhoneNumber = '555-555-5555')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find beach clubs and water sport rentals where the beach's phone number is 555-555-5555.",
+          "sql": "SELECT T1.id, T1.Name, T1.Location, T1.OpeningHours, T1.PriceRange, T2.id AS Watersports_Rental_id, T2.name, T2.Item, T2.RentalRate, T2.AvailableDays FROM Beach_Clubs AS T1 JOIN Watersports_Rentals AS T2 ON T1.Beach_id = T2.Beach_id JOIN Beaches AS T3 ON T1.Beach_id = T3.id WHERE T3.PhoneNumber = '555-555-5555'"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find beach clubs and water sport rentals associated with the beach having the phone number 555-555-5555.",
+          "sql": "SELECT T1.Name, T1.Location, T3.Item, T3.RentalRate FROM Beach_Clubs AS T1 JOIN Beaches AS T2 ON T1.Beach_id = T2.id JOIN Watersports_Rentals AS T3 ON T3.Beach_id = T2.id WHERE T2.PhoneNumber = '555-555-5555'"
+        },
+        {
+          "meaning": "List all beach clubs and water sport rentals without filtering by the beach's phone number, but include only those associated with the beach having the phone number 555-555-5555.",
+          "sql": "SELECT T1.Name, T1.Location, T3.Item, T3.RentalRate FROM Beach_Clubs AS T1 JOIN Beaches AS T2 ON T1.Beach_id = T2.id JOIN Watersports_Rentals AS T3 ON T3.Beach_id = T2.id WHERE T2.PhoneNumber = '555-555-5555'"
+        },
+        {
+          "meaning": "Identify beach clubs and water sport rentals that are located at the beach with the phone number 555-555-5555, and list their details.",
+          "sql": "SELECT T1.Name, T1.Location, T3.Item, T3.RentalRate FROM Beach_Clubs AS T1 JOIN Beaches AS T2 ON T1.Beach_id = T2.id JOIN Watersports_Rentals AS T3 ON T3.Beach_id = T2.id WHERE T2.PhoneNumber = '555-555-5555'"
+        }
+      ],
+      "source_quote_sha256": "8f108dfc8c9151f718548ff77fc797d130dbac1e13002c8d4a90920d67c964a3",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "438",
+  "public_hash": "47191f34a57c5b276eee73ca3da94954489cce04a840449c18c12c6c3aab49bf",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.medicalDeviceId = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all medical devices and their makers.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.medicalDeviceId = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the names of all medical devices along with their respective makers.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.medicalDeviceId = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        },
+        {
+          "meaning": "List all medical devices and the companies that have been involved in their development, regardless of whether they are the current maker.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.medicalDeviceId = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        },
+        {
+          "meaning": "Display the names of all medical devices and their makers, considering the most recent development company as the maker.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN (SELECT medicalDeviceId, companyId FROM DeviceDevelopment ORDER BY endDate DESC LIMIT 1) AS LatestDevelopment ON MedicalDevices.medicalDeviceId = LatestDevelopment.medicalDeviceId JOIN Companies ON LatestDevelopment.companyId = Companies.id"
+        }
+      ],
+      "source_quote_sha256": "e1aa578a7ebfd71a15c35f6ee3c097010d93ff67df1da9381778a84163a79944",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2833",
+  "public_hash": "12296c5e391ae36de805f3ed4e2b41f3ceb72f9f79aad73fbd0ac3077069de5b",
+  "rep": 0,
+  "split": "evaluation"
+}

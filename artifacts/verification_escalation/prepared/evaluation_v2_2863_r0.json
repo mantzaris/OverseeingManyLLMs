@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Title FROM Movies ORDER BY Running_Time DESC"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List movies sorted by descending order of duration (Running_Time)",
+          "sql": "SELECT * FROM Movies ORDER BY Running_Time DESC"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List movies sorted by their duration in descending order.",
+          "sql": "SELECT * FROM Movies ORDER BY Running_Time DESC"
+        },
+        {
+          "meaning": "List movies sorted by the length of their extended version in descending order if available, otherwise by their regular duration.",
+          "sql": "SELECT * FROM Movies ORDER BY COALESCE(Extended_Version_Length, Running_Time) DESC"
+        },
+        {
+          "meaning": "List movies sorted by the sum of their duration and extended version length in descending order.",
+          "sql": "SELECT * FROM Movies ORDER BY Running_Time + COALESCE(Extended_Version_Length, 0) DESC"
+        }
+      ],
+      "source_quote_sha256": "29ba3c177fac647542a93dd456e1856cd095d16e4b614f31ef49614f614bebf1",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2863",
+  "public_hash": "2980189d780d18a9b416bcca571e5f9378df3b10f48e190f03958b267f29e25e",
+  "rep": 0,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT ta.name, d.destination_name FROM Travel_Agencies ta JOIN Travel_Agencies_Destinations tad ON ta.id = tad.travel_agency_id JOIN Destinations d ON tad.destination_id = d.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the destination names associated with each travel agency.",
+          "sql": "SELECT ta.name, d.destination_name FROM Travel_Agencies ta JOIN Travel_Agencies_Destinations tad ON ta.id = tad.travel_agency_id JOIN Destinations d ON tad.destination_id = d.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the destination names associated with each travel agency based on bookings.",
+          "sql": "SELECT T3.name, T2.destination_name FROM Bookings AS T1 JOIN Destinations AS T2 ON T1.destination_id = T2.id JOIN Travel_Agencies AS T3 ON T1.travel_agency_id = T3.id GROUP BY T3.name, T2.destination_name"
+        },
+        {
+          "meaning": "Find the destination names associated with each travel agency based on the direct association in the Travel_Agencies_Destinations table.",
+          "sql": "SELECT T1.name, T2.destination_name FROM Travel_Agencies AS T1 JOIN Travel_Agencies_Destinations AS T3 ON T1.id = T3.travel_agency_id JOIN Destinations AS T2 ON T3.destination_id = T2.id"
+        },
+        {
+          "meaning": "Find the destination names associated with each travel agency by combining both bookings and direct associations.",
+          "sql": "SELECT T3.name, T2.destination_name FROM Bookings AS T1 JOIN Destinations AS T2 ON T1.destination_id = T2.id JOIN Travel_Agencies AS T3 ON T1.travel_agency_id = T3.id UNION SELECT T1.name, T2.destination_name FROM Travel_Agencies AS T1 JOIN Travel_Agencies_Destinations AS T3 ON T1.id = T3.travel_agency_id JOIN Destinations AS T2 ON T3.destination_id = T2.id GROUP BY T3.name, T2.destination_name"
+        }
+      ],
+      "source_quote_sha256": "c1d9c2054986b94b1e5588332cd6b3ddb8692a6692cc72028445f051ec910614",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1461",
+  "public_hash": "1714bed63e87ada01b7b30768d3b1ea6f90bd81aa06c58fa739ab52b4870c499",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT p.name, f.fieldName FROM Physicists p JOIN Physicist_Fields pf ON p.id = pf.physicistId JOIN Fields f ON pf.fieldId = f.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the field names for each physicist.",
+          "sql": "SELECT P.name, F.fieldName FROM Physicists P JOIN Physicist_Fields PF ON P.id = PF.physicistId JOIN Fields F ON PF.fieldId = F.id"
+        }
+      ],
+      "source_quote_sha256": "7904e5e18c7e2da2975c007e8f92c6aaa66428810400985774cf7e184b929ee5",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show a list of fields each physicist works in, including duplicates.",
+          "sql": "SELECT T3.fieldName FROM Physicists AS T1 JOIN Physicist_Fields AS T2 ON T1.id = T2.physicistId JOIN Fields AS T3 ON T2.fieldId = T3.id"
+        },
+        {
+          "meaning": "List all fields and count how many physicists work in each field, without duplicates.",
+          "sql": "SELECT T3.fieldName, COUNT(*) FROM Physicists AS T1 JOIN Physicist_Fields AS T2 ON T1.id = T2.physicistId JOIN Fields AS T3 ON T2.fieldId = T3.id GROUP BY T3.fieldName"
+        },
+        {
+          "meaning": "Show a list of unique fields each physicist works in, without duplicates for each physicist.",
+          "sql": "SELECT T1.name, GROUP_CONCAT(DISTINCT T3.fieldName) FROM Physicists AS T1 JOIN Physicist_Fields AS T2 ON T1.id = T2.physicistId JOIN Fields AS T3 ON T2.fieldId = T3.id GROUP BY T1.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1421",
+  "public_hash": "20b0000dad8f7d8cf93274df14b66e89bc47c7c11d29f8acba55bf40104886b4",
+  "rep": 0,
+  "split": "evaluation"
+}

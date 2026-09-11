@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the types of building types associated with each architect.",
+          "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the types of buildings each architect is associated with.",
+          "sql": "SELECT a.name, bt.type FROM Architects a JOIN Architects_Building_Types abt ON a.id = abt.architect_id JOIN Building_Types bt ON abt.building_type_id = bt.id"
+        },
+        {
+          "meaning": "Identify the building types that each architect has worked on, based on job postings.",
+          "sql": "SELECT a.name, b.title, bt.type FROM Architects a JOIN Job_Postings b ON a.name = b.title AND b.title LIKE '%Architect%' JOIN Building_Types bt ON b.description LIKE '%Residential%' OR b.description LIKE '%Commercial%' OR b.description LIKE '%Industrial%' OR b.description LIKE '%Institutional%' OR b.description LIKE '%Mixed-Use%'"
+        },
+        {
+          "meaning": "Find the building types associated with each architect based on their job postings and required skills.",
+          "sql": "SELECT a.name, bt.type FROM Architects a JOIN Job_Postings b ON a.name = b.title AND b.title LIKE '%Architect%' JOIN Building_Types bt ON b.required_skills LIKE '%Residential%' OR b.required_skills LIKE '%Commercial%' OR b.required_skills LIKE '%Industrial%' OR b.required_skills LIKE '%Institutional%' OR b.required_skills LIKE '%Mixed-Use%'"
+        }
+      ],
+      "source_quote_sha256": "25f94527602fc556f9e6539bb5d1370e899ee75628d807e35cae12c6f65712b4",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1444",
+  "public_hash": "6e3ec6dba2d361f6171ae428eee5bb208cc02470d56e33883fbb58a69ff5ce02",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT chaletName FROM Chalets WHERE pricePerNight = 200.0 UNION SELECT cabinName FROM Cabins WHERE pricePerNight = 200.0"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display chalets and cabins that cost $200 per night.",
+          "sql": "SELECT chaletName, pricePerNight FROM Chalets WHERE pricePerNight = 200.0 UNION SELECT cabinName, pricePerNight FROM Cabins WHERE pricePerNight = 200.0"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display chalets and cabins that have a price per night of $200.",
+          "sql": "SELECT * FROM Chalets WHERE pricePerNight = 200.0 UNION SELECT * FROM Cabins WHERE pricePerNight = 200.0"
+        },
+        {
+          "meaning": "Display chalets and cabins that have a total booking cost of $200 per night.",
+          "sql": "SELECT Chalets.* FROM Chalets JOIN Bookings ON Chalets.id = Bookings.chaletId WHERE Bookings.totalCost = 200.0 UNION SELECT Cabins.* FROM Cabins JOIN Bookings ON Cabins.id = Bookings.cabinId WHERE Bookings.totalCost = 200.0"
+        },
+        {
+          "meaning": "Display chalets and cabins that are available for $200 per night, assuming the price is per night.",
+          "sql": "SELECT * FROM Chalets WHERE pricePerNight = 200.0 UNION SELECT * FROM Cabins WHERE pricePerNight = 200.0"
+        }
+      ],
+      "source_quote_sha256": "d0240ee65ae7a22e39978e5f5f7b3e5db53201df48e42d566953dfe6511b9562",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "433",
+  "public_hash": "00eb86c6c2defe7f59ba706e39b503f10af53d885b91d42474be5019aecb0ee4",
+  "rep": 1,
+  "split": "evaluation"
+}

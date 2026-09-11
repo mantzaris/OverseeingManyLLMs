@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.model AS Espresso_Model, T2.model AS Blender_Model FROM Espresso_Machine AS T1 JOIN Apartments AS T3 ON T1.apartment_id = T3.id JOIN Blender AS T2 ON T2.apartment_id = T3.id WHERE T3.type = 'Residential' AND T3.name = 'High-end Residential'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all espresso machines and blenders in high-end residential apartments",
+          "sql": "SELECT T1.model, T1.price FROM Espresso_Machine AS T1 JOIN Apartments AS T2 ON T1.apartment_id = T2.id WHERE T2.type = 'Residential' AND T2.name LIKE 'High-end%' UNION SELECT T1.model, T1.price FROM Blender AS T1 JOIN Apartments AS T2 ON T1.apartment_id = T2.id WHERE T2.type = 'Residential' AND T2.name LIKE 'High-end%'"
+        }
+      ],
+      "source_quote_sha256": "b5c980fa4b70729bfe6e9082a8019c15feeda8e2b10e7cd66d3e08c8262924f7",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show all espresso machines and blenders in high-end residential apartments in New York.",
+          "sql": "SELECT * FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York') UNION SELECT * FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York')"
+        },
+        {
+          "meaning": "Show the models and prices of all espresso machines and blenders in high-end residential apartments in New York.",
+          "sql": "SELECT model, price FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York') UNION SELECT model, price FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York')"
+        },
+        {
+          "meaning": "Show the count of espresso machines and blenders in high-end residential apartments in New York.",
+          "sql": "SELECT COUNT(*) AS espresso_machines FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York') UNION SELECT COUNT(*) AS blenders FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND city = 'New York')"
+        }
+      ],
+      "source_quote_sha256": "d59fd094db3d0ad638b81e994dad150b296456b246cd3e12e1f69aebd424724f",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "449",
+  "public_hash": "626461b49fbc4fa89c0198d69911b8f8e781bfc11617d19e6db2d64f684da1b1",
+  "rep": 0,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT AB.name, U.description FROM Apartment_Buildings AB JOIN Apartment_Buildings_Units ABU ON AB.id = ABU.building_id JOIN Units U ON ABU.unit_id = U.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For each apartment building, list the unit descriptions associated with the units in that building.",
+          "sql": "SELECT ab.name, u.description FROM Apartment_Buildings ab JOIN Apartment_Buildings_Units abu ON ab.id = abu.building_id JOIN Units u ON abu.unit_id = u.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the unit descriptions for each apartment building.",
+          "sql": "SELECT DISTINCT ab.name, u.description FROM Apartment_Buildings ab JOIN Apartment_Buildings_Units abu ON ab.id = abu.building_id JOIN Units u ON abu.unit_id = u.id"
+        },
+        {
+          "meaning": "List the unit descriptions for all units in each building.",
+          "sql": "SELECT ab.name, u.description FROM Apartment_Buildings ab JOIN Apartment_Buildings_Units abu ON ab.id = abu.building_id JOIN Units u ON abu.unit_id = u.id"
+        },
+        {
+          "meaning": "Retrieve the unit descriptions for the units associated with each building.",
+          "sql": "SELECT DISTINCT ab.name, u.description FROM Apartment_Buildings ab JOIN Apartment_Buildings_Units abu ON ab.id = abu.building_id JOIN Units u ON abu.unit_id = u.id"
+        }
+      ],
+      "source_quote_sha256": "c7a49f2afacbf8360f8f4ddb93cb102570ad81ea104cc115ba9ac132ed9753fc",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1445",
+  "public_hash": "a1ee792afbad5d0548015f6de414fa547d7dd56d0f568574e6476c93f8160206",
+  "rep": 1,
+  "split": "evaluation"
+}

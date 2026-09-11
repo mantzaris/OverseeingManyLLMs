@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT T2.address, T2.postal_code FROM Application AS T1 JOIN Internship AS T3 ON T1.internship_id = T3.id JOIN Office_Address AS T2 ON T3.office_address_id = T2.id JOIN Employee AS T4 ON T1.employee_id = T4.id WHERE T4.first_name = 'Alice' AND T4.last_name = 'Brown'}"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the office location of the internship where Alice Brown is an applicant.",
+          "sql": "SELECT T2.address, T2.postal_code FROM Application AS T1 JOIN Internship AS T2 ON T1.internship_id = T2.id JOIN Employee AS T3 ON T1.employee_id = T3.id WHERE T3.first_name = 'Alice' AND T3.last_name = 'Brown'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the office location of the internship Alice Brown is associated with.",
+          "sql": "SELECT T2.address, T2.postal_code FROM Application AS T1 JOIN Internship AS T2 ON T1.internship_id = T2.id JOIN Employee AS T3 ON T1.employee_id = T3.id WHERE T3.first_name = 'Alice' AND T3.last_name = 'Brown'"
+        },
+        {
+          "meaning": "Find the office location of the department Alice Brown is currently in.",
+          "sql": "SELECT T2.address, T2.postal_code FROM Employee AS T1 JOIN Department AS T2 ON T1.department_id = T2.id WHERE T1.first_name = 'Alice' AND T1.last_name = 'Brown'"
+        },
+        {
+          "meaning": "Find the office location of the company Alice Brown is employed by.",
+          "sql": "SELECT T2.address, T2.postal_code FROM Employee AS T1 JOIN Department AS T2 ON T1.department_id = T2.id JOIN Company AS T3 ON T2.company_id = T3.id WHERE T1.first_name = 'Alice' AND T1.last_name = 'Brown'"
+        }
+      ],
+      "source_quote_sha256": "d4dfd98eaefd4e31b03a2583793cec981a6189fc050501a5c530f5ca08f9c709",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2765",
+  "public_hash": "9a2c2672451d9bb2b745b52cfd41f372482517e8ca6020e15644e9934e29034c",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Alice's internship office address",
+        "sql": "SELECT address, postal_code FROM Office_Address WHERE id = (SELECT office_address_id FROM Internship WHERE title = 'Software Engineer' AND applicant_full_name = 'Alice Brown');"
+      },
+      {
+        "meaning": "Alice's department office address (assuming she is a full-time employee)",
+        "sql": "SELECT address, postal_code FROM Office_Address WHERE id = (SELECT department_id FROM Employee WHERE first_name = 'Alice' AND last_name = 'Brown');"
+      },
+      {
+        "meaning": "Alice's internship office city",
+        "sql": "SELECT city_name FROM City WHERE id = (SELECT city_id FROM Internship WHERE title = 'Software Engineer' AND applicant_full_name = 'Alice Brown');"
+      }
+    ],
+    "source_quote_sha256": "d4dfd98eaefd4e31b03a2583793cec981a6189fc050501a5c530f5ca08f9c709",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

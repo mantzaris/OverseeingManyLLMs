@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT OperationID, ProfitMargin AS Profit, OperationYears AS Year FROM Operations"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "profit per operation and the date of the operation",
+          "sql": "SELECT OperationID, ProfitMargin, OperationYears, OperationMonths FROM Operations"
+        }
+      ],
+      "source_quote_sha256": "182fa5cf028824f9a215eb7f5c285e656d5b9954b45bb70a8c41a74e18ed62e7",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Profit per operation and the date of the operation.",
+          "sql": "SELECT OperationID, ProfitMargin, PublishDate FROM Operations"
+        },
+        {
+          "meaning": "Profit per operation and the years and months of the operation.",
+          "sql": "SELECT OperationID, ProfitMargin, OperationYears, OperationMonths FROM Operations"
+        },
+        {
+          "meaning": "Profit per operation and the media outlet of the operation.",
+          "sql": "SELECT OperationID, ProfitMargin, MediaOutlet FROM Operations"
+        }
+      ],
+      "source_quote_sha256": "182fa5cf028824f9a215eb7f5c285e656d5b9954b45bb70a8c41a74e18ed62e7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2751",
+  "public_hash": "b7ef015d07a38bec17a1e57fe56032ce968c44aa318a163d705f41a8a21c4e75",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "For each operation, list the profit and the year it occurred.",
+        "sql": "SELECT OperationID, OperationYears, Revenue - Expenses AS Profit FROM Operations;"
+      },
+      {
+        "meaning": "For each operation, list the profit and the specific date it occurred.",
+        "sql": "SELECT OperationID, strftime('%Y-%m-%d', 'now') AS OperationDate, Revenue - Expenses AS Profit FROM Operations;"
+      },
+      {
+        "meaning": "For each operation, list the profit and the year it occurred, assuming the operation occurred at the end of the year.",
+        "sql": "SELECT OperationID, OperationYears, (Revenue - Expenses) * 12 AS AnnualProfit FROM Operations;"
+      }
+    ],
+    "source_quote_sha256": "4f0ea75aadd477e2bf5cec5ee04eef81a5061abccfbe47652ad8432cc9a91eaa",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

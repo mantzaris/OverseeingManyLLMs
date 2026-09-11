@@ -1,0 +1,49 @@
+{
+  "answered": {
+    "sql": "SELECT n.full_name, d.diet_type_value FROM Nutritionists n JOIN Nutritionists_Diets nd ON n.nutritionist_id = nd.nutritionist_id JOIN Diets d ON nd.diet_type_id = d.diet_type_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the diets that all nutritionists cover.",
+          "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets GROUP BY diet_type_id HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists))"
+        }
+      ],
+      "source_quote_sha256": "2084027bd7542e884bfdc4fdf9ef89492ea274fab42f3669a341a123758c1c80",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the diets that are covered by all nutritionists.",
+          "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets GROUP BY diet_type_id HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists))"
+        }
+      ],
+      "source_quote_sha256": "2084027bd7542e884bfdc4fdf9ef89492ea274fab42f3669a341a123758c1c80",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1414",
+  "public_hash": "7ac4bc326464c520dc4b5a191522d8752de09f8bdd351a6b6bcff25ac368e52e",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the diets that every nutritionist covers.",
+        "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets GROUP BY diet_type_id HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists))"
+      },
+      {
+        "meaning": "Show the diets that are covered by all nutritionists.",
+        "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets GROUP BY diet_type_id HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists))"
+      },
+      {
+        "meaning": "Show the diets that are covered by each nutritionist.",
+        "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets)"
+      }
+    ],
+    "source_quote_sha256": "c2200c6a233cbb9a785ff924aa5d0c8137423d96e80858c0be61c9e7911e0409",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

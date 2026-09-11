@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the building types associated with each architect.",
+          "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+        }
+      ],
+      "source_quote_sha256": "25f94527602fc556f9e6539bb5d1370e899ee75628d807e35cae12c6f65712b4",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the types of buildings each architect is associated with.",
+          "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+        },
+        {
+          "meaning": "Identify the specific building types each architect has worked on.",
+          "sql": "SELECT A.name, BT.type FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id"
+        },
+        {
+          "meaning": "Determine the building types that each architect is known for.",
+          "sql": "SELECT A.name, GROUP_CONCAT(BT.type) AS building_types FROM Architects A JOIN Architects_Building_Types ABT ON A.id = ABT.architect_id JOIN Building_Types BT ON ABT.building_type_id = BT.id GROUP BY A.name"
+        }
+      ],
+      "source_quote_sha256": "25f94527602fc556f9e6539bb5d1370e899ee75628d807e35cae12c6f65712b4",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1444",
+  "public_hash": "6e3ec6dba2d361f6171ae428eee5bb208cc02470d56e33883fbb58a69ff5ce02",
+  "rep": 0,
+  "split": "evaluation"
+}

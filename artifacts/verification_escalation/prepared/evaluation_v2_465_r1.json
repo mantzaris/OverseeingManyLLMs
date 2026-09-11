@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.movie_title FROM Movie_Elements AS T1 JOIN Composer AS T2 ON T1.composer_id = T2.id WHERE T2.creator = 'John Williams' AND (T1.element_type = 'Sound Design' OR T1.element_type = 'Music Score')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find films where both sound design and music score are composed by John Williams.",
+          "sql": "SELECT DISTINCT T1.movie_title FROM Movie_Elements AS T1 JOIN Composer AS T2 ON T1.composer_id = T2.id WHERE T2.creator = 'John Williams' AND T1.element_type = 'Sound Design' INTERSECT SELECT DISTINCT T1.movie_title FROM Movie_Elements AS T1 JOIN Composer AS T2 ON T1.composer_id = T2.id WHERE T2.creator = 'John Williams' AND T1.element_type = 'Music Score'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Films with both 'Sound Design' and 'Music Score' composed by John Williams.",
+          "sql": "SELECT T1.title FROM Film AS T1 JOIN Movie_Elements AS T2 ON T1.title = T2.movie_title WHERE T2.composer_id = (SELECT id FROM Composer WHERE creator = 'John Williams') AND T2.element_type IN ('Sound Design', 'Music Score')"
+        },
+        {
+          "meaning": "Films where either 'Sound Design' or 'Music Score' is composed by John Williams.",
+          "sql": "SELECT T1.title FROM Film AS T1 JOIN Movie_Elements AS T2 ON T1.title = T2.movie_title WHERE T2.composer_id = (SELECT id FROM Composer WHERE creator = 'John Williams') AND T2.element_type IN ('Sound Design', 'Music Score')"
+        },
+        {
+          "meaning": "Films where 'Music Score' is composed by John Williams.",
+          "sql": "SELECT T1.title FROM Film AS T1 JOIN Movie_Elements AS T2 ON T1.title = T2.movie_title WHERE T2.composer_id = (SELECT id FROM Composer WHERE creator = 'John Williams') AND T2.element_type = 'Music Score'"
+        }
+      ],
+      "source_quote_sha256": "0e8b3afc063c75037d05d491748c10e14808a21f8b0f1d36b0c38c59ffafbc99",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "465",
+  "public_hash": "5f727af04d8748ecde45ae246a85c0c19afb2a63ebedc8a8f10a348c061afca5",
+  "rep": 1,
+  "split": "evaluation"
+}

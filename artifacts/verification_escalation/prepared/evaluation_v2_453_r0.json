@@ -1,0 +1,31 @@
+{
+  "answered": {
+    "sql": "SELECT FullName FROM Dentists WHERE DentalSpecialty = 'Orthodontist' UNION SELECT FullName FROM Dentists WHERE DentalSpecialty = 'Periodontist' AND EducationID = (SELECT ID FROM Education WHERE Degree = 'Master of Science in Dentistry')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List orthodontists and periodontists with a Master of Science in Dentistry degree",
+          "sql": "SELECT FullName FROM Dentists WHERE DentalSpecialty IN ('Orthodontist', 'Periodontist') AND EducationID = (SELECT ID FROM Education WHERE Degree = 'Master of Science in Dentistry')"
+        }
+      ],
+      "source_quote_sha256": "b95841e2ec6382e3cbc21252caaabf35142ed2780ce8dae558b7bd2b29a64375",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List orthodontists and periodontists who have a Master of Science in Dentistry degree.",
+          "sql": "SELECT FullName FROM Dentists WHERE DentalSpecialty IN ('Orthodontist', 'Periodontist') AND EducationID = (SELECT ID FROM Education WHERE Degree = 'Master of Science in Dentistry')"
+        }
+      ],
+      "source_quote_sha256": "851d17fcdc789d15c13a7e9ee403979fb4be36f11ad660cf06329e3d5f02ac86",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "453",
+  "public_hash": "6f63335294f0ca23949e2f3163fe8517b9deb9efb9aa0e8c3f74b4d4ea2ae41e",
+  "rep": 0,
+  "split": "evaluation"
+}

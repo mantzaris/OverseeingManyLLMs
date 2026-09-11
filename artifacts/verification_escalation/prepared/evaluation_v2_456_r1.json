@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT title FROM Films WHERE genre IN (SELECT genre FROM Film_Genre WHERE film_id IN (SELECT id FROM Films WHERE budget = 20000000.0)) AND genre = 'Horror' UNION SELECT title FROM Films WHERE genre IN (SELECT genre FROM Film_Genre WHERE film_id IN (SELECT id FROM Films WHERE budget = 2000000.0)) AND genre = 'Thriller'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show horror films and thriller films with a budget of 20 million.",
+          "sql": "SELECT title FROM Films WHERE budget = 20000000.0 AND (genre_id = (SELECT id FROM Genres WHERE genre = 'Horror') OR genre_id = (SELECT id FROM Genres WHERE genre = 'Thriller'))"
+        }
+      ],
+      "source_quote_sha256": "8dff56fbbb22c917bff1f550e9443cf146858560629605a896a7ff9505161ca0",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List films that are either horror or thriller and have a budget of exactly 20 million.",
+          "sql": "SELECT title FROM Films WHERE (genre_id = 1 OR genre_id = 2) AND budget = 20000000.0"
+        },
+        {
+          "meaning": "List films that are either horror or thriller and have a budget of at least 20 million.",
+          "sql": "SELECT title FROM Films WHERE (genre_id = 1 OR genre_id = 2) AND budget >= 20000000.0"
+        },
+        {
+          "meaning": "List films that are either horror or thriller and have a budget of no more than 20 million.",
+          "sql": "SELECT title FROM Films WHERE (genre_id = 1 OR genre_id = 2) AND budget <= 20000000.0"
+        }
+      ],
+      "source_quote_sha256": "8dff56fbbb22c917bff1f550e9443cf146858560629605a896a7ff9505161ca0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "456",
+  "public_hash": "1e67af03b9e78bb51bc32bc88ec267fdd28202cb7c171dab66fe9ab8bcf13fa8",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT p.name, s.styleName FROM Photographers p JOIN Photographers_Styles ps ON p.id = ps.photograherId JOIN Styles s ON ps.styleId = s.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the style each photographer uses.",
+          "sql": "SELECT p.name, s.styleName FROM Photographers p JOIN Photographers_Styles ps ON p.id = ps.photographerId JOIN Styles s ON ps.styleId = s.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the style each photographer uses, based on the relationship between the Photographers and Photographers_Styles tables.",
+          "sql": "SELECT P.name, S.styleName FROM Photographers P JOIN Photographers_Styles PS ON P.id = PS.photographerId JOIN Styles S ON PS.styleId = S.id"
+        },
+        {
+          "meaning": "List the names of photographers and their associated styles, showing each photographer's style in a separate row.",
+          "sql": "SELECT P.name, S.styleName FROM Photographers P JOIN Photographers_Styles PS ON P.id = PS.photographerId JOIN Styles S ON PS.styleId = S.id"
+        },
+        {
+          "meaning": "Display the style each photographer uses, considering that a photographer can have multiple styles and showing each style in a separate row.",
+          "sql": "SELECT P.name, S.styleName FROM Photographers P JOIN Photographers_Styles PS ON P.id = PS.photographerId JOIN Styles S ON PS.styleId = S.id"
+        }
+      ],
+      "source_quote_sha256": "8f211dae9dc8666e471798d6c515c61869e2dc1d4bfae4b30020e9bd3c4094d7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1402",
+  "public_hash": "4baa35a3db836bd392d1d0c2bef86b1a7b5d99f25e7954d97621f35073f6d2bc",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List the styles each photographer uses.",
+        "sql": "SELECT p.name, s.styleName FROM Photographers p JOIN Photographers_Styles ps ON p.id = ps.photographerId JOIN Styles s ON ps.styleId = s.id"
+      },
+      {
+        "meaning": "List the unique styles used by all photographers.",
+        "sql": "SELECT DISTINCT styleName FROM Styles WHERE id IN (SELECT styleId FROM Photographers_Styles)"
+      },
+      {
+        "meaning": "List the styles each photographer uses, including those who use multiple styles.",
+        "sql": "SELECT p.name, GROUP_CONCAT(s.styleName) AS styles FROM Photographers p JOIN Photographers_Styles ps ON p.id = ps.photograherId JOIN Styles s ON ps.styleId = s.id GROUP BY p.id"
+      }
+    ],
+    "source_quote_sha256": "4f32e5026084283c8f7859665e51317a558e1bc05c513d94ac6617abb806832c",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

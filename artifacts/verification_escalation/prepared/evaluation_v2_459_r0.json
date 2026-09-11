@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT title FROM Films WHERE genreId = 1 AND filmingLocation = 'New Zealand' UNION SELECT title FROM Films WHERE genreId = 2 AND filmingLocation = 'New Zealand'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show films of genres Sci-Fi and Fantasy that were filmed in New Zealand.",
+          "sql": "SELECT title FROM Films WHERE genreId IN (SELECT id FROM Genres WHERE genreName IN ('Sci-Fi', 'Fantasy')) AND filmingLocation = 'New Zealand'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Retrieve titles of films that are either Sci-Fi or Fantasy genres and were filmed in New Zealand.",
+          "sql": "SELECT title FROM Films WHERE genreId IN (SELECT id FROM Genres WHERE genreName IN ('Sci-Fi', 'Fantasy')) AND filmingLocation = 'New Zealand'"
+        },
+        {
+          "meaning": "Retrieve titles of films that are either Sci-Fi or Fantasy genres and have at least one filming location as New Zealand.",
+          "sql": "SELECT title FROM Films WHERE genreId IN (SELECT id FROM Genres WHERE genreName IN ('Sci-Fi', 'Fantasy')) AND 'New Zealand' IN (SELECT filmingLocation FROM Films)"
+        },
+        {
+          "meaning": "Retrieve titles of films that are either Sci-Fi or Fantasy genres and have New Zealand as their primary filming location.",
+          "sql": "SELECT title FROM Films WHERE genreId IN (SELECT id FROM Genres WHERE genreName IN ('Sci-Fi', 'Fantasy')) AND filmingLocation = 'New Zealand'"
+        }
+      ],
+      "source_quote_sha256": "4e4e62ac0655c1aeba4c5f6ed854e991f34f16f6d2c12eb0b5973f69e131c432",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "459",
+  "public_hash": "e7bc6dcd7ace091a34736e2d505a22f702f08fce6c7fe0017876c060c65f23bb",
+  "rep": 0,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT c.name, f.feature_name FROM Communities AS c JOIN Communities_Features AS cf ON c.id = cf.community_id JOIN Features AS f ON cf.feature_id = f.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all features that are associated with any community.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the names of communities and the features they have.",
+          "sql": "SELECT C.name, F.feature_name FROM Communities AS C JOIN Communities_Features AS CF ON C.id = CF.community_id JOIN Features AS F ON CF.feature_id = F.id"
+        },
+        {
+          "meaning": "List the unique features that are present in every community.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features GROUP BY feature_id HAVING COUNT(DISTINCT community_id) = (SELECT COUNT(*) FROM Communities))"
+        },
+        {
+          "meaning": "Display the features that are common to all communities.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features GROUP BY feature_id HAVING COUNT(DISTINCT community_id) = (SELECT COUNT(*) FROM Communities))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1473",
+  "public_hash": "4893c038ea84f57db3214aaf977eecaa61271eecd48484ee05ab67be121084b7",
+  "rep": 0,
+  "split": "evaluation"
+}

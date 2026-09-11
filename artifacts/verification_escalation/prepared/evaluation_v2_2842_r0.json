@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Description FROM SurgicalProcedures ORDER BY OutOfPocketExpense DESC"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the surgical procedures in descending order of their out-of-pocket expense.",
+          "sql": "SELECT Description FROM SurgicalProcedures ORDER BY OutOfPocketExpense DESC"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List surgical procedures ordered by their out-of-pocket expense in descending order.",
+          "sql": "SELECT Description FROM SurgicalProcedures ORDER BY OutOfPocketExpense DESC"
+        },
+        {
+          "meaning": "List surgical procedures ordered by their total cost (insurance covered + out-of-pocket expense) in descending order.",
+          "sql": "SELECT Description FROM SurgicalProcedures ORDER BY InsuranceCovered + OutOfPocketExpense DESC"
+        },
+        {
+          "meaning": "List surgical procedures ordered by their insurance-covered cost in descending order.",
+          "sql": "SELECT Description FROM SurgicalProcedures ORDER BY InsuranceCovered DESC"
+        }
+      ],
+      "source_quote_sha256": "6bb8e58267f45a655e10276b21c86cb0b8aeeeaacd943e4a426accb0adf8859c",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2842",
+  "public_hash": "35f1ba97fffa2542d5d54916e4a664ea1dcf679fb80b1e7775c03a0e7ef1dbe2",
+  "rep": 0,
+  "split": "evaluation"
+}

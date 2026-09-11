@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T2.name, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Return a list of descriptions for each attraction associated with every theme park.",
+          "sql": "SELECT T2.name AS Theme_Park, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+        }
+      ],
+      "source_quote_sha256": "53445e72ffde469699427530076317e8377e4fd71299c53cca3aefeadebf93c7",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the description of each attraction associated with every theme park.",
+          "sql": "SELECT T2.description, T1.name FROM Theme_Parks AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.park_id = T3.theme_park_id JOIN Attractions AS T2 ON T3.attraction_id = T2.attraction_id"
+        },
+        {
+          "meaning": "List the attractions and their descriptions for each theme park, ensuring each park's attractions are grouped together.",
+          "sql": "SELECT T1.name, GROUP_CONCAT(T2.description) FROM Theme_Parks AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.park_id = T3.theme_park_id JOIN Attractions AS T2 ON T3.attraction_id = T2.attraction_id GROUP BY T1.name"
+        },
+        {
+          "meaning": "Provide a list of all attractions and their descriptions, with each row showing the name of the theme park that has the attraction.",
+          "sql": "SELECT T1.name, T2.description FROM Theme_Parks AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.park_id = T3.theme_park_id JOIN Attractions AS T2 ON T3.attraction_id = T2.attraction_id"
+        }
+      ],
+      "source_quote_sha256": "53445e72ffde469699427530076317e8377e4fd71299c53cca3aefeadebf93c7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1477",
+  "public_hash": "2f861ccbc4b26fabf59ef3d4505b95313aef1b740c7a14a6b9227948715ba587",
+  "rep": 1,
+  "split": "evaluation"
+}

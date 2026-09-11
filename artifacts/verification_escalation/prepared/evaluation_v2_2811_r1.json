@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Opinion FROM Reviews WHERE FilmId = (SELECT ID FROM Film WHERE Title = 'Pulp Fiction')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "The review of the film 'Pulp Fiction' from the 'Reviews' table.",
+          "sql": "SELECT Opinion FROM Reviews WHERE FilmId = (SELECT ID FROM Film WHERE Title = 'Pulp Fiction')"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the review text for the film 'Pulp Fiction' from the Reviews table.",
+          "sql": "SELECT Opinion FROM Reviews WHERE FilmId = (SELECT ID FROM Film WHERE Title = 'Pulp Fiction')"
+        },
+        {
+          "meaning": "Find the critic's opinion on the film 'Pulp Fiction'.",
+          "sql": "SELECT CriticName, Opinion FROM Reviews WHERE FilmId = (SELECT ID FROM Film WHERE Title = 'Pulp Fiction')"
+        },
+        {
+          "meaning": "Determine the audience's reaction to the film 'Pulp Fiction' based on the Reviews table.",
+          "sql": "SELECT AudienceReviews FROM Reviews WHERE FilmId = (SELECT ID FROM Film WHERE Title = 'Pulp Fiction')"
+        }
+      ],
+      "source_quote_sha256": "eed25d4e56e643320bb4f277c99417ce532f6291b71dc2bb682a8fb8996ad830",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2811",
+  "public_hash": "886fed4fcd2aca603b0fbad67a1bb15c502b3193b541399a446ff5140068163e",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.name FROM Methodologies AS T1 JOIN Project_Managers_Methodologies AS T2 ON T1.methodology_id = T2.methodology_id GROUP BY T2.methodology_id HAVING COUNT(DISTINCT T2.project_manager_id) = (SELECT COUNT(*) FROM Project_Managers)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show me the methodologies that every project manager uses.",
+          "sql": "SELECT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies GROUP BY methodology_id HAVING COUNT(DISTINCT project_manager_id) = (SELECT COUNT(*) FROM Project_Managers))"
+        }
+      ],
+      "source_quote_sha256": "61da55bc52079217c4008682ff49e5b9c7a9cf19b489d35afb46b68da5fb7e1c",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all methodologies that are associated with any project manager.",
+          "sql": "SELECT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies)"
+        },
+        {
+          "meaning": "List all unique methodologies used by project managers, without duplicates.",
+          "sql": "SELECT DISTINCT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies)"
+        },
+        {
+          "meaning": "List all methodologies that are used by every project manager.",
+          "sql": "SELECT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies GROUP BY methodology_id HAVING COUNT(DISTINCT project_manager_id) = (SELECT COUNT(*) FROM Project_Managers))"
+        }
+      ],
+      "source_quote_sha256": "61da55bc52079217c4008682ff49e5b9c7a9cf19b489d35afb46b68da5fb7e1c",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1430",
+  "public_hash": "535eba15d9274c0be8dd588847c10fae417f219506cb28a666ff314ec02875db",
+  "rep": 0,
+  "split": "evaluation"
+}

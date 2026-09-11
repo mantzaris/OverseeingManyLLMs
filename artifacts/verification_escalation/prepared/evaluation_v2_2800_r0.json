@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": null
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the producer of the movie 'Inception'.",
+          "sql": "SELECT Producer.full_name FROM Producer JOIN Movies ON Producer.producer_id = Movies.producer_id WHERE Movies.title = 'Inception';"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the producer of the movie 'Inception'.",
+          "sql": "SELECT Producer.full_name FROM Producer JOIN Movies ON Producer.producer_id = Movies.producer_id WHERE Movies.title = 'Inception';"
+        },
+        {
+          "meaning": "Find the director of the movie 'Inception' as a possible producer.",
+          "sql": "SELECT Director.first_name, Director.last_name FROM Director JOIN MovieDirector ON Director.director_id = MovieDirector.director_id JOIN Movies ON MovieDirector.movie_id = Movies.movie_id WHERE Movies.title = 'Inception';"
+        },
+        {
+          "meaning": "Find the studio that produced the movie 'Inception' as a possible producer.",
+          "sql": "SELECT Studio.name FROM Studio JOIN Movies ON Studio.studio_id = Movies.studio_id WHERE Movies.title = 'Inception';"
+        }
+      ],
+      "source_quote_sha256": "bb6ec59899b3af2e96d1f960c633a08e20e44e3ebed938c2b8c788c1ed760792",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2800",
+  "public_hash": "b9054c5e973f9729a7f1d41d77660cc49cdbb1477c460ac9f6da5cf7ae5643e7",
+  "rep": 0,
+  "split": "evaluation"
+}

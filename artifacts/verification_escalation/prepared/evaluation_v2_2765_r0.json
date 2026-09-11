@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT T2.address, T3.city_name FROM Internship AS T1 JOIN Office_Address AS T2 ON T1.office_address_id = T2.id JOIN City AS T3 ON T2.city_id = T3.id JOIN Employee AS T4 ON T1.employee_id = T4.id WHERE T4.first_name = 'Alice' AND T4.last_name = 'Brown'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the office location for the internship Alice Brown is associated with.",
+          "sql": "SELECT T2.address, T2.postal_code FROM Application AS T1 JOIN Internship AS T2 ON T1.internship_id = T2.id JOIN Employee AS T3 ON T1.employee_id = T3.id WHERE T3.first_name = 'Alice' AND T3.last_name = 'Brown'"
+        }
+      ],
+      "source_quote_sha256": "d4dfd98eaefd4e31b03a2583793cec981a6189fc050501a5c530f5ca08f9c709",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the office location where Alice Brown is interning.",
+          "sql": "SELECT Office_Address.address, Office_Address.postal_code FROM Internship JOIN Office_Address ON Internship.office_address_id = Office_Address.id JOIN Employee ON Internship.employee_id = Employee.id WHERE Employee.first_name = 'Alice' AND Employee.last_name = 'Brown'"
+        },
+        {
+          "meaning": "Find the office location where Alice Brown is employed.",
+          "sql": "SELECT Department.department_name, Office_Address.address, Office_Address.postal_code FROM Employee JOIN Department ON Employee.department_id = Department.id JOIN Office_Address ON Department.company_id = Office_Address.company_id WHERE Employee.first_name = 'Alice' AND Employee.last_name = 'Brown'"
+        },
+        {
+          "meaning": "Find the office location where Alice Brown is associated with, either as an intern or an employee.",
+          "sql": "SELECT Office_Address.address, Office_Address.postal_code FROM (Internship UNION ALL SELECT NULL AS internship_id, Employee.id AS employee_id, Employee.first_name, Employee.last_name FROM Employee WHERE Employee.first_name = 'Alice' AND Employee.last_name = 'Brown') AS EmployeeOrIntern JOIN Office_Address ON (Internship.office_address_id = Office_Address.id OR EmployeeOrIntern.employee_id IN (SELECT Employee.id FROM Employee WHERE Employee.first_name = 'Alice' AND Employee.last_name = 'Brown'))"
+        }
+      ],
+      "source_quote_sha256": "d4dfd98eaefd4e31b03a2583793cec981a6189fc050501a5c530f5ca08f9c709",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2765",
+  "public_hash": "9a2c2672451d9bb2b745b52cfd41f372482517e8ca6020e15644e9934e29034c",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Find the office address and city for Alice's internship location.",
+        "sql": "SELECT T2.address, T3.city_name FROM Internship AS T1 JOIN Office_Address AS T2 ON T1.office_address_id = T2.id JOIN City AS T3 ON T2.city_id = T3.id WHERE T1.employee_id = (SELECT id FROM Employee WHERE first_name = 'Alice' AND last_name = 'Brown')"
+      },
+      {
+        "meaning": "Find the office address and city for Alice's department location.",
+        "sql": "SELECT T2.address, T3.city_name FROM Employee AS T1 JOIN Department AS T2 ON T1.department_id = T2.id JOIN Office_Address AS T3 ON T2.office_address_id = T3.id WHERE T1.first_name = 'Alice' AND T1.last_name = 'Brown'"
+      },
+      {
+        "meaning": "Find the office address and city for Alice's company location.",
+        "sql": "SELECT T2.address, T3.city_name FROM Employee AS T1 JOIN Department AS T2 ON T1.department_id = T2.id JOIN Company AS T3 ON T2.company_id = T3.id JOIN Office_Address AS T4 ON T2.office_address_id = T4.id WHERE T1.first_name = 'Alice' AND T1.last_name = 'Brown'"
+      }
+    ],
+    "source_quote_sha256": "8d4138d99fee2fe8511cd0fa0555ee2e6f865d1cdf193390fda4c3ef8ef12d61",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

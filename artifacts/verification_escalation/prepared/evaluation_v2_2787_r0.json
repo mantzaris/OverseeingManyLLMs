@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT dl.level_name AS qualification, COUNT(jp.id) AS number_of_jobs FROM Degree_Level dl JOIN Job_Post jp ON dl.id = jp.degree_level_id GROUP BY dl.level_name UNION SELECT c.cert_name AS qualification, COUNT(jp.id) AS number_of_jobs FROM Certification c JOIN Job_Post jp ON c.id = jp.certification_id GROUP BY c.cert_name"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display a list of qualifications (certifications) and the number of available jobs for each",
+          "sql": "SELECT cert_name, COUNT(*) AS number_of_jobs FROM Job_Post JOIN Certification ON Job_Post.certification_id = Certification.id GROUP BY cert_name"
+        }
+      ],
+      "source_quote_sha256": "544d3c2723f1b2482c4857c9f131be0e7b66f1f198260addf17bd56e6a8a489a",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display a list of job titles and the count of applications for each job title.",
+          "sql": "SELECT title, COUNT(*) AS number_of_jobs FROM Job_Post JOIN Application ON Job_Post.id = Application.job_post_id GROUP BY title"
+        },
+        {
+          "meaning": "Display a list of certifications and the count of applications for each certification.",
+          "sql": "SELECT cert_name, COUNT(*) AS number_of_jobs FROM Job_Post JOIN Application ON Job_Post.id = Application.job_post_id JOIN Certification ON Job_Post.certification_id = Certification.id GROUP BY cert_name"
+        },
+        {
+          "meaning": "Display a list of degree levels and the count of applications for each degree level.",
+          "sql": "SELECT level_name, COUNT(*) AS number_of_jobs FROM Job_Post JOIN Application ON Job_Post.id = Application.job_post_id JOIN Degree_Level ON Job_Post.degree_level_id = Degree_Level.id GROUP BY level_name"
+        }
+      ],
+      "source_quote_sha256": "544d3c2723f1b2482c4857c9f131be0e7b66f1f198260addf17bd56e6a8a489a",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2787",
+  "public_hash": "41e1f0f76e224fe3358204cab174f44845abad84a095461bb7846822649d0fa2",
+  "rep": 0,
+  "split": "evaluation"
+}

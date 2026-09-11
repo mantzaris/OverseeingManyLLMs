@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT OperationID, ProfitMargin * (Revenue - Expenses) AS Profit, OperationYears, OperationMonths FROM Operations"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Profit per operation and the date of the operation",
+          "sql": "SELECT OperationID, ProfitMargin, PublishDate FROM Operations"
+        }
+      ],
+      "source_quote_sha256": "182fa5cf028824f9a215eb7f5c285e656d5b9954b45bb70a8c41a74e18ed62e7",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Profit per operation and the date when the operation occurred.",
+          "sql": "SELECT ProfitMargin, PublishDate FROM Operations"
+        },
+        {
+          "meaning": "Profit per operation and the year when the operation occurred.",
+          "sql": "SELECT ProfitMargin, strftime('%Y', DATE(OperationYears, 'years'), DATE(OperationMonths, 'months')) AS OperationYear FROM Operations"
+        },
+        {
+          "meaning": "Profit per operation and the month when the operation occurred.",
+          "sql": "SELECT ProfitMargin, strftime('%m', DATE(OperationYears, 'years'), DATE(OperationMonths, 'months')) AS OperationMonth FROM Operations"
+        }
+      ],
+      "source_quote_sha256": "182fa5cf028824f9a215eb7f5c285e656d5b9954b45bb70a8c41a74e18ed62e7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2751",
+  "public_hash": "b7ef015d07a38bec17a1e57fe56032ce968c44aa318a163d705f41a8a21c4e75",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List the profit for each operation and the year and month it occurred.",
+        "sql": "SELECT ProfitMargin AS profit, OperationYears, OperationMonths FROM Operations;"
+      },
+      {
+        "meaning": "For each operation, list the profit and the exact date and time it occurred.",
+        "sql": "SELECT ProfitMargin AS profit, strftime('%Y-%m-%d %H:%M:%S', 'now') AS operation_date FROM Operations;"
+      },
+      {
+        "meaning": "For each operation, list the profit and the year and month it occurred, but also include the media outlet name.",
+        "sql": "SELECT ProfitMargin AS profit, OperationYears, OperationMonths, MediaOutlet FROM Operations;"
+      }
+    ],
+    "source_quote_sha256": "cca0135ba2e2fa831e179a96fede94f00aee65a9dacf202a7592189f25304c7c",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Base_Pay_Range.min_pay, Base_Pay_Range.max_pay FROM Job_Post JOIN Base_Pay_Range ON Job_Post.base_pay_id = Base_Pay_Range.id WHERE Job_Post.title = 'HR Specialist'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the base pay range and benefits for the HR Specialist position.",
+          "sql": "SELECT Base_Pay_Range.min_pay, Base_Pay_Range.max_pay, Benefits.health_insurance, Benefits.dental_insurance, Benefits.vision_insurance FROM Job_Post JOIN Base_Pay_Range ON Job_Post.base_pay_id = Base_Pay_Range.id JOIN Benefits ON Job_Post.benefit_package_id = Benefits.id WHERE Job_Post.title = 'HR Specialist';"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the base pay range for the HR Specialist position.",
+          "sql": "SELECT Base_Pay_Range.min_pay, Base_Pay_Range.max_pay FROM Job_Post JOIN Base_Pay_Range ON Job_Post.base_pay_id = Base_Pay_Range.id WHERE Job_Post.title = 'HR Specialist';"
+        },
+        {
+          "meaning": "Identify the benefits package for the HR Specialist position.",
+          "sql": "SELECT Benefits.health_insurance, Benefits.dental_insurance, Benefits.vision_insurance FROM Job_Post JOIN Benefits ON Job_Post.benefit_package_id = Benefits.id WHERE Job_Post.title = 'HR Specialist';"
+        },
+        {
+          "meaning": "Determine the company offering the HR Specialist position.",
+          "sql": "SELECT Companies.name FROM Job_Post JOIN Companies ON Job_Post.company_id = Companies.id WHERE Job_Post.title = 'HR Specialist';"
+        }
+      ],
+      "source_quote_sha256": "fb08292e88e3f7ebb95d68207c7ff7b7f2593fc5252124ab0bebcc4d693ceb1b",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2775",
+  "public_hash": "567732995b46542c1296008161a239a64a5bbc3859502fa2a3dfa122ec62d084",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "What is the base pay range for the HR position?",
+        "sql": "SELECT min_pay, max_pay FROM Base_Pay_Range WHERE id = (SELECT base_pay_id FROM Job_Post WHERE title = 'HR Specialist')"
+      },
+      {
+        "meaning": "What is the average base pay range for all positions including HR?",
+        "sql": "SELECT avg(min_pay), avg(max_pay) FROM Base_Pay_Range"
+      },
+      {
+        "meaning": "What is the base pay range for the HR position and the benefits package?",
+        "sql": "SELECT Base_Pay_Range.min_pay, Base_Pay_Range.max_pay, Benefits.health_insurance, Benefits.dental_insurance, Benefits.vision_insurance FROM Base_Pay_Range JOIN Job_Post ON Base_Pay_Range.id = Job_Post.base_pay_id JOIN Benefits ON Job_Post.benefit_package_id = Benefits.id WHERE Job_Post.title = 'HR Specialist'"
+      }
+    ],
+    "source_quote_sha256": "180bf82d8e6d4613cd5b42da2ad115d36809b1e7d8106203dbe570bba3b4a59e",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

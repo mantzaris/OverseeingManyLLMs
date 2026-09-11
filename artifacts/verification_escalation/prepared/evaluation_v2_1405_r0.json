@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT PA.name, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON I.id = PAI.issue_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Provide the issue name and description for each patient advocate based on the issues they are associated with.",
+          "sql": "SELECT PA.name, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.issue_id = I.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Provide the issue name and description for each patient advocate based on the issues they are assigned to.",
+          "sql": "SELECT PA.name, PA.email, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.issue_id = I.id"
+        },
+        {
+          "meaning": "List the issue name and description for each patient advocate, showing all issues even if not assigned to them.",
+          "sql": "SELECT PA.name, PA.email, I.issue_name, I.description FROM Patient_Advocates PA CROSS JOIN Issues I"
+        },
+        {
+          "meaning": "Show the issue name and description for each patient advocate, but only for the first issue they are assigned to.",
+          "sql": "SELECT PA.name, PA.email, I.issue_name, I.description FROM Patient_Advocates PA JOIN (SELECT patient_advocate_id, MIN(issue_id) as min_issue_id FROM Patient_Advocates_Issues GROUP BY patient_advocate_id) PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.min_issue_id = I.id"
+        }
+      ],
+      "source_quote_sha256": "0dfba9b73c2fd2880ea469195a18dee002a37bde6a0c125cdd186407ca6e58f5",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1405",
+  "public_hash": "da22cc11f92d5259b09f55920aee018abd05451bc5fef1d74f24068675b8b5fc",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the issue name and description for each patient advocate based on their assigned issues.",
+        "sql": "SELECT PA.name AS patient_advocate, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.issue_id = I.id"
+      },
+      {
+        "meaning": "List the issue name and description for each patient advocate, assuming each advocate is associated with the same set of issues.",
+        "sql": "SELECT PA.name AS patient_advocate, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.issue_id = I.id GROUP BY PA.name, I.issue_name, I.description"
+      },
+      {
+        "meaning": "Display the issue name and description for each patient advocate, considering the possibility that an advocate might be associated with multiple issues.",
+        "sql": "SELECT PA.name AS patient_advocate, I.issue_name, I.description FROM Patient_Advocates PA JOIN Patient_Advocates_Issues PAI ON PA.id = PAI.patient_advocate_id JOIN Issues I ON PAI.issue_id = I.id"
+      }
+    ],
+    "source_quote_sha256": "cb163e119f959889ec2d89051429dc33a04d8582c84e15506fe2c061718c62ed",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

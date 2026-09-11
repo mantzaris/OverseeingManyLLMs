@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT * FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential') UNION SELECT * FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all espresso machines and blenders in high-end residential apartments",
+          "sql": "SELECT * FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential') UNION SELECT * FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential')"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show all espresso machines and blenders located in high-end residential apartments.",
+          "sql": "SELECT * FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential') UNION SELECT * FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential')"
+        },
+        {
+          "meaning": "List the models and prices of all espresso machines and blenders in high-end residential apartments.",
+          "sql": "SELECT model, price FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential') UNION SELECT model, price FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential')"
+        },
+        {
+          "meaning": "Display the count of espresso machines and blenders in high-end residential apartments.",
+          "sql": "SELECT COUNT(*) AS count FROM Espresso_Machine WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential') UNION SELECT COUNT(*) AS count FROM Blender WHERE apartment_id IN (SELECT id FROM Apartments WHERE type = 'Residential' AND name = 'High-end Residential')"
+        }
+      ],
+      "source_quote_sha256": "d59fd094db3d0ad638b81e994dad150b296456b246cd3e12e1f69aebd424724f",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "449",
+  "public_hash": "626461b49fbc4fa89c0198d69911b8f8e781bfc11617d19e6db2d64f684da1b1",
+  "rep": 1,
+  "split": "evaluation"
+}

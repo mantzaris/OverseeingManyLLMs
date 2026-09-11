@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT cp.position FROM Creative_Position cp JOIN Marketing_Agency_Creative_Positions map ON cp.id = map.position_id GROUP BY cp.position HAVING COUNT(DISTINCT map.agency_id) = (SELECT COUNT(*) FROM Marketing_Agency)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Return the position for each agency by joining the tables on their respective IDs and position IDs.",
+          "sql": "SELECT C.position FROM Marketing_Agency AS M JOIN Marketing_Agency_Creative_Positions AS MACP ON M.id = MACP.agency_id JOIN Creative_Position AS C ON MACP.position_id = C.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the creative positions associated with each marketing agency.",
+          "sql": "SELECT m.name AS agency_name, c.position FROM Marketing_Agency m JOIN Marketing_Agency_Creative_Positions macp ON m.id = macp.agency_id JOIN Creative_Position c ON macp.position_id = c.id"
+        },
+        {
+          "meaning": "Show the creative positions for each marketing agency, including all possible positions even if not assigned to an agency.",
+          "sql": "SELECT m.name AS agency_name, c.position FROM Marketing_Agency m CROSS JOIN Creative_Position c"
+        },
+        {
+          "meaning": "Display the creative positions for each marketing agency, ensuring that only the positions actually assigned to an agency are shown.",
+          "sql": "SELECT m.name AS agency_name, c.position FROM Marketing_Agency m JOIN Marketing_Agency_Creative_Positions macp ON m.id = macp.agency_id JOIN Creative_Position c ON macp.position_id = c.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1417",
+  "public_hash": "dae504ef3d0f57c9252191a0917df0918299af2ba6b8affc92d287e2d571830f",
+  "rep": 0,
+  "split": "evaluation"
+}

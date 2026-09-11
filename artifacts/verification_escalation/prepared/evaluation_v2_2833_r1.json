@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT MD.deviceName, C.name AS company, S.fullname AS scientist FROM MedicalDevices MD JOIN DeviceDevelopment DD ON MD.id = DD.medicalDeviceId JOIN Companies C ON DD.companyId = C.id JOIN Scientists S ON DD.scientistId = S.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all the medical devices and their makers.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.medicalDeviceId = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the names of all medical devices and the names of their respective companies (makers).",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.id = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        },
+        {
+          "meaning": "List all medical devices along with the names of their makers (companies) without duplicates.",
+          "sql": "SELECT DISTINCT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.id = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        },
+        {
+          "meaning": "Display the device name and the company name for each medical device development project, even if a company has developed multiple devices.",
+          "sql": "SELECT MedicalDevices.deviceName, Companies.name FROM MedicalDevices JOIN DeviceDevelopment ON MedicalDevices.id = DeviceDevelopment.medicalDeviceId JOIN Companies ON DeviceDevelopment.companyId = Companies.id"
+        }
+      ],
+      "source_quote_sha256": "e1aa578a7ebfd71a15c35f6ee3c097010d93ff67df1da9381778a84163a79944",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2833",
+  "public_hash": "12296c5e391ae36de805f3ed4e2b41f3ceb72f9f79aad73fbd0ac3077069de5b",
+  "rep": 1,
+  "split": "evaluation"
+}

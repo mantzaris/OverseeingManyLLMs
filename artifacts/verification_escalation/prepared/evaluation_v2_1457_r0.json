@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT TourType FROM Wine_Regions_Winery_Tours GROUP BY TourType HAVING COUNT(WineRegionID) = (SELECT COUNT(*) FROM Wine_Regions)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show tours for each wine region",
+          "sql": "SELECT WRT.WineRegionID, WT.Type FROM Wine_Regions_Winery_Tours AS WRT JOIN Winery_Tours AS WT ON WRT.TourType = WT.Type"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the distinct wine regions and the types of tours they offer.",
+          "sql": "SELECT DISTINCT WRT.WineRegionID, WT.Type FROM Wine_Regions_Winery_Tours WRT JOIN Winery_Tours WT ON WRT.TourType = WT.Type"
+        },
+        {
+          "meaning": "List all tours available in each wine region, including duplicates if any.",
+          "sql": "SELECT WRT.WineRegionID, WT.Type FROM Wine_Regions_Winery_Tours WRT JOIN Winery_Tours WT ON WRT.TourType = WT.Type"
+        },
+        {
+          "meaning": "Display the wine regions along with the specific tour types they offer, ensuring each region is listed once with all its tour types.",
+          "sql": "SELECT WRT.WineRegionID, GROUP_CONCAT(WT.Type) AS TourTypes FROM Wine_Regions_Winery_Tours WRT JOIN Winery_Tours WT ON WRT.TourType = WT.Type GROUP BY WRT.WineRegionID"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1457",
+  "public_hash": "e25e126986d065138b80b86cc9c1f23b172274245cb18540189921b9163895b0",
+  "rep": 0,
+  "split": "evaluation"
+}

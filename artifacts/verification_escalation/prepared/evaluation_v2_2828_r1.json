@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Name, Side_Effects, Manufacturer FROM Medications WHERE Classification = 'Analgesic'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List all drugs that are classified as analgesic, along with their effects and manufacturers.",
+          "sql": "SELECT Name, Effectiveness, Manufacturer FROM Medications WHERE Classification = 'Analgesic';"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all drugs that are classified as analgesics, along with their effects and manufacturers.",
+          "sql": "SELECT Name, Effectiveness, Manufacturer FROM Medications WHERE Classification = 'Analgesic'"
+        },
+        {
+          "meaning": "List all drugs that are classified as analgesics, along with their effects and manufacturers, including any prescriptions that are for analgesics.",
+          "sql": "SELECT m.Name, m.Effectiveness, m.Manufacturer, p.Quantity FROM Medications m JOIN Prescriptions p ON m.MedicationID = p.MedicationID WHERE m.Classification = 'Analgesic'"
+        },
+        {
+          "meaning": "List all drugs that are classified as analgesics, along with their effects and manufacturers, and any associated diagnoses or appointments.",
+          "sql": "SELECT m.Name, m.Effectiveness, m.Manufacturer, d.Description, a.ReasonForVisit FROM Medications m LEFT JOIN Prescriptions p ON m.MedicationID = p.MedicationID LEFT JOIN Diagnoses d ON p.PatientID = d.PatientID LEFT JOIN Appointments a ON p.PatientID = a.PatientID WHERE m.Classification = 'Analgesic'"
+        }
+      ],
+      "source_quote_sha256": "350216fccf16926b5d14ca8e483d0814e57edb761f896fbef1fc15719de12190",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2828",
+  "public_hash": "7332708a51eb9da1bcf5d28b66b8ebf556224f65f21eda43f08e036c71a56fb3",
+  "rep": 1,
+  "split": "evaluation"
+}

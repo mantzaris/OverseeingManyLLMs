@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T7.full_name FROM Movies AS T1 JOIN Producer AS T7 ON T1.producer_id = T7.producer_id WHERE T1.title = 'Inception'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the producer of the movie 'Inception'.",
+          "sql": "SELECT T7.full_name FROM Movies AS T1 JOIN Producer AS T7 ON T1.producer_id = T7.producer_id WHERE T1.title = 'Inception';"
+        }
+      ],
+      "source_quote_sha256": "bb6ec59899b3af2e96d1f960c633a08e20e44e3ebed938c2b8c788c1ed760792",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the producer associated with the movie 'Inception'.",
+          "sql": "SELECT P.full_name FROM Producer P JOIN Movies M ON P.producer_id = M.producer_id WHERE M.title = 'Inception';"
+        },
+        {
+          "meaning": "Identify the director of the movie 'Inception' and then find the producer associated with the director's movies.",
+          "sql": "SELECT P.full_name FROM Producer P JOIN MovieDirector MD ON P.producer_id = MD.producer_id JOIN Director D ON MD.director_id = D.director_id WHERE D.first_name = 'Christopher' AND D.last_name = 'Nolan' AND MD.movie_id IN (SELECT movie_id FROM Movies WHERE title = 'Inception');"
+        },
+        {
+          "meaning": "Directly find the producer of the movie 'Inception' without additional joins.",
+          "sql": "SELECT P.full_name FROM Producer P JOIN Movies M ON P.producer_id = M.producer_id WHERE M.title = 'Inception';"
+        }
+      ],
+      "source_quote_sha256": "bb6ec59899b3af2e96d1f960c633a08e20e44e3ebed938c2b8c788c1ed760792",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2800",
+  "public_hash": "b9054c5e973f9729a7f1d41d77660cc49cdbb1477c460ac9f6da5cf7ae5643e7",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Company.name FROM Company JOIN Position ON Company.id = Position.companyId WHERE Position.title = 'Data Analyst'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Companies that hire a data analyst",
+          "sql": "SELECT T2.name FROM Position AS T1 JOIN Company AS T2 ON T1.companyId = T2.id WHERE T1.title = 'Data Analyst'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Identify the company that hires a data analyst.",
+          "sql": "SELECT Company.name FROM Company JOIN Position ON Company.id = Position.companyId WHERE Position.title = 'Data Analyst';"
+        },
+        {
+          "meaning": "Identify the recruitment agency that hires a data analyst.",
+          "sql": "SELECT Recruitment_Agency.agencyName FROM Recruitment_Agency JOIN Position ON Recruitment_Agency.id = Position.recruitmentAgencyId WHERE Position.title = 'Data Analyst';"
+        },
+        {
+          "meaning": "Identify the person who hires a data analyst.",
+          "sql": "SELECT Employee.firstName, Employee.lastName FROM Employee JOIN Position ON Employee.role = 'HR Manager' WHERE Position.title = 'Data Analyst';"
+        }
+      ],
+      "source_quote_sha256": "23cd29ce3b819fd0a35dce3b3ee373667165eb2f64f932e95b56cc5285fd130d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2779",
+  "public_hash": "b553f96a71d46ffeee3a66a021b73b36f422a697f045c452dcf8bb9c03d4fb05",
+  "rep": 1,
+  "split": "evaluation"
+}

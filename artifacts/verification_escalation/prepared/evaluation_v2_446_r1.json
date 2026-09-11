@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT housekeeper FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display housekeepers and laundry service attendants working at The Grand Hotel.",
+          "sql": "SELECT housekeeper FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display the names of housekeepers and laundry service attendants who are working at the Grand Hotel.",
+          "sql": "SELECT housekeeper, laundry_attendant FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT housekeeper, laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        },
+        {
+          "meaning": "Display the names of housekeepers and laundry service attendants who are currently working at the Grand Hotel.",
+          "sql": "SELECT housekeeper, laundry_attendant FROM Housekeeping WHERE hotel = 'The Grand Hotel' AND shift_end IS NULL UNION SELECT housekeeper, laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel' AND shift_end IS NULL"
+        },
+        {
+          "meaning": "Display the names of housekeepers and laundry service attendants who are scheduled to work at the Grand Hotel.",
+          "sql": "SELECT housekeeper, laundry_attendant FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT housekeeper, laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        }
+      ],
+      "source_quote_sha256": "d7654ac598d4dca1ab9ee8949957774a8aa973fa68980e311b258ea405b78de0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "446",
+  "public_hash": "44d76f87ab8e6caea6e447010b52b9caf802237b83417da1a3015d988f72cc83",
+  "rep": 1,
+  "split": "evaluation"
+}

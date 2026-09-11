@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT pm.name, m.metric_name, m.value FROM Metrics m JOIN Product_Managers_Metrics pmm ON m.id = pmm.metrics_id JOIN Product_Managers pm ON pmm.product_manager_id = pm.id WHERE m.id IN (SELECT metrics_id FROM Product_Managers_Metrics GROUP BY metrics_id HAVING COUNT(DISTINCT product_manager_id) = (SELECT COUNT(*) FROM Product_Managers))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show metrics associated with each product manager by joining the tables and grouping by product manager name.",
+          "sql": "SELECT pm.name, m.metric_name, m.value FROM Product_Managers pm JOIN Product_Managers_Metrics pmm ON pm.id = pmm.product_manager_id JOIN Metrics m ON pmm.metrics_id = m.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the metrics associated with each product manager by joining the Product_Managers and Product_Managers_Metrics tables to get the metrics IDs and then joining with the Metrics table to get the metric names and values.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id JOIN Metrics M ON PMM.metrics_id = M.id"
+        },
+        {
+          "meaning": "Display the metrics associated with each product manager, showing the metric name and value for each product manager, even if they have no metrics associated.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM LEFT JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id LEFT JOIN Metrics M ON PMM.metrics_id = M.id"
+        },
+        {
+          "meaning": "List the metrics associated with each product manager, showing the metric name and value, but only for metrics that are associated with at least two product managers.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id JOIN Metrics M ON PMM.metrics_id = M.id GROUP BY PM.id, M.metric_name, M.value HAVING COUNT(PMM.metrics_id) >= 2"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1433",
+  "public_hash": "920fedb403c174e4b4850a4724ba070a82f78812ae6f131f652febb50dd1b15d",
+  "rep": 0,
+  "split": "evaluation"
+}

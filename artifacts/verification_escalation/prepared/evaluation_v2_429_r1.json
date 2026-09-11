@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Size FROM SwimmingPool WHERE ID IN (SELECT HotelID FROM HotelAmenities WHERE Available = 1 AND AmenityID = (SELECT ID FROM Amenities WHERE Description = 'Swimming Pool')) UNION SELECT Size FROM HotTub WHERE ID IN (SELECT HotelID FROM HotelAmenities WHERE Available = 1 AND AmenityID = (SELECT ID FROM Amenities WHERE Description = 'Hot Tub'))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the size of all swimming pools and hot tubs in Miami",
+          "sql": "SELECT Size FROM SwimmingPool WHERE ID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami')) UNION SELECT Capacity FROM HotTub WHERE ID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami'))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the size of all swimming pools and hot tubs in Miami.",
+          "sql": "SELECT Size FROM SwimmingPool WHERE ID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami')) UNION SELECT Capacity FROM HotTub WHERE ID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami'))"
+        },
+        {
+          "meaning": "List the sizes of all swimming pools and hot tubs associated with hotels in Miami.",
+          "sql": "SELECT Size FROM SwimmingPool WHERE HotelID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami')) UNION SELECT Capacity FROM HotTub WHERE HotelID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami'))"
+        },
+        {
+          "meaning": "Provide the size of all swimming pools and hot tubs that are located in Miami hotels.",
+          "sql": "SELECT Size FROM SwimmingPool WHERE HotelID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami')) UNION SELECT Capacity FROM HotTub WHERE HotelID IN (SELECT ID FROM Hotel WHERE CityID = (SELECT ID FROM City WHERE Name = 'Miami'))"
+        }
+      ],
+      "source_quote_sha256": "b182ef96de7bfc9784f12f0acfe4e35ffc7dfcc875f598b586d128cc50b22d88",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "429",
+  "public_hash": "acdfb14ecea00e805ee66efe30dd22dbfa93e6c09cff44b4f184c60a9f5b6185",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the sizes of all hot tubs and swimming pools in Miami.",
+        "sql": "SELECT Capacity AS Size, 'Hot Tub' AS PoolType FROM HotTub WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami') UNION SELECT Size, 'Swimming Pool' FROM SwimmingPool WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami')"
+      },
+      {
+        "meaning": "List the sizes of all hot tubs and swimming pools in Miami, but only for hotels that have these amenities available.",
+        "sql": "SELECT Capacity AS Size, 'Hot Tub' AS PoolType FROM HotTub WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami' AND ID IN (SELECT HotelID FROM HotelAmenities WHERE AmenityID IN (SELECT ID FROM Amenities WHERE Description IN ('Hot Tub', 'Swimming Pool')) AND Available = 1)) UNION SELECT Size, 'Swimming Pool' FROM SwimmingPool WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami' AND ID IN (SELECT HotelID FROM HotelAmenities WHERE AmenityID IN (SELECT ID FROM Amenities WHERE Description IN ('Hot Tub', 'Swimming Pool')) AND Available = 1))"
+      },
+      {
+        "meaning": "Provide the sizes of all hot tubs and swimming pools in Miami, including those that are not currently available in any hotel.",
+        "sql": "SELECT Capacity AS Size, 'Hot Tub' AS PoolType FROM HotTub WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami') UNION SELECT Size, 'Swimming Pool' FROM SwimmingPool WHERE HotelID IN (SELECT ID FROM Hotel JOIN City ON Hotel.CityID = City.ID WHERE City.Name = 'Miami')"
+      }
+    ],
+    "source_quote_sha256": "899819d4a1db0106e972201faf79f5b0d39619cdc822da8c8f3f84477f02441d",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

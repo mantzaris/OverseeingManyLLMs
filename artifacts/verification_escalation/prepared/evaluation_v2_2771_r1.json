@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the supervisor of Linda Green",
+          "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the supervisor of the employee named Linda Green.",
+          "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+        },
+        {
+          "meaning": "Find the department head of the department where Linda Green works.",
+          "sql": "SELECT Department_Head FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+        },
+        {
+          "meaning": "Find the team leader of the team where Linda Green works.",
+          "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+        }
+      ],
+      "source_quote_sha256": "97bee4490f1944473bcf9cea0ac629210b92e2f2ed6cd5af9408f6831ea95b68",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2771",
+  "public_hash": "7825cf734e3bf09723be3893f130fca02b2efa2f6b99e22523b550f58647a8c1",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Find the team leader of the department where Linda Green works.",
+        "sql": "SELECT T2.Team_Leader FROM Employees AS T1 JOIN Management AS T2 ON T1.positionID = T2.PositionID WHERE T1.fullname = 'Linda Green'"
+      },
+      {
+        "meaning": "Find the department head of the department where Linda Green works, assuming the department head is the supervisor.",
+        "sql": "SELECT T2.Department_Head FROM Employees AS T1 JOIN Management AS T2 ON T1.positionID = T2.PositionID WHERE T1.fullname = 'Linda Green'"
+      },
+      {
+        "meaning": "Find the team leader of the team where Linda Green works, assuming the team leader is the supervisor.",
+        "sql": "SELECT T2.Team_Leader FROM Employees AS T1 JOIN Management AS T2 ON T1.positionID = T2.PositionID JOIN Teams AS T3 ON T1.positionID = T3.teamID WHERE T1.fullname = 'Linda Green'"
+      }
+    ],
+    "source_quote_sha256": "97bee4490f1944473bcf9cea0ac629210b92e2f2ed6cd5af9408f6831ea95b68",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Director.name FROM Director JOIN Movie ON Director.id = Movie.director_id WHERE Movie.release_date = (SELECT MAX(release_date) FROM Movie)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the director of the latest movie.",
+          "sql": "SELECT Director.name FROM Director JOIN Movie ON Director.id = Movie.director_id ORDER BY Movie.release_date DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the director of the most recent movie.",
+          "sql": "SELECT director_id FROM Movie ORDER BY release_date DESC LIMIT 1"
+        },
+        {
+          "meaning": "Identify the actor who played the latest movie's lead role.",
+          "sql": "SELECT actor_id FROM Role WHERE movie_id = (SELECT id FROM Movie ORDER BY release_date DESC LIMIT 1)"
+        },
+        {
+          "meaning": "Determine the studio that produced the most recent movie.",
+          "sql": "SELECT studio_id FROM Movie ORDER BY release_date DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "3fab17c4f4504263e794ca2d57deee1fd302923e2152b4ff527c0d151504b2ea",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2802",
+  "public_hash": "673b5fbe9b7ccad68191ff6a42c586043978f71aa06ec6cd89f303ad2cd29a76",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Department_Head FROM Management WHERE Team_Leader = 'Linda Green'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the supervisor of Linda Green",
+          "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the supervisor of the employee with the email 'linda.green@example.com'.",
+          "sql": "SELECT Department_Head, Team_Leader FROM Management WHERE Team_Leader = 'Linda Green'"
+        },
+        {
+          "meaning": "Find the department head of the department where Linda Green is a team leader.",
+          "sql": "SELECT Department_Head FROM Management WHERE Team_Leader = 'Linda Green'"
+        },
+        {
+          "meaning": "Find the team leader of the department where Linda Green is the department head.",
+          "sql": "SELECT Team_Leader FROM Management WHERE Department_Head = 'Linda Green'"
+        }
+      ],
+      "source_quote_sha256": "97bee4490f1944473bcf9cea0ac629210b92e2f2ed6cd5af9408f6831ea95b68",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2771",
+  "public_hash": "7825cf734e3bf09723be3893f130fca02b2efa2f6b99e22523b550f58647a8c1",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Find the department head of the department where Linda Green works.",
+        "sql": "SELECT Department_Head FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+      },
+      {
+        "meaning": "Find the team leader of the team where Linda Green works.",
+        "sql": "SELECT Team_Leader FROM Management WHERE PositionID = (SELECT positionID FROM Employees WHERE fullname = 'Linda Green')"
+      },
+      {
+        "meaning": "Find the supervisor of Linda Green based on her position.",
+        "sql": "SELECT M.Team_Leader FROM Management M JOIN Employees E ON M.PositionID = E.positionID WHERE E.fullname = 'Linda Green'"
+      }
+    ],
+    "source_quote_sha256": "97bee4490f1944473bcf9cea0ac629210b92e2f2ed6cd5af9408f6831ea95b68",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

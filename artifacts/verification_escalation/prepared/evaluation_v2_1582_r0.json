@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T2.initiative_name FROM Community_Development_Corporations AS T1 JOIN Community_Development_Corporations_Initiatives AS T1T2 ON T1.id = T1T2.community_development_corporation_id JOIN Initiatives AS T2 ON T1T2.initiative_id = T2.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For every community development corporation, list the initiatives they are involved in.",
+          "sql": "SELECT cdc.name, i.initiative_name FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id JOIN Initiatives i ON cdc_init.initiative_id = i.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all initiatives associated with each community development corporation.",
+          "sql": "SELECT cdc.name, i.initiative_name FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id JOIN Initiatives i ON cdc_init.initiative_id = i.id"
+        },
+        {
+          "meaning": "Count the number of initiatives for each community development corporation.",
+          "sql": "SELECT cdc.name, COUNT(cdc_init.initiative_id) AS initiative_count FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id GROUP BY cdc.name"
+        },
+        {
+          "meaning": "List the unique initiatives across all community development corporations.",
+          "sql": "SELECT DISTINCT i.initiative_name FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id JOIN Initiatives i ON cdc_init.initiative_id = i.id"
+        }
+      ],
+      "source_quote_sha256": "83bcbcfaf50e19341b78d85d2adeb3b23c559459ff8178a64de74bbe5b58453d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1582",
+  "public_hash": "78c022cc72b1c7190df37aad70dd4fe8a4b2a910a79b4510567b0c23ae5007c1",
+  "rep": 0,
+  "split": "evaluation"
+}

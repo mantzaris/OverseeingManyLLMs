@@ -1,0 +1,40 @@
+{
+  "answered": {
+    "sql": "SELECT T2.FirstName, T2.LastName FROM ChefRestaurants AS T1 JOIN Chefs AS T2 ON T1.ChefID = T2.ChefID JOIN Languages AS T3 ON T2.LanguageID = T3.LanguageID WHERE T3.LanguageName = 'English' UNION SELECT T5.FirstName, T5.LastName FROM ServerRestaurants AS T4 JOIN Servers AS T5 ON T4.ServerID = T5.ServerID JOIN Languages AS T6 ON T5.LanguageID = T6.LanguageID WHERE T6.LanguageName = 'English'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the chefs and servers who speak English.",
+          "sql": "SELECT C.FirstName, C.LastName, S.FirstName, S.LastName FROM Chefs C JOIN Languages L ON C.LanguageID = L.LanguageID JOIN ServerRestaurants SR ON C.ChefID = SR.ServerID WHERE L.LanguageName = 'English' UNION SELECT C.FirstName, C.LastName, S.FirstName, S.LastName FROM Chefs C JOIN Languages L ON C.LanguageID = L.LanguageID JOIN ChefRestaurants CR ON C.ChefID = CR.ChefID WHERE L.LanguageName = 'English'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": null
+  },
+  "id": "425",
+  "public_hash": "ff2252b52929b06a893c27525200ce253332de743e36b97814173aefa3332676",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the chefs and servers whose primary language is English.",
+        "sql": "SELECT FirstName, LastName FROM Chefs WHERE LanguageID = (SELECT LanguageID FROM Languages WHERE LanguageName = 'English') UNION SELECT FirstName, LastName FROM Servers WHERE LanguageID = (SELECT LanguageID FROM Languages WHERE LanguageName = 'English')"
+      },
+      {
+        "meaning": "Show the chefs and servers who are capable of speaking English, regardless of it being their primary language.",
+        "sql": "SELECT FirstName, LastName FROM Chefs WHERE LanguageID IN (SELECT LanguageID FROM Languages WHERE LanguageName = 'English') UNION SELECT FirstName, LastName FROM Servers WHERE LanguageID IN (SELECT LanguageID FROM Languages WHERE LanguageName = 'English')"
+      },
+      {
+        "meaning": "Show the chefs and servers who are employed at restaurants where English is spoken.",
+        "sql": "SELECT FirstName, LastName FROM Chefs WHERE ChefID IN (SELECT ChefID FROM ChefRestaurants) UNION SELECT FirstName, LastName FROM Servers WHERE ServerID IN (SELECT ServerID FROM ServerRestaurants) AND LanguageID = (SELECT LanguageID FROM Languages WHERE LanguageName = 'English')"
+      }
+    ],
+    "source_quote_sha256": "1c9570d8cd1f7767934127f4177e5329be37ba97978e6156c44b2f308364d446",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

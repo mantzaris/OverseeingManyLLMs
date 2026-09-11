@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT p.project_name, f.source_value FROM Affordable_Housing_Projects p JOIN Affordable_Housing_Projects_Financing_Sources afs ON p.project_id = afs.housing_project_id JOIN Financing_Sources f ON afs.financing_source_id = f.source_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For each affordable housing project, list the source values of all financing sources.",
+          "sql": "SELECT p.project_name, fs.source_value FROM Affordable_Housing_Projects p JOIN Affordable_Housing_Projects_Financing_Sources afs ON p.project_id = afs.housing_project_id JOIN Financing_Sources fs ON afs.financing_source_id = fs.source_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the financing source value for each affordable housing project.",
+          "sql": "SELECT fhps.source_value, ahp.project_name FROM Affordable_Housing_Projects ahp JOIN Affordable_Housing_Projects_Financing_Sources fhps ON ahp.project_id = fhps.housing_project_id"
+        },
+        {
+          "meaning": "List all unique financing source values for each project, potentially showing multiple sources.",
+          "sql": "SELECT DISTINCT fhps.source_value, ahp.project_name FROM Affordable_Housing_Projects ahp JOIN Affordable_Housing_Projects_Financing_Sources fhps ON ahp.project_id = fhps.housing_project_id"
+        },
+        {
+          "meaning": "Show the total number of financing sources for each project.",
+          "sql": "SELECT ahp.project_name, COUNT(fhps.financing_source_id) AS num_sources FROM Affordable_Housing_Projects ahp JOIN Affordable_Housing_Projects_Financing_Sources fhps ON ahp.project_id = fhps.housing_project_id GROUP BY ahp.project_name"
+        }
+      ],
+      "source_quote_sha256": "a26c5e76a650d185cd1976a5acbe9bff558f7f4e2207e2ac2d1ea322089fa739",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1449",
+  "public_hash": "80f6c4c96e58b41875eed4a3a9513c4ebdd2a81165ecdd49c5bc87337398e666",
+  "rep": 0,
+  "split": "evaluation"
+}

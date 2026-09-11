@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Films.title FROM Films JOIN FilmGenres ON Films.id = FilmGenres.film_id WHERE Films.release_year = 2021 AND (FilmGenres.genre = 'Animation' OR FilmGenres.genre = 'Comedy')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all animations and comedies released in 2021",
+          "sql": "SELECT Films.title FROM Films JOIN FilmGenres ON Films.id = FilmGenres.film_id WHERE Films.release_year = 2021 AND (FilmGenres.genre = 'Animation' OR FilmGenres.genre = 'Comedy')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show all films that are both animations and comedies and were released in 2021.",
+          "sql": "SELECT * FROM Films WHERE release_year = 2021 AND id IN (SELECT film_id FROM FilmGenres WHERE genre IN ('Animation', 'Comedy'))"
+        },
+        {
+          "meaning": "Show all films that are either animations or comedies and were released in 2021.",
+          "sql": "SELECT * FROM Films WHERE release_year = 2021 AND id IN (SELECT film_id FROM FilmGenres WHERE genre IN ('Animation', 'Comedy'))"
+        },
+        {
+          "meaning": "Show all films that are animations and were released in 2021, or are comedies and were released in 2021.",
+          "sql": "SELECT * FROM Films WHERE (release_year = 2021 AND genre = 'Animation') OR (release_year = 2021 AND genre = 'Comedy')"
+        }
+      ],
+      "source_quote_sha256": "8c290262e46e4cf153d7182f0149c7f9afbccafe5e3a9ae226023dfce64c4b31",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "463",
+  "public_hash": "b82c273cb822617e57a99caf60b64527188088fbec8430837f105f2ac00e5d8b",
+  "rep": 1,
+  "split": "evaluation"
+}

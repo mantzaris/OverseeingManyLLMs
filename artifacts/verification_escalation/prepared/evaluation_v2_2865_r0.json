@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Films.Title, Directors.Name, GROUP_CONCAT(StreamingDetails.Countries) AS StreamingCountries FROM Films JOIN Directors ON FilmsDirectorID = DirectorsDirectorID JOIN StreamingDetails ON FilmsTitle = StreamingDetailsMovies GROUP BY FilmsTitle, DirectorsName"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show a list of movies along with the directors and the distribution channels.",
+          "sql": "SELECT Films.Title, Directors.Name AS Director, StreamingDetails.Platforms AS DistributionChannel FROM Films JOIN Directors ON FilmsDirectorID = DirectorsDirectorID JOIN StreamingDetails ON FilmsMovies = StreamingDetailsMovies"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List movies along with their directors and distribution channels.",
+          "sql": "SELECT F.Title, D.Name AS Director, S.Platforms FROM Films F JOIN Directors D ON FDirectorID = D.DirectorID JOIN StreamingDetails S ON F.Title = S.Movies"
+        },
+        {
+          "meaning": "List movies along with their directors and the platforms where they are available.",
+          "sql": "SELECT F.Title, D.Name AS Director, S.Platforms FROM Films F JOIN Directors D ON F.DirectorID = D.DirectorID JOIN StreamingDetails S ON F.Title = S.Movies"
+        },
+        {
+          "meaning": "List movies along with their directors and the countries where they are available.",
+          "sql": "SELECT F.Title, D.Name AS Director, S.Countries FROM Films F JOIN Directors D ON F.DirectorID = D.DirectorID JOIN StreamingDetails S ON F.Title = S.Movies"
+        }
+      ],
+      "source_quote_sha256": "89bd72a5db5c8637e7be43fa2614456f3669fc3ac24e93ac0af65939a15f8c3c",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2865",
+  "public_hash": "ed76059aa9b2522414a581bb0ed5419a620b7b1918ecf88497e10565fafe9ede",
+  "rep": 0,
+  "split": "evaluation"
+}

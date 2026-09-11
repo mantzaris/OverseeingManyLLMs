@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T2.name, T3.position FROM Marketing_Agency_Creative_Positions AS T1 JOIN Marketing_Agency AS T2 ON T1.agency_id = T2.id JOIN Creative_Position AS T3 ON T1.position_id = T3.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For each marketing agency, provide the creative position associated with it.",
+          "sql": "SELECT m.name, c.position FROM Marketing_Agency m JOIN Marketing_Agency_Creative_Positions macp ON m.id = macp.agency_id JOIN Creative_Position c ON macp.position_id = c.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the creative position for each marketing agency by matching the agency ID with the creative position ID in the junction table.",
+          "sql": "SELECT T3.position FROM Marketing_Agency_Creative_Positions AS T1 JOIN Marketing_Agency AS T2 ON T1.agency_id = T2.id JOIN Creative_Position AS T3 ON T1.position_id = T3.id"
+        },
+        {
+          "meaning": "Provide a list of creative positions for each marketing agency, showing the agency name and the corresponding creative position.",
+          "sql": "SELECT T2.name, T3.position FROM Marketing_Agency_Creative_Positions AS T1 JOIN Marketing_Agency AS T2 ON T1.agency_id = T2.id JOIN Creative_Position AS T3 ON T1.position_id = T3.id"
+        },
+        {
+          "meaning": "Display the creative positions for each marketing agency, including the agency name and the position name, without duplicates.",
+          "sql": "SELECT DISTINCT T2.name, T3.position FROM Marketing_Agency_Creative_Positions AS T1 JOIN Marketing_Agency AS T2 ON T1.agency_id = T2.id JOIN Creative_Position AS T3 ON T1.position_id = T3.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1417",
+  "public_hash": "dae504ef3d0f57c9252191a0917df0918299af2ba6b8affc92d287e2d571830f",
+  "rep": 1,
+  "split": "evaluation"
+}

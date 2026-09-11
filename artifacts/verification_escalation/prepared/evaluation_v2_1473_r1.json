@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features GROUP BY feature_id HAVING COUNT(DISTINCT community_id) = (SELECT COUNT(*) FROM Communities))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all features that are associated with any community.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show a list of features that are common to all communities.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features GROUP BY feature_id HAVING COUNT(DISTINCT community_id) = (SELECT COUNT(*) FROM Communities))"
+        },
+        {
+          "meaning": "List all features associated with at least one community.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features)"
+        },
+        {
+          "meaning": "Identify features that are present in every community, considering the possibility of multiple features per community.",
+          "sql": "SELECT feature_name FROM Features WHERE id IN (SELECT feature_id FROM Communities_Features GROUP BY feature_id HAVING COUNT(DISTINCT community_id) = (SELECT COUNT(DISTINCT community_id) FROM Communities_Features))"
+        }
+      ],
+      "source_quote_sha256": "9472080049f2cd0871a6bc1f03f57fa661e45d82aeb4fbd7ca90d2bf83e6fd3d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1473",
+  "public_hash": "4893c038ea84f57db3214aaf977eecaa61271eecd48484ee05ab67be121084b7",
+  "rep": 1,
+  "split": "evaluation"
+}

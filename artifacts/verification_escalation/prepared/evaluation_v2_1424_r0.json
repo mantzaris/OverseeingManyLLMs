@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT QA_Testers.fullName, Test_Cases.caseType, Test_Cases.description FROM Quality_Assurance_Testers AS QA_Testers JOIN Qualified_Tests ON QA_Testers.testerID = Qualified_Tests.testerID JOIN Test_Cases ON Qualified_Tests.testCaseID = Test_Cases.testCaseID"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the different types of test cases along with their descriptions, and associate them with the testers who use them.",
+          "sql": "SELECT T2.caseType, T2.description, T1.fullName FROM Quality_Assurance_Testers AS T1 JOIN Qualified_Tests AS T3 ON T1.testerID = T3.testerID JOIN Test_Cases AS T2 ON T3.testCaseID = T2.testCaseID"
+        }
+      ],
+      "source_quote_sha256": "ad7369aee43b2fb1e2cb1ab63a1c77445697fa70f58f6338c40cab0f44a679ae",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the types of test cases and their descriptions, grouped by the tester who uses them.",
+          "sql": "SELECT tc.caseType, tc.description, qt.testerID, qa.fullName FROM Qualified_Tests qt JOIN Test_Cases tc ON qt.testCaseID = tc.testCaseID JOIN Quality_Assurance_Testers qa ON qt.testerID = qa.testerID"
+        },
+        {
+          "meaning": "Provide a summary of the test cases and their descriptions, indicating which tester uses each type.",
+          "sql": "SELECT tc.caseType, tc.description, GROUP_CONCAT(qt.testerID) AS testerIDs, GROUP_CONCAT(qa.fullName) AS testerNames FROM Qualified_Tests qt JOIN Test_Cases tc ON qt.testCaseID = tc.testCaseID JOIN Quality_Assurance_Testers qa ON qt.testerID = qa.testerID GROUP BY tc.caseType, tc.description"
+        },
+        {
+          "meaning": "Display the unique combination of test cases and their descriptions used by each tester.",
+          "sql": "SELECT DISTINCT qa.testerID, tc.caseType, tc.description FROM Qualified_Tests qt JOIN Test_Cases tc ON qt.testCaseID = tc.testCaseID JOIN Quality_Assurance_Testers qa ON qt.testerID = qa.testerID"
+        }
+      ],
+      "source_quote_sha256": "ad7369aee43b2fb1e2cb1ab63a1c77445697fa70f58f6338c40cab0f44a679ae",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1424",
+  "public_hash": "851e223d7b7b7679b8775d14c19afb61c9eb806fd6ffca8ea8cc5c76b4246363",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List the types of test cases used by each tester along with their descriptions.",
+        "sql": "SELECT qa_testers.fullName, test_cases.caseType, test_cases.description FROM Quality_Assurance_Testers AS qa_testers JOIN Qualified_Tests ON qa_testers.testerID = Qualified_Tests.testerID JOIN Test_Cases ON Qualified_Tests.testCaseID = Test_Cases.testCaseID"
+      },
+      {
+        "meaning": "Provide a summary of the test cases used by each tester, grouped by tester and case type, showing the description of each case type.",
+        "sql": "SELECT qa_testers.fullName, test_cases.caseType, GROUP_CONCAT(test_cases.description) AS descriptions FROM Quality_Assurance_Testers AS qa_testers JOIN Qualified_Tests ON qa_testers.testerID = Qualified_Tests.testerID JOIN Test_Cases ON Qualified_Tests.testCaseID = Test_Cases.testCaseID GROUP BY qa_testers.fullName, test_cases.caseType"
+      },
+      {
+        "meaning": "Identify the unique test cases used by each tester and list them with their descriptions.",
+        "sql": "SELECT qa_testers.fullName, DISTINCT test_cases.caseType, test_cases.description FROM Quality_Assurance_Testers AS qa_testers JOIN Qualified_Tests ON qa_testers.testerID = Qualified_Tests.testerID JOIN Test_Cases ON Qualified_Tests.testCaseID = Test_Cases.testCaseID"
+      }
+    ],
+    "source_quote_sha256": "c069a1382f267eac9ee89b49c5cfaac6bceec34f8807e59ad04b660660825dc2",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

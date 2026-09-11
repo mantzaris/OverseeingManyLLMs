@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT pm.name, m.metric_name, m.value FROM Product_Managers pm JOIN Product_Managers_Metrics pmm ON pm.id = pmm.product_manager_id JOIN Metrics m ON m.id = pmm.metrics_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show metrics associated with each product manager by joining the tables and grouping by product manager.",
+          "sql": "SELECT pm.name, m.metric_name, m.value FROM Product_Managers pm JOIN Product_Managers_Metrics pmm ON pm.id = pmm.product_manager_id JOIN Metrics m ON pmm.metrics_id = m.id GROUP BY pm.id, m.metric_name"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the metrics associated with each product manager by joining the Product_Managers and Product_Managers_Metrics tables to get the metrics for each manager.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id JOIN Metrics M ON M.id = PMM.metrics_id"
+        },
+        {
+          "meaning": "Display the metrics and their values for each product manager, listing each metric separately for each manager.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id JOIN Metrics M ON M.id = PMM.metrics_id"
+        },
+        {
+          "meaning": "Present the metrics and their values for each product manager, ensuring that each manager is listed for each metric they are associated with.",
+          "sql": "SELECT PM.name, M.metric_name, M.value FROM Product_Managers PM JOIN Product_Managers_Metrics PMM ON PM.id = PMM.product_manager_id JOIN Metrics M ON M.id = PMM.metrics_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1433",
+  "public_hash": "920fedb403c174e4b4850a4724ba070a82f78812ae6f131f652febb50dd1b15d",
+  "rep": 1,
+  "split": "evaluation"
+}

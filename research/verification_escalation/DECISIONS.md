@@ -30,3 +30,26 @@
   databases, and characterize candidate omission with explicit synthetic failures.
   No new grouping or queue algorithm is claimed. A final null result completes
   this research question without weakening the recovery baseline.
+
+## Source-reading fairness audit (secondary, after freeze)
+
+The recovery condition supplies a structured authoritative instruction. Requiring
+an exact model-quoted copy is a narrow backend choice, not the strongest possible
+source reader. A secondary saved-output audit therefore uses the cached SQL response
+to that identical full instruction, with zero new questions. It verifies that the
+available source text equals the instruction received by the cached generation.
+This isolates direct reading from candidate enumeration and quote extraction. It
+changes prompt style, so it is reported separately from the common-backend frozen
+comparison and requires no new inference. It cannot support an algorithmic claim
+for verification. The primary ambiguous-input comparison remains unchanged.
+
+## Online-only repairs
+
+Interactive inspection found that a prior attempted question could prevent asking
+again after its dependency version changed. OnlineController preserves the full
+history while making the changed version eligible, without restoring spent budget.
+The desk rejects a stale displayed question and invalidates affected earlier outputs
+when a received instruction changes their implementation. Display replay hashes
+exclude measured execution latency. The terminal-only frozen empirical runs do not
+revise after an answer; their code and results remain unchanged. Earlier failed
+browser logs are preserved.

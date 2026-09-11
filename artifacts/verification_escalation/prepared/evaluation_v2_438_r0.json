@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.name, T2.Name FROM Watersports_Rentals AS T1 JOIN Beaches AS T3 ON T1.Beach_id = T3.id JOIN Beach_Clubs AS T2 ON T2.Beach_id = T3.id WHERE T3.PhoneNumber = '555-555-5555'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find beach clubs and water sport rentals where the beach's phone number is 555-555-5555.",
+          "sql": "SELECT T1.id, T1.Name, T1.Location, T1.OpeningHours, T1.PriceRange, T2.id AS Watersports_id, T2.name AS Watersports_Name, T2.Item, T2.RentalRate, T2.AvailableDays FROM Beach_Clubs AS T1 JOIN Watersports_Rentals AS T2 ON T1.Beach_id = T2.Beach_id JOIN Beaches AS T3 ON T1.Beach_id = T3.id WHERE T3.PhoneNumber = '555-555-5555'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find beach clubs and water sport rentals associated with the beach having the phone number 555-555-5555.",
+          "sql": "SELECT T1.id, T1.Name, T1.Location, T1.OpeningHours, T1.PriceRange, T2.id, T2.name, T2.Item, T2.RentalRate, T2.AvailableDays FROM Beach_Clubs AS T1 JOIN Watersports_Rentals AS T2 ON T1.Beach_id = T2.Beach_id JOIN Beaches AS T3 ON T1.Beach_id = T3.id WHERE T3.PhoneNumber = '555-555-5555'"
+        },
+        {
+          "meaning": "List beach clubs and water sport rentals where the beach's name is White Sands Beach.",
+          "sql": "SELECT T1.id, T1.Name, T1.Location, T1.OpeningHours, T1.PriceRange, T2.id, T2.name, T2.Item, T2.RentalRate, T2.AvailableDays FROM Beach_Clubs AS T1 JOIN Watersports_Rentals AS T2 ON T1.Beach_id = T2.Beach_id JOIN Beaches AS T3 ON T1.Beach_id = T3.id WHERE T3.Name = 'White Sands Beach'"
+        },
+        {
+          "meaning": "Retrieve beach clubs and water sport rentals where the beach's address is 123 Main St.",
+          "sql": "SELECT T1.id, T1.Name, T1.Location, T1.OpeningHours, T1.PriceRange, T2.id, T2.name, T2.Item, T2.RentalRate, T2.AvailableDays FROM Beach_Clubs AS T1 JOIN Watersports_Rentals AS T2 ON T1.Beach_id = T2.Beach_id JOIN Beaches AS T3 ON T1.Beach_id = T3.id WHERE T3.Address = '123 Main St'"
+        }
+      ],
+      "source_quote_sha256": "8f108dfc8c9151f718548ff77fc797d130dbac1e13002c8d4a90920d67c964a3",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "438",
+  "public_hash": "47191f34a57c5b276eee73ca3da94954489cce04a840449c18c12c6c3aab49bf",
+  "rep": 0,
+  "split": "evaluation"
+}

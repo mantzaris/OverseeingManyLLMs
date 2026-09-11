@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT destination_name FROM Destinations WHERE id IN (SELECT destination_id FROM Bookings WHERE travel_agency_id IN (SELECT id FROM Travel_Agencies)) GROUP BY destination_name HAVING COUNT(DISTINCT travel_agency_id) = (SELECT COUNT(*) FROM Travel_Agencies)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the destination names associated with each travel agency.",
+          "sql": "SELECT ta.name, d.destination_name FROM Travel_Agencies ta JOIN Travel_Agencies_Destinations tad ON ta.id = tad.travel_agency_id JOIN Destinations d ON tad.destination_id = d.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the destination names for each travel agency based on the bookings.",
+          "sql": "SELECT T3.destination_name, T2.name FROM Bookings AS T1 JOIN Travel_Agencies AS T2 ON T1.travel_agency_id = T2.id JOIN Destinations AS T3 ON T1.destination_id = T3.id GROUP BY T2.name, T3.destination_name"
+        },
+        {
+          "meaning": "List the destination names for each travel agency based on the direct association in the Travel_Agencies_Destinations table.",
+          "sql": "SELECT T3.destination_name, T2.name FROM Travel_Agencies_Destinations AS T1 JOIN Travel_Agencies AS T2 ON T1.travel_agency_id = T2.id JOIN Destinations AS T3 ON T1.destination_id = T3.id"
+        },
+        {
+          "meaning": "List the destination names for each travel agency, considering both bookings and direct associations.",
+          "sql": "SELECT destination_name, name FROM (SELECT T3.destination_name, T2.name FROM Bookings AS T1 JOIN Travel_Agencies AS T2 ON T1.travel_agency_id = T2.id JOIN Destinations AS T3 ON T1.destination_id = T3.id UNION SELECT T3.destination_name, T2.name FROM Travel_Agencies_Destinations AS T1 JOIN Travel_Agencies AS T2 ON T1.travel_agency_id = T2.id JOIN Destinations AS T3 ON T1.destination_id = T3.id) GROUP BY name, destination_name"
+        }
+      ],
+      "source_quote_sha256": "c1d9c2054986b94b1e5588332cd6b3ddb8692a6692cc72028445f051ec910614",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1461",
+  "public_hash": "1714bed63e87ada01b7b30768d3b1ea6f90bd81aa06c58fa739ab52b4870c499",
+  "rep": 0,
+  "split": "evaluation"
+}

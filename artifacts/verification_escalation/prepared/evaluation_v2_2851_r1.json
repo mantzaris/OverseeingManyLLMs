@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Movie.title, Movie.genre, Movie.release_year, Director.name AS film_creator FROM Movie JOIN Director ON Movie.director_id = Director.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List all the films, genres, release years and the film creators (directors) who made them.",
+          "sql": "SELECT Movie.title, Movie.genre, Movie.release_year, Director.name AS film_creator FROM Movie JOIN Director ON Movie.director_id = Director.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all the films, their genres, release years, and the directors who made them.",
+          "sql": "SELECT Movie.title, Movie.genre, Movie.release_year, Director.name FROM Movie JOIN Director ON Movie.director_id = Director.id"
+        },
+        {
+          "meaning": "List all the films, their genres, release years, and the actors who played in them.",
+          "sql": "SELECT Movie.title, Movie.genre, Movie.release_year, Actor.name FROM Role JOIN Actor ON Role.actor_id = Actor.id JOIN Movie ON Role.movie_id = Movie.id"
+        },
+        {
+          "meaning": "List all the films, their genres, release years, and the studios that produced them.",
+          "sql": "SELECT Movie.title, Movie.genre, Movie.release_year, Studio.name FROM Movie JOIN Studio ON Movie.studio_id = Studio.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2851",
+  "public_hash": "991e9bea2b3d80729586fa242cd0c995d9d72c611d03b98710b4099d6b75d069",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T3.source_value FROM Affordable_Housing_Projects_Financing_Sources AS T1 JOIN Affordable_Housing_Projects AS T2 ON T1.housing_project_id = T2.project_id JOIN Financing_Sources AS T3 ON T1.financing_source_id = T3.source_id GROUP BY T3.source_value HAVING COUNT(DISTINCT T2.project_id) = (SELECT COUNT(DISTINCT project_id) FROM Affordable_Housing_Projects)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For each affordable housing project, show the source value of each financing source.",
+          "sql": "SELECT ahp.project_name, fs.source_value FROM Affordable_Housing_Projects AS ahp JOIN Affordable_Housing_Projects_Financing_Sources AS ahfps ON ahp.project_id = ahfps.housing_project_id JOIN Financing_Sources AS fs ON ahfps.financing_source_id = fs.source_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the source value of financing sources for each affordable housing project.",
+          "sql": "SELECT ahp.project_name, fs.source_value FROM Affordable_Housing_Projects AS ahp JOIN Affordable_Housing_Projects_Financing_Sources AS ahfps ON ahp.project_id = ahfps.housing_project_id JOIN Financing_Sources AS fs ON ahfps.financing_source_id = fs.source_id"
+        },
+        {
+          "meaning": "List the project name and the corresponding financing source values for each project, including multiple sources if applicable.",
+          "sql": "SELECT ahp.project_name, GROUP_CONCAT(fs.source_value) AS financing_sources FROM Affordable_Housing_Projects AS ahp JOIN Affordable_Housing_Projects_Financing_Sources AS ahfps ON ahp.project_id = ahfps.housing_project_id JOIN Financing_Sources AS fs ON ahfps.financing_source_id = fs.source_id GROUP BY ahp.project_name"
+        },
+        {
+          "meaning": "Identify the primary financing source value for each affordable housing project.",
+          "sql": "SELECT ahp.project_name, fs.source_value FROM Affordable_Housing_Projects AS ahp JOIN Affordable_Housing_Projects_Financing_Sources AS ahfps ON ahp.project_id = ahfps.housing_project_id JOIN Financing_Sources AS fs ON ahfps.financing_source_id = fs.source_id WHERE ahfps.id = (SELECT MIN(id) FROM Affordable_Housing_Projects_Financing_Sources WHERE housing_project_id = ahp.project_id)"
+        }
+      ],
+      "source_quote_sha256": "a26c5e76a650d185cd1976a5acbe9bff558f7f4e2207e2ac2d1ea322089fa739",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1449",
+  "public_hash": "80f6c4c96e58b41875eed4a3a9513c4ebdd2a81165ecdd49c5bc87337398e666",
+  "rep": 1,
+  "split": "evaluation"
+}

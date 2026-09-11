@@ -1,0 +1,41 @@
+{
+  "answered": {
+    "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets WHERE nutritionist_id IN (SELECT nutritionist_id FROM Nutritionists)) GROUP BY diet_type_value HAVING COUNT(nutritionist_id) = (SELECT COUNT(nutritionist_id) FROM Nutritionists)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show me the diets that every nutritionist covers.",
+          "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets GROUP BY diet_type_id HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists))"
+        }
+      ],
+      "source_quote_sha256": "2084027bd7542e884bfdc4fdf9ef89492ea274fab42f3669a341a123758c1c80",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the diets that all nutritionists cover.",
+          "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets WHERE nutritionist_id IN (SELECT nutritionist_id FROM Nutritionists)) GROUP BY diet_type_value HAVING COUNT(diet_type_id) = (SELECT COUNT(*) FROM Nutritionists)"
+        }
+      ],
+      "source_quote_sha256": "2084027bd7542e884bfdc4fdf9ef89492ea274fab42f3669a341a123758c1c80",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1414",
+  "public_hash": "7ac4bc326464c520dc4b5a191522d8752de09f8bdd351a6b6bcff25ac368e52e",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the diets that are covered by all nutritionists.",
+        "sql": "SELECT diet_type_value FROM Diets WHERE diet_type_id IN (SELECT diet_type_id FROM Nutritionists_Diets WHERE nutritionist_id IN (SELECT nutritionist_id FROM Nutritionists)) GROUP BY diet_type_value HAVING COUNT(nutritionist_id) = (SELECT COUNT(*) FROM Nutritionists)"
+      }
+    ],
+    "source_quote_sha256": "e35f4b7bc35050342ae9f75003eee8978b9a92b27c04dc42680169b129a5987b",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

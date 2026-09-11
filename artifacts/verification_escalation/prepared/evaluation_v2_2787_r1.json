@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT t7.level_name, COUNT(*) AS number_of_jobs FROM Job_Post AS t1 JOIN Degree_Level AS t7 ON t1.degree_level_id = t7.id GROUP BY t7.level_name"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display a list of qualifications (certifications) and the number of available jobs for each",
+          "sql": "SELECT T1.cert_name AS qualification, COUNT(T2.id) AS number_of_jobs FROM Certification AS T1 JOIN Job_Post AS T2 ON T1.id = T2.certification_id GROUP BY T1.cert_name"
+        }
+      ],
+      "source_quote_sha256": "544d3c2723f1b2482c4857c9f131be0e7b66f1f198260addf17bd56e6a8a489a",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display a list of qualifications (certifications and degrees) and the number of available jobs for each qualification.",
+          "sql": "SELECT cert_name, COUNT(*) AS job_count FROM Application JOIN Job_Post ON Application.job_post_id = Job_Post.id JOIN Certification ON Job_Post.certification_id = Certification.id GROUP BY cert_name UNION SELECT level_name, COUNT(*) AS job_count FROM Application JOIN Job_Post ON Application.job_post_id = Job_Post.id JOIN Degree_Level ON Job_Post.degree_level_id = Degree_Level.id GROUP BY level_name"
+        },
+        {
+          "meaning": "Display a list of job titles and the number of available jobs for each title.",
+          "sql": "SELECT title, COUNT(*) AS job_count FROM Job_Post GROUP BY title"
+        },
+        {
+          "meaning": "Display a list of companies and the number of available jobs for each company.",
+          "sql": "SELECT company_name, COUNT(*) AS job_count FROM Job_Post JOIN Company ON Job_Post.company_id = Company.id GROUP BY company_name"
+        }
+      ],
+      "source_quote_sha256": "544d3c2723f1b2482c4857c9f131be0e7b66f1f198260addf17bd56e6a8a489a",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2787",
+  "public_hash": "41e1f0f76e224fe3358204cab174f44845abad84a095461bb7846822649d0fa2",
+  "rep": 1,
+  "split": "evaluation"
+}

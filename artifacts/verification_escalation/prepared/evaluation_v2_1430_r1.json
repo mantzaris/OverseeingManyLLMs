@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT pm.name, m.name FROM Project_Managers pm JOIN Project_Managers_Methodologies pmm ON pm.id = pmm.project_manager_id JOIN Methodologies m ON pmm.methodology_id = m.methodology_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show methodologies used by all project managers",
+          "sql": "SELECT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies WHERE project_manager_id IN (SELECT id FROM Project_Managers))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the methodologies that are used by all project managers.",
+          "sql": "SELECT name FROM Methodologies WHERE methodology_id IN (SELECT methodology_id FROM Project_Managers_Methodologies GROUP BY methodology_id HAVING COUNT(project_manager_id) = (SELECT COUNT(*) FROM Project_Managers))"
+        },
+        {
+          "meaning": "List all methodologies and indicate which ones are used by at least one project manager.",
+          "sql": "SELECT name FROM Methodologies"
+        },
+        {
+          "meaning": "Display the methodologies that each project manager uses, showing multiple rows for each project manager if they use multiple methodologies.",
+          "sql": "SELECT pm.name AS project_manager, m.name AS methodology FROM Project_Managers pm JOIN Project_Managers_Methodologies pmm ON pm.id = pmm.project_manager_id JOIN Methodologies m ON m.methodology_id = pmm.methodology_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1430",
+  "public_hash": "535eba15d9274c0be8dd588847c10fae417f219506cb28a666ff314ec02875db",
+  "rep": 1,
+  "split": "evaluation"
+}

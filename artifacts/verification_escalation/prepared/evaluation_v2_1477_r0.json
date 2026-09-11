@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T2 ON T1.attraction_id = T2.attraction_id GROUP BY T1.attraction_id HAVING COUNT(DISTINCT T2.theme_park_id) = (SELECT COUNT(*) FROM Theme_Parks)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Provide descriptions of attractions for each theme park.",
+          "sql": "SELECT T2.name, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+        }
+      ],
+      "source_quote_sha256": "53445e72ffde469699427530076317e8377e4fd71299c53cca3aefeadebf93c7",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the descriptions of attractions for each theme park.",
+          "sql": "SELECT T2.name, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+        },
+        {
+          "meaning": "List the theme parks and their corresponding attractions with descriptions.",
+          "sql": "SELECT T2.name, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+        },
+        {
+          "meaning": "Provide a list of theme parks and the descriptions of the attractions they have.",
+          "sql": "SELECT T2.name, T1.description FROM Attractions AS T1 JOIN Theme_Parks_Attractions AS T3 ON T1.attraction_id = T3.attraction_id JOIN Theme_Parks AS T2 ON T3.theme_park_id = T2.park_id"
+        }
+      ],
+      "source_quote_sha256": "53445e72ffde469699427530076317e8377e4fd71299c53cca3aefeadebf93c7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1477",
+  "public_hash": "2f861ccbc4b26fabf59ef3d4505b95313aef1b740c7a14a6b9227948715ba587",
+  "rep": 0,
+  "split": "evaluation"
+}

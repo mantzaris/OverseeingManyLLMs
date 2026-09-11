@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT name FROM cocktail_lounges WHERE hours = 'Open from 5 PM to 2 AM' UNION SELECT name FROM sports_bars WHERE hours = 'Open from 5 PM to 2 AM'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Provide cocktail lounges and sports bars that are open from 5pm to 2am.",
+          "sql": "SELECT * FROM cocktail_lounges WHERE hours = 'Open from 5 PM to 2 AM' UNION SELECT * FROM sports_bars WHERE hours = 'Open from 5 PM to 2 AM'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Select cocktail lounges and sports bars that are open from 5 PM to 2 AM.",
+          "sql": "SELECT name, address FROM cocktail_lounges WHERE hours = 'Open from 5 PM to 2 AM' UNION SELECT name, address FROM sports_bars WHERE hours = 'Open from 5 PM to 2 AM'"
+        },
+        {
+          "meaning": "Select cocktail lounges and sports bars that are open during the period from 5 PM to 2 AM.",
+          "sql": "SELECT name, address FROM cocktail_lounges WHERE hours LIKE '%from 5 PM to 2 AM%' UNION SELECT name, address FROM sports_bars WHERE hours LIKE '%from 5 PM to 2 AM%'"
+        },
+        {
+          "meaning": "Select cocktail lounges and sports bars that have their opening hours from 5 PM to 2 AM.",
+          "sql": "SELECT name, address FROM cocktail_lounges WHERE hours = 'Open from 5 PM to 2 AM' UNION SELECT name, address FROM sports_bars WHERE hours = 'Open from 5 PM to 2 AM'"
+        }
+      ],
+      "source_quote_sha256": "edb8ec8e634b9ec1e97f269c4ade518010aa274f249e78589e0f021a00f94859",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "423",
+  "public_hash": "9fbf63bfa9d166dde635de3dae601c0c4ce7fc98ccbcff1939eaac8da605ca2f",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all cocktail lounges and sports bars that are open from 5pm to 2am.",
+        "sql": "SELECT name FROM cocktail_lounges WHERE hours = 'Open from 5 PM to 2 AM' UNION SELECT name FROM sports_bars WHERE hours = 'Open from 5 PM to 2 AM'"
+      },
+      {
+        "meaning": "List all cocktail lounges and sports bars that have opening and closing times between 5pm and 2am.",
+        "sql": "SELECT name FROM cocktail_lounges WHERE hours LIKE '%5 PM%' AND hours LIKE '%2 AM%' UNION SELECT name FROM sports_bars WHERE hours LIKE '%5 PM%' AND hours LIKE '%2 AM%'"
+      },
+      {
+        "meaning": "List all cocktail lounges and sports bars that are open during the evening and night hours, specifically from 5pm to 2am.",
+        "sql": "SELECT name FROM cocktail_lounges WHERE hours LIKE '%5 PM%' AND hours LIKE '%2 AM%' UNION SELECT name FROM sports_bars WHERE hours LIKE '%5 PM%' AND hours LIKE '%2 AM%'"
+      }
+    ],
+    "source_quote_sha256": "3c6f1f090b60524d9d2f24d5313e5b02f320936994ccca583fb8808b61784e13",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

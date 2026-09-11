@@ -1,0 +1,49 @@
+{
+  "answered": {
+    "sql": "SELECT C.FirstName, C.LastName FROM Chefs C JOIN Languages L ON C.LanguageID = L.LanguageID WHERE L.LanguageName = 'English' UNION SELECT S.FirstName, S.LastName FROM Servers S JOIN Languages L ON S.LanguageID = L.LanguageID WHERE L.LanguageName = 'English'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the chefs and servers who speak English.",
+          "sql": "SELECT C.FirstName, C.LastName, S.FirstName, S.LastName FROM Chefs C JOIN Languages L ON C.LanguageID = L.LanguageID JOIN Servers S ON S.LanguageID = L.LanguageID WHERE L.LanguageName = 'English'"
+        }
+      ],
+      "source_quote_sha256": "1c9570d8cd1f7767934127f4177e5329be37ba97978e6156c44b2f308364d446",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the chefs and servers who have English as their language.",
+          "sql": "SELECT C.FirstName, C.LastName FROM Chefs C JOIN Languages L ON C.LanguageID = L.LanguageID WHERE L.LanguageName = 'English' UNION SELECT S.FirstName, S.LastName FROM Servers S JOIN Languages L ON S.LanguageID = L.LanguageID WHERE L.LanguageName = 'English'"
+        },
+        {
+          "meaning": "Show the chefs and servers who are hired in restaurants that serve English-speaking clients.",
+          "sql": "SELECT C.FirstName, C.LastName FROM Chefs C JOIN ChefRestaurants CR ON C.ChefID = CR.ChefID JOIN Restaurants R ON CR.RestaurantID = R.RestaurantID WHERE R.Name IN (SELECT R.Name FROM Restaurants R JOIN ServerRestaurants SR ON R.RestaurantID = SR.RestaurantID JOIN Servers S ON SR.ServerID = S.ServerID JOIN Languages L ON S.LanguageID = L.LanguageID WHERE L.LanguageName = 'English')"
+        },
+        {
+          "meaning": "Show the chefs and servers who are associated with restaurants where English is spoken.",
+          "sql": "SELECT C.FirstName, C.LastName FROM Chefs C JOIN ChefRestaurants CR ON C.ChefID = CR.ChefID JOIN Restaurants R ON CR.RestaurantID = R.RestaurantID WHERE R.Name IN (SELECT R.Name FROM Restaurants R JOIN ServerRestaurants SR ON R.RestaurantID = SR.RestaurantID JOIN Servers S ON SR.ServerID = S.ServerID JOIN Languages L ON S.LanguageID = L.LanguageID WHERE L.LanguageName = 'English')"
+        }
+      ],
+      "source_quote_sha256": "1c9570d8cd1f7767934127f4177e5329be37ba97978e6156c44b2f308364d446",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "425",
+  "public_hash": "ff2252b52929b06a893c27525200ce253332de743e36b97814173aefa3332676",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List chefs and servers who speak English.",
+        "sql": "SELECT FirstName, LastName FROM Chefs WHERE LanguageID = (SELECT LanguageID FROM Languages WHERE LanguageName = 'English') UNION SELECT FirstName, LastName FROM Servers WHERE LanguageID = (SELECT LanguageID FROM Languages WHERE LanguageName = 'English')"
+      }
+    ],
+    "source_quote_sha256": "adfb306eaed6f0609d40e837a0866f2e67eae21534ee6998aecde5fdb3074c5f",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

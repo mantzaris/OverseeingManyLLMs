@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Room AS 'Family_Suite', Price_per_night AS Cost FROM FamilySuites WHERE Price_per_night = 150 UNION SELECT Room AS 'Single_Room', Price_per_night AS Cost FROM SingleRooms WHERE Price_per_night = 150"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show family rooms and single rooms that cost 150 per night.",
+          "sql": "SELECT Room FROM FamilySuites WHERE Price_per_night = 150.0 UNION SELECT Room FROM SingleRooms WHERE Price_per_night = 150.0"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show family rooms and single rooms that cost exactly 150 per night.",
+          "sql": "SELECT Room FROM FamilySuites WHERE Price_per_night = 150 UNION SELECT Room FROM SingleRooms WHERE Price_per_night = 150"
+        },
+        {
+          "meaning": "Show family rooms and single rooms that have a total cost of 150 for any booking.",
+          "sql": "SELECT Room FROM FamilySuites WHERE Price_per_night = 150 UNION SELECT Room FROM SingleRooms WHERE Price_per_night = 150"
+        },
+        {
+          "meaning": "Show family rooms and single rooms that are booked for a total cost of 150.",
+          "sql": "SELECT Room FROM Bookings JOIN FamilySuites ON Bookings.BookingID = FamilySuites.BookingID WHERE TotalCost = 150 UNION SELECT Room FROM Bookings JOIN SingleRooms ON Bookings.BookingID = SingleRooms.BookingID WHERE TotalCost = 150"
+        }
+      ],
+      "source_quote_sha256": "cc8ddce621ae03ed0acce82a9e498cd8f0d940cea33b7a5315e2b00ad80e00f1",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "432",
+  "public_hash": "be884b12800e88e2c52b0035a5b2e3bb42c24f9f05f84e02e059d1efae92f030",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show family rooms and single rooms that cost 150 per night.",
+        "sql": "SELECT Room FROM FamilySuites WHERE Price_per_night = 150.0 UNION SELECT Room FROM SingleRooms WHERE Price_per_night = 150.0"
+      },
+      {
+        "meaning": "Show all family rooms and single rooms regardless of cost, but highlight those that cost 150 per night.",
+        "sql": "SELECT Room, Price_per_night FROM FamilySuites WHERE Price_per_night = 150.0 UNION SELECT Room, Price_per_night FROM SingleRooms WHERE Price_per_night = 150.0"
+      },
+      {
+        "meaning": "Show family rooms and single rooms that have a total cost of 150 for any booking.",
+        "sql": "SELECT Room FROM FamilySuites WHERE Price_per_night = 150.0 UNION SELECT Room FROM SingleRooms WHERE Price_per_night = 150.0"
+      }
+    ],
+    "source_quote_sha256": "cc8ddce621ae03ed0acce82a9e498cd8f0d940cea33b7a5315e2b00ad80e00f1",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

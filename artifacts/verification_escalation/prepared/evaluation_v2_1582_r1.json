@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT initiative_name, description FROM Initiatives WHERE id IN (SELECT initiative_id FROM Community_Development_Corporations_Initiatives GROUP BY initiative_id HAVING COUNT(community_development_corporation_id) = (SELECT COUNT(*) FROM Community_Development_Corporations)) ORDER BY initiative_name"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "For each CDC, list all initiatives associated with it.",
+          "sql": "SELECT CDC.name, I.initiative_name FROM Community_Development_Corporations CDC JOIN Community_Development_Corporations_Initiatives CCI ON CDC.id = CCI.community_development_corporation_id JOIN Initiatives I ON CCI.initiative_id = I.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all initiatives associated with each community development corporation.",
+          "sql": "SELECT cdc.name, i.initiative_name FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id JOIN Initiatives i ON cdc_init.initiative_id = i.id"
+        },
+        {
+          "meaning": "Count the number of initiatives for each community development corporation.",
+          "sql": "SELECT cdc.name, COUNT(cdc_init.initiative_id) AS initiative_count FROM Community_Development_Corporations cdc JOIN Community_Development_Corporations_Initiatives cdc_init ON cdc.id = cdc_init.community_development_corporation_id GROUP BY cdc.name"
+        },
+        {
+          "meaning": "Identify the most common initiative across all community development corporations.",
+          "sql": "SELECT i.initiative_name, COUNT(cdc_init.initiative_id) AS initiative_count FROM Initiatives i JOIN Community_Development_Corporations_Initiatives cdc_init ON i.id = cdc_init.initiative_id GROUP BY i.initiative_name ORDER BY initiative_count DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "83bcbcfaf50e19341b78d85d2adeb3b23c559459ff8178a64de74bbe5b58453d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1582",
+  "public_hash": "78c022cc72b1c7190df37aad70dd4fe8a4b2a910a79b4510567b0c23ae5007c1",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT housekeeper FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display housekeepers and laundry service attendants working at the Grand Hotel.",
+          "sql": "SELECT housekeeper FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display housekeepers and laundry service attendants working at the Grand Hotel.",
+          "sql": "SELECT housekeeper, laundry_attendant FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT housekeeper, laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        },
+        {
+          "meaning": "Display the names of housekeepers and laundry service attendants working at the Grand Hotel, without duplicates.",
+          "sql": "SELECT DISTINCT housekeeper FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT DISTINCT laundry_attendant FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        },
+        {
+          "meaning": "Display the names of housekeepers and laundry service attendants working at the Grand Hotel, along with their shifts.",
+          "sql": "SELECT housekeeper, shift_start, shift_end FROM Housekeeping WHERE hotel = 'The Grand Hotel' UNION SELECT laundry_attendant, shift_start, shift_end FROM LaundryService WHERE hotel = 'The Grand Hotel'"
+        }
+      ],
+      "source_quote_sha256": "d7654ac598d4dca1ab9ee8949957774a8aa973fa68980e311b258ea405b78de0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "446",
+  "public_hash": "44d76f87ab8e6caea6e447010b52b9caf802237b83417da1a3015d988f72cc83",
+  "rep": 0,
+  "split": "evaluation"
+}
