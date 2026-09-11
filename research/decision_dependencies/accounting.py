@@ -7,6 +7,10 @@ from pathlib import Path
 from .client import ART,ROOT,parsed,write_json
 
 def account(status='checkpoint'):
+    ledger_path=ART/'resource_ledger.json'
+    if ledger_path.exists():
+        saved=json.loads(ledger_path.read_text())
+        if saved.get('status')=='final':return saved
     now=datetime.now(timezone.utc);auth=json.loads((ART/'authorization.json').read_text())
     start=datetime.fromisoformat(auth['started_utc']);original=datetime.fromisoformat('2026-09-09T15:38:57+00:00')
     records=[json.loads(p.read_text()) for p in sorted((ART/'raw').glob('*.json'))]

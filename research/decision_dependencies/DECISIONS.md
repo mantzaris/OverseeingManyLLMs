@@ -114,3 +114,26 @@ inspection-equivalent sensitivity. No more model generations or method changes.
 Online interface fixes for explicit manual overrides are separate from the frozen
 simulation: they invalidate prepared work and roll back rejected scope changes.
 They do not retroactively repair the natural-language challenge failures.
+
+## Completion checkpoint, 2026-09-11 09:15 UTC
+
+The complete prototype, evaluation and ten-page report are committed in
+`8061aaf5`, following the pre-evaluation freeze `70299a02`. The final package
+passes 24 new focused tests and 17 historical tests. All 5,184 controller runs,
+120 challenge rows, 768 reconstructed prompt/seed/setting payloads, frozen and
+post hoc numerical tables reproduce without network access or inference. The
+source download helper verifies the exact selected bytes and all 33 development/
+evaluation goal signatures, including the extra initial-probe dialogue.
+
+The final area-alias sensitivity gives semantic memory and both version methods
+274/282 correct artifacts and 46/48 correct project runs. Questions remain 58 for
+memory and 148 for either version method. The frozen scores remain 267 versus
+268 artifacts and 44/48 projects for both. No new generation or method tuning
+followed the result. Five publication figures and the actual-browser screenshots
+were inspected; the standalone report keeps figure captions attached and leaves
+the submission untouched.
+
+Temporary local server, browser and SSH tunnel are stopped. The existing remote
+GPU model server was checked again and preserved. Stop with the simple-backend
+recommendation rather than spending unused budget on another method variant.
+Exact elapsed time and cumulative totals are finalized in the resource ledger.
