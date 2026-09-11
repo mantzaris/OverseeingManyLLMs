@@ -1,0 +1,116 @@
+{
+  "evidence_type": "stipulated mechanics, not source cases or participant data",
+  "explicit_dependency": {
+    "correct_answer": "normal",
+    "harmed_recipients": 2,
+    "recipients": [
+      "decision-a",
+      "decision-b"
+    ],
+    "scope": "configuration:record-a:approval-v1",
+    "wrong_answer": "heating_valve"
+  },
+  "interpretation": "Exact scope prevents unintended recipients; it does not prevent correlated harm from a mistaken shared answer. Shared-answer execution is deliberately absent from the HVAC interface.",
+  "separate_decisions": {
+    "events": [
+      {
+        "event": "arrival",
+        "request_id": "decision-a",
+        "tick": 0
+      },
+      {
+        "event": "arrival",
+        "request_id": "decision-b",
+        "tick": 0
+      },
+      {
+        "event": "session_started",
+        "information": {
+          "certificate": {
+            "lost": [],
+            "protected": [
+              "decision-a",
+              "decision-b"
+            ],
+            "slack": {},
+            "valid": true
+          },
+          "checked": 3,
+          "eligible": [
+            "decision-a",
+            "decision-b"
+          ],
+          "override": true,
+          "policy": "guarded",
+          "reason": "Preserves the feasible EDF continuation",
+          "rejected": 0
+        },
+        "override": true,
+        "request_ids": [
+          "decision-a",
+          "decision-b"
+        ],
+        "session_id": 1,
+        "tick": 0
+      },
+      {
+        "context": "record-a",
+        "event": "context_opened",
+        "previous": null,
+        "tick": 0
+      },
+      {
+        "event": "review_started",
+        "finish": 1,
+        "parts": {
+          "coordination": 0,
+          "decision": 1,
+          "setup": 0,
+          "switch": 0
+        },
+        "request_id": "decision-a",
+        "session_id": 1,
+        "tick": 0
+      },
+      {
+        "diagnosis": "normal",
+        "event": "review_completed",
+        "request_id": "decision-a",
+        "response_failed": false,
+        "tick": 1
+      },
+      {
+        "event": "review_started",
+        "finish": 2,
+        "parts": {
+          "coordination": 0,
+          "decision": 1,
+          "setup": 0,
+          "switch": 0
+        },
+        "request_id": "decision-b",
+        "session_id": 1,
+        "tick": 1
+      },
+      {
+        "diagnosis": "heating_valve",
+        "event": "review_completed",
+        "request_id": "decision-b",
+        "response_failed": false,
+        "tick": 2
+      },
+      {
+        "event": "session_ended",
+        "reason": "Completed",
+        "remaining": [],
+        "session_id": 1,
+        "tick": 2
+      }
+    ],
+    "final": {
+      "decision-a": "normal",
+      "decision-b": "heating_valve"
+    },
+    "similarity_propagation_rejected": true
+  }
+}

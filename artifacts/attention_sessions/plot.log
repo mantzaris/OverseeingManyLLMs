@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/attention_sessions/plot.py", line 67, in <module>
+    fig.tight_layout();save(fig,'ablations')
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/attention_sessions/plot.py", line 31, in save
+    fig.savefig(OUT/(name+'.pdf'),bbox_inches='tight');fig.savefig(OUT/(name+'.svg'),bbox_inches='tight');fig.savefig(OUT/(name+'.png'),dpi=300,bbox_inches='tight');plt.close(fig)
+  File "/usr/lib/python3/dist-packages/matplotlib/figure.py", line 2180, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/backend_bases.py", line 2056, in print_figure
+    result = print_method(
+  File "/usr/lib/python3/dist-packages/matplotlib/backends/backend_pdf.py", line 2503, in print_pdf
+    self.figure.draw(renderer)
+  File "/usr/lib/python3/dist-packages/matplotlib/artist.py", line 38, in draw_wrapper
+    return draw(artist, renderer, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/figure.py", line 1708, in draw
+    mimage._draw_list_compositing_images(
+  File "/usr/lib/python3/dist-packages/matplotlib/image.py", line 135, in _draw_list_compositing_images
+    a.draw(renderer)
+  File "/usr/lib/python3/dist-packages/matplotlib/artist.py", line 38, in draw_wrapper
+    return draw(artist, renderer, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/axes/_base.py", line 2647, in draw
+    mimage._draw_list_compositing_images(renderer, self, artists)
+  File "/usr/lib/python3/dist-packages/matplotlib/image.py", line 135, in _draw_list_compositing_images
+    a.draw(renderer)
+  File "/usr/lib/python3/dist-packages/matplotlib/artist.py", line 38, in draw_wrapper
+    return draw(artist, renderer, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/lines.py", line 783, in draw
+    lc_rgba = mcolors.to_rgba(self._color, self._alpha)
+  File "/usr/lib/python3/dist-packages/matplotlib/colors.py", line 177, in to_rgba
+    rgba = _to_rgba_no_colorcycle(c, alpha)
+  File "/usr/lib/python3/dist-packages/matplotlib/colors.py", line 233, in _to_rgba_no_colorcycle
+    raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
+ValueError: Invalid RGBA argument: '#222'

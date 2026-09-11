@@ -69,7 +69,7 @@ no repository license or raw participant dataset was located.
 [Sections 2-4](https://arxiv.org/html/2606.26614v2#S2).
 
 **DeCCaF.** Alves, Leitao, Jesus, Sampaio, Liebana, Saleiro, Figueiredo
-and Bizarro, TMLR July 2024; arXiv v3, 21 August 2024. Section 3 learns
+and Bizarro, TMLR July 2024; arXiv v3, 19 August 2024. Section 3 learns
 classifier and expert correctness, then globally assigns cases under capacity
 constraints. The released CP-SAT implementation uses equality quotas; the
 paper also discusses maximum-capacity inequalities. Sections 4-5 use synthetic
