@@ -1,0 +1,666 @@
+[
+  {
+    "repo": "dong-river/VOI_communication",
+    "path": "flight_rec/voi_utils.py",
+    "revision": "27466a7832d5aafff82017a659e08942e18b01ae",
+    "url": "https://raw.githubusercontent.com/dong-river/VOI_communication/27466a7832d5aafff82017a659e08942e18b01ae/flight_rec/voi_utils.py",
+    "sha256": "c666a0b9da0cfc4488082a2690ceb75967e3f7b6e027e9be5e5a0566834a20d5",
+    "inspected_lines": [
+      {
+        "line": 1,
+        "text": "# voi_utils.py"
+      },
+      {
+        "line": 2,
+        "text": "# Posterior-driven VOI utilities (final-action value) for the flight recommendation task."
+      },
+      {
+        "line": 7,
+        "text": "# (4) VOI = E_y[ value_after(y) ] - value_before - question_cost"
+      },
+      {
+        "line": 45,
+        "text": "    Generate candidate questions for VOI evaluation."
+      },
+      {
+        "line": 46,
+        "text": "    These are the same questions used in confidence/adaptive strategies."
+      },
+      {
+        "line": 575,
+        "text": "# ====== VOI using LLM posteriors (belief-based value) ======"
+      },
+      {
+        "line": 577,
+        "text": "def voi_for_question("
+      },
+      {
+        "line": 586,
+        "text": "    question_cost: float = 0.0,"
+      },
+      {
+        "line": 590,
+        "text": "    VOI(q) = E_y[ V(b_{-f} \u222a posterior_f|y) ] - V(b_current) - cost"
+      },
+      {
+        "line": 619,
+        "text": "        print(f\"[VOI DEBUG] Question: {question_text}\")"
+      },
+      {
+        "line": 620,
+        "text": "        print(f\"[VOI DEBUG] Feature: {feat_dbg}\")"
+      },
+      {
+        "line": 622,
+        "text": "            print(\"[VOI DEBUG] Feature weights: equal\")"
+      },
+      {
+        "line": 624,
+        "text": "            print(f\"[VOI DEBUG] Feature weights: {json.dumps(feature_weights)}\")"
+      },
+      {
+        "line": 625,
+        "text": "        print(f\"[VOI DEBUG] V0 (belief-based value): {V0:.4f}\")"
+      },
+      {
+        "line": 632,
+        "text": "        print(f\"[VOI DEBUG] P(answer): {json.dumps(py)}\")"
+      },
+      {
+        "line": 649,
+        "text": "            print(f\"[VOI DEBUG] Vy given {y}: {Vy:.4f} (weight {float(pyv):.4f})\")"
+      },
+      {
+        "line": 651,
+        "text": "    voi = Vexp - V0 - float(question_cost)"
+      },
+      {
+        "line": 653,
+        "text": "    if -1e-9 < voi < 0:"
+      },
+      {
+        "line": 654,
+        "text": "        voi = 0.0"
+      },
+      {
+        "line": 656,
+        "text": "        print(f\"[VOI DEBUG] Vexp: {Vexp:.4f}; cost: {float(question_cost):.4f}; VOI: {voi:.4f}\")"
+      },
+      {
+        "line": 657,
+        "text": "    return voi, Vexp, V0"
+      },
+      {
+        "line": 698,
+        "text": "def choose_best_voi_question("
+      },
+      {
+        "line": 705,
+        "text": "    question_cost: float = 0.0,"
+      },
+      {
+        "line": 710,
+        "text": "    Compute VOI for each candidate question, return (best_question_text, best_voi)."
+      },
+      {
+        "line": 711,
+        "text": "    Returns (None, 0.0) if no question has positive VOI."
+      }
+    ]
+  },
+  {
+    "repo": "dong-river/VOI_communication",
+    "path": "flight_rec/flight_rec.py",
+    "revision": "27466a7832d5aafff82017a659e08942e18b01ae",
+    "url": "https://raw.githubusercontent.com/dong-river/VOI_communication/27466a7832d5aafff82017a659e08942e18b01ae/flight_rec/flight_rec.py",
+    "sha256": "35f8ea44a8d11d7808e0cf7b96db598d0f9ccfbc497dd2589e48fa589265c5e1",
+    "inspected_lines": [
+      {
+        "line": 2,
+        "text": "# Flight recommendation experiment runner with VOI strategy integrated."
+      },
+      {
+        "line": 20,
+        "text": "# VOI helpers"
+      },
+      {
+        "line": 21,
+        "text": "from voi_utils import choose_best_voi_question"
+      },
+      {
+        "line": 24,
+        "text": "# Confidence strategy turn-by-turn logging"
+      },
+      {
+        "line": 27,
+        "text": "def log_confidence_turn_data(game_idx: int, turn_number: int, strategy: str, "
+      },
+      {
+        "line": 32,
+        "text": "                           output_dir: str = \"./confidence_logs\") -> None:"
+      },
+      {
+        "line": 34,
+        "text": "    Log turn-by-turn data for confidence strategy analysis."
+      },
+      {
+        "line": 50,
+        "text": "    if strategy != \"confidence\":"
+      },
+      {
+        "line": 51,
+        "text": "        return  # Only log for confidence strategy"
+      },
+      {
+        "line": 54,
+        "text": "    log_file = os.path.join(output_dir, f\"game_{game_idx:04d}_confidence_turns.jsonl\")"
+      },
+      {
+        "line": 56,
+        "text": "    # Get choice probabilities and confidence"
+      },
+      {
+        "line": 58,
+        "text": "    max_confidence = max(choice_probs.values())"
+      },
+      {
+        "line": 80,
+        "text": "        \"max_confidence\": max_confidence,"
+      },
+      {
+        "line": 101,
+        "text": "    print(f\"\ud83d\udcdd Logged turn {turn_number} for game {game_idx} (confidence: {max_confidence:.3f}, correct: {is_correct})\")"
+      },
+      {
+        "line": 109,
+        "text": "                          confidence_threshold: float = 0.7, **kwargs) -> Tuple[bool, str]:"
+      },
+      {
+        "line": 114,
+        "text": "        strategy: Strategy type (\"direct\", \"no_question\", \"confidence\", \"adaptive\", \"voi\")"
+      },
+      {
+        "line": 119,
+        "text": "        confidence_threshold: Minimum confidence for confidence strategy"
+      },
+      {
+        "line": 123,
+        "text": "            - interaction_history (for VOI priors)"
+      },
+      {
+        "line": 124,
+        "text": "            - question_cost (for VOI stopping)"
+      },
+      {
+        "line": 135,
+        "text": "    elif strategy == \"confidence\":"
+      },
+      {
+        "line": 140,
+        "text": "        max_confidence = max(choice_probs.values())"
+      },
+      {
+        "line": 144,
+        "text": "        if max_confidence < confidence_threshold:"
+      },
+      {
+        "line": 164,
+        "text": "        max_confidence = vals_sorted[0]"
+      },
+      {
+        "line": 166,
+        "text": "        confidence_gap = max_confidence - second"
+      },
+      {
+        "line": 168,
+        "text": "        should_ask = (max_confidence < 0.8 and confidence_gap < 0.3 and questions_asked < 2)"
+      }
+    ]
+  },
+  {
+    "repo": "dong-river/VOI_communication",
+    "path": "mixed_20q/environment.py",
+    "revision": "27466a7832d5aafff82017a659e08942e18b01ae",
+    "url": "https://raw.githubusercontent.com/dong-river/VOI_communication/27466a7832d5aafff82017a659e08942e18b01ae/mixed_20q/environment.py",
+    "sha256": "66b8872b07355694f9389bd40f700784a4bbf5d0df79874fa9a10087444c63a2",
+    "inspected_lines": [
+      {
+        "line": 238,
+        "text": "        \"\"\"Force a final guess (+confidence) from the model given the conversation.\"\"\""
+      },
+      {
+        "line": 253,
+        "text": "        guess, confidence, cleaned_response = parse_guess(raw_guess)"
+      },
+      {
+        "line": 254,
+        "text": "        return guess, confidence, cleaned_response, None"
+      },
+      {
+        "line": 257,
+        "text": "    def format_turn_result(self, question, answer, guess=None, confidence=0,"
+      },
+      {
+        "line": 266,
+        "text": "            \"confidence\": confidence,"
+      }
+    ]
+  },
+  {
+    "repo": "kim-jeong-hyeon/AgentLens",
+    "path": "standalone_m3a/m3a_agent/env/json_action.py",
+    "revision": "2978e583a9cbac8911e55ae6c9d720a19777e259",
+    "url": "https://raw.githubusercontent.com/kim-jeong-hyeon/AgentLens/2978e583a9cbac8911e55ae6c9d720a19777e259/standalone_m3a/m3a_agent/env/json_action.py",
+    "sha256": "9269e7beba62c4ca37e1e066a73cff1170b582b74408392cdb56ae7cbb1b7817",
+    "inspected_lines": []
+  },
+  {
+    "repo": "kim-jeong-hyeon/AgentLens",
+    "path": "AgentLens/app/src/main/java/com/marvis/agentlens/overlay/OverlayManager.kt",
+    "revision": "2978e583a9cbac8911e55ae6c9d720a19777e259",
+    "url": "https://raw.githubusercontent.com/kim-jeong-hyeon/AgentLens/2978e583a9cbac8911e55ae6c9d720a19777e259/AgentLens/app/src/main/java/com/marvis/agentlens/overlay/OverlayManager.kt",
+    "sha256": "2e87a2ae134f7ff7c6a9022989faf0abb09d8c0e8f6410d3ad39a1a1e521c5be",
+    "inspected_lines": [
+      {
+        "line": 513,
+        "text": "                    \"Voice input coming soon\","
+      }
+    ]
+  },
+  {
+    "repo": "feedzai/deccaf",
+    "path": "Code/deferral/run_alert.py",
+    "revision": "b910b48d7e146d53b5f145224b819bdb0962d40a",
+    "url": "https://raw.githubusercontent.com/feedzai/deccaf/b910b48d7e146d53b5f145224b819bdb0962d40a/Code/deferral/run_alert.py",
+    "sha256": "6dc66cc563374d63052f7ed8c5eb4690cae7e3844539a5266524d6cbd5399757",
+    "inspected_lines": [
+      {
+        "line": 6,
+        "text": "from ortools.sat.python import cp_model"
+      },
+      {
+        "line": 145,
+        "text": "        cost_matrix_df = preds.T"
+      },
+      {
+        "line": 148,
+        "text": "                cost_matrix_df = cost_matrix_df.drop(index=d)"
+      },
+      {
+        "line": 151,
+        "text": "        cost_matrix = cost_matrix_df.values"
+      },
+      {
+        "line": 152,
+        "text": "        num_workers, num_tasks = cost_matrix.shape"
+      },
+      {
+        "line": 153,
+        "text": "        workers = list(cost_matrix_df.index)"
+      },
+      {
+        "line": 155,
+        "text": "        model = cp_model.CpModel()"
+      },
+      {
+        "line": 163,
+        "text": "        # capacity constraints"
+      },
+      {
+        "line": 174,
+        "text": "                objective_terms.append(cost_matrix[i, j] * x[i][j])"
+      },
+      {
+        "line": 177,
+        "text": "        solver = cp_model.CpSolver()"
+      },
+      {
+        "line": 182,
+        "text": "        if not status == cp_model.OPTIMAL and not status == cp_model.FEASIBLE:"
+      },
+      {
+        "line": 189,
+        "text": "            ix = cost_matrix_df.columns.to_list()[j]"
+      },
+      {
+        "line": 216,
+        "text": "costs_l = cfg['costs']"
+      },
+      {
+        "line": 223,
+        "text": "    for l in costs_l:"
+      },
+      {
+        "line": 245,
+        "text": "            a[direc]['cap'] = pd.read_csv(f'../../Data_and_models/testbed/{scen}-l_{l}/test/' + direc + '/capacity.csv')"
+      }
+    ]
+  },
+  {
+    "repo": "KuangshiAi/HiLSVA",
+    "path": "src/hilsva/approval_guard.py",
+    "revision": "63b99042b3f190e79ea4ded41fb8daa52e5cb4cc",
+    "url": "https://raw.githubusercontent.com/KuangshiAi/HiLSVA/63b99042b3f190e79ea4ded41fb8daa52e5cb4cc/src/hilsva/approval_guard.py",
+    "sha256": "71835158dcbef7775dde93d6c6cf2dda7d9f02726b42fd26bc90787d5640ddb5",
+    "inspected_lines": [
+      {
+        "line": 44,
+        "text": "MaybeRequiresApproval = Literal[\"always\", \"maybe\", \"never\"]"
+      },
+      {
+        "line": 46,
+        "text": "DEFAULT_REQUIRES_APPROVAL: MaybeRequiresApproval = \"always\""
+      },
+      {
+        "line": 49,
+        "text": "class BaseApprovalGuard(Protocol):"
+      },
+      {
+        "line": 50,
+        "text": "    async def requires_approval("
+      },
+      {
+        "line": 52,
+        "text": "        baseline: MaybeRequiresApproval,"
+      },
+      {
+        "line": 53,
+        "text": "        llm_guess: MaybeRequiresApproval,"
+      },
+      {
+        "line": 59,
+        "text": "    async def get_approval("
+      },
+      {
+        "line": 62,
+        "text": "        \"\"\"Get approval for the action; only called if the tool is marked 'always' irreversible, or"
+      },
+      {
+        "line": 75,
+        "text": "class ApprovalConfig:"
+      },
+      {
+        "line": 76,
+        "text": "    approval_policy: Literal["
+      },
+      {
+        "line": 84,
+        "text": "class ApprovalGuardContext:"
+      },
+      {
+        "line": 90,
+        "text": "    _APPROVAL_GUARD_CONTEXT_VAR: ClassVar[ContextVar[BaseApprovalGuard | None]] = ("
+      },
+      {
+        "line": 91,
+        "text": "        ContextVar(\"_APPROVAL_GUARD_CONTEXT_VAR\")"
+      },
+      {
+        "line": 97,
+        "text": "        cls, ctx: BaseApprovalGuard | None"
+      },
+      {
+        "line": 100,
+        "text": "        token = ApprovalGuardContext._APPROVAL_GUARD_CONTEXT_VAR.set(ctx)"
+      },
+      {
+        "line": 104,
+        "text": "            ApprovalGuardContext._APPROVAL_GUARD_CONTEXT_VAR.reset(token)"
+      },
+      {
+        "line": 107,
+        "text": "    def approval_guard(cls) -> BaseApprovalGuard | None:"
+      },
+      {
+        "line": 109,
+        "text": "            return cls._APPROVAL_GUARD_CONTEXT_VAR.get()"
+      },
+      {
+        "line": 112,
+        "text": "                \"ApprovalGuardContext.approval_guard() should only be called when initializing a WebSurfer agent during Team creation.\""
+      },
+      {
+        "line": 117,
+        "text": "The Approval Guard oversees every proposed action before execution.  "
+      },
+      {
+        "line": 126,
+        "text": "If the answer to any of the above is yes, the action should be considered harmful or impactful and require explicit user approval."
+      },
+      {
+        "line": 128,
+        "text": "Examples for when the action should require human approval:"
+      },
+      {
+        "line": 129,
+        "text": "- If the websurfer is about to click a button that submits a form, or sends an email, or make a purchase, it should require human approval."
+      },
+      {
+        "line": 130,
+        "text": "- If the websurfer is typing potentially sensitive information, it should require human approval."
+      },
+      {
+        "line": 131,
+        "text": "- If the coder is writing code that creates files that were not approved or leaks information about the underlying system, it should require human approval."
+      }
+    ]
+  },
+  {
+    "repo": "KuangshiAi/HiLSVA",
+    "path": "src/hilsva/agents/self_improving_agent.py",
+    "revision": "63b99042b3f190e79ea4ded41fb8daa52e5cb4cc",
+    "url": "https://raw.githubusercontent.com/KuangshiAi/HiLSVA/63b99042b3f190e79ea4ded41fb8daa52e5cb4cc/src/hilsva/agents/self_improving_agent.py",
+    "sha256": "868bb14b99508be4d94564ba930c620fc719c1fdba99841b680f73a92381aa15",
+    "inspected_lines": [
+      {
+        "line": 27,
+        "text": "class ConfidenceLevel(Enum):"
+      },
+      {
+        "line": 28,
+        "text": "    \"\"\"Confidence levels for self-assessment.\"\"\""
+      },
+      {
+        "line": 49,
+        "text": "        confidence_level: ConfidenceLevel,"
+      },
+      {
+        "line": 50,
+        "text": "        confidence_explanation: str,"
+      },
+      {
+        "line": 53,
+        "text": "        confidence_score: float = 0.5,"
+      },
+      {
+        "line": 59,
+        "text": "            confidence_level: Assessed confidence level"
+      },
+      {
+        "line": 60,
+        "text": "            confidence_explanation: Explanation for the confidence assessment"
+      },
+      {
+        "line": 63,
+        "text": "            confidence_score: Numerical confidence score (0-1)"
+      },
+      {
+        "line": 65,
+        "text": "        self.confidence_level = confidence_level"
+      },
+      {
+        "line": 66,
+        "text": "        self.confidence_explanation = confidence_explanation"
+      },
+      {
+        "line": 69,
+        "text": "        self.confidence_score = confidence_score"
+      },
+      {
+        "line": 73,
+        "text": "        \"\"\"Determine if the agent should query a human expert based on confidence.\"\"\""
+      },
+      {
+        "line": 74,
+        "text": "        return self.confidence_score < threshold or self.confidence_level != ConfidenceLevel.HIGH"
+      },
+      {
+        "line": 79,
+        "text": "            \"confidence_level\": self.confidence_level.value,"
+      },
+      {
+        "line": 80,
+        "text": "            \"confidence_explanation\": self.confidence_explanation,"
+      },
+      {
+        "line": 83,
+        "text": "            \"confidence_score\": self.confidence_score,"
+      },
+      {
+        "line": 130,
+        "text": "        confidence_threshold: float = 0.7,"
+      },
+      {
+        "line": 131,
+        "text": "        total_cost_threshold: int = 5,"
+      },
+      {
+        "line": 144,
+        "text": "            confidence_threshold: Threshold for triggering human intervention (higher = more interventions)"
+      },
+      {
+        "line": 145,
+        "text": "            total_cost_threshold: Maximum number of interventions allowed per session"
+      },
+      {
+        "line": 152,
+        "text": "        self._confidence_threshold = confidence_threshold"
+      },
+      {
+        "line": 153,
+        "text": "        self._total_cost_threshold = total_cost_threshold"
+      },
+      {
+        "line": 154,
+        "text": "        self._session_intervention_cost = 0  # Track total interventions in current session"
+      },
+      {
+        "line": 168,
+        "text": "You have the ability to assess your own confidence and request human guidance when needed."
+      },
+      {
+        "line": 180,
+        "text": "        logger.info(f\"Initialized SelfImprovingAgent '{name}' with confidence_threshold={confidence_threshold}, \""
+      }
+    ]
+  },
+  {
+    "repo": "KuangshiAi/HiLSVA",
+    "path": "frontend/src/components/views/sidebar.tsx",
+    "revision": "63b99042b3f190e79ea4ded41fb8daa52e5cb4cc",
+    "url": "https://raw.githubusercontent.com/KuangshiAi/HiLSVA/63b99042b3f190e79ea4ded41fb8daa52e5cb4cc/frontend/src/components/views/sidebar.tsx",
+    "sha256": "b819bda5c2f125f3633f5ffba20b66f17de7b450ebe1ddd36e6a6feb6e6a6592",
+    "inspected_lines": [
+      {
+        "line": 18,
+        "text": "import type { Session, RunStatus } from \"../types/datamodel\";"
+      },
+      {
+        "line": 20,
+        "text": "import { SessionRunStatusIndicator } from \"./statusicon\";"
+      },
+      {
+        "line": 26,
+        "text": "  sessions: Session[];"
+      },
+      {
+        "line": 27,
+        "text": "  currentSession: Session | null;"
+      },
+      {
+        "line": 28,
+        "text": "  onToggle: () => void;"
+      },
+      {
+        "line": 29,
+        "text": "  onSelectSession: (session: Session) => void;"
+      },
+      {
+        "line": 30,
+        "text": "  onEditSession: (session?: Session) => void;"
+      },
+      {
+        "line": 31,
+        "text": "  onDeleteSession: (sessionId: number) => void;"
+      },
+      {
+        "line": 33,
+        "text": "  sessionRunStatuses: { [sessionId: number]: RunStatus };"
+      },
+      {
+        "line": 35,
+        "text": "  onSubMenuChange: (tabId: string) => void;"
+      },
+      {
+        "line": 36,
+        "text": "  onStopSession: (sessionId: number) => void;"
+      },
+      {
+        "line": 41,
+        "text": "  sessions,"
+      },
+      {
+        "line": 42,
+        "text": "  currentSession,"
+      },
+      {
+        "line": 44,
+        "text": "  onSelectSession,"
+      },
+      {
+        "line": 45,
+        "text": "  onEditSession,"
+      },
+      {
+        "line": 46,
+        "text": "  onDeleteSession,"
+      },
+      {
+        "line": 48,
+        "text": "  sessionRunStatuses,"
+      },
+      {
+        "line": 51,
+        "text": "  onStopSession,"
+      },
+      {
+        "line": 53,
+        "text": "  // Group sessions by time period"
+      },
+      {
+        "line": 54,
+        "text": "  const groupSessions = (sessions: Session[]) => {"
+      },
+      {
+        "line": 65,
+        "text": "      today: sessions.filter((s) => {"
+      },
+      {
+        "line": 69,
+        "text": "      yesterday: sessions.filter((s) => {"
+      },
+      {
+        "line": 73,
+        "text": "      last7Days: sessions.filter((s) => {"
+      },
+      {
+        "line": 77,
+        "text": "      last30Days: sessions.filter((s) => {"
+      },
+      {
+        "line": 81,
+        "text": "      older: sessions.filter((s) => {"
+      }
+    ]
+  }
+]
