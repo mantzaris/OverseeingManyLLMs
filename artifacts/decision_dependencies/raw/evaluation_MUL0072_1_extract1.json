@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0072_1_extract1",
+      "elapsed_seconds": 3.8498604169581085,
+      "request_sha256": "a6b5169371ca6e857801dfaa57d8da03f27721b99667d4e7e4c292b0cbe2ed25",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":2,\"quote\":\"I do however have a four star guesthouse called alexander bed and breakfast.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"center\",\"turn\":2,\"quote\":\"I do however have a four star guesthouse called alexander bed and breakfast.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"no\",\"turn\":1,\"quote\":\"Doesn't need to include internet.\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":12,\"quote\":\"in the expensive price range\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"british\",\"turn\":14,\"quote\":\"serves british food\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"west\",\"turn\":17,\"quote\":\"It is located in the west part of town.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114354,
+        "id": "chatcmpl-7be8ddc992524b14948af8966c9e67df",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 186,
+          "prompt_tokens": 839,
+          "prompt_tokens_details": null,
+          "total_tokens": 1025
+        }
+      },
+      "scheduled_attempt": 246,
+      "started_utc": "2026-09-11T08:12:34.022587+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0072_1_extract1",
+  "prompt_tokens": 839,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a place to stay. I'd like to stay in a guesthouse that doesn't need to include internet.\n1 ASSISTANT: There are a total of 24 guesthouses available. Acorn Guest House has a 4 star rating, offers free wifi and free parking. Would you be interested in booking here?\n2 USER: Is that in the center of town? I do need to be in the center.\n3 ASSISTANT: Acorn Guesthouse is not in the center, however I found two guesthouses that are.  Alexander Bed and Breakfast is 4 stars.  Would you like to book there?\n4 USER: Yes, please make my reservation at the Alexander Bed and Breakfast.\n5 ASSISTANT: What day would you like to book on and for how long?\n6 USER: Could i get the phone number?\n7 ASSISTANT: I am sorry I cannot find Acorn for you. I do however have a four star guesthouse called alexander bed and breakfast. How does that sound?\n8 USER: That's fine. Can I please have the phone number?\n9 ASSISTANT: The phone number for the alexander bed and breakfast is 01223525725. Is there anything else I can help with today?\n10 USER: Yes, may I have the address?\n11 ASSISTANT: The phone number for Alexander Bed and Breakfast is 01223525725. Is there anything else I can help you with?\n12 USER: I'm also looking for a restaurant that is in the expensive price range and serves spanish food.\n13 ASSISTANT: unfortunately  I do not find any expensive spanish places to dine. Would you like to try something different? Also the hotels address is 56 saint barnabas road.\n14 USER: Is there a restaurant in the expensive price range that serves british food?\n15 ASSISTANT: There are 6 restaurants fitting that criteria. Is there a particular area of town that you would like?\n16 USER: I don't care\n17 ASSISTANT: How about Graffiti?  It is located in the west part of town.\n18 USER: Let's go ahead and make a reservation for 6 at 19:30 for this coming Wednesday. Oh, and can I get that reference number, too, please?\n19 ASSISTANT: All right, you have a table for six at the Graffiti. Your reference number is 5DHN40HK.\n20 USER: Thank you for your time.\n21 ASSISTANT: You're welcome. Can I do anything else for you?\n22 USER: No. That sounds like everything. Thank you.\n23 ASSISTANT: You're welcome. Enjoy your stay.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 226872,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "a6b5169371ca6e857801dfaa57d8da03f27721b99667d4e7e4c292b0cbe2ed25",
+  "status": "ok"
+}

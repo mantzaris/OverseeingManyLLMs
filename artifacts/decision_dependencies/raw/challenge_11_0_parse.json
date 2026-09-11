@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "challenge_11_0_parse",
+      "elapsed_seconds": 0.9965443440014496,
+      "request_sha256": "13ec8fc546472e0eef90ef0ce46689c47abe3ad60c00959eb660c40e5b58754f",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"queries\":[{\"id\":\"q\",\"domain\":\"restaurant\",\"slot\":\"pricerange\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115573,
+        "id": "chatcmpl-58ff35f9ca194267956e7dce5e215abf",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 134,
+          "prompt_tokens_details": null,
+          "total_tokens": 153
+        }
+      },
+      "scheduled_attempt": 778,
+      "started_utc": "2026-09-11T08:32:53.029697+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "challenge_11_0_parse",
+  "prompt_tokens": 134,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Map each travel-planning request to the requested preference. Return JSON only: {\"queries\":[{\"id\":\"same id\",\"domain\":\"hotel or restaurant or unknown\",\"slot\":\"...\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type. Allowed restaurant slots: area, pricerange, food.\nUse only what the request says. Lodging/accommodation means hotel; dining/eating means restaurant. If a question is ambiguous, use unknown. Do not supply answers.",
+        "role": "system"
+      },
+      {
+        "content": "{\"queries\":[{\"id\":\"q\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 95110,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "13ec8fc546472e0eef90ef0ce46689c47abe3ad60c00959eb660c40e5b58754f",
+  "status": "ok"
+}

@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1202_1_extract0",
+      "elapsed_seconds": 0.9526162219699472,
+      "request_sha256": "cdb22a7a943f330a1089bb906562a95b2ff8bc02b079424db3012a3f92db9b73",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"middle eastern\",\"turn\":0,\"quote\":\"I'd really like to get some Middle Eastern food.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114720,
+        "id": "chatcmpl-d2714c67a2a8422e9201b9aeff8a1d88",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 36,
+          "prompt_tokens": 332,
+          "prompt_tokens_details": null,
+          "total_tokens": 368
+        }
+      },
+      "scheduled_attempt": 389,
+      "started_utc": "2026-09-11T08:18:40.570189+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1202_1_extract0",
+  "prompt_tokens": 332,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'd really like to get some Middle Eastern food. Can you find a cheap place for me to grab some dinner?\n1 ASSISTANT: I see that there are none, maybe I should reconsider the cuisine. Thank you\n2 USER: Okay, thank  you. goodbye\n3 ASSISTANT: There is no middle east food in that area, another place or type perhaps?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 196166,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "cdb22a7a943f330a1089bb906562a95b2ff8bc02b079424db3012a3f92db9b73",
+  "status": "ok"
+}

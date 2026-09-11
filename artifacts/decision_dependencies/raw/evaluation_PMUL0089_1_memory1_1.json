@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_PMUL0089_1_memory1_1",
+      "elapsed_seconds": 1.8967064790194854,
+      "request_sha256": "c18b70db097ac01af9b6a8e5c25adcf46a36a53c1b10178dde33fb03d3a415f2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"east\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"2\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"east\"},{\"id\":\"q1_5\",\"value\":\"chinese\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115421,
+        "id": "chatcmpl-ff57634150014e788ef377303abd627c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 653,
+          "prompt_tokens_details": null,
+          "total_tokens": 738
+        }
+      },
+      "scheduled_attempt": 664,
+      "started_utc": "2026-09-11T08:30:20.786914+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_PMUL0089_1_memory1_1",
+  "prompt_tokens": 653,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"Can you help me find a cheap place to stay in the east part of town?\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":0,\"value\":\"east\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"Then find me one in the expensive price range.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":4,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"The Express by Holiday Inn Cambridge is a 2 start hotel in the east area.\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":7,\"value\":\"hotel\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"Does it have a star rating of 2?\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":2,\"value\":\"2\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I am also looking for a restaurant that serves Chinese and that is in the same area as the hotel.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":10,\"value\":\"east\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"I am also looking for a restaurant that serves Chinese and that is in the same area as the hotel.\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":10,\"value\":\"chinese\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"Yu garden is an expensive restaurant in the same area as the hotel, would you like me to make reservations for you?\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":11,\"value\":\"expensive\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 209319,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c18b70db097ac01af9b6a8e5c25adcf46a36a53c1b10178dde33fb03d3a415f2",
+  "status": "ok"
+}

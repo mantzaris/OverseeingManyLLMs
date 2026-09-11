@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0089_1_memory1_0",
+      "elapsed_seconds": 1.8913196369539946,
+      "request_sha256": "3b397789888dba7fe1fdcb85f5f0b0a4eeee68218e8f33d26ee770ab9b8b523f",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q0_0\",\"value\":\"centre\"},{\"id\":\"q0_1\",\"value\":\"cheap\"},{\"id\":\"q0_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q0_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q0_4\",\"value\":\"centre\"},{\"id\":\"q0_5\",\"value\":\"italian\"},{\"id\":\"q0_6\",\"value\":\"cheap\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114437,
+        "id": "chatcmpl-f215fe01d52349908d544974bf66c66f",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 606,
+          "prompt_tokens_details": null,
+          "total_tokens": 689
+        }
+      },
+      "scheduled_attempt": 278,
+      "started_utc": "2026-09-11T08:13:57.650408+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0089_1_memory1_0",
+  "prompt_tokens": 606,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"Im looking for an italian restaurant\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":0,\"value\":\"italian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"i need a cheap restaurant near the center of town\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":2,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"i need a cheap restaurant\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":2,\"value\":\"cheap\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I would like to book a hotel close to our restaurant here in the centre\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":12,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"Something in the cheap price range\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":10,\"value\":\"cheap\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"and have free parking\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":12,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"I've booked you a 3 day stay at the Alexander Bed and Breakfast for 7 people\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":15,\"value\":\"bed and breakfast\"}],\"queries\":[{\"id\":\"q0_0\",\"text\":\"Which part of town should the hotel be in?\"},{\"id\":\"q0_1\",\"text\":\"What price range should the hotel match?\"},{\"id\":\"q0_2\",\"text\":\"How many stars should the hotel have?\"},{\"id\":\"q0_3\",\"text\":\"Should the accommodation be a hotel or a guesthouse?\"},{\"id\":\"q0_4\",\"text\":\"Which part of town should the restaurant be in?\"},{\"id\":\"q0_5\",\"text\":\"What food should the restaurant serve?\"},{\"id\":\"q0_6\",\"text\":\"What price range should the restaurant match?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 253550,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "3b397789888dba7fe1fdcb85f5f0b0a4eeee68218e8f33d26ee770ab9b8b523f",
+  "status": "ok"
+}

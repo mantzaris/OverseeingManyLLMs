@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0089_1_history0_1",
+      "elapsed_seconds": 1.8155312669696286,
+      "request_sha256": "6010465499042d4a94bce9606fe25846316e91e7c476f5ee187b98a242293670",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"italian\"},{\"id\":\"q1_6\",\"value\":\"cheap\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114430,
+        "id": "chatcmpl-7e7338056f24425490f1464cd0e82aa9",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 499,
+          "prompt_tokens_details": null,
+          "total_tokens": 582
+        }
+      },
+      "scheduled_attempt": 275,
+      "started_utc": "2026-09-11T08:13:50.689188+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0089_1_history0_1",
+  "prompt_tokens": 499,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Im looking for an italian restaurant.  I also need it to be near the center of town.\n1 ASSISTANT: There are 9 italian restaurants in the center of town. Do you have a particular price range in mind?\n2 USER: i need a cheap restaurant\n3 ASSISTANT: There is Pizza Hut City Centre, Ask, and Zizzi Cambridge, which would you like to book?\n4 USER: Can you book a table for 7 at Ask? We're looking at 14:00 on Saturday.\n5 ASSISTANT: Sorry, there are no tables available at Ask at that time. Would you like to book another day or time, or perhaps another restaurant?\n6 USER: Can you try 13:00, then?\n7 ASSISTANT: 13:00 it is. Your table at Ask will be held for 15 minutes, and your reference number is L2KZYL26. Can I help you with anything else?\n8 USER: I'm also looking for a hotel\n9 ASSISTANT: We have 33 different hotels.  Did you have a price range or star rating in mind?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 253539,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "6010465499042d4a94bce9606fe25846316e91e7c476f5ee187b98a242293670",
+  "status": "ok"
+}

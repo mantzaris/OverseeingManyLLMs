@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0144_1_extract1",
+      "elapsed_seconds": 4.7762042810209095,
+      "request_sha256": "1bd8d7895a61847969f31a08b67ccdc0fde8bbb505ce974ee433399919c96ccb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":0,\"quote\":\"I am looking for suggestions for a cheaper restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"center\",\"turn\":0,\"quote\":\"I am looking for suggestions for a cheaper restaurant in the center of town.\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":8,\"quote\":\"I prefer a guesthouse, and I need someplace cheap, please. Area doesn't matter.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":6,\"quote\":\"I also need a hotel with free parking and free wifi.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":6,\"quote\":\"I also need a hotel with free parking and free wifi.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":8,\"quote\":\"I prefer a guesthouse, and I need someplace cheap, please. Area doesn't matter.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":10,\"quote\":\"Could you tell me the star of the hotel?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114605,
+        "id": "chatcmpl-5821c937c805474c9482745fc0f36680",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 249,
+          "prompt_tokens": 632,
+          "prompt_tokens_details": null,
+          "total_tokens": 881
+        }
+      },
+      "scheduled_attempt": 342,
+      "started_utc": "2026-09-11T08:16:45.788091+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0144_1_extract1",
+  "prompt_tokens": 632,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for suggestions for a cheaper restaurant in the center of town.\n1 ASSISTANT: I have several listings available for you to choose from, is there any preference on the type of  food they serve for you?\n2 USER: Not really. Just get me a table for  3 on Tuesday at 17:00\n3 ASSISTANT: Would you like me to book you a table at Dojo Noodle Bar at 40210 Millers Yard City Centre for Tuesday at 17:00 for 3 people?\n4 USER: Yes please, if that time doesn't work, we can try for 16:00. \n5 ASSISTANT: Your booking for 3 at the Dojo Noodle Bar for Tuesday at 16:00. Your reference number is V65S4LW2.\n6 USER: I also need a hotel with free parking and free wifi.\n7 ASSISTANT: What area of town and price range would you prefer?\n8 USER: I prefer a guesthouse, and I need someplace cheap, please. Area doesn't matter.\n9 ASSISTANT: I have several options here. I would recommend Finches Bed and Breakfast thats located in the west. Would you like more info or would you prefer something different?\n10 USER: Could you tell me the star of the hotel?\n11 ASSISTANT: Finches has a 4 star rating. Would you like me to go ahead and book that for you?\n12 USER: No thank you, that is all. \n13 ASSISTANT: Thank you for using our service. Is there any further assistance you need?\n14 USER: No thanks. That's all I needed. Have a great day!\n15 ASSISTANT: Have a good day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 201607,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "1bd8d7895a61847969f31a08b67ccdc0fde8bbb505ce974ee433399919c96ccb",
+  "status": "ok"
+}

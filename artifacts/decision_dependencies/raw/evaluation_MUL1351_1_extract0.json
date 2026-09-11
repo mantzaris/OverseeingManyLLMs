@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1351_1_extract0",
+      "elapsed_seconds": 1.908334851032123,
+      "request_sha256": "b9203c7361fabe9c6bcbc4659896de34dfa90362b6a4ba1d0b1178c2c14b3e0d",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"north\",\"turn\":0,\"quote\":\"I'd like somewhere in the north\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"I'm willing to pay quite a bit of money\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"romanian\",\"turn\":2,\"quote\":\"Yes, Romanian please\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115206,
+        "id": "chatcmpl-cfcd5c052a8e408fab63e68b0054598b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 358,
+          "prompt_tokens_details": null,
+          "total_tokens": 445
+        }
+      },
+      "scheduled_attempt": 581,
+      "started_utc": "2026-09-11T08:26:46.238795+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1351_1_extract0",
+  "prompt_tokens": 358,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello. I'm going out for an expensive dinner and need to find a restaurant. I'd like somewhere in the north, and I'm willing to pay quite a bit of money. \n1 ASSISTANT: I'd be happy to help you with that. I have 5 expensive restaurants in the north. Did you have a type of cuisine in mind? \n2 USER: Yes, Romanian please. \n3 ASSISTANT: There are no options for romanian, can I try something else for you?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 221324,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b9203c7361fabe9c6bcbc4659896de34dfa90362b6a4ba1d0b1178c2c14b3e0d",
+  "status": "ok"
+}

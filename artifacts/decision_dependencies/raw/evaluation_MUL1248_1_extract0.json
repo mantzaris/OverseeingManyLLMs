@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1248_1_extract0",
+      "elapsed_seconds": 3.6866089201066643,
+      "request_sha256": "843891fefbaccf04fcb9eeda95c0be26af2eb8e8b9fb35b5984be9b0394f6938",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":2,\"quote\":\"I would like a guesthouse, rather than a hotel.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":2,\"quote\":\"I would also like a place that's 3 stars.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":4,\"quote\":\"moderate price that include free wifi\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":4,\"quote\":\"moderate price that include free wifi\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"east\",\"turn\":8,\"quote\":\"I also need a place to dine in the east.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"eastern european\",\"turn\":10,\"quote\":\"I would love some eastern european food, please.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114839,
+        "id": "chatcmpl-230bfa1bc8fc4c32a874dfc4da79538c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 185,
+          "prompt_tokens": 552,
+          "prompt_tokens_details": null,
+          "total_tokens": 737
+        }
+      },
+      "scheduled_attempt": 437,
+      "started_utc": "2026-09-11T08:20:39.360828+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1248_1_extract0",
+  "prompt_tokens": 552,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, can you give me some information on a place to stay in Cambridge?  I would prefer some place expensive.\n1 ASSISTANT: Sure, there are 5 expensive hotels in Cambridge. Is there an area you prefer? \n2 USER: No specific area, but I would like a guesthouse, rather than a hotel. I would also like a place that's 3 stars.\n3 ASSISTANT: There are 2 three star hotels would you like me to book one? \n4 USER: No. Are there any three star guesthouses available at a moderate price that include free wifi?\n5 ASSISTANT: Yes, there are 3: bridge guest house, hamilton lodge, and hobsons house.\n6 USER: How about the bridge guest house for 5 people for 2 nights starting on tuesday?\n7 ASSISTANT: Booking was successful. The address is 151 hills road. Postcode is cb28rj. The reference number is: 98WBW794.\n8 USER: Great!  I also need a place to dine in the east.\n9 ASSISTANT: I can help you with that as well! Do you have a specific food preference you are looking for?\n10 USER: I would love some eastern european food, please.\n11 ASSISTANT: There are no restaurants that serve European food in the area would you like another type of food or another area? ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 199308,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "843891fefbaccf04fcb9eeda95c0be26af2eb8e8b9fb35b5984be9b0394f6938",
+  "status": "ok"
+}

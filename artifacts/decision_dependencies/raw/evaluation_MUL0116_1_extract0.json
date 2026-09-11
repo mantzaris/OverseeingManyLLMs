@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0116_1_extract0",
+      "elapsed_seconds": 3.573899217066355,
+      "request_sha256": "ab66cc7af24ed5a27f219393fa10f2700e1f0166a25b8261caaa0270c60485eb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":2,\"quote\":\"Yes, I'm looking for a moderately priced restaurant with British food.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"british\",\"turn\":0,\"quote\":\"I am looking for a restaurant in the town centre that serves British food.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"moderate\",\"turn\":6,\"quote\":\"I would like something that is 2 stars and includes free parking.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"2\",\"turn\":8,\"quote\":\"I would like something that is 2 stars and includes free parking.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":8,\"quote\":\"I would like something that is 2 stars and includes free parking.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114538,
+        "id": "chatcmpl-0912201a5b784bfa978dd7de50b0dad6",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 179,
+          "prompt_tokens": 520,
+          "prompt_tokens_details": null,
+          "total_tokens": 699
+        }
+      },
+      "scheduled_attempt": 317,
+      "started_utc": "2026-09-11T08:15:38.141667+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0116_1_extract0",
+  "prompt_tokens": 520,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I am looking for a restaurant in the town centre that serves British food.\n1 ASSISTANT: There are 7 restaurants in the centre of town that serves British food. Is there any particular price range you are looking for?\n2 USER: Yes, I'm looking for a moderately priced restaurant with British food.\n3 ASSISTANT: I can recommend Restaurant One Seven. Would you like to book a table with them?\n4 USER: Sure. I will be booking 3 people at 17:45 on Wednesday. Could i also get the reference number, please?\n5 ASSISTANT: Your reservation is complete for a party of 3 at 17:45 at a British Restaurant  One Seven in centre, and your confirmation # is VLJLK60E. \n6 USER: I also need a hotel in the same price range as the restaurant. \n7 ASSISTANT: There are 18 hotels in the Moderate price range, would you like me to narrow these down by searching other amenities or location?\n8 USER: I would like something that is 2 stars and includes free parking. \n9 ASSISTANT: I have 2 options with those specifications. The Ashley Hotel and the Lovell Lodge both with free wifi and parking. Which would you prefer?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 232342,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ab66cc7af24ed5a27f219393fa10f2700e1f0166a25b8261caaa0270c60485eb",
+  "status": "ok"
+}

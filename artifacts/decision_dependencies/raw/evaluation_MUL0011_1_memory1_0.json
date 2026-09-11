@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0011_1_memory1_0",
+      "elapsed_seconds": 1.9359296360053122,
+      "request_sha256": "ef8effc6c6e7363a1e95a34bb4b70908c37923df7335e61f960c87f705670754",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q0_0\",\"value\":\"centre\"},{\"id\":\"q0_1\",\"value\":\"no preference\"},{\"id\":\"q0_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q0_3\",\"value\":\"hotel\"},{\"id\":\"q0_4\",\"value\":\"centre\"},{\"id\":\"q0_5\",\"value\":\"italian\"},{\"id\":\"q0_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114101,
+        "id": "chatcmpl-3386ed94e6fd49e0aedbf2391abf2f2a",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 620,
+          "prompt_tokens_details": null,
+          "total_tokens": 705
+        }
+      },
+      "scheduled_attempt": 158,
+      "started_utc": "2026-09-11T08:08:20.982142+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0011_1_memory1_0",
+  "prompt_tokens": 620,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I also need to HOTEL to stay at in the centre.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":2,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"I am interested in a restaurant that is in the expensive price range.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":2,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"I want a restaurant in the city centre that serves Italian food.\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":0,\"value\":\"italian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I will be departing from the hotel and going to the restaurant.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":18,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"Sure can I get one with free wifi please?\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":12,\"value\":\"hotel\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"Sure can I get one with free wifi please?\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":16,\"value\":\"no\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"No price range, it doesn't have to have internet though.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":10,\"value\":\"no preference\"}],\"queries\":[{\"id\":\"q0_0\",\"text\":\"Which part of town should the hotel be in?\"},{\"id\":\"q0_1\",\"text\":\"What price range should the hotel match?\"},{\"id\":\"q0_2\",\"text\":\"How many stars should the hotel have?\"},{\"id\":\"q0_3\",\"text\":\"Should the accommodation be a hotel or a guesthouse?\"},{\"id\":\"q0_4\",\"text\":\"Which part of town should the restaurant be in?\"},{\"id\":\"q0_5\",\"text\":\"What food should the restaurant serve?\"},{\"id\":\"q0_6\",\"text\":\"What price range should the restaurant match?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 259642,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ef8effc6c6e7363a1e95a34bb4b70908c37923df7335e61f960c87f705670754",
+  "status": "ok"
+}

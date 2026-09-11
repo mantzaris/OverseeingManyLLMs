@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0034_0_extract0",
+      "elapsed_seconds": 1.4977149979677051,
+      "request_sha256": "9fa17ce0edfe4e0abd7a127a114c98cc09cb1c01e38b6b65e6c3a754a17d1374",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"expensive restaurant that serves Thai food\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"thai\",\"turn\":0,\"quote\":\"expensive restaurant that serves Thai food\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114168,
+        "id": "chatcmpl-5a8a0c6a44cb4b34bac1ba3997989a0c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 61,
+          "prompt_tokens": 500,
+          "prompt_tokens_details": null,
+          "total_tokens": 561
+        }
+      },
+      "scheduled_attempt": 185,
+      "started_utc": "2026-09-11T08:09:28.522125+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0034_0_extract0",
+  "prompt_tokens": 500,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for an expensive restaurant that serves Thai food, please.\n1 ASSISTANT: There is one in the west and one in the centre of town. Do you have a preference in area?\n2 USER: I don't have a preference in the area. I suppose you could book me a table for two people at 12:30 on Saturday. Also, could i get the reference number?\n3 ASSISTANT: I booked you a table at the sala thong in the west area for 12:30 Saturday.\n4 USER: Thanks, please provide the reference number.\n5 ASSISTANT: The reference number is XLRSFB9Q. Is there anything else that I can do for you?\n6 USER: Thank you for booking that. Could you please book me a taxi to leave from the centre of town at my hotel to the Sala Thong for Saturday at 11:30?\n7 ASSISTANT: In order to book the taxi, I will need the location of your hotel. \n8 USER: I need to find a restaurant in the wast part of town.\n9 ASSISTANT: The Sala Thong restaurant is in the west part of town.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 95074,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "9fa17ce0edfe4e0abd7a127a114c98cc09cb1c01e38b6b65e6c3a754a17d1374",
+  "status": "ok"
+}

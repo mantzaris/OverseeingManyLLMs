@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1351_1_memory1_1",
+      "elapsed_seconds": 1.9524083730066195,
+      "request_sha256": "322631f099429135c5b7c5dc72677db163f495300377ecd878ec0be109e3a18b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_4\",\"value\":\"north\"},{\"id\":\"q1_5\",\"value\":\"european\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115234,
+        "id": "chatcmpl-11cff9b97d234fd1aa8f14d9a877fedd",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 497,
+          "prompt_tokens_details": null,
+          "total_tokens": 581
+        }
+      },
+      "scheduled_attempt": 592,
+      "started_utc": "2026-09-11T08:27:14.272890+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1351_1_memory1_1",
+  "prompt_tokens": 497,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"Is it in the north?\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":6,\"value\":\"north\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"I guess try European.\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":4,\"value\":\"european\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"Hmm, yes. Someplace expensive.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":12,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"I'm also looking for a place to stay that offers both internet and free parking.\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":10,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"I'm also looking for a place to stay that offers both internet and free parking.\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":10,\"value\":\"yes\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 221357,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "322631f099429135c5b7c5dc72677db163f495300377ecd878ec0be109e3a18b",
+  "status": "ok"
+}

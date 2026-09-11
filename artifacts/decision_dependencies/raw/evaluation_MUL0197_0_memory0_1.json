@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0197_0_memory0_1",
+      "elapsed_seconds": 1.7923891539685428,
+      "request_sha256": "fe7572b274ca9f945c5aab94826b3fb6478b9373eccfbcbb8a7961ab2927be47",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114652,
+        "id": "chatcmpl-0279b0706d844522a31cb70c82a895cf",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 392,
+          "prompt_tokens_details": null,
+          "total_tokens": 475
+        }
+      },
+      "scheduled_attempt": 360,
+      "started_utc": "2026-09-11T08:17:32.305006+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0197_0_memory0_1",
+  "prompt_tokens": 392,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"I'm looking for an expensive restaurant in the center of town.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":0,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I'm looking for an expensive restaurant in the center of town.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":0,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"Fitzbillies restaurant serves British food,\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":3,\"value\":\"british\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 104845,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "fe7572b274ca9f945c5aab94826b3fb6478b9373eccfbcbb8a7961ab2927be47",
+  "status": "ok"
+}

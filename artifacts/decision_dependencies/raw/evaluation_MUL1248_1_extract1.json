@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1248_1_extract1",
+      "elapsed_seconds": 3.2603431429015473,
+      "request_sha256": "8f51decef9c59b3366eb21be77bd10dc28ccc6e81bf4462a5307be68a931975a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":2,\"quote\":\"I would like a guesthouse, rather than a hotel.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":2,\"quote\":\"I would also like a place that's 3 stars.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"italian\",\"turn\":12,\"quote\":\"How about italian?\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"east\",\"turn\":8,\"quote\":\"I also need a place to dine in the east.\"},{\"domain\":\"taxi\",\"slot\":\"pickuptime\",\"value\":\"07:15\",\"turn\":18,\"quote\":\"I want to leave the hotel by 07:15, please.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114843,
+        "id": "chatcmpl-322b6cdb0e6d43fc9f5e5fba3d4bc8d0",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 165,
+          "prompt_tokens": 860,
+          "prompt_tokens_details": null,
+          "total_tokens": 1025
+        }
+      },
+      "scheduled_attempt": 438,
+      "started_utc": "2026-09-11T08:20:43.313645+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1248_1_extract1",
+  "prompt_tokens": 860,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, can you give me some information on a place to stay in Cambridge?  I would prefer some place expensive.\n1 ASSISTANT: Sure, there are 5 expensive hotels in Cambridge. Is there an area you prefer? \n2 USER: No specific area, but I would like a guesthouse, rather than a hotel. I would also like a place that's 3 stars.\n3 ASSISTANT: There are 2 three star hotels would you like me to book one? \n4 USER: No. Are there any three star guesthouses available at a moderate price that include free wifi?\n5 ASSISTANT: Yes, there are 3: bridge guest house, hamilton lodge, and hobsons house.\n6 USER: How about the bridge guest house for 5 people for 2 nights starting on tuesday?\n7 ASSISTANT: Booking was successful. The address is 151 hills road. Postcode is cb28rj. The reference number is: 98WBW794.\n8 USER: Great!  I also need a place to dine in the east.\n9 ASSISTANT: I can help you with that as well! Do you have a specific food preference you are looking for?\n10 USER: I would love some eastern european food, please.\n11 ASSISTANT: There are no restaurants that serve European food in the area would you like another type of food or another area? \n12 USER: How about italian?\n13 ASSISTANT: We do have an Italian place. Pizza Hut Fen Ditton. Would you like to book a table?\n14 USER: No, I assume it is moderately priced though?  If so, I just need an address, postcode and phone number.\n15 ASSISTANT: It is moderately priced. The phone number is 01223323737. The address and postcode is Cambridge Retail Park Newmarket Road Fen Ditton cb58wr.\n16 USER: Great, I would also need a taxi to commute from Pizza Hut to the hotel.\n17 ASSISTANT:  Certainly. What time would you like the taxi to meet you at the restaurant?\n18 USER: I actually need to have the taxi pick me up from the hotel to get to the restaurant. I want to leave the hotel by 07:15, please.\n19 ASSISTANT: I have booked the taxi for you. You'll be picked up by a yellow Skoda. Their phone number is 07297430830\n20 USER: I have it.  Thanks for your help.\n21 ASSISTANT: Is there anything else I can help you with today?\n22 USER: No, that is all. You've been very helpful. Goodbye.\n23 ASSISTANT: I'm happy we could be of service today. Enjoy your time in Cambridge!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 199309,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8f51decef9c59b3366eb21be77bd10dc28ccc6e81bf4462a5307be68a931975a",
+  "status": "ok"
+}

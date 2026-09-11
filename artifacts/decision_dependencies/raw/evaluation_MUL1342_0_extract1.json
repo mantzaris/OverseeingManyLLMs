@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1342_0_extract1",
+      "elapsed_seconds": 9.693423867924139,
+      "request_sha256": "d834bcf7dd9b504721c6628edfdf4ae6d42c591240e30b9408065aecc6c1b73c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"records\": [\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"food\",\n      \"value\": \"indian\",\n      \"turn\": 4,\n      \"quote\": \"I think then that Indian place sounds nice, thank you.\"\n    },\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"day\",\n      \"value\": \"Sunday\",\n      \"turn\": 6,\n      \"quote\": \"I'll be needing a table for 8 on Sunday at 12:15.\"\n    },\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"time\",\n      \"value\": \"12:15\",\n      \"turn\": 6,\n      \"quote\": \"I'll be needing a table for 8 on Sunday at 12:15.\"\n    },\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"people\",\n      \"value\": \"8\",\n      \"turn\": 6,\n      \"quote\": \"I'll be needing a table for 8 on Sunday at 12:15.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"stars\",\n      \"value\": \"2\",\n      \"turn\": 10,\n      \"quote\": \"I would like it to be 2 stars and have free wifi.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"internet\",\n      \"value\": \"yes\",\n      \"turn\": 10,\n      \"quote\": \"I would like it to be 2 stars and have free wifi.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"parking\",\n      \"value\": \"yes\",\n      \"turn\": 12,\n      \"quote\": \"If it narrows it down, can I also have free parking as well?\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"pricerange\",\n      \"value\": \"expensive\",\n      \"turn\": 14,\n      \"quote\": \"I'll go with the expensive one.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"people\",\n      \"value\": \"8\",\n      \"turn\": 14,\n      \"quote\": \"Can you book me a room for 8 people, 2 nights on Sunday please?\"\n    }\n  ]\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115055,
+        "id": "chatcmpl-cdbc3c77a9b14669b28c51c50a6eea6b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 496,
+          "prompt_tokens": 793,
+          "prompt_tokens_details": null,
+          "total_tokens": 1289
+        }
+      },
+      "scheduled_attempt": 522,
+      "started_utc": "2026-09-11T08:24:15.112577+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1342_0_extract1",
+  "prompt_tokens": 793,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, I'm trying to find a moderate place to eat in the east. Can you help?\n1 ASSISTANT: I've found a place called curry prince that fits that. Would you like me to place a reservation for you?\n2 USER: Actually I'm more interested in middle Eastern foods.\n3 ASSISTANT: I have no listings for middle east food, another type maybe?\n4 USER: I think then that Indian place sounds nice, thank you.\n5 ASSISTANT: Can you tell me the day and time you'd like to eat, and how many people I should book the table for?\n6 USER: Yes. I'll be needing a table for 8 on Sunday at 12:15.\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes.\nReference number is : APWDPYEL.\n8 USER: Thank you I will take it.\n9 ASSISTANT: You're welcome. Do you need anything else?\n10 USER: I'm actually also looking for a place to stay. I would like it to be 2 stars and have free wifi. \n11 ASSISTANT: I have 3 hotels matching your request in the north and east and in the expensive and moderate price range.  What part of town and price range would you prefer?\n12 USER: If it narrows it down, can I also have free parking as well?\n13 ASSISTANT: I have 2 hotels in the moderate price range and one in the expensive price range.  Which would you like information on?\n14 USER: I'll go with the expensive one. Can you book me a room for 8 people, 2 nights on Sunday please? \n15 ASSISTANT: Booking was successful.   Reference number is : RR4TKJIH.  Is there anything else I can assist you with?\n16 USER: I'll also need a taxi from the hotel to the restaurant.\n17 ASSISTANT: I would love to do that for you! I just want to confirm you want to arrive at the restaurant at 12:15, correct?\n18 USER: Yes, by 12:15 at the latest.\n19 ASSISTANT: Alright, I have a yellow Lexus to pick you up from express by holiday inn cambridge and take you to curry prince. It's contact number is 07943663026. Anything else?\n20 USER: That is everything I needed. Thank you for your help!\n21 ASSISTANT: thank you, enjoy your time",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 86342,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "d834bcf7dd9b504721c6628edfdf4ae6d42c591240e30b9408065aecc6c1b73c",
+  "status": "ok"
+}

@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1248_0_history0_1",
+      "elapsed_seconds": 1.8644066699780524,
+      "request_sha256": "44a9fb985c753b8d7ad4e97e4571d342f9cc732f42b955394582ffd5d3ff7e87",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"3\"},{\"id\":\"q1_3\",\"value\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"east\"},{\"id\":\"q1_5\",\"value\":\"eastern european\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114826,
+        "id": "chatcmpl-205c57fb1b3a41599b2656e072b5d367",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 86,
+          "prompt_tokens": 554,
+          "prompt_tokens_details": null,
+          "total_tokens": 640
+        }
+      },
+      "scheduled_attempt": 431,
+      "started_utc": "2026-09-11T08:20:26.586894+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1248_0_history0_1",
+  "prompt_tokens": 554,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, can you give me some information on a place to stay in Cambridge?  I would prefer some place expensive.\n1 ASSISTANT: Sure, there are 5 expensive hotels in Cambridge. Is there an area you prefer? \n2 USER: No specific area, but I would like a guesthouse, rather than a hotel. I would also like a place that's 3 stars.\n3 ASSISTANT: There are 2 three star hotels would you like me to book one? \n4 USER: No. Are there any three star guesthouses available at a moderate price that include free wifi?\n5 ASSISTANT: Yes, there are 3: bridge guest house, hamilton lodge, and hobsons house.\n6 USER: How about the bridge guest house for 5 people for 2 nights starting on tuesday?\n7 ASSISTANT: Booking was successful. The address is 151 hills road. Postcode is cb28rj. The reference number is: 98WBW794.\n8 USER: Great!  I also need a place to dine in the east.\n9 ASSISTANT: I can help you with that as well! Do you have a specific food preference you are looking for?\n10 USER: I would love some eastern european food, please.\n11 ASSISTANT: There are no restaurants that serve European food in the area would you like another type of food or another area? \nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 99329,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "44a9fb985c753b8d7ad4e97e4571d342f9cc732f42b955394582ffd5d3ff7e87",
+  "status": "ok"
+}

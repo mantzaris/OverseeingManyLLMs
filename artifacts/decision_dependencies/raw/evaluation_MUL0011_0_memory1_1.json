@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0011_0_memory1_1",
+      "elapsed_seconds": 1.8853252100525424,
+      "request_sha256": "abea5ef0214b7bbc95b2678b0b8f8a9f94ccef221ffc08f5b15ba1e5243f0b3e",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":null},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"italian\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114069,
+        "id": "chatcmpl-fe02a4a51e394e08ab08def12e177094",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 616,
+          "prompt_tokens_details": null,
+          "total_tokens": 700
+        }
+      },
+      "scheduled_attempt": 148,
+      "started_utc": "2026-09-11T08:07:48.948132+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0011_0_memory1_1",
+  "prompt_tokens": 616,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I want a restaurant in the city centre that serves Italian food.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":0,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"I want a restaurant in the city centre that serves Italian food.\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":0,\"value\":\"italian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"I am interested in a restaurant that is in the expensive price range.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":2,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I also need to HOTEL to stay at in the centre.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":8,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"No price range, it doesn't have to have internet though.\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":10,\"value\":\"no\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"Are they all hotels or guesthouses?\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":12,\"value\":\"hotel\"},{\"authority\":\"inferred_user_preference\",\"conflict\":true,\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"university arms is also expensive and has 4 stars\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":11,\"value\":null}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 159643,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "abea5ef0214b7bbc95b2678b0b8f8a9f94ccef221ffc08f5b15ba1e5243f0b3e",
+  "status": "ok"
+}

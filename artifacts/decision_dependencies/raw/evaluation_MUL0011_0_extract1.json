@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0011_0_extract1",
+      "elapsed_seconds": 5.523206029902212,
+      "request_sha256": "3fbd4555a739dfe7190d88946b9176ed32a70f4eba7114fe9ca3836d7dde62e3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"city centre\",\"turn\":0,\"quote\":\"I want a restaurant in the city centre that serves Italian food.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"italian\",\"turn\":0,\"quote\":\"I want a restaurant in the city centre that serves Italian food.\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":2,\"quote\":\"I am interested in a restaurant that is in the expensive price range.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"city centre\",\"turn\":8,\"quote\":\"I also need to HOTEL to stay at in the centre.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"no\",\"turn\":10,\"quote\":\"No price range, it doesn't have to have internet though.\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"hotel\",\"turn\":12,\"quote\":\"Are they all hotels or guesthouses?\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"0\",\"turn\":11,\"quote\":\"cityroomz is moderate with 0 stars\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":11,\"quote\":\"gonville hotel has 3 stars\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":11,\"quote\":\"university arms is also expensive and has 4 stars\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114040,
+        "id": "chatcmpl-52da08097a9845d8bd16be5bef99cbe8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 288,
+          "prompt_tokens": 819,
+          "prompt_tokens_details": null,
+          "total_tokens": 1107
+        }
+      },
+      "scheduled_attempt": 138,
+      "started_utc": "2026-09-11T08:07:20.545752+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0011_0_extract1",
+  "prompt_tokens": 819,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I want a restaurant in the city centre that serves Italian food.\n1 ASSISTANT: There are nine listings available. What price range were you interested in?\n2 USER: I am interested in a restaurant that is in the expensive price range.\n3 ASSISTANT: Clowns Cafe is a restaurant in the city centre with that price range. Would you like to make a reservation?\n4 USER: Sure! How close is the Cafe from my current location?\n5 ASSISTANT: The Clowns Cafe is in the centre area. Would you like me to book you a reservation?\n6 USER: Yes, please. I'd like a table for 6 at 18:45 on Friday.\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : F29AMXP7.\n8 USER: I also need to HOTEL to stay at in the centre.\n9 ASSISTANT: There are 3 hotels in that area. Would you prefer a moderately priced or expensive hotel?\n10 USER: No price range, it doesn't have to have internet though.\n11 ASSISTANT: cityroomz is moderate with 0 stars, gonville hotel has 3 stars and is expensive, university arms is also expensive and has 4 stars?  Will any of these do?\n12 USER: Are they all hotels or guesthouses?\n13 ASSISTANT: They are all hotels. Is this acceptable?\n14 USER: Sure can I get one with free wifi please?\n15 ASSISTANT: They all have free wifi. Is there a star rating you prefer?\n16 USER: No just book me rooms for six people for two nights.\n17 ASSISTANT: Non of the hotels were available for 2 nights starting on Friday. Would you prefer another date or area.\n18 USER: Can you book me a room for 1 night instead?\n19 ASSISTANT: Your booking at cityroomz was successful, reference number is SEIH4HYO\n20 USER: Thank you. I would also like a taxi to commute between the hotel and restaurant.\n21 ASSISTANT: Would you be departing from the restaurant or the hotel? And when would you like to leave?\n22 USER: I will be departing from the hotel and going to the restaurant. I need to be there in time for my reservation.\n23 ASSISTANT: Wonderful, your taxi is booked. It will be a yellow ford and the contact number is 07822741112. Is there anything else I can help you with?\n24 USER: That's it thanks!\n25 ASSISTANT: You're welcome. Have a wonderful time!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 159611,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "3fbd4555a739dfe7190d88946b9176ed32a70f4eba7114fe9ca3836d7dde62e3",
+  "status": "ok"
+}

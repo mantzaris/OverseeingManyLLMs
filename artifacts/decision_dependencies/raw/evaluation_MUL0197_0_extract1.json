@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0197_0_extract1",
+      "elapsed_seconds": 3.7916966259945184,
+      "request_sha256": "b7479933629f785136e4615e3945c7b79b63377f9bbd23c1b4c04ba9373c0aed",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"I'm looking for an expensive restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"center\",\"turn\":0,\"quote\":\"I'm looking for an expensive restaurant in the center of town.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":8,\"quote\":\"It needs to include free wifi and parking\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":8,\"quote\":\"It needs to include free wifi and parking\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":8,\"quote\":\"It needs to include free wifi and parking\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"center\",\"turn\":8,\"quote\":\"It needs to include free wifi and parking, be 3 star, and in the same area as the restaurant\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114636,
+        "id": "chatcmpl-ed5e12a94f8040edb46425270d0b2f68",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 195,
+          "prompt_tokens": 714,
+          "prompt_tokens_details": null,
+          "total_tokens": 909
+        }
+      },
+      "scheduled_attempt": 354,
+      "started_utc": "2026-09-11T08:17:16.223728+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0197_0_extract1",
+  "prompt_tokens": 714,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for an expensive restaurant in the center of town.\n1 ASSISTANT: There are 33 restaurants that meet your needs. Would you like to narrow your search by type of food?\n2 USER: I don't care about food. Surprise me. \n3 ASSISTANT: Fitzbillies restaurant serves British food, it's located at 51 Trumpington Street City Centre. Would you like to hear about any others? There are 33 results if British food isn't your style.\n4 USER: That sounds fine. Can you book it please and get me the reference number?\n5 ASSISTANT: Sure, what day and time would you like and how many people?\n6 USER: I would like a table for 5 at 11:30 on Tuesday, and I will need the reference number. Thanks.\n7 ASSISTANT: Okay, the booking was successful. The reference number is MQR72WDP. Is there anything else I can help you with?\n8 USER: I'm also looking for a place to stay. It needs to include free wifi and parking, be 3 star, and in the same area as the restaurant.\n9 ASSISTANT: The Gonville Hotel is a three star hotel in the centre area. It is in the expensive price range, and has free parking and wifi.\n10 USER: Can I get the address of the Gonville, please?\n11 ASSISTANT: Absolutely, the address for the Gonville Hotel is Gonville Place. Would you like me to book a reservation for you?\n12 USER: No, but I will need a taxi between the hotel and the booked restaurant.\n13 ASSISTANT: No problem! I have booked you a cab that will take you to the restaurant by 11:30. Look for a Yellow Skoda taxi. The cab's contact number is 07208286486.\n14 USER: Great, thanks for all of your help.\n15 ASSISTANT: You are welcome. Is there anything else I can do for you today?\n16 USER: No. Thank you for your help!\n17 ASSISTANT: You're welcome. Enjoy your day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 104815,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b7479933629f785136e4615e3945c7b79b63377f9bbd23c1b4c04ba9373c0aed",
+  "status": "ok"
+}

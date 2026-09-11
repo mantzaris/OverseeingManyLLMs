@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1211_1_memory1_1",
+      "elapsed_seconds": 1.910178569960408,
+      "request_sha256": "3efa4a0d64461de7f2c301b5f71aa88e29353e7d5d2e3774396fa10e915e3f37",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"3\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"african\"},{\"id\":\"q1_6\",\"value\":\"UNKNOWN\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114807,
+        "id": "chatcmpl-7fe16d41aa244d8cb392a8339ebfc8fa",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 637,
+          "prompt_tokens_details": null,
+          "total_tokens": 721
+        }
+      },
+      "scheduled_attempt": 424,
+      "started_utc": "2026-09-11T08:20:06.878130+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1211_1_memory1_1",
+  "prompt_tokens": 637,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"I want one that is in the same area as Bedouin, please.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":10,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"How about african food?\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":4,\"value\":\"african\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"I also want to find an expensive place to stay with a star rating of 3 please.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":8,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"I also want to find an expensive place to stay with a star rating of 3 please.\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":8,\"value\":\"3\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I want one that is in the same area as Bedouin, please.\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":10,\"value\":\"centre\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.parking\",\"kind\":\"preference\",\"quote\":\"I have two different options for you. Both are hotels and offer free parking and wifi.\",\"scope_status\":\"inferred\",\"slot\":\"parking\",\"turn\":9,\"value\":\"yes\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.internet\",\"kind\":\"preference\",\"quote\":\"I have two different options for you. Both are hotels and offer free parking and wifi.\",\"scope_status\":\"inferred\",\"slot\":\"internet\",\"turn\":9,\"value\":\"yes\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 234575,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "3efa4a0d64461de7f2c301b5f71aa88e29353e7d5d2e3774396fa10e915e3f37",
+  "status": "ok"
+}

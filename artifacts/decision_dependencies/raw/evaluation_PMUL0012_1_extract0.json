@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_PMUL0012_1_extract0",
+      "elapsed_seconds": 1.6758364220149815,
+      "request_sha256": "b65a12e31fec8c1ac70457be9edb6a2320d0c1690519318053b60e8d91d3a9cc",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":2,\"quote\":\"I would like something cheap.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":0,\"quote\":\"free wifi\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":0,\"quote\":\"3 star hotel\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115328,
+        "id": "chatcmpl-4bddbdb1156d4a09b9a00c3a68a0b51d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 75,
+          "prompt_tokens": 338,
+          "prompt_tokens_details": null,
+          "total_tokens": 413
+        }
+      },
+      "scheduled_attempt": 629,
+      "started_utc": "2026-09-11T08:28:48.123669+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_PMUL0012_1_extract0",
+  "prompt_tokens": 338,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a 3 star hotel in Cambridge with free wifi\n1 ASSISTANT: There are five hotels that meet that criteria. Do you have a location or price range in mind?\n2 USER: I would like something cheap.\n3 ASSISTANT: Unfortunately, none of the cheap hotels have free wifi.  Would you prefer to try a different price range or go with a hotel without free wifi?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 193217,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b65a12e31fec8c1ac70457be9edb6a2320d0c1690519318053b60e8d91d3a9cc",
+  "status": "ok"
+}

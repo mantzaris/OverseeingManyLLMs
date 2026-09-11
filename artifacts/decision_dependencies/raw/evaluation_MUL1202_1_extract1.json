@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1202_1_extract1",
+      "elapsed_seconds": 4.612115990021266,
+      "request_sha256": "3ab5c43996deadd61c35bc8100acd0e12b33cc886444b1d025958738175c7533",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"italian\",\"turn\":4,\"quote\":\"Are there any that serve Italian food?\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":6,\"quote\":\"In the centre of town.\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":5,\"quote\":\"Are there any that serve Italian food?\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":10,\"quote\":\"We will also need lodging, preferably a 4 star guesthouse.\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":10,\"quote\":\"We will also need lodging, preferably a 4 star guesthouse.\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"centre\",\"turn\":13,\"quote\":\"It is in the same part of town and price range as the restaurant.\"},{\"domain\":\"taxi\",\"slot\":\"destination\",\"value\":\"restaurant\",\"turn\":22,\"quote\":\"I need a taxi between the B&B and the restaurant that arrives to the restaurant by the booked time.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114722,
+        "id": "chatcmpl-f1b5d32b791244e09d106c18b80476cc",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 233,
+          "prompt_tokens": 833,
+          "prompt_tokens_details": null,
+          "total_tokens": 1066
+        }
+      },
+      "scheduled_attempt": 390,
+      "started_utc": "2026-09-11T08:18:41.785959+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1202_1_extract1",
+  "prompt_tokens": 833,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'd really like to get some Middle Eastern food. Can you find a cheap place for me to grab some dinner?\n1 ASSISTANT: I see that there are none, maybe I should reconsider the cuisine. Thank you\n2 USER: Okay, thank  you. goodbye\n3 ASSISTANT: There is no middle east food in that area, another place or type perhaps?\n4 USER: Are there any that serve Italian food?\n5 ASSISTANT: There are 5 Italian restaurant options available.  Is there a particular area of town you prefer?\n6 USER: In the centre of town. \n7 ASSISTANT: There are 3 available. Which do you prefer: Pizza Hut City Centre, Ask, or Zizzi Cambridge?\n8 USER: Book one for 8 people at 18:45 on wednesday.\n9 ASSISTANT: I have booked the Pizza Hut City Centre. The rederence number is XDDR16EJ. Is there anything else you need today?\n10 USER: We will also need lodging, preferably a 4 star guesthouse\n11 ASSISTANT: There are 18 guesthouses with 4 stars. What part of town do you prefer? Or do you have a price range?\n12 USER: It should be in the same price range as the restaurant, please.\n13 ASSISTANT: How about the Alexander bed and breakfast?  It is in the same part of town and price range as the restaurant.\n14 USER: Do they have rooms available for the same day as dinner?\n15 ASSISTANT: I'm sure they do, would it be for the same amount of people? And how many days are you staying?\n16 USER: Yes, it would be for the same group of people, and we will be staying 4 nights.\n17 ASSISTANT: What day will you be staying?\n18 USER: Starting on Wednesday please. \n19 ASSISTANT: Booking was successful. Your reference number is USCL95YH. Is there anything else I can help you with?\n20 USER: I will need a hotel between the two. \n21 ASSISTANT: You would like a second hotel, for which night and location?\n22 USER: I'm sorry, I don't want a second hotel. I need a taxi between the B&B and the restaurant that arrives to the restaurant by the booked time.\n23 ASSISTANT: Perfect I have booked you a yellow lexus. The contact number is 07350800727. Is there anything else I can help you with today?\n24 USER: No that is all I needed.  Thank you.  \n25 ASSISTANT: You're welcome. Glad I could help. ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 196167,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "3ab5c43996deadd61c35bc8100acd0e12b33cc886444b1d025958738175c7533",
+  "status": "ok"
+}

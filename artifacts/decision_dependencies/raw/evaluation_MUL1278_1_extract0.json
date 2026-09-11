@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1278_1_extract0",
+      "elapsed_seconds": 2.1814892860129476,
+      "request_sha256": "47933f6c1e453a528ec8703309f38ac6eb5d460653320084df9d476768f7277c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"north\",\"turn\":0,\"quote\":\"I'd like it to be in the north\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"0\",\"turn\":0,\"quote\":\"have zero stars\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"north\",\"turn\":6,\"quote\":\"same areas as the hotel\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":6,\"quote\":\"expensive restaurant\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115024,
+        "id": "chatcmpl-e9d40bb786364fb08e0e2dee3d5d6fd7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 104,
+          "prompt_tokens": 450,
+          "prompt_tokens_details": null,
+          "total_tokens": 554
+        }
+      },
+      "scheduled_attempt": 509,
+      "started_utc": "2026-09-11T08:23:44.392254+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1278_1_extract0",
+  "prompt_tokens": 450,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I'm looking for a place to stay. I'd like it to be in the north and have zero stars.\n1 ASSISTANT: The city centre north b and b matches your request. Would you like to book it?\n2 USER: Do they offer free parking? \n3 ASSISTANT: Yes, they offer both free parking and free internet. Can I make a reservation for you? \n4 USER: I would like you to pick one, and tell em the adress and what type of room it is please. \n5 ASSISTANT: There are at 328a Histon Road and it is a guesthouse. I will need the dates you want to stay in order to book it please.\n6 USER: I don't think I'll make that reservation just yet, but can you help me find an expensive restaurant in the same areas as the hotel?\n7 ASSISTANT: Sure. do you have any kind of food preference?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 255288,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "47933f6c1e453a528ec8703309f38ac6eb5d460653320084df9d476768f7277c",
+  "status": "ok"
+}

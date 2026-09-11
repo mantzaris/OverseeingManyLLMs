@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0113_1_memory1_1",
+      "elapsed_seconds": 1.8551063089398667,
+      "request_sha256": "2f77abd964c1c5f157cfd90c7c78c15275e3794cc18c7f22d50d3703b5252696",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_1\",\"value\":\"expensive\"},{\"id\":\"q1_2\",\"value\":\"3\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_5\",\"value\":\"indian\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114503,
+        "id": "chatcmpl-840d84694bba42c4a41c1e699676864d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 460,
+          "prompt_tokens_details": null,
+          "total_tokens": 545
+        }
+      },
+      "scheduled_attempt": 304,
+      "started_utc": "2026-09-11T08:15:03.398984+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0113_1_memory1_1",
+  "prompt_tokens": 460,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"I am in need of an expensive Indian restaurant for dinner.\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":0,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"I am in need of an expensive Indian restaurant for dinner.\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":0,\"value\":\"indian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"Is the Gonville Hotel in the same price range as the Curry Garden?\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":6,\"value\":\"expensive\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.stars\",\"kind\":\"preference\",\"quote\":\"I am looking for a 3-star hotel, though. No guesthouses.\",\"scope_status\":\"inferred\",\"slot\":\"stars\",\"turn\":5,\"value\":\"3\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 268651,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "2f77abd964c1c5f157cfd90c7c78c15275e3794cc18c7f22d50d3703b5252696",
+  "status": "ok"
+}

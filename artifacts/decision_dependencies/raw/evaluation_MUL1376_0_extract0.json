@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1376_0_extract0",
+      "elapsed_seconds": 3.3051370329922065,
+      "request_sha256": "42bb9fe4abf72a1e187d7ca28574f36351832dd23f17f7b68b19a48acd8e6ae7",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":0,\"quote\":\"Can you help me find a 4 star expensive hotel?\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"Can you help me find a 4 star expensive hotel?\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":4,\"quote\":\"I would be interested in a guesthouse in the cheap price range if that is available.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":8,\"quote\":\"I need free internet\"},{\"domain\":\"hotel\",\"slot\":\"postcode\",\"value\":\"cb12de\",\"turn\":8,\"quote\":\"It is located in cb12de postal code\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115236,
+        "id": "chatcmpl-8d28352ba46a45d69b989a89234f5cdd",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 163,
+          "prompt_tokens": 483,
+          "prompt_tokens_details": null,
+          "total_tokens": 646
+        }
+      },
+      "scheduled_attempt": 593,
+      "started_utc": "2026-09-11T08:27:16.484064+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1376_0_extract0",
+  "prompt_tokens": 483,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you help me find a 4 star expensive hotel?\n1 ASSISTANT: The University Arms Hotel fits that description. Would you like me to book it for you?\n2 USER: Is that a guesthouse?\n3 ASSISTANT: No sorry that is a hotel.\n4 USER: Is there a guesthouse available?\n5 ASSISTANT: Unfortunately, there are no guesthouses that fit that description. \n6 USER: I would be interested in a guesthouse in the cheap price range if that is available.  Will you check for me?\n7 ASSISTANT: There are 7 available that match what you're looking for, do you have any preference for what area you want to stay in?\n8 USER: I need free internet and I need their postcode.\n9 ASSISTANT: There is the Alexander Bed and Breakfast which has internet. It is located in cb12de postal code.\n10 USER: I also need a restaurant with south African food in the centre. \n11 ASSISTANT: I am sorry there are no restaurants that match that description. Would you like to search for something else?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 96141,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "42bb9fe4abf72a1e187d7ca28574f36351832dd23f17f7b68b19a48acd8e6ae7",
+  "status": "ok"
+}

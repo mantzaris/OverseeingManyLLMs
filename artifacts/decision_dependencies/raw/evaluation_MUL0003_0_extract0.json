@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0003_0_extract0",
+      "elapsed_seconds": 3.171913480036892,
+      "request_sha256": "d37a1d96adf04db930810f248880e6475f9b48aeb8ba0ebb5464d80661bcc1e4",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":2,\"quote\":\"It needs to be a guesthouse\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":0,\"quote\":\"include free wifi\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":2,\"quote\":\"include free parking\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":3,\"quote\":\"cheap and include free parking\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"not specified\",\"turn\":3,\"quote\":\"Nothing in particular\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"4\",\"turn\":6,\"quote\":\"We will book you in a hotel with 4 stars\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789113972,
+        "id": "chatcmpl-ea54d59d152e4b65b01056c64a4e2b29",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 496,
+          "prompt_tokens_details": null,
+          "total_tokens": 652
+        }
+      },
+      "scheduled_attempt": 113,
+      "started_utc": "2026-09-11T08:06:12.441293+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0003_0_extract0",
+  "prompt_tokens": 496,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a place to stay. It needs to be a guesthouse and include free wifi.\n1 ASSISTANT: There are 23 hotels that meet your needs. Would you like to narrow your search by area and/or price range?\n2 USER: I would like for it to be cheap and include free parking.\n3 ASSISTANT: There are nine guesthouse hotels in various areas. What part of town are you hoping for?\n4 USER: Nothing in particular. I just need it booked for 6 people for a total of 4 nights starting from sunday. I'd also like the reference number, please.\n5 ASSISTANT: Sure! We will book you in a hotel with 4 stars.  The reservation will be for 6 people for 4 nights.  How many rooms would you like to reserve?\n6 USER: Well, for six people I suppose I will be needing three rooms, for four nights, starting Sunday. \n7 ASSISTANT: You're booked at the Alexander Bed and Breakfast, 517a coldham lane, for 6 people for four nights tarting Sunday. Your reference number is JXVKZ7KV.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 124100,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "d37a1d96adf04db930810f248880e6475f9b48aeb8ba0ebb5464d80661bcc1e4",
+  "status": "ok"
+}

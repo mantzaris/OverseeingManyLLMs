@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1351_0_extract1",
+      "elapsed_seconds": 4.039940615999512,
+      "request_sha256": "8334d3e3ac6b6b9edd6fea396eb5bf1374d0774dab245ea748a927a85d129bdb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"north\",\"turn\":6,\"quote\":\"Is it in the north?\"},{\"domain\":\"restaurant\",\"slot\":\"cuisine\",\"value\":\"european\",\"turn\":4,\"quote\":\"I guess try European.\"},{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":12,\"quote\":\"Hmm, yes. Someplace expensive.\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":10,\"quote\":\"I'm also looking for a place to stay that offers both internet and free parking.\"},{\"domain\":\"hotel\",\"slot\":\"parking\",\"value\":\"yes\",\"turn\":10,\"quote\":\"I'm also looking for a place to stay that offers both internet and free parking.\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"hotel\",\"turn\":12,\"quote\":\"I'm also looking for a place to stay that offers both internet and free parking.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115178,
+        "id": "chatcmpl-767c9494d1414598a61662f50192cd7d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 199,
+          "prompt_tokens": 808,
+          "prompt_tokens_details": null,
+          "total_tokens": 1007
+        }
+      },
+      "scheduled_attempt": 570,
+      "started_utc": "2026-09-11T08:26:18.546788+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1351_0_extract1",
+  "prompt_tokens": 808,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello. I'm going out for an expensive dinner and need to find a restaurant. I'd like somewhere in the north, and I'm willing to pay quite a bit of money. \n1 ASSISTANT: I'd be happy to help you with that. I have 5 expensive restaurants in the north. Did you have a type of cuisine in mind? \n2 USER: Yes, Romanian please. \n3 ASSISTANT: There are no options for romanian, can I try something else for you?\n4 USER: I guess try European. \n5 ASSISTANT: The city stop restaurant is a european restaurant in the expensive price range.\n6 USER: Is it in the north? If so, can you reserve us a table for 3 on Friday at 17:45 please?\n7 ASSISTANT: I am sorry but the restaurant will be unable to reserve a table for that time. Would you like to try another day or time?\n8 USER: How about at 16:45?\n9 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. The reference number is: 0PK0TW8F\n10 USER: I'm also looking for a place to stay that offers both internet and free parking.\n11 ASSISTANT: There are 29 places in Cambridge which offer both, any other preferences?\n12 USER: Hmm, yes. Someplace expensive.\n13 ASSISTANT: I can recommend the University Arms hotel in the centre of the city.\n14 USER: Great, can you make a reservation for three people for the three nights starting Friday please? \n15 ASSISTANT: I'm sorry, I couldn't book that for you, would you like to try another day?\n16 USER: No, I need it to be Friday.  Can we try it for a one night stay instead?\n17 ASSISTANT: Alright! I was able to book your room for 1 night at the University Arms Hotel for 3 people. Your reference number is F13028XH. Can I help with anything else?\n18 USER: I'm going to need a taxi as well from the hotel to the restaurant that arrives at 16:45. Could I get the contact number and car type for that?\n19 ASSISTANT: Sure! The contact number is 07648846859 and the car is a black audi. Is there anything else you need help with?\n20 USER: No, you have been most helpful. Have a nice day.\n21 ASSISTANT: Thanks, have a nice day as well.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 121325,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8334d3e3ac6b6b9edd6fea396eb5bf1374d0774dab245ea748a927a85d129bdb",
+  "status": "ok"
+}

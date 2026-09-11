@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0011_1_extract1",
+      "elapsed_seconds": 9.115440513007343,
+      "request_sha256": "eafb2d37ca8c252ca37fa7cdad79159a5b46e385ec0e96d2a6eebd2ef1bfec0a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"records\": [\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"area\",\n      \"value\": \"city centre\",\n      \"turn\": 2,\n      \"quote\": \"I also need to HOTEL to stay at in the centre.\"\n    },\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"pricerange\",\n      \"value\": \"expensive\",\n      \"turn\": 2,\n      \"quote\": \"I am interested in a restaurant that is in the expensive price range.\"\n    },\n    {\n      \"domain\": \"restaurant\",\n      \"slot\": \"cuisine\",\n      \"value\": \"italian\",\n      \"turn\": 0,\n      \"quote\": \"I want a restaurant in the city centre that serves Italian food.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"area\",\n      \"value\": \"city centre\",\n      \"turn\": 18,\n      \"quote\": \"I will be departing from the hotel and going to the restaurant.\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"type\",\n      \"value\": \"hotel\",\n      \"turn\": 12,\n      \"quote\": \"Sure can I get one with free wifi please?\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"internet\",\n      \"value\": \"no\",\n      \"turn\": 16,\n      \"quote\": \"Sure can I get one with free wifi please?\"\n    },\n    {\n      \"domain\": \"hotel\",\n      \"slot\": \"pricerange\",\n      \"value\": \"no preference\",\n      \"turn\": 10,\n      \"quote\": \"No price range, it doesn't have to have internet though.\"\n    },\n    {\n      \"domain\": \"taxi\",\n      \"slot\": \"pickup_location\",\n      \"value\": \"hotel\",\n      \"turn\": 22,\n      \"quote\": \"I will be departing from the hotel and going to the restaurant.\"\n    },\n    {\n      \"domain\": \"taxi\",\n      \"slot\": \"dropoff_location\",\n      \"value\": \"restaurant\",\n      \"turn\": 22,\n      \"quote\": \"I will be departing from the hotel and going to the restaurant.\"\n    }\n  ]\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114075,
+        "id": "chatcmpl-8f83e14d1700497485ee97a4a8d538a8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 476,
+          "prompt_tokens": 819,
+          "prompt_tokens_details": null,
+          "total_tokens": 1295
+        }
+      },
+      "scheduled_attempt": 150,
+      "started_utc": "2026-09-11T08:07:54.954334+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0011_1_extract1",
+  "prompt_tokens": 819,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I want a restaurant in the city centre that serves Italian food.\n1 ASSISTANT: There are nine listings available. What price range were you interested in?\n2 USER: I am interested in a restaurant that is in the expensive price range.\n3 ASSISTANT: Clowns Cafe is a restaurant in the city centre with that price range. Would you like to make a reservation?\n4 USER: Sure! How close is the Cafe from my current location?\n5 ASSISTANT: The Clowns Cafe is in the centre area. Would you like me to book you a reservation?\n6 USER: Yes, please. I'd like a table for 6 at 18:45 on Friday.\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : F29AMXP7.\n8 USER: I also need to HOTEL to stay at in the centre.\n9 ASSISTANT: There are 3 hotels in that area. Would you prefer a moderately priced or expensive hotel?\n10 USER: No price range, it doesn't have to have internet though.\n11 ASSISTANT: cityroomz is moderate with 0 stars, gonville hotel has 3 stars and is expensive, university arms is also expensive and has 4 stars?  Will any of these do?\n12 USER: Are they all hotels or guesthouses?\n13 ASSISTANT: They are all hotels. Is this acceptable?\n14 USER: Sure can I get one with free wifi please?\n15 ASSISTANT: They all have free wifi. Is there a star rating you prefer?\n16 USER: No just book me rooms for six people for two nights.\n17 ASSISTANT: Non of the hotels were available for 2 nights starting on Friday. Would you prefer another date or area.\n18 USER: Can you book me a room for 1 night instead?\n19 ASSISTANT: Your booking at cityroomz was successful, reference number is SEIH4HYO\n20 USER: Thank you. I would also like a taxi to commute between the hotel and restaurant.\n21 ASSISTANT: Would you be departing from the restaurant or the hotel? And when would you like to leave?\n22 USER: I will be departing from the hotel and going to the restaurant. I need to be there in time for my reservation.\n23 ASSISTANT: Wonderful, your taxi is booked. It will be a yellow ford and the contact number is 07822741112. Is there anything else I can help you with?\n24 USER: That's it thanks!\n25 ASSISTANT: You're welcome. Have a wonderful time!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 259611,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "eafb2d37ca8c252ca37fa7cdad79159a5b46e385ec0e96d2a6eebd2ef1bfec0a",
+  "status": "ok"
+}

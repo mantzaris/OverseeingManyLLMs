@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0071_1_history0_1",
+      "elapsed_seconds": 1.9181787479901686,
+      "request_sha256": "22f5c471f3ade0c69c62ac746beea385b803ff88d81eb93d80ac218046df298b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"0\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_6\",\"value\":\"moderate\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114291,
+        "id": "chatcmpl-307231985b6042348a5e4c8ba833200a",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 461,
+          "prompt_tokens_details": null,
+          "total_tokens": 544
+        }
+      },
+      "scheduled_attempt": 227,
+      "started_utc": "2026-09-11T08:11:30.724557+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0071_1_history0_1",
+  "prompt_tokens": 461,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a moderately priced place to eat that's in the centre of town.\n1 ASSISTANT: What type of cuisine are you looking for? There are 21 restaurants in that area.\n2 USER: I don't have a preference.\n3 ASSISTANT: Out of the 21 restaurant choices, one is the Yippee Noodle Bar which is moderately priced in the centre of town. Would you like to make a reservation?\n4 USER: That sounds great, what is the postcode? \n5 ASSISTANT: Their postcode is cb11lh and if you want a reservation just let me know the time, party size, and day and I'll make it for you.\n6 USER: Not now, thanks. Here's a weird one, though - are there any expensive 0-star hotels in the center of town?\n7 ASSISTANT: I'm sorry, but there are no expensive 0-star hotels in the area.  Can I help you find something else?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 264017,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "22f5c471f3ade0c69c62ac746beea385b803ff88d81eb93d80ac218046df298b",
+  "status": "ok"
+}

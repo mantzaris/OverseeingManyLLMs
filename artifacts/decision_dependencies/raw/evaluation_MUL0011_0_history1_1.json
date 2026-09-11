@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0011_0_history1_1",
+      "elapsed_seconds": 1.8948866630671546,
+      "request_sha256": "2a851524e0185817aed9cbeeb5016c7be7e6cfd3b3a2206e72ac330f112f89bb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"centre\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"hotel\"},{\"id\":\"q1_4\",\"value\":\"centre\"},{\"id\":\"q1_5\",\"value\":\"italian\"},{\"id\":\"q1_6\",\"value\":\"expensive\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114067,
+        "id": "chatcmpl-7c724bddab3844fa862dbb34aa512530",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 821,
+          "prompt_tokens_details": null,
+          "total_tokens": 905
+        }
+      },
+      "scheduled_attempt": 147,
+      "started_utc": "2026-09-11T08:07:46.731619+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0011_0_history1_1",
+  "prompt_tokens": 821,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I want a restaurant in the city centre that serves Italian food.\n1 ASSISTANT: There are nine listings available. What price range were you interested in?\n2 USER: I am interested in a restaurant that is in the expensive price range.\n3 ASSISTANT: Clowns Cafe is a restaurant in the city centre with that price range. Would you like to make a reservation?\n4 USER: Sure! How close is the Cafe from my current location?\n5 ASSISTANT: The Clowns Cafe is in the centre area. Would you like me to book you a reservation?\n6 USER: Yes, please. I'd like a table for 6 at 18:45 on Friday.\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : F29AMXP7.\n8 USER: I also need to HOTEL to stay at in the centre.\n9 ASSISTANT: There are 3 hotels in that area. Would you prefer a moderately priced or expensive hotel?\n10 USER: No price range, it doesn't have to have internet though.\n11 ASSISTANT: cityroomz is moderate with 0 stars, gonville hotel has 3 stars and is expensive, university arms is also expensive and has 4 stars?  Will any of these do?\n12 USER: Are they all hotels or guesthouses?\n13 ASSISTANT: They are all hotels. Is this acceptable?\n14 USER: Sure can I get one with free wifi please?\n15 ASSISTANT: They all have free wifi. Is there a star rating you prefer?\n16 USER: No just book me rooms for six people for two nights.\n17 ASSISTANT: Non of the hotels were available for 2 nights starting on Friday. Would you prefer another date or area.\n18 USER: Can you book me a room for 1 night instead?\n19 ASSISTANT: Your booking at cityroomz was successful, reference number is SEIH4HYO\n20 USER: Thank you. I would also like a taxi to commute between the hotel and restaurant.\n21 ASSISTANT: Would you be departing from the restaurant or the hotel? And when would you like to leave?\n22 USER: I will be departing from the hotel and going to the restaurant. I need to be there in time for my reservation.\n23 ASSISTANT: Wonderful, your taxi is booked. It will be a yellow ford and the contact number is 07822741112. Is there anything else I can help you with?\n24 USER: That's it thanks!\n25 ASSISTANT: You're welcome. Have a wonderful time!\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 159633,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "2a851524e0185817aed9cbeeb5016c7be7e6cfd3b3a2206e72ac330f112f89bb",
+  "status": "ok"
+}

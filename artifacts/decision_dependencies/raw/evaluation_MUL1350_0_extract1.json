@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1350_0_extract1",
+      "elapsed_seconds": 4.2411874301033095,
+      "request_sha256": "1d96ee2bdc57cc29ad3844780c205a7d94b19bdf0bce5857cba51198392144cd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":0,\"quote\":\"I really need to find a cheap place to stay in the east\"},{\"domain\":\"hotel\",\"slot\":\"area\",\"value\":\"east\",\"turn\":0,\"quote\":\"I really need to find a cheap place to stay in the east\"},{\"domain\":\"hotel\",\"slot\":\"type\",\"value\":\"guesthouse\",\"turn\":1,\"quote\":\"all of them are guesthouses\"},{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"cheap\",\"turn\":6,\"quote\":\"in the same price range as the hotel please\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"indian\",\"turn\":6,\"quote\":\"Indian places\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"north\",\"turn\":7,\"quote\":\"one on the north end\"},{\"domain\":\"taxi\",\"slot\":\"type\",\"value\":\"skoda\",\"turn\":17,\"quote\":\"Yes it is a grey skoda\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115117,
+        "id": "chatcmpl-1ff76f2e07b24e23898c4c642eb72fe1",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 202,
+          "prompt_tokens": 706,
+          "prompt_tokens_details": null,
+          "total_tokens": 908
+        }
+      },
+      "scheduled_attempt": 546,
+      "started_utc": "2026-09-11T08:25:17.192584+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1350_0_extract1",
+  "prompt_tokens": 706,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello. I really need to find a cheap place to stay in the east. Is there anything like that?\n1 ASSISTANT: I've found three, all of them are guesthouses and all of them have free internet and parking. Would you like me to give your their information? \n2 USER: Sure, that sounds great.\n3 ASSISTANT: Okay I will give you the information I have on them.\n4 USER: Can you book it for 8 people for 4 nights starting on thursday?\n5 ASSISTANT: Ok I have you booked at The Allenbell for 4 nights for 8 people. Your reference number 7SN0BAAT. Do you need anything else?\n6 USER: I would like an indian restaurant in the same price range as the hotel please.\n7 ASSISTANT: There are four cheap Indian places, three in city centre, and one on the north end.\n8 USER: Whichever one is fine, surprise me!\n9 ASSISTANT: I would recommend Royal Spice in the north end. Would you like me to make a reservation there for you?\n10 USER: Yes I need it booked for the same group of people at 12:45 on the same day.\n11 ASSISTANT: That booking was successful. The reference number is KAY2S45O. Is there anything else I can do for you?\n12 USER: Yes, I would like a reserve a taxi to commute between The Allenbell and Royal Spice. I really want to be on time for our dinner reservation.\n13 ASSISTANT: What time would you like to be picked up?\n14 USER: I'd like the arrival time to be 12:45, please.\n15 ASSISTANT: I have that booked for you, contact number 07340953955. Do you need anyhting else?\n16 USER: I need the car type please.\n17 ASSISTANT: Yes it is a grey skoda.  Can I assist you further?\n18 USER: No that is all, bye. \n19 ASSISTANT: You're welcome. Enjoy your trip!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 117826,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "1d96ee2bdc57cc29ad3844780c205a7d94b19bdf0bce5857cba51198392144cd",
+  "status": "ok"
+}

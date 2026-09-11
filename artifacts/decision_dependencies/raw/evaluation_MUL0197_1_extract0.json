@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0197_1_extract0",
+      "elapsed_seconds": 2.2175911619560793,
+      "request_sha256": "fa9d2d4e365733825467c8ea06616b43266da29147c6b2468f592dd99b98cf28",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"restaurant\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"I'm looking for an expensive restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"area\",\"value\":\"center\",\"turn\":0,\"quote\":\"I'm looking for an expensive restaurant in the center of town.\"},{\"domain\":\"restaurant\",\"slot\":\"food\",\"value\":\"british\",\"turn\":3,\"quote\":\"Fitzbillies restaurant serves British food,\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114663,
+        "id": "chatcmpl-7f36247893334a5d841f702314d78bc4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 101,
+          "prompt_tokens": 460,
+          "prompt_tokens_details": null,
+          "total_tokens": 561
+        }
+      },
+      "scheduled_attempt": 365,
+      "started_utc": "2026-09-11T08:17:43.520885+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0197_1_extract0",
+  "prompt_tokens": 460,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for an expensive restaurant in the center of town.\n1 ASSISTANT: There are 33 restaurants that meet your needs. Would you like to narrow your search by type of food?\n2 USER: I don't care about food. Surprise me. \n3 ASSISTANT: Fitzbillies restaurant serves British food, it's located at 51 Trumpington Street City Centre. Would you like to hear about any others? There are 33 results if British food isn't your style.\n4 USER: That sounds fine. Can you book it please and get me the reference number?\n5 ASSISTANT: Sure, what day and time would you like and how many people?\n6 USER: I would like a table for 5 at 11:30 on Tuesday, and I will need the reference number. Thanks.\n7 ASSISTANT: Okay, the booking was successful. The reference number is MQR72WDP. Is there anything else I can help you with?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 204814,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "fa9d2d4e365733825467c8ea06616b43266da29147c6b2468f592dd99b98cf28",
+  "status": "ok"
+}

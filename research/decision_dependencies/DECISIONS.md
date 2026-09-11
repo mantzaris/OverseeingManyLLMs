@@ -82,3 +82,35 @@ versus semantic memory at the six-role cap with unlimited responses. No combined
 utility or human-time model. The 672 additional calls forecast 30.6 minutes, or
 45.9 minutes with a 50 percent margin. Proceed with this fixed comparison, then
 finish the interface, inspect failures, plot and package. No tuning on final data.
+
+## Final collection checkpoint, 2026-09-11 08:43 UTC (87 minutes)
+
+The declared 672 new calls completed at 08:33 UTC. The session has 784 calls and
+attempts, no retries or transport failures, and three unparseable responses
+(including the two original development probe failures). All 5,184 controller
+rows replay exactly. The 21 frozen hashes and all 18,759 historical tracked files
+remain intact.
+
+The primary whole-project outcome ties semantic memory on every one of 24
+dialogues. Selective checking asks 1.875 more questions per project, with a paired
+95% interval [1.041, 2.854]. Global checking has identical quality and questions.
+The authored challenges reveal wrong transfers for a paraphrased exception and a
+revocation under both structured methods, while full history handles all twelve
+challenge cases in both replicates. These outcomes reject a broad claim that the
+more elaborate record controller is a better automatic applicability method.
+
+Inspecting the failed final artifacts found an adapter normalization issue:
+`center of town` is semantically compatible with `centre`, but is not among the
+frozen aliases and yields an empty local database result. Another source project
+really retains an outdated expensive-hotel preference after a cheap-guesthouse
+request. Keep both failures in primary results. Add a **post hoc, saved-output
+sensitivity** that maps only this area alias in all methods, recomputes local
+artifacts, and leaves every controller choice and user question unchanged. This
+is a hypothetical adapter repair, not a replacement final evaluation.
+
+The remaining analysis will classify errors, inspect the first cost-unfavorable
+quality-tied case in source-ID order, and quantify the declared 0/0.25/1 source
+inspection-equivalent sensitivity. No more model generations or method changes.
+Online interface fixes for explicit manual overrides are separate from the frozen
+simulation: they invalidate prepared work and roll back rejected scope changes.
+They do not retroactively repair the natural-language challenge failures.

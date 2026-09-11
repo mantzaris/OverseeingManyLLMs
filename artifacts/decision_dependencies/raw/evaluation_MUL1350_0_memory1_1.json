@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1350_0_memory1_1",
+      "elapsed_seconds": 1.86196749296505,
+      "request_sha256": "4f983a5d1a83183028d49e67765a9e766acbdf49d8bc8488290ae39020411115",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"east\"},{\"id\":\"q1_1\",\"value\":\"cheap\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"guesthouse\"},{\"id\":\"q1_4\",\"value\":\"north\"},{\"id\":\"q1_5\",\"value\":\"indian\"},{\"id\":\"q1_6\",\"value\":\"cheap\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115143,
+        "id": "chatcmpl-df54554dc3d349df85a70f58f5150fc8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 538,
+          "prompt_tokens_details": null,
+          "total_tokens": 622
+        }
+      },
+      "scheduled_attempt": 556,
+      "started_utc": "2026-09-11T08:25:42.769581+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1350_0_memory1_1",
+  "prompt_tokens": 538,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using the supplied current shared memories. Select the memory that applies to the question's domain and requested attribute, not merely a similar word. Respect exceptions and updates. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"memory value or UNKNOWN\"}]}. If no applicable memory exists, answer UNKNOWN. Do not invent a new instruction.",
+        "role": "system"
+      },
+      {
+        "content": "{\"memories\":[{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.pricerange\",\"kind\":\"preference\",\"quote\":\"I really need to find a cheap place to stay in the east\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":0,\"value\":\"cheap\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.area\",\"kind\":\"preference\",\"quote\":\"I really need to find a cheap place to stay in the east\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":0,\"value\":\"east\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"hotel\",\"key\":\"hotel.type\",\"kind\":\"preference\",\"quote\":\"all of them are guesthouses\",\"scope_status\":\"inferred\",\"slot\":\"type\",\"turn\":1,\"value\":\"guesthouse\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.pricerange\",\"kind\":\"preference\",\"quote\":\"in the same price range as the hotel please\",\"scope_status\":\"inferred\",\"slot\":\"pricerange\",\"turn\":6,\"value\":\"cheap\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.food\",\"kind\":\"preference\",\"quote\":\"Indian places\",\"scope_status\":\"inferred\",\"slot\":\"food\",\"turn\":6,\"value\":\"indian\"},{\"authority\":\"inferred_user_preference\",\"domain\":\"restaurant\",\"key\":\"restaurant.area\",\"kind\":\"preference\",\"quote\":\"one on the north end\",\"scope_status\":\"inferred\",\"slot\":\"area\",\"turn\":7,\"value\":\"north\"}],\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 117858,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "4f983a5d1a83183028d49e67765a9e766acbdf49d8bc8488290ae39020411115",
+  "status": "ok"
+}

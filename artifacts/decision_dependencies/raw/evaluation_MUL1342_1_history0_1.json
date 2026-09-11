@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1342_1_history0_1",
+      "elapsed_seconds": 1.8960502920672297,
+      "request_sha256": "22b00bd81984eb51de5bb5f94b38e94d13bd88c6794716ef011b994778431a54",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":[{\"id\":\"q1_0\",\"value\":\"east\"},{\"id\":\"q1_1\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_2\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_3\",\"value\":\"UNKNOWN\"},{\"id\":\"q1_4\",\"value\":\"east\"},{\"id\":\"q1_5\",\"text\":\"middle eastern\"},{\"id\":\"q1_6\",\"value\":\"moderate\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115102,
+        "id": "chatcmpl-e21c46fab2064b4daa107a904ab363a5",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 335,
+          "prompt_tokens_details": null,
+          "total_tokens": 419
+        }
+      },
+      "scheduled_attempt": 539,
+      "started_utc": "2026-09-11T08:25:02.418259+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1342_1_history0_1",
+  "prompt_tokens": 335,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Answer travel agents' preference questions using only the user's current instructions in the supplied conversation. Respect changes, domain scope and explicit references. Do not treat an assistant suggestion as a user instruction. Return JSON only: {\"answers\":[{\"id\":\"same id\",\"value\":\"normalized answer or UNKNOWN\"}]}. Normalize price cheap/moderate/expensive, area centre/north/south/east/west, parking/internet yes/no, stars digits, type hotel/guesthouse, cuisine lower-case. Do not guess an unstated preference.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, I'm trying to find a moderate place to eat in the east. Can you help?\n1 ASSISTANT: I've found a place called curry prince that fits that. Would you like me to place a reservation for you?\n2 USER: Actually I'm more interested in middle Eastern foods.\n3 ASSISTANT: I have no listings for middle east food, another type maybe?\nQUESTIONS\n[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 186362,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "22b00bd81984eb51de5bb5f94b38e94d13bd88c6794716ef011b994778431a54",
+  "status": "ok"
+}

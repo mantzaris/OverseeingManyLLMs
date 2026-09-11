@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1211_1_parse1",
+      "elapsed_seconds": 2.7109752810792997,
+      "request_sha256": "767eeec4be6f5b2719e6c74961f09c4a32c5704c28fe6ff7810051b07b990620",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"queries\":[{\"id\":\"q1_0\",\"domain\":\"hotel\",\"slot\":\"area\"},{\"id\":\"q1_1\",\"domain\":\"hotel\",\"slot\":\"pricerange\"},{\"id\":\"q1_2\",\"domain\":\"hotel\",\"slot\":\"stars\"},{\"id\":\"q1_3\",\"domain\":\"hotel\",\"slot\":\"type\"},{\"id\":\"q1_4\",\"domain\":\"restaurant\",\"slot\":\"area\"},{\"id\":\"q1_5\",\"domain\":\"restaurant\",\"slot\":\"food\"},{\"id\":\"q1_6\",\"domain\":\"restaurant\",\"slot\":\"pricerange\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789114789,
+        "id": "chatcmpl-77c878f74f5c4e6cbf8fe819f288eb45",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 114,
+          "prompt_tokens": 249,
+          "prompt_tokens_details": null,
+          "total_tokens": 363
+        }
+      },
+      "scheduled_attempt": 416,
+      "started_utc": "2026-09-11T08:19:48.670732+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1211_1_parse1",
+  "prompt_tokens": 249,
+  "request": {
+    "max_tokens": 384,
+    "messages": [
+      {
+        "content": "Map each travel-planning request to the requested preference. Return JSON only: {\"queries\":[{\"id\":\"same id\",\"domain\":\"hotel or restaurant or unknown\",\"slot\":\"...\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type. Allowed restaurant slots: area, pricerange, food.\nUse only what the request says. Lodging/accommodation means hotel; dining/eating means restaurant. If a question is ambiguous, use unknown. Do not supply answers.",
+        "role": "system"
+      },
+      {
+        "content": "{\"queries\":[{\"id\":\"q1_0\",\"text\":\"For the lodging search, what location does the user want?\"},{\"id\":\"q1_1\",\"text\":\"Which spending band applies to accommodation?\"},{\"id\":\"q1_2\",\"text\":\"What star rating is wanted for the lodging?\"},{\"id\":\"q1_3\",\"text\":\"Which kind of lodging did the user request?\"},{\"id\":\"q1_4\",\"text\":\"What location applies to dining?\"},{\"id\":\"q1_5\",\"text\":\"Which cuisine does the user want for dining?\"},{\"id\":\"q1_6\",\"text\":\"Which spending band applies to eating out?\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 234553,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "767eeec4be6f5b2719e6c74961f09c4a32c5704c28fe6ff7810051b07b990620",
+  "status": "ok"
+}

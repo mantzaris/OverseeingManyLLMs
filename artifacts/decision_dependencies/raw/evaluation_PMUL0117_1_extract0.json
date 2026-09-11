@@ -1,0 +1,73 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_PMUL0117_1_extract0",
+      "elapsed_seconds": 2.9440916939638555,
+      "request_sha256": "0c7be4db13401e074fd84ed7287e657a8eac038f1431f93dd645f391eaa94346",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"domain\":\"hotel\",\"slot\":\"pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"Hi I am hoping to find a place that is expensive I can stay at\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":1,\"quote\":\"University Arms Hotel near centre is a 4 star with internet on Regent Street\"},{\"domain\":\"hotel\",\"slot\":\"stars\",\"value\":\"3\",\"turn\":2,\"quote\":\"Can you find me one with a 3 star rating?\"},{\"domain\":\"hotel\",\"slot\":\"internet\",\"value\":\"yes\",\"turn\":3,\"quote\":\"The Gonville Hotel is in the center. The have free internet and parking.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789115453,
+        "id": "chatcmpl-6ba57f198a2548ac8f153d777aff1145",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 143,
+          "prompt_tokens": 552,
+          "prompt_tokens_details": null,
+          "total_tokens": 695
+        }
+      },
+      "scheduled_attempt": 677,
+      "started_utc": "2026-09-11T08:30:53.627367+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_PMUL0117_1_extract0",
+  "prompt_tokens": 552,
+  "request": {
+    "max_tokens": 768,
+    "messages": [
+      {
+        "content": "You maintain a travel user's CURRENT preferences from a conversation.\nReturn JSON only: {\"records\":[{\"domain\":\"hotel or restaurant\",\"slot\":\"...\",\"value\":\"...\",\"turn\":0,\"quote\":\"exact short substring from a USER turn\"}]}.\nAllowed hotel slots: area, pricerange, stars, parking, internet, type.\nAllowed restaurant slots: area, pricerange, food.\nExtract only preferences actually stated or explicitly accepted by the user.\nAn assistant suggestion alone is not a user instruction. A booking approval is not general authority.\nUse the most recent user instruction for each domain and slot. A restaurant preference must not automatically transfer to a hotel or vice versa. Follow explicit references such as \"same area\" using preceding context. If uncertain, omit the record; do not invent a value.\nNormalize: centre/north/south/east/west, cheap/moderate/expensive, parking and internet yes/no, type hotel/guesthouse, stars digits. Cuisine is lower-case text. Omit no-preference or unknown fields.\nEvery record must cite its supporting USER turn and an exact short quote. Do not include old superseded records. Keep at most 9 records.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi I am hoping to find a place that is expensive I can stay at, and also has free wifi.\n1 ASSISTANT: University Arms Hotel near centre is a 4 star with internet on Regent Street. Phone is 01223351241. \n2 USER: Can you find me one with a 3 star rating?\n3 ASSISTANT: The Gonville Hotel is in the center. The have free internet and parking.  their number is 01223366611.\n4 USER: I'd like to book this for 2 people, 3 nights starting on Tuesday please.\n5 ASSISTANT: Ok I was able to get this for you.  Reference number is 2RAB8AMP.  Are you looking for places to go as well?  I can help with that too.\n6 USER: Yes can you please  assist with entertainment?\n7 ASSISTANT: What type of attraction?\n8 USER: I apologize, I wasn't paying attention to what I wanted. Can you help me find a modern eclectic restaurant in the centre?\n9 ASSISTANT: Unfortunately, I don't have any modern eclectic restaurants in the city. Is there another type of restaurant I can look for? \n10 USER: Hmm, is there none at all? Eclectic food?\n11 ASSISTANT: No, I'm sorry. Want to try a different food type?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 260914,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "0c7be4db13401e074fd84ed7287e657a8eac038f1431f93dd645f391eaa94346",
+  "status": "ok"
+}
