@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0099_0_history",
+      "elapsed_seconds": 0.994972103042528,
+      "request_sha256": "5514a0b6ad5d6b8ce85e495992cd465ba2d23ed77282f22a594280f19372594a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n\"answers\": {\n\"hotel.type\": \"hotel\", \n\"restaurant.area\": \"centre\", \n\"restaurant.food\": \"mediterranean\"\n}\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133345,
+        "id": "chatcmpl-3cad43b4f3b34d719c2a1c6215d8a2ed",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 33,
+          "prompt_tokens": 760,
+          "prompt_tokens_details": null,
+          "total_tokens": 793
+        }
+      },
+      "started_utc": "2026-09-11T13:29:05.465528+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0099_0_history",
+  "input_tokens": 760,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Find me a Mediterranean restaurant in the centre of Cambridge.\n1 ASSISTANT: The gardenia fits your criteria, can I book that for you?\n2 USER: Yes, please book that for me. \n3 ASSISTANT: How many people and what time/day are you looking at?\n4 USER: I need the table booked for monday at 12:15 for 3 people. Thanks. Also could i get the ref #?\n5 ASSISTANT: Booking was successful. Your reference number is: NZ89K99X, they will only hold your table for 15 minutes. Is there anything else I can assist you with today?\n6 USER: Great I also am looking for a hotel to stay at that includes free parking. What's available?\n7 ASSISTANT: I have found  acorn guest house\t\twhich is a 4 star guesthouse and includes free parking.\t\n8 USER: Actually, I'm looking for a hotel and in the same price range as the restaurant.\n9 ASSISTANT: Can you please restate your hotel needs clearly? Thank you!\n10 USER: Yes I need a hotel in the same price range as the restaurant with free parking. \n11 ASSISTANT: There are five hotels in the expensive price range. Do you have any other preferences?\n12 USER: Can you give me the first one and the star rating for it please? It has to have free parking.\n13 ASSISTANT: express by holiday inn cambridge is rated 2 stars. Do you want me to make a booking there?\n14 USER: Does the Express by Holiday Inn have free parking?\n15 ASSISTANT: Yes, the Express by Holiday Inn does have free parking. Do you want me to go ahead and make a booking for you?\n16 USER: Yes also I will need a taxi to get me between the hotel and the restaurant. I will need a contact number and car type with the booking.\n17 ASSISTANT: First I need to know how many are in your party, what day you wish to check in, and how many nights you need a room.\n18 USER: I'd just like to book a taxi between the two. I'd like to get to the restaurant by my reservation time and I'll need the contact number and car type please.\n19 ASSISTANT: Your reservation is for 12:15 with reference number NZ89K99X .  And I have reserved a Grey Tesla to get you there.  Contact number is 07635386509.  \n20 USER: What time will the taxi arrive?\n21 ASSISTANT: It will take about twenty minutes to get to the restaurant from the hotel. Say the taxi gets there at 11:30?\n22 USER: That will be fine.\n23 ASSISTANT: Is there anything else that I can help you with today?\n24 USER: No, that's it.  Thanks!\n25 ASSISTANT: You're welcome. Have a pleasant stay, goodbye.\nFIELDS [\"hotel.type\",\"restaurant.area\",\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 943695,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5514a0b6ad5d6b8ce85e495992cd465ba2d23ed77282f22a594280f19372594a",
+  "status": "ok"
+}

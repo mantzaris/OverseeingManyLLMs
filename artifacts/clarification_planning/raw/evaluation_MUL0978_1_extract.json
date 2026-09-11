@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0978_1_extract",
+      "elapsed_seconds": 2.6200672739651054,
+      "request_sha256": "630cad0847fadb0d695de259a50af729e537dd431c40ca3735f21034cdd8529d",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"chinese\",\"turn\":0,\"quote\":\"I am looking for a chinese restaurant in the centre of town\"},{\"key\":\"restaurant.pricerange\",\"value\":\"cheap\",\"turn\":1,\"quote\":\"It doesn't matter. Can you pick one and give me the postcode and the price range, please.\"},{\"key\":\"attraction.type\",\"value\":\"architecture\",\"turn\":4,\"quote\":\"It's famous for its architecture\"},{\"key\":\"attraction.area\",\"value\":\"centre\",\"turn\":4,\"quote\":\"Can you recommend an attraction that is also in the town centre?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133540,
+        "id": "chatcmpl-f940a06b0a1b45088cb00961e510a0de",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 127,
+          "prompt_tokens": 496,
+          "prompt_tokens_details": null,
+          "total_tokens": 623
+        }
+      },
+      "started_utc": "2026-09-11T13:32:20.047595+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0978_1_extract",
+  "input_tokens": 496,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a chinese restaurant in the centre of town.\n1 ASSISTANT: Sure, there are 10 Chinese restaurants in the centre of town, do you have a price range in mind?\n2 USER: It doesn't matter. Can you pick one and give me the postcode and the price range, please.\n3 ASSISTANT: Sure, the charlie chan is good, the price range is cheap and postcode is cb21db. \n4 USER: Can you recommend an attraction that is also in the town centre?\n5 ASSISTANT: Certainly. You might enjoy All Saints Church. It's famous for its architecture, and free to visit.\n6 USER: That sounds great! Could you send me the phone number, postcode, and attraction type?\n7 ASSISTANT: All Saints Church is famous for its architecture. It's located on Jesus Lane, CB58BS. They can be reached at 01223452587. Is there anything else I can find for you?\n8 USER: Yes.  I need a taxi to take me from the church to the restaurant at 21:30\n9 ASSISTANT: I found a red skoda phone number is 07911744131\n10 USER: Could you book that taxi for me, please? And that's the car make and contact number, right?\n11 ASSISTANT: Yes, that's right. Your taxi booking is complete.\n12 USER: Thank you, I have no more questions.\n13 ASSISTANT: My pleasure. Goodbye.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1012715,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "630cad0847fadb0d695de259a50af729e537dd431c40ca3735f21034cdd8529d",
+  "status": "ok"
+}

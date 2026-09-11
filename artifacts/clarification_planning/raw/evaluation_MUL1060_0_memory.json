@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1060_0_memory",
+      "elapsed_seconds": 0.6303187099983916,
+      "request_sha256": "1e6463aca4c4b4311ccc2d9d99bb5ad5afc430475ddcb98f89d034c856674120",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"centre\",\"attraction.type\":\"college\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133604,
+        "id": "chatcmpl-da34071e19e24109b7a5b3d0508f8f39",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 15,
+          "prompt_tokens": 169,
+          "prompt_tokens_details": null,
+          "total_tokens": 184
+        }
+      },
+      "started_utc": "2026-09-11T13:33:23.934147+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1060_0_memory",
+  "input_tokens": 169,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.area\",\"attraction.type\",\"hotel.area\"],\"memories\":[{\"key\":\"hotel.area\",\"quote\":\"centre would be nice\",\"turn\":2,\"value\":\"centre\"},{\"key\":\"attraction.type\",\"quote\":\"college\",\"turn\":14,\"value\":\"college\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 973281,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "1e6463aca4c4b4311ccc2d9d99bb5ad5afc430475ddcb98f89d034c856674120",
+  "status": "ok"
+}

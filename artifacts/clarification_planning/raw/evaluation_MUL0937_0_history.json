@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0937_0_history",
+      "elapsed_seconds": 1.0413911329815164,
+      "request_sha256": "29f134e670981f34a6dc1d67033a0588239b62f0ca0a044aee9c0f75ab28bc6e",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"attraction.area\": \"centre\",\n  \"restaurant.food\": \"chinese\",\n  \"restaurant.pricerange\": \"expensive\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133494,
+        "id": "chatcmpl-421aae36429e4ef7881f6d394e05e6d4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 33,
+          "prompt_tokens": 497,
+          "prompt_tokens_details": null,
+          "total_tokens": 530
+        }
+      },
+      "started_utc": "2026-09-11T13:31:33.859043+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0937_0_history",
+  "input_tokens": 497,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a Chinese restaurant an expensive one.\n1 ASSISTANT: There are a number of restaurants that fit what you are looking for.  What area would you like and how many people?\n2 USER: The area doesn't matter. Anywhere where I can get a table for 5 at 15:30 on Saturday. \n3 ASSISTANT: Ok, I've booked at Yu Garden for 5 at 15:30 on Saturday. Your reference number is JDFXWUMM.\n4 USER: Great! Can you also help me with a place to go in town. I would like it to be in the centre.\n5 ASSISTANT: There is the all saints church that is an architecture destination in the centre of town, would you like that?\n6 USER: That sounds nice. What is the postcode for that location, and is there a fee?\n7 ASSISTANT: The postcode is cb58bs and there is no entrance fee.\n8 USER: Can I also please get a taxi from Yu Garden to All Saints? Make sure I don't miss my booking!\n9 ASSISTANT: Yes, what time would you like to leave from Yu Garden?\n10 USER: I just need to make sure I get to Yu Garden by 15:30.\n11 ASSISTANT: Ok, I booked your taxi (a black volvo) arriving at all saints at 15:30. The contact number is 07272341684. Can I help with anything else?\n12 USER: That's all. You have been very helpful. Thank you very much.\n13 ASSISTANT: You're welcome.  Enjoy your time in Cambridge and please let us know if you need anything else.  Thanks!\nFIELDS [\"attraction.area\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 965963,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "29f134e670981f34a6dc1d67033a0588239b62f0ca0a044aee9c0f75ab28bc6e",
+  "status": "ok"
+}

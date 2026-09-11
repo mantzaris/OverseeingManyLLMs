@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2442_1_extract",
+      "elapsed_seconds": 3.287551607005298,
+      "request_sha256": "eeadc052a54287bbba862efb60222a1750f18839299e154d30d768f2e29199b2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"attraction.type\",\"value\":\"museum\",\"turn\":2,\"quote\":\"Do you have any attractions in the type of a museum then in the west area?\"},{\"key\":\"attraction.area\",\"value\":\"west\",\"turn\":2,\"quote\":\"Do you have any attractions in the type of a museum then in the west area?\"},{\"key\":\"restaurant.cuisine\",\"value\":\"chinese\",\"turn\":9,\"quote\":\"let's give Chinese food a try\"},{\"key\":\"restaurant.area\",\"value\":\"centre\",\"turn\":11,\"quote\":\"I was able to book you at Lan Hong House in the centre\"},{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":11,\"quote\":\"I was able to book you at Lan Hong House in the centre\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133837,
+        "id": "chatcmpl-2e984ae8afe840739ba9d62c6f473727",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 163,
+          "prompt_tokens": 516,
+          "prompt_tokens_details": null,
+          "total_tokens": 679
+        }
+      },
+      "started_utc": "2026-09-11T13:37:17.634940+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2442_1_extract",
+  "input_tokens": 516,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for some architecture in the west\n1 ASSISTANT: I'm sorry, it appears the only architectural attractions in Cambridge are in the city center. Would you like info on any of them?\n2 USER: Do you have any attractions in the type of a museum then in the west area?\n3 ASSISTANT: I have 7 in the west area. Would you like information about the kettle's yard or cafe jello gallery maybe?\n4 USER: Yes, can you tell me about the kettle's yard? What is the address and entrance fee?\n5 ASSISTANT: It is free and the address is castle street.\n6 USER: Great, could I also find a moderately-priced Brazilian restaurant?\n7 ASSISTANT: I'm having trouble finding one, would you like to try a different price-point or type? \n8 USER: Well, let's give Chinese food a try!\n9 ASSISTANT: There are a few moderately priced Chinese restaurants in the centre of the city and one moderately priced in the North. Do you have a preference?\n10 USER: Nope can you choose one for me and book a table for 8 at 11:45 on Saturday?\n11 ASSISTANT: Yes, I was able to book you at Lan Hong House in the centre, reference number IJ75KACV. Is there anything else I can help you with today?\n12 USER: Can I have the reference number? \n13 ASSISTANT: Yes, it is IJ75KACV.\n14 USER: That is perfect. Thank you. I think that will be everything today.\n15 ASSISTANT: Thank you for contacting Cambridge TownInfo centre. Goodbye!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1011048,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "eeadc052a54287bbba862efb60222a1750f18839299e154d30d768f2e29199b2",
+  "status": "ok"
+}

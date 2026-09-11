@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2317_1_extract",
+      "elapsed_seconds": 1.8158610379323363,
+      "request_sha256": "d2badf0b4cf77b26e84fdc61dffc24750db3b327300e5797b76522fa3fb3fd2c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"north\",\"turn\":4},{\"key\":\"restaurant.cuisine\",\"value\":\"indian\",\"turn\":6},{\"key\":\"restaurant.pricerange\",\"value\":\"any\",\"turn\":7},{\"key\":\"restaurant.time\",\"value\":\"2019-03-07 13:15:00\",\"turn\":10}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133723,
+        "id": "chatcmpl-adb9c1357b6749439aed383536e8475b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 81,
+          "prompt_tokens": 636,
+          "prompt_tokens_details": null,
+          "total_tokens": 717
+        }
+      },
+      "started_utc": "2026-09-11T13:35:22.709709+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2317_1_extract",
+  "input_tokens": 636,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking to check out local colleges can you help me?\n1 ASSISTANT: Sure thing! There are several, do you know the area?\n2 USER: I'm not particular on the area, do you have a recommendation?\n3 ASSISTANT: Christ's College is in the centre and has no entrance fee.  Their phone number is 01223334900, they are located on saint andrew's street, post code cb23bu.  Anything else?\n4 USER: I'm looking for an indonesian restaurant in the north. \n5 ASSISTANT: I'm afraid we don't have any Indonesian restaurants. Is there something else that might work instead?\n6 USER: Well how about one that serves indian food then?\n7 ASSISTANT: Would you like a restaurant in the moderate or cheap price range?\n8 USER: It doesn't matter, I'd like to book it for 8 people on Thursday at 14:15.\n9 ASSISTANT: Both restaurants are booked at that time.  Will another time work for you?\n10 USER: Yes, try 13:15, please.\n11 ASSISTANT: I have booked you for 8 people at 14:15 on thursday at the nirala.  The address is Victoria Avenue Chesterton.  Phone number 01733553355.  Anything else?\n12 USER: Can I get the reference number?\n13 ASSISTANT: I Am sorry, it is not open then. Is there another time or place I can book you during?\n14 USER: I don't understand, did you book the reservation or not?\n15 ASSISTANT: No, I did not as there is not an opening then. Would you like another day/time?\n16 USER: Can you try at 13:15 please.\n17 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Your reference number is D26JFPZ7. Can I help you with anything else?\n18 USER: No, I think that will be everything. Thank you.\n19 ASSISTANT: Thank you for contacting Cambridge TownInfo centre. Goodbye!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1061724,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "d2badf0b4cf77b26e84fdc61dffc24750db3b327300e5797b76522fa3fb3fd2c",
+  "status": "ok"
+}

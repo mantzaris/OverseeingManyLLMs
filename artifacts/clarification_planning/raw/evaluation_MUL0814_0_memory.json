@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0814_0_memory",
+      "elapsed_seconds": 1.381008610012941,
+      "request_sha256": "118d1ba2fcf8e8269baa33f0ddc66898addc96d88edea3f74a40498a18c063bd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"unknown\",\"hotel.stars\":\"unknown\",\"hotel.lodging\":\"unknown\",\"hotel.price\":\"unknown\",\"attraction.area\":\"centre\",\"attraction.type\":\"museum\",\"restaurant.area\":\"centre\",\"restaurant.food\":\"corsica\",\"restaurant.pricerange\":\"cheap\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133370,
+        "id": "chatcmpl-f5f9f617835044cdaca9c369700fbc6c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 59,
+          "prompt_tokens": 277,
+          "prompt_tokens_details": null,
+          "total_tokens": 336
+        }
+      },
+      "started_utc": "2026-09-11T13:29:30.211406+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0814_0_memory",
+  "input_tokens": 277,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.area\",\"attraction.type\",\"restaurant.area\",\"restaurant.food\",\"restaurant.pricerange\"],\"memories\":[{\"key\":\"restaurant.area\",\"quote\":\"Could you please find me an italian restaurant in the centre?\",\"turn\":4,\"value\":\"centre\"},{\"key\":\"restaurant.pricerange\",\"quote\":\"Can you help me find a place to eat? I am looking for a place that serves cheap corsica food.\",\"turn\":0,\"value\":\"cheap\"},{\"key\":\"attraction.type\",\"quote\":\"A museum sounds good can I get the phone number and entrance fee of one?\",\"turn\":10,\"value\":\"museum\"},{\"key\":\"attraction.area\",\"quote\":\"A museum sounds good can I get the phone number and entrance fee of one?\",\"turn\":10,\"value\":\"centre\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 972265,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "118d1ba2fcf8e8269baa33f0ddc66898addc96d88edea3f74a40498a18c063bd",
+  "status": "ok"
+}

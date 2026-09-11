@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0822_1_extract",
+      "elapsed_seconds": 1.8939118419075385,
+      "request_sha256": "33152052f7e0db5719c488b06c940d8f7a29390d759eb82bbd05611caf012663",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"attraction.area\",\"value\":\"west\",\"turn\":0,\"quote\":\"in the west part of town\"},{\"key\":\"restaurant.pricerange\",\"value\":\"expensive\",\"turn\":4,\"quote\":\"I'd like to find an expensive restaurant in West Cambridge\"},{\"key\":\"restaurant.area\",\"value\":\"west cambridge\",\"turn\":4,\"quote\":\"I'd like to find an expensive restaurant in West Cambridge\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133394,
+        "id": "chatcmpl-dc411ab9792346d680db8e1bdea30edc",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 88,
+          "prompt_tokens": 493,
+          "prompt_tokens_details": null,
+          "total_tokens": 581
+        }
+      },
+      "started_utc": "2026-09-11T13:29:53.852312+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0822_1_extract",
+  "input_tokens": 493,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for places to go, do you have any attractions in the west part of town?\n1 ASSISTANT: I have several museums and a few colleges to choose from. Which would you prefer?\n2 USER: I think I would prefer a museum.\n3 ASSISTANT: The Museum of Classical Archaeology would be a fun place to check out, would you be interested? \n4 USER: Sure, give me their phone number. I'd also like to find an expensive restaurant in West Cambridge.\n5 ASSISTANT: Here's the number for the Museum of Classical Archaeology, 01223335153. How does the Cambridge Lodge Restaurant sound for you?\n6 USER: That sounds good.  Could you reserve a table for 3 on Friday at 19:00?  Can I get a reference number?  Thank you!\n7 ASSISTANT: It's all booked reference number is 8L9SAXV0\n8 USER: I also want to book a taxi to go from the museum to the restaurant.\n9 ASSISTANT: When would you like to arrive by?\n10 USER: I would like for the taxi arrive by 19:00 please. Can you give me a contact number and the car type for the taxi as well?\n11 ASSISTANT: Yes, the taxi will be a red BMW and the contact number is 07530062984\n12 USER: Thank you, that's all I need today.\n13 ASSISTANT: You're welcome! Goodbye!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1043141,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "33152052f7e0db5719c488b06c940d8f7a29390d759eb82bbd05611caf012663",
+  "status": "ok"
+}

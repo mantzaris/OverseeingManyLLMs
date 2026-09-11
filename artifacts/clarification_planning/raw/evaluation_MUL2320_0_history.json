@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2320_0_history",
+      "elapsed_seconds": 0.769992933026515,
+      "request_sha256": "cbb80bfd4fe135fa1184ab1d7d313e41fc3e42514f9ffcb7d91b08e4b7bd7b41",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"attraction.type\":\"theatre\",\"restaurant.food\":\"french\",\"restaurant.pricerange\":\"expensive\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133729,
+        "id": "chatcmpl-a5ad19d03cc0435fadf50c207af58979",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 26,
+          "prompt_tokens": 366,
+          "prompt_tokens_details": null,
+          "total_tokens": 392
+        }
+      },
+      "started_utc": "2026-09-11T13:35:29.470556+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2320_0_history",
+  "input_tokens": 366,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you find me a theatre?\n1 ASSISTANT: Would you like the mumford theatre?\n2 USER: Yes and I need to know the entrance fee, address, and phone number\n3 ASSISTANT: The fee is not listed but the address is anglia ruskin enterprise, east road and the phone number is 08451962320. Can I help you with anything else?\n4 USER: I am also looking for a French restaurant in the expensive range.\n5 ASSISTANT: I have two excellent options. Cote is in the centre of town, would you like me to reserve you a table? \n6 USER: I am not sure how many people will be coming, so I will do that later. But can you provide me with their postcode and phone number?\n7 ASSISTANT: Absolutely. Their postcode is cb21uf and they can be reached at 01223311053. Would you also like me to find you an attraction nearby?\n8 USER: No, that's everything I needed today. Thank you!\n9 ASSISTANT: Ok, thank you for calling.  Goodbye.\nFIELDS [\"attraction.type\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 980481,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "cbb80bfd4fe135fa1184ab1d7d313e41fc3e42514f9ffcb7d91b08e4b7bd7b41",
+  "status": "ok"
+}

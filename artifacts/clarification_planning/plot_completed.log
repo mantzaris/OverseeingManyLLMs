@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/clarification_planning/plot.py", line 153, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--root');main(p.parse_args().root)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/clarification_planning/plot.py", line 150, in main
+    dependency(out);performance(out,rows(root/'analysis/summary.csv'));synthetic_map(out,root);paired(out,root);ablations(out,root);diagnostics(out,root);overhead(out,root);examples(out,root)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/clarification_planning/plot.py", line 81, in paired
+    ax.axhline(0,color='#777',lw=.8);ax.bar(range(len(v)),v,color=[COLORS['depth2'] if x<0 else '#BD6946' if x>0 else '#AAA' for x in v],width=.9)
+  File "/usr/lib/python3/dist-packages/matplotlib/__init__.py", line 1601, in inner
+    return func(ax, *map(sanitize_sequence, args), **kwargs)
+  File "/usr/lib/python3/dist-packages/matplotlib/axes/_axes.py", line 2385, in bar
+    color = itertools.chain(itertools.cycle(mcolors.to_rgba_array(color)),
+  File "/usr/lib/python3/dist-packages/matplotlib/colors.py", line 294, in to_rgba_array
+    result[i] = to_rgba(cc, alpha)
+  File "/usr/lib/python3/dist-packages/matplotlib/colors.py", line 177, in to_rgba
+    rgba = _to_rgba_no_colorcycle(c, alpha)
+  File "/usr/lib/python3/dist-packages/matplotlib/colors.py", line 233, in _to_rgba_no_colorcycle
+    raise ValueError("Invalid RGBA argument: {!r}".format(orig_c))
+ValueError: Invalid RGBA argument: '#AAA'

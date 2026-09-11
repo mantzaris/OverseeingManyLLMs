@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1055_1_memory",
+      "elapsed_seconds": 0.7542575279949233,
+      "request_sha256": "8a997fbecbbe3b221ae468c051b10cb3335e07d4505683ed84046496ed527ac0",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"centre\",\"hotel.pricerange\":\"expensive\",\"hotel.type\":\"guesthouse\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133598,
+        "id": "chatcmpl-c4329e1e0ffa4777a9e3c65962009bf4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 209,
+          "prompt_tokens_details": null,
+          "total_tokens": 233
+        }
+      },
+      "started_utc": "2026-09-11T13:33:18.607514+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1055_1_memory",
+  "input_tokens": 209,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.type\",\"hotel.area\",\"hotel.pricerange\",\"hotel.stars\",\"hotel.type\"],\"memories\":[{\"key\":\"hotel.type\",\"quote\":\"I'm looking for a place to stay. I prefer a guesthouse that's expensive\",\"turn\":4,\"value\":\"guesthouse\"},{\"key\":\"hotel.area\",\"quote\":\"Can you book the one in the centre for 7 people for 3 nights starting Monday?\",\"turn\":10,\"value\":\"centre\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1047623,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8a997fbecbbe3b221ae468c051b10cb3335e07d4505683ed84046496ed527ac0",
+  "status": "ok"
+}

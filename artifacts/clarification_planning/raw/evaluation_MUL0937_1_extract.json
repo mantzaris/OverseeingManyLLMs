@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0937_1_extract",
+      "elapsed_seconds": 2.0628970579709858,
+      "request_sha256": "a64f5a52b531e6780e8cea3ca50f9fc47335585fdabe3cddf00dc9229affa9f2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"chinese\",\"turn\":0,\"quote\":\"I am looking for a Chinese restaurant an expensive one\"},{\"key\":\"restaurant.pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"I am looking for a Chinese restaurant an expensive one\"},{\"key\":\"attraction.area\",\"value\":\"centre\",\"turn\":5,\"quote\":\"That sounds nice. What is the postcode for that location, and is there a fee?\"}] }",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133496,
+        "id": "chatcmpl-9dd65102e5514e00848566f7e3e5acab",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 97,
+          "prompt_tokens": 536,
+          "prompt_tokens_details": null,
+          "total_tokens": 633
+        }
+      },
+      "started_utc": "2026-09-11T13:31:36.162906+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0937_1_extract",
+  "input_tokens": 536,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a Chinese restaurant an expensive one.\n1 ASSISTANT: There are a number of restaurants that fit what you are looking for.  What area would you like and how many people?\n2 USER: The area doesn't matter. Anywhere where I can get a table for 5 at 15:30 on Saturday. \n3 ASSISTANT: Ok, I've booked at Yu Garden for 5 at 15:30 on Saturday. Your reference number is JDFXWUMM.\n4 USER: Great! Can you also help me with a place to go in town. I would like it to be in the centre.\n5 ASSISTANT: There is the all saints church that is an architecture destination in the centre of town, would you like that?\n6 USER: That sounds nice. What is the postcode for that location, and is there a fee?\n7 ASSISTANT: The postcode is cb58bs and there is no entrance fee.\n8 USER: Can I also please get a taxi from Yu Garden to All Saints? Make sure I don't miss my booking!\n9 ASSISTANT: Yes, what time would you like to leave from Yu Garden?\n10 USER: I just need to make sure I get to Yu Garden by 15:30.\n11 ASSISTANT: Ok, I booked your taxi (a black volvo) arriving at all saints at 15:30. The contact number is 07272341684. Can I help with anything else?\n12 USER: That's all. You have been very helpful. Thank you very much.\n13 ASSISTANT: You're welcome.  Enjoy your time in Cambridge and please let us know if you need anything else.  Thanks!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1065962,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "a64f5a52b531e6780e8cea3ca50f9fc47335585fdabe3cddf00dc9229affa9f2",
+  "status": "ok"
+}

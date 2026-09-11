@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0896_1_extract",
+      "elapsed_seconds": 5.276311784982681,
+      "request_sha256": "e2000bb5c40d34a550c1ec86a2026ba732d9f2663da3134f03af76349099bcda",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"attraction.type\",\"value\":\"museum\",\"turn\":4,\"quote\":\"I do not have any preference on the area.\"},{\"key\":\"restaurant.food\",\"value\":\"italian\",\"turn\":6,\"quote\":\"I'm also looking to find an Italian restaurant that is cheap to eat at in the north part of town.\"},{\"key\":\"restaurant.area\",\"value\":\"north\",\"turn\":6,\"quote\":\"I'm also looking to find an Italian restaurant that is cheap to eat at in the north part of town.\"},{\"key\":\"restaurant.pricerange\",\"value\":\"cheap\",\"turn\":6,\"quote\":\"I'm also looking to find an Italian restaurant that is cheap to eat at in the north part of town.\"},{\"key\":\"restaurant.name\",\"value\":\"da vinci pizzeria\",\"turn\":9,\"quote\":\"We only have da vinci pizzeria, would you like me to book a table?\"},{\"key\":\"restaurant.name\",\"value\":\"da vinci pizzeria\",\"turn\":11,\"quote\":\"Sorry about that, I accidentally hit 5 instead of 1. Alright, I have you booked!\"},{\"key\":\"restaurant.book\",\"value\":\"1 person, 18:15 on Wednesday\",\"turn\":12,\"quote\":\"Reference number is ZMBFZRC2.\"}] }",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133473,
+        "id": "chatcmpl-c30474138c8d431a990fcc209bf20e93",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 271,
+          "prompt_tokens": 547,
+          "prompt_tokens_details": null,
+          "total_tokens": 818
+        }
+      },
+      "started_utc": "2026-09-11T13:31:13.422410+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0896_1_extract",
+  "input_tokens": 547,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need a train to London please.\n1 ASSISTANT: Can I have a departure site, date and time you are leaving?\n2 USER: I'm sorry, I don't know what came over me. I'm just looking for a museum in town.\n3 ASSISTANT: Okay, we've got about 23 museums in town, any particular type of area?\n4 USER: I do not have any preference on the area. Can I have the phone number and entrance fee to one of the museums?\n5 ASSISTANT: Sure, the Broughton House Gallery is free to enter, and their phone number is 01223314960. Can I help with anything else today?\n6 USER: I'm also looking to find an Italian restaurant that is cheap to eat at in the north part of town.\n7 ASSISTANT: We only have da vinci pizzeria, would you like me to book a table?\n8 USER: Yes, thank you. I need to reserve a table for 1 person on Wednesday at 18:15. Thank you. I also need the reference number. \n9 ASSISTANT: I was unable to book that time. Is there another time we could try that would still suit you?\n10 USER: Darn, could you try again? Any cheap Italian restaurant on the north side. 1 person, 18:15 on Wednesday. \n11 ASSISTANT: Sorry about that, I accidentally hit 5 instead of 1. Alright, I have you booked! Reference number is ZMBFZRC2. Anything else I can help you with?\n12 USER: Good, I really wanted to eat there. No, I don't need anything else, thank you.  Bye.\n13 ASSISTANT: Great.  Glad I could help.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1076055,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "e2000bb5c40d34a550c1ec86a2026ba732d9f2663da3134f03af76349099bcda",
+  "status": "ok"
+}

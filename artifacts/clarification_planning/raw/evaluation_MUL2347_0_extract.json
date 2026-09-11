@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2347_0_extract",
+      "elapsed_seconds": 2.8015036579454318,
+      "request_sha256": "9c7d6df8487df42efef28d3997fb01116c356cbe73461e1874019d3f7d628501",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"I am looking for an expensive restaurant in the centre\"},{\"key\":\"restaurant.food\",\"value\":\"chinese\",\"turn\":2,\"quote\":\"I'm looking for a restaurant that serves chinese food\"},{\"key\":\"attraction.area\",\"value\":\"centre\",\"turn\":9,\"quote\":\"Can you find me an attraction in the same area as the Sesame Restaurant? I'd like to visit a college.\"},{\"key\":\"attraction.type\",\"value\":\"college\",\"turn\":9,\"quote\":\"Can you find me an attraction in the same area as the Sesame Restaurant? I'd like to visit a college.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133735,
+        "id": "chatcmpl-beece419f42f47739e4377ce3f52d5b0",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 140,
+          "prompt_tokens": 578,
+          "prompt_tokens_details": null,
+          "total_tokens": 718
+        }
+      },
+      "started_utc": "2026-09-11T13:35:35.590852+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2347_0_extract",
+  "input_tokens": 578,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for an expensive restaurant in the centre. \n1 ASSISTANT: Oh there are many here in the centre! Did you have a particular cuisine type you were interested in?\n2 USER: I'm looking for a restaurant that serves chinese food.\n3 ASSISTANT: We have four such places.\n4 USER: If you could find me one and if I could get the address, that would be great.\n5 ASSISTANT: How about Sesame Restaurant and Bar at 17 Road City Centre?\n6 USER: Sure, can i have their postcode, number and address? \n7 ASSISTANT: The Sesame Restaurant and Bar is located at 17 Hills Road City Centre, postcode cb21nw, and their phone number is 01223358899. Can I help with anything else?\n8 USER: Yes, I'll also need somewhere to go while I'm in town. Can you find me an attraction in the same area as the Sesame Restaurant? I'd like to visit a college.\n9 ASSISTANT: There are many options in the centre of town. Do you have a type of attraction in mind? \n10 USER: A college please. I'll need the entrance fee, postcode, and phone number for the one you suggest.\n11 ASSISTANT: Sorry! I must pay better attention. I recommend Emmauel College, which offers free entrance. The postcode is cb23ap and the phone number is 01223334200. Can I help you with anything else?\n12 USER: May I have a second recommendation with their phone number and postcode? \n13 ASSISTANT: There is Downing College, post code cb21dq, and phone number 01223334860. Anything else?\n14 USER: That should be all I need, thank you so much. \n15 ASSISTANT: Thank you for contacting us, have a nice day. ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 981271,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "9c7d6df8487df42efef28d3997fb01116c356cbe73461e1874019d3f7d628501",
+  "status": "ok"
+}

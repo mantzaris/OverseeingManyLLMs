@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0890_0_memory",
+      "elapsed_seconds": 1.1475148499011993,
+      "request_sha256": "fa1c1f0096f487bfd91403526c961011fdb257bb3492a8e1edc7af1a73ece3ed",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"unknown\",\"hotel.stars\":\"unknown\",\"restaurant.area\":\"east\",\"restaurant.food\":\"unknown\",\"restaurant.pricerange\":\"expensive\",\"attraction.type\":\"museum\",\"attraction.area\":\"east\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133461,
+        "id": "chatcmpl-1af8d8f0b5bf40b7b4373bb91e2346b6",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 47,
+          "prompt_tokens": 217,
+          "prompt_tokens_details": null,
+          "total_tokens": 264
+        }
+      },
+      "started_utc": "2026-09-11T13:31:01.225875+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0890_0_memory",
+  "input_tokens": 217,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.area\",\"attraction.type\",\"restaurant.area\",\"restaurant.food\",\"restaurant.pricerange\"],\"memories\":[{\"key\":\"restaurant.pricerange\",\"quote\":\"Expensive would be fine.\",\"turn\":6,\"value\":\"expensive\"},{\"key\":\"attraction.type\",\"quote\":\"I need information on all of them please.\",\"turn\":10,\"value\":\"museum\"},{\"key\":\"attraction.area\",\"quote\":\"I need information on all of them please.\",\"turn\":10,\"value\":\"east\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 977483,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "fa1c1f0096f487bfd91403526c961011fdb257bb3492a8e1edc7af1a73ece3ed",
+  "status": "ok"
+}

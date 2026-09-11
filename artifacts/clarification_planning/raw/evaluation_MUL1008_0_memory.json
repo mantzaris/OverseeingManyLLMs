@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1008_0_memory",
+      "elapsed_seconds": 0.7028319940436631,
+      "request_sha256": "6e119fecef02cfff13af8153c01ec24866194b6c9819f0d2fe918390ea927df6",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.stars\":\"2\",\"hotel.pricerange\":\"unknown\",\"hotel.area\":\"unknown\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133559,
+        "id": "chatcmpl-9c0c78aae6ed4fc8988fa1f9d0215498",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 23,
+          "prompt_tokens": 153,
+          "prompt_tokens_details": null,
+          "total_tokens": 176
+        }
+      },
+      "started_utc": "2026-09-11T13:32:39.435766+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1008_0_memory",
+  "input_tokens": 153,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.area\",\"hotel.pricerange\",\"hotel.stars\"],\"memories\":[{\"key\":\"hotel.stars\",\"quote\":\"2 star rating\",\"turn\":4,\"value\":\"2\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 926214,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "6e119fecef02cfff13af8153c01ec24866194b6c9819f0d2fe918390ea927df6",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0978_1_history",
+      "elapsed_seconds": 0.9561872009653598,
+      "request_sha256": "c0ffdd3a98643166210ed8985d36e5de26bca9de7afcc42cf0ff56ecf08139b5",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answers\": {\n    \"attraction.area\": \"town centre\",\n    \"restaurant.area\": \"centre\",\n    \"restaurant.food\": \"chinese\"\n  }\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133543,
+        "id": "chatcmpl-59aa9acf68544d1699f7ee86cd56e040",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 37,
+          "prompt_tokens": 454,
+          "prompt_tokens_details": null,
+          "total_tokens": 491
+        }
+      },
+      "started_utc": "2026-09-11T13:32:22.944266+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0978_1_history",
+  "input_tokens": 454,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a chinese restaurant in the centre of town.\n1 ASSISTANT: Sure, there are 10 Chinese restaurants in the centre of town, do you have a price range in mind?\n2 USER: It doesn't matter. Can you pick one and give me the postcode and the price range, please.\n3 ASSISTANT: Sure, the charlie chan is good, the price range is cheap and postcode is cb21db. \n4 USER: Can you recommend an attraction that is also in the town centre?\n5 ASSISTANT: Certainly. You might enjoy All Saints Church. It's famous for its architecture, and free to visit.\n6 USER: That sounds great! Could you send me the phone number, postcode, and attraction type?\n7 ASSISTANT: All Saints Church is famous for its architecture. It's located on Jesus Lane, CB58BS. They can be reached at 01223452587. Is there anything else I can find for you?\n8 USER: Yes.  I need a taxi to take me from the church to the restaurant at 21:30\n9 ASSISTANT: I found a red skoda phone number is 07911744131\n10 USER: Could you book that taxi for me, please? And that's the car make and contact number, right?\n11 ASSISTANT: Yes, that's right. Your taxi booking is complete.\n12 USER: Thank you, I have no more questions.\n13 ASSISTANT: My pleasure. Goodbye.\nFIELDS [\"attraction.area\",\"restaurant.area\",\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1012716,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c0ffdd3a98643166210ed8985d36e5de26bca9de7afcc42cf0ff56ecf08139b5",
+  "status": "ok"
+}

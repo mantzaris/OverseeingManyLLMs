@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0842_1_extract",
+      "elapsed_seconds": 1.5719459590036422,
+      "request_sha256": "54547d4c3ecb120b55edf5850eda3957039f82372b7f91f3a14a3b3372029647",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"east\",\"turn\":1},{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":1},{\"key\":\"attraction.type\",\"value\":\"sports\",\"turn\":9},{\"key\":\"attraction.type\",\"value\":\"cinema\",\"turn\":5}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133421,
+        "id": "chatcmpl-bedcdf33edae40febefb88a74038273d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 64,
+          "prompt_tokens": 529,
+          "prompt_tokens_details": null,
+          "total_tokens": 593
+        }
+      },
+      "started_utc": "2026-09-11T13:30:20.924439+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0842_1_extract",
+  "input_tokens": 529,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you help me find a place to eat? I am looking for somewhere in the east with a moderate price.\n1 ASSISTANT:  There is the Curry Prince and Rajmahal restuarants serving Indian food.  Then there is the Pizza Hut Fen Ditton serving Italian food. Which would you like more information on?\n2 USER: I think I'd like to try Rajmahal. Could you book me a table for 1 on Monday at 16:15?\n3 ASSISTANT: Your reservation has been booked. Your reference number is Q9DRQ55J. Please be aware that your table will only be reserved until 16:30. Can i provide any more assistance?\n4 USER: I'm also looking for things to do in the same general area as the restaurant.\n5 ASSISTANT: Sure, are you interested in museums, sports, parks, entertainment, swimming or boating?\n6 USER: Are there any cinemas? If there isn't what about something that has to do with multiple sports?\n7 ASSISTANT: There aren't any cinemas in the general area, but what types of sports are you interested in?\n8 USER: All of them. What's there?\n9 ASSISTANT: The Cherry Hinton Village Centre is the only one located there, their address is Colville Road, Cherry Hinton. Anything else I can help you with?\n10 USER: Can I please get the phone number?\n11 ASSISTANT: Yes, the phone number is 01223576412. How else can I help?\n12 USER: That will be all, thank you very much for all of your help.\n13 ASSISTANT: Thank you let me know if you need help again.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1078916,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "54547d4c3ecb120b55edf5850eda3957039f82372b7f91f3a14a3b3372029647",
+  "status": "ok"
+}

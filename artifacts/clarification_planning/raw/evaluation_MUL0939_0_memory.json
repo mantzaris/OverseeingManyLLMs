@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0939_0_memory",
+      "elapsed_seconds": 0.5703441159566864,
+      "request_sha256": "2a4166639be73102eb9920dcf04d87db82c5609874ca907f848390b2a8a8cb7a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"restaurant.price\":\"expensive\",\"restaurant.food\":\"indian\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133504,
+        "id": "chatcmpl-0d78884e3c8244ab814d37c1462a4813",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 16,
+          "prompt_tokens": 189,
+          "prompt_tokens_details": null,
+          "total_tokens": 205
+        }
+      },
+      "started_utc": "2026-09-11T13:31:44.434793+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0939_0_memory",
+  "input_tokens": 189,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"attraction.type\",\"restaurant.food\",\"restaurant.pricerange\"],\"memories\":[{\"key\":\"restaurant.pricerange\",\"quote\":\"I would like an expensive restaurant that serves Indian food.\",\"turn\":2,\"value\":\"expensive\"},{\"key\":\"restaurant.food\",\"quote\":\"I would like an expensive restaurant that serves Indian food.\",\"turn\":2,\"value\":\"indian\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 917964,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "2a4166639be73102eb9920dcf04d87db82c5609874ca907f848390b2a8a8cb7a",
+  "status": "ok"
+}

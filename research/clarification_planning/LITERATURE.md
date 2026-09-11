@@ -24,7 +24,7 @@ pp. 239-246. Krause and Guestrin is IJCAI 2005, pp. 1339-1345.
 Dong et al.'s Section 4.2 uses LLM-estimated response distributions and
 hypothetical one-step updates, not calibrated probability guarantees. Its four
 domains evaluate simulated communication utility. The released
-[VOI_communication code](https://github.com/river-dong/VOI_communication) and pinned
+[VOI_communication code](https://github.com/dong-river/VOI_communication) and pinned
 inspection are recorded in the prior attention review. Our numeric finite-state
 VoI comparator is an explicit adaptation of its decision rule, not its complete
 LLM simulation pipeline. MAC's final paper and record did not expose an

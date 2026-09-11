@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1117_1_extract",
+      "elapsed_seconds": 1.5032325179781765,
+      "request_sha256": "5e1a55e055a8e1771143f7dd0bdfe20ab815893d45ce14be2b06b2f494805ffd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":1},{\"key\":\"hotel.type\",\"value\":\"hotel\",\"turn\":3},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":15},{\"key\":\"attraction.type\",\"value\":\"college\",\"turn\":12}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133654,
+        "id": "chatcmpl-aefbb857c5594aa18c106d740a63de27",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 64,
+          "prompt_tokens": 602,
+          "prompt_tokens_details": null,
+          "total_tokens": 666
+        }
+      },
+      "started_utc": "2026-09-11T13:34:14.223552+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1117_1_extract",
+  "input_tokens": 602,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need to find a place to stay that includes free parking and is moderately priced.\n1 ASSISTANT: I have many guesthouses and hotels available. Do you have a preference on the number of stars or location?\n2 USER: No star preference, but I would like it to be a hotel type. \n3 ASSISTANT: There are two hotels that fit your criteria: the Ashley Hotel and the Lovell Lodge. Which would you prefer?\n4 USER: The Ashley Hotel will do fine.  Can you book me a room there?  It will just be myself staying.\n5 ASSISTANT: How many days would you be staying there?\n6 USER: id be staying for 3 nights\n7 ASSISTANT: Perfect, and what day will you be arriving?\n8 USER: I'll be arriving on Monday.\n9 ASSISTANT: Booking was successful. Reference number is : TY5A2H5O. Is there anything else I can help with?\n10 USER: Yes, I'm interested in knowing what attractions are in the area as well.\n11 ASSISTANT: In the north we have riverboat georgina, milton country park, jesus green outdoor pool, and kings hedges learner pool. Do any of these sound good?\n12 USER: I am interested in visiting one of the colleges actually. \n13 ASSISTANT: Unfortunately there are no colleges located in the north area of the city. Would you like to try another area of town?\n14 USER: Yes please. Any area would be fine so long as its a nice college to visit. Would you recommend the best one? \n15 ASSISTANT: Personally, I'd recommend Christ's College in the Centre.  The entrance fee there is free.\n16 USER: That sounds perfect! Can I have their phone number, please? \n17 ASSISTANT: Yes, their phone number is 01223334900. May I help with anything else?\n18 USER: No, you have been very helpful. Thank you.\n19 ASSISTANT: You're welcome. Goodbye.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1094403,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5e1a55e055a8e1771143f7dd0bdfe20ab815893d45ce14be2b06b2f494805ffd",
+  "status": "ok"
+}

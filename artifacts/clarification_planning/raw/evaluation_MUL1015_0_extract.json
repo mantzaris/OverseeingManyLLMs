@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1015_0_extract",
+      "elapsed_seconds": 3.1352800390450284,
+      "request_sha256": "a23ec3888b7e651ef844000c51eb38c62dff50386ed7c2c161c3846cc54d5437",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"attraction.type\",\"value\":\"theatre\",\"turn\":2,\"quote\":\"How about some type of theater?\"},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":8,\"quote\":\"The area should be the centre.\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":6,\"turn\":16,\"quote\":\"I also need to find a guesthouse for my stay there.\"},{\"key\":\"hotel.pricerange\",\"value\":\"cheap\",\"turn\":8,\"quote\":\"I need it to be cheap\"},{\"key\":\"taxi.destination\",\"value\":\"the Alexander bed and breakfast\",\"turn\":16,\"quote\":\"Let's go with the Alexander Bed and Breakfast.\"}] }",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133566,
+        "id": "chatcmpl-e2a3703768724bdf913540adc0291b91",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 145,
+          "prompt_tokens": 640,
+          "prompt_tokens_details": null,
+          "total_tokens": 785
+        }
+      },
+      "started_utc": "2026-09-11T13:32:46.629356+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1015_0_extract",
+  "input_tokens": 640,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a pool somewhere in the south of Cambridge.\n1 ASSISTANT: I'm sorry, but it doesn't look like we have a pool that matches your criteria.\n2 USER: How about some type of theater?\n3 ASSISTANT: The Junction theatre is in the south area. Would you like the address?\n4 USER: Yes, please provide the address and postcode as well. \n5 ASSISTANT: The Junction Theatre is located on Clifton way at postcode cb17gx. Is there anything else I can assist you with?\n6 USER: Thanks. Yes, I also need to find a guesthouse for my stay there.\n7 ASSISTANT: Are you needing the guesthouse in the south, also? Do you have a preference in price range?\n8 USER: The area should be the centre. I need it to be cheap and have free parking. \n9 ASSISTANT: I have 2 guesthouses that fit your criteria. One is The Alexander bed and breakfast and the other is El shaddai.\n10 USER: What is the star ratings for them?\n11 ASSISTANT: the Alexander Bed and Breakfast has a 4 star rating while the El Shaddai has 0 stars. Would you like to book a room with either of these?\n12 USER: Ok great, thank you.  I also need to book a taxi to get back and forth.\n13 ASSISTANT: Where did you wan to leave from and go to?\n14 USER: I'll be leaving the theatre at 14:45 and going to the guesthouse.\n15 ASSISTANT: Let's back up a moment. Which lodgings did you prefer, so we know where the taxi will be taking you?\n16 USER: Let's go with the Alexander Bed and Breakfast.\n17 ASSISTANT: Your booking is complete, a grey volkswagen will be picking you up, contact number 07753429052. Can I help with anything else?\n\n18 USER: Cool beans! Sorry I was so much trouble. Thanks so much for all of your help, you need a raise dealing with customers like me!\n19 ASSISTANT: It was no trouble at all! I hope you have a fantastic trip and enjoy your stay! ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 910779,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "a23ec3888b7e651ef844000c51eb38c62dff50386ed7c2c161c3846cc54d5437",
+  "status": "ok"
+}

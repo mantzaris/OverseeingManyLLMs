@@ -43,3 +43,9 @@ region, measured approximation/computation, and a source-grounded test. A null o
 unfavorable result should lead to a narrower claim or a simpler method. Human
 attention savings and decision quality remain interaction-study questions. Counts
 of simulated responses are not observations of cognitive load.
+
+## Assessment after evaluation
+
+The first primary contrast supports the narrow complementary-planning mechanism: depth two beats one-step by −0.2396 loss per dialogue, interval [−0.3646,−0.1146]. The practical memory contrast is uncertain. The stronger secondary minimum-sufficient-completion rule attains loss 62 versus 63 with 42 fewer answers, directly satisfying the main falsification above. Generic depth-two search ties the proposed candidate rule in every empirical primary row. The source adapter contains no annotated cross-task sharing. Full-history interpretation supplies almost every field with only three extra answers in total; it beats the planner under the lower error weight.
+
+Therefore the package contributes an executable specialization and a defensible negative boundary result, not a demonstrated generally superior algorithm. The distinctive completion-block ranking has authored mechanism evidence and measured approximation limits, but no broad practical validation. Preserve the formal planner as a research option, simplify the practical controller toward minimum sufficient completion, and test genuine shared-decision data before claiming a new application advantage. The full numerical argument is in REPORT.md and the separate manuscript.

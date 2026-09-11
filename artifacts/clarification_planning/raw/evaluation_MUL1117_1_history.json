@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1117_1_history",
+      "elapsed_seconds": 0.7582506289472803,
+      "request_sha256": "f1d49f440708edeb8412419d9aafa4214b16cc0dc149a4391a7e62cd6337db09",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"attraction.type\":\"college\",\"hotel.pricerange\":\"moderate\",\"hotel.type\":\"hotel\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133656,
+        "id": "chatcmpl-c5f80d56f34943d2bb76291c5d54e209",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 24,
+          "prompt_tokens": 563,
+          "prompt_tokens_details": null,
+          "total_tokens": 587
+        }
+      },
+      "started_utc": "2026-09-11T13:34:15.997648+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1117_1_history",
+  "input_tokens": 563,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need to find a place to stay that includes free parking and is moderately priced.\n1 ASSISTANT: I have many guesthouses and hotels available. Do you have a preference on the number of stars or location?\n2 USER: No star preference, but I would like it to be a hotel type. \n3 ASSISTANT: There are two hotels that fit your criteria: the Ashley Hotel and the Lovell Lodge. Which would you prefer?\n4 USER: The Ashley Hotel will do fine.  Can you book me a room there?  It will just be myself staying.\n5 ASSISTANT: How many days would you be staying there?\n6 USER: id be staying for 3 nights\n7 ASSISTANT: Perfect, and what day will you be arriving?\n8 USER: I'll be arriving on Monday.\n9 ASSISTANT: Booking was successful. Reference number is : TY5A2H5O. Is there anything else I can help with?\n10 USER: Yes, I'm interested in knowing what attractions are in the area as well.\n11 ASSISTANT: In the north we have riverboat georgina, milton country park, jesus green outdoor pool, and kings hedges learner pool. Do any of these sound good?\n12 USER: I am interested in visiting one of the colleges actually. \n13 ASSISTANT: Unfortunately there are no colleges located in the north area of the city. Would you like to try another area of town?\n14 USER: Yes please. Any area would be fine so long as its a nice college to visit. Would you recommend the best one? \n15 ASSISTANT: Personally, I'd recommend Christ's College in the Centre.  The entrance fee there is free.\n16 USER: That sounds perfect! Can I have their phone number, please? \n17 ASSISTANT: Yes, their phone number is 01223334900. May I help with anything else?\n18 USER: No, you have been very helpful. Thank you.\n19 ASSISTANT: You're welcome. Goodbye.\nFIELDS [\"attraction.type\",\"hotel.pricerange\",\"hotel.type\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1094404,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "f1d49f440708edeb8412419d9aafa4214b16cc0dc149a4391a7e62cd6337db09",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1055_0_extract",
+      "elapsed_seconds": 2.8040806869976223,
+      "request_sha256": "fe3282c52c9523afa2eeb0bb08f603a63d6947253d5146507b89b821c9b3ccb3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"hotel.pricerange\",\"value\":\"expensive\",\"turn\":5,\"quote\":\"I really need an expensive one with 4 stars\"},{\"key\":\"hotel.stars\",\"value\":\"4\",\"turn\":5,\"quote\":\"I really need an expensive one with 4 stars\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":4,\"quote\":\"I'm looking for a place to stay. I prefer a guesthouse that's expensive\"},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":10,\"quote\":\"Can you book the one in the centre for 7 people for 3 nights starting Monday?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133588,
+        "id": "chatcmpl-46eff4d8e06d4bd8ae7b6b31087cf71d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 132,
+          "prompt_tokens": 690,
+          "prompt_tokens_details": null,
+          "total_tokens": 822
+        }
+      },
+      "started_utc": "2026-09-11T13:33:08.171668+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1055_0_extract",
+  "input_tokens": 690,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a place to go while in Cambridge. I would like something to do with boats? Do you have that?\n1 ASSISTANT: There are four different locations related to boating, is there any specific area you're looking to go to?\n2 USER: No there is not, just please provide me with the address of one that you recommend.\n3 ASSISTANT: The Cambridge Punter, the address is 251a Chesterton Road, post code cb41as. Would you like to know any more info on boats in Cambridge?\n4 USER: I'm looking for a place to stay. I prefer a guesthouse that's expensive.\n5 ASSISTANT: There are not any expensive guesthouses in Cambridge. Would a moderately priced guesthouse suffice?\n6 USER: No. I really need an expensive one with 4 stars.  I don't care about the area. Can you check again for me?\n7 ASSISTANT: Unfortunately there are no guesthouses that match your request.  If you are willing to stay at a hotel, I have 2 expensive 4 star options.\n8 USER: Do you have cheap guesthouse with 4 stars available?\n9 ASSISTANT: We have 5 guesthouses that is all in the cheap price range. All have free internet and parking. 3 in the eastside, 1 west, and 1 centre. \n10 USER: Can you book the one in the centre for 7 people for 3 nights starting Monday?\n11 ASSISTANT: Unfortunately the Alexander bed and breakfast guesthouse is unavailable for that date range.   Would you like to see if another day is available or book for a shorter stay?\n12 USER: Can you try booking for one night, instead?\n13 ASSISTANT: Booking was successful.  Your reference number is 5HDLTHO7.\n14 USER: I also need to arrange for a taxi to leave from the hotel and get to Cambridge Punter.\n15 ASSISTANT: What time do you need the taxi?\n16 USER: I want to leave the hotel by 11:15.\n17 ASSISTANT: I have confirmed booking your taxi, a grey toyota will be picking you up.\n18 USER: Can I get a contact number for that?\n19 ASSISTANT: Their number is 07069671908.\n20 USER: Thank you very much for all your help.\n21 ASSISTANT: No problem.  Glad to help.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 947621,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "fe3282c52c9523afa2eeb0bb08f603a63d6947253d5146507b89b821c9b3ccb3",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2457_1_extract",
+      "elapsed_seconds": 2.0112207870697603,
+      "request_sha256": "47aa84413cfe821208981fe1fa8f499d6f8be3384a58fc5e8feabd7aa8ebf644",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"east\",\"turn\":2},{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":3},{\"key\":\"restaurant.cuisine\",\"value\":\"indian\",\"turn\":3},{\"key\":\"attraction.type\",\"value\":\"boat\",\"turn\":11},{\"key\":\"taxi.destination\",\"value\":\"cambots\",\"turn\":16}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133850,
+        "id": "chatcmpl-8ffb8fd1e5f0470f825189324e916752",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 82,
+          "prompt_tokens": 672,
+          "prompt_tokens_details": null,
+          "total_tokens": 754
+        }
+      },
+      "started_utc": "2026-09-11T13:37:29.612920+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2457_1_extract",
+  "input_tokens": 672,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for corsica restaurants in the east of cambridge, can you help me?\n1 ASSISTANT: Unfortunately there is not a corsica restaurant in the east of cambridge, is there another type of food you would like to look for?\n2 USER: I'll think about it. I would like a moderately priced restaurant, I know that.\n3 ASSISTANT: How about curry prince? It is a moderately priced indian restaurant in the east.\n4 USER: Curry Prince sounds terrific.  I'll try that out.  Thank you for the information!  Goodbye!\n5 ASSISTANT: Would you like me to make you a reservation?\n6 USER: Yes please, for 7 at 11:45 on Thursday. And may I have the reference number?\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : BRNGPGM6. Is there anything more I can assist you with?\n8 USER: I am also looking for a college attraction to go to in the same area.\n9 ASSISTANT: there are no colleges in that part of town \n10 USER: Are there any boat attractions in that area.\n11 ASSISTANT: Camboats is in the east, the address is the plough, green end, fen ditton, and they can be reached at 01223902112\n12 USER: Sounds good.  Do they have an entrance fee, and please provide me with the postcode.\n13 ASSISTANT: Camboats postcode is cb58sx, I am not sure about the entrance fee. \n14 USER: Thanks. I'd like to book a taxi to commute between the two places. \n15 ASSISTANT: Certainly.  Would time would you like to leave and arrive at your destination?\n16 USER: I would like to arrive by 11:45 on Thursday if possible.\n17 ASSISTANT: Okay, your booking is complete. You will have a white number and the contact number is 07676825406\n18 USER: What type of car is it?\n19 ASSISTANT: The car will be a white tesla. Anything else you need? \n\n\n20 USER: Nope. You helped me with everything I need. Thanks.\n21 ASSISTANT: It was a pleasure to help you. Goodbye! ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1012217,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "47aa84413cfe821208981fe1fa8f499d6f8be3384a58fc5e8feabd7aa8ebf644",
+  "status": "ok"
+}

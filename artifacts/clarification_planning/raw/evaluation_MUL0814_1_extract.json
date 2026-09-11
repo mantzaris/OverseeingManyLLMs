@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0814_1_extract",
+      "elapsed_seconds": 3.272187593043782,
+      "request_sha256": "c7d5534a2285d673824a4cdf9d28e47ffbd68d2c8b0ff2417f427b283f4b1c98",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"centre\",\"turn\":4,\"quote\":\"Could you please find me an italian restaurant in the centre?\"},{\"key\":\"restaurant.name\",\"value\":\"Zizzi Cambridge\",\"turn\":5,\"quote\":\"Zizzi Cambridge\"},{\"key\":\"restaurant.time\",\"value\":\"11:15 on tuesday\",\"turn\":5,\"quote\":\"11:15 on tuesday\"},{\"key\":\"restaurant.type\",\"value\":\"italian\",\"turn\":4,\"quote\":\"italian\"},{\"key\":\"attraction.type\",\"value\":\"museum\",\"turn\":10,\"quote\":\"A museum sounds good\"},{\"key\":\"attraction.name\",\"value\":\"Broughton House Gallery\",\"turn\":11,\"quote\":\"Broughton House Gallery\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133372,
+        "id": "chatcmpl-f3cd0a51db56417c84db93a3c524d313",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 156,
+          "prompt_tokens": 508,
+          "prompt_tokens_details": null,
+          "total_tokens": 664
+        }
+      },
+      "started_utc": "2026-09-11T13:29:31.865277+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0814_1_extract",
+  "input_tokens": 508,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you help me find a place to eat? I am looking for a place that serves cheap corsica food.\n1 ASSISTANT: I'm sorry, we have no cheap corsica eateries. Care to try anything else?\n2 USER: Tell me some restaurant types in the town centre?\n3 ASSISTANT: There's Chinese, Indian, Italian, Mediterranean, and Spanish, there's a few others if none of those sound appealing.\n4 USER: Could you please find me an italian restaurant in the centre?\n5 ASSISTANT: Of course! I have three: Pizza Hut City Centre, Ask, and Zizzi Cambridge. Would you like to book one of these?\n6 USER: Yes, can you book a table for 1 at Zizzi Cambridge? I would like to go at 11:15 on tuesday.\n7 ASSISTANT: yes certainly. I have you booked on Tuesday at 11:15 and your reference number for the booking is LMJ96HRL.\n8 USER: I would also like to find an attraction to go to after the meal in the same part of town.\n9 ASSISTANT: I have a few meseums,  Theatre, Collages..What do you have inmind?\n10 USER: A museum sounds good can I get the phone number and entrance fee of one?\n11 ASSISTANT: Broughton House Gallery is free. Their phone number is 01223314960.\n12 USER: Great, thank you! That's all I'll need for today.\n13 ASSISTANT: OK great! I hope you have a wonderful day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1072263,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c7d5534a2285d673824a4cdf9d28e47ffbd68d2c8b0ff2417f427b283f4b1c98",
+  "status": "ok"
+}

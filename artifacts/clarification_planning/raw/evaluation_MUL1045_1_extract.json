@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL1045_1_extract",
+      "elapsed_seconds": 1.303566019050777,
+      "request_sha256": "8bf095b981040ca6ff777a1fa1769731c383acabb1d9850c87173f923c553602",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"hotel.area\",\"value\":\"north\",\"turn\":6},{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":5},{\"key\":\"hotel.type\",\"value\":\"hotel\",\"turn\":7}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133584,
+        "id": "chatcmpl-7872912d8d62443c832645c7b7dde101",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 48,
+          "prompt_tokens": 451,
+          "prompt_tokens_details": null,
+          "total_tokens": 499
+        }
+      },
+      "started_utc": "2026-09-11T13:33:04.080326+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL1045_1_extract",
+  "input_tokens": 451,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you help me find a night club in South Cambridge?\n1 ASSISTANT: The Place is located at 22 Sidney Street. Their phone number is 01223324600. You will need to call for their entry fee.\n2 USER: Can you schedule me a taxi to take me there?\n3 ASSISTANT: I can book you a taxi, can you tell me the arrival or departure time?\n4 USER: Also, I need a hotel with parking and 2 stars.\n5 ASSISTANT: I have three options for you - two in the north in the moderate price range and one that's expensive in the east.\n6 USER: OK, tell me about the ones to the north. I need one that's a regular hotel and not a guesthouse.\n7 ASSISTANT: The ones in the north are the Ashley Hotel and the Lovell Lodge.  Do you have a preference?\n8 USER: No, please book one of them for me for 4 people staying 2 nights starting Tuesday.  Can you provide me with the reference number for that booking?\n9 ASSISTANT: I have successfully booked you at the ashley hotel. The reference number is YMEO7L37. Can I help you with anything else today?\n10 USER: Nope, that's everything. Thanks a bunch!\n11 ASSISTANT: Thank you, goodbye!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1028238,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8bf095b981040ca6ff777a1fa1769731c383acabb1d9850c87173f923c553602",
+  "status": "ok"
+}

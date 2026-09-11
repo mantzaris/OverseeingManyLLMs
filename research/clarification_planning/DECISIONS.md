@@ -34,3 +34,7 @@ The empirical adapter therefore has distinct domain scopes. It can test
 complementary requirements within work, but cannot establish prevalence of genuine
 cross-agent answer sharing. That stronger mechanism needs the separately labeled
 synthetic/challenge benchmark and later suitably annotated applications.
+
+## Checkpoint 3, recorded 14:16:11 UTC: practical advantage did not survive the strongest audit
+
+The frozen comparison supports depth two over one-step, but not a clear memory advantage. The predeclared secondary comparator audit reduces loss from 63 to 62 while reducing answers from 177 to 135. Keep this unfavorable comparison prominent. Full history supplies 379/382 fields while memory supplies 160, identifying interpretation as another practical bottleneck. The source has no annotated cross-task sharing. Do not add favorable held-out cases or new inference. Finish the formal contribution, isolated semantic repairs, exact replay, user interface and standalone manuscript with the narrower conclusion.

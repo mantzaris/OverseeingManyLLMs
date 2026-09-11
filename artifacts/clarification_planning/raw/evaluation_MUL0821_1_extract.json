@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL0821_1_extract",
+      "elapsed_seconds": 2.319722421001643,
+      "request_sha256": "5ac2206b11b3a0d4b458683036fd6bc703428dca0846700444f000685a2088fb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"city centre\",\"value\":\"centre\",\"turn\":2,\"quote\":\"I would like a restaurant that serves British food.\"},{\"key\":\"restaurant.food\",\"value\":\"british\",\"turn\":3,\"quote\":\"I would like a restaurant that serves British food.\"},{\"key\":\"attraction.area\",\"value\":\"centre\",\"turn\":6,\"quote\":\"it should be in the centre\"},{\"key\":\"attraction.type\",\"value\":\"museum\",\"turn\":6,\"quote\":\"a museum is good\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133383,
+        "id": "chatcmpl-511ac38ee8504365951f4577c3d11d57",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 108,
+          "prompt_tokens": 575,
+          "prompt_tokens_details": null,
+          "total_tokens": 683
+        }
+      },
+      "started_utc": "2026-09-11T13:29:43.477587+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL0821_1_extract",
+  "input_tokens": 575,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a restaurant in the city centre.\n1 ASSISTANT: There are 69 results for restaurants in city centre. Could you be more specific on what type of food you're hungry for, or price range you'd like?\n2 USER: I would like a restaurant that serves British food. \n3 ASSISTANT: There are 7 British restaurants in the centre. Do you have a preferred price range?\n4 USER: No I do not, can you please find me the highest rated restaurant?\n5 ASSISTANT: I do not have access to restaurant ratings, however three of the restaurants serving British food are considered expensive. Would you like their information?\n6 USER: Just one please, and only the address is necessary. I'd also like a place to go in town, a museum is good, it should be in the centre\n7 ASSISTANT: The address for Fitzbillies is 51 Trumpington Street City Centre.\n8 USER: Okay, thanks. And a museum?\n9 ASSISTANT: there are approximately 11 museums in the centre of town, all with free entrance. My personal recommendation would be the Whipple Museum of the History of Science.\n10 USER: Sounds good. What's the address and phone number of the Whipple?\n11 ASSISTANT: It is located at free school lane and their phone number is 01223330906\n12 USER: Alright, great. I also need a taxi to get between the restaurant and the museum. I want to leave the restaurant by 23:45.\n13 ASSISTANT: I was able to arrange your taxi service. Your vehicle will be a Black BMW, and the company's contact number is 07015861608. Anything else I can help with?\n14 USER: No that will be all, thank you.\n15 ASSISTANT: We are happy to help. Thank you for using our service. ",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1028275,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5ac2206b11b3a0d4b458683036fd6bc703428dca0846700444f000685a2088fb",
+  "status": "ok"
+}

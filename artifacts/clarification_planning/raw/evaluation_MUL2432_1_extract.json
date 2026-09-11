@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_MUL2432_1_extract",
+      "elapsed_seconds": 1.935447531985119,
+      "request_sha256": "2b3df9e9cd52e68313ac7503cb8aa5aeea28c1a66a93b108ee8f5b9716b6a2c3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"attraction.area\",\"value\":\"centre\",\"turn\":2,\"quote\":\"in the centre\"},{\"key\":\"restaurant.area\",\"value\":\"centre\",\"turn\":9,\"quote\":\"in the centre\"},{\"key\":\"restaurant.pricerange\",\"value\":\"expensive\",\"turn\":7,\"quote\":\"expensive\"},{\"key\":\"restaurant.food\",\"value\":\"european\",\"turn\":10,\"quote\":\"european food\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789133815,
+        "id": "chatcmpl-efa2ad583902429eb4535636abd5c1b1",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 716,
+          "prompt_tokens_details": null,
+          "total_tokens": 803
+        }
+      },
+      "started_utc": "2026-09-11T13:36:54.926109+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_MUL2432_1_extract",
+  "input_tokens": 716,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for an attraction in the centre, preferable a boat\n1 ASSISTANT: Ok, there are two options for you. There is Scudamores Punting Co and The Cambridge Punter. \n2 USER: Which one of those two is located in the centre? \n3 ASSISTANT: Both are located in the centre.  Scudamores is at granta place and The Cambridge Punter is on Chesterton Road.\n4 USER: Can I get the address, entrance fee and phone numbers for both?\n5 ASSISTANT: The scudamores punting co is at granta place, mill lane phone number is 01223359750. The cambridge punter is at 251a chesterton road phone number 07807718591. No entrance fee information listed.\n6 USER: I am also looking for an expensive place to eat around there. Can you offer a recommendation?\n7 ASSISTANT: the bedouin is an delicious expensive restaurant in the centre serving african cuisine!\n8 USER: I would prefer european food.  Is there one in the area?  Please book a table for 2 at 15.15.  I need the phone number and postcode please.\n9 ASSISTANT: I have three that match your criteria.  Would you like to try Eraina?  The phone number is 01223368786 and the postcode is cb23rh.\n10 USER: Sure.  First I need to know where the taxi should pick you up.\n11 ASSISTANT: When would you like to arrive by or leave at?\n12 USER: I need to leave the attraction by 24:00. And I need a contact number and car type please.\n13 ASSISTANT: To clarify, you want a taxi from the scudamores punting co to the bedouin, leaving the scudamores by 24:00?\n14 USER: Yes, that is correct. Which is odd, because I won't make my reservation, but that is correct.\n15 ASSISTANT: I was able to book that taxi for you. Be looking for a yellow Toyota. Should you need to reach them, please call 07805205510. Anything else I can help with?\n16 USER: That is it thank you\n17 ASSISTANT: You're welcome. Enjoy!\n18 USER: Ok, that is everything, enjoy the rest of your day\n19 ASSISTANT: Take care, have fun!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1082571,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "2b3df9e9cd52e68313ac7503cb8aa5aeea28c1a66a93b108ee8f5b9716b6a2c3",
+  "status": "ok"
+}
