@@ -1,0 +1,443 @@
+ Planning Shared Review for Language Model Workflows with Expiring
+                     Intervention Opportunities
+
+                                                Anonymous Submission
+
+
+
+Keywords:        Language Model Agents, Review Scheduling, Decision Support, Tool Workflows, Resource Allocation.
+
+Abstract:        A shared reviewer must decide which language model proposals can benefit from intervention before their
+                 review opportunities expire. We formulate allocation with finite service time and application-specific ex-
+                 pected preventable loss, including corrections and harmful reviews. Our principal case study uses measured
+                 Berkeley Lab air-handler observations with experimentally imposed fault labels. A frozen evaluation covers
+                 18 whole-day blocks on one laboratory unit. The model diagnoses 19 of 54 windows correctly, versus 27
+                 for a conventional classifier. Model review corrects one error but makes six correct proposals unresolved. A
+                 development-fitted signed-benefit rule declines review, producing a mechanical policy tie. With ideal review,
+                 search reduces modeled loss relative to greedy by 3.333 points, but earliest-deadline-first matches search.
+                 Controlled synthetic maintenance provides complementary evidence of conditional planning benefits and ob-
+                 jective tradeoffs. Adapted retail workflows retain unfavorable search-minus-greedy results of +0.250 and
+                 +1.667 under two intervention authorities. Together, the studies show how capacity, risk ranking and cor-
+                 rective effectiveness determine whether review ordering matters, while separating externally validated task
+                 correctness from assumed oversight dynamics.
+
+
+
+1    INTRODUCTION                                                 objective qualify any benefit. Our principal appli-
+                                                                  cation uses measured laboratory HVAC observations
+Several agents may each have a reasonable request for             and saved model diagnoses and reviews. A synthetic
+assistance, yet one reviewer cannot address them all              maintenance environment isolates scheduling mecha-
+before their actions take effect. Reviewing the request           nisms, while executable retail workflows test transfer
+with the largest immediate expected benefit may con-              and intervention limits.
+sume the only remaining slot for another useful in-                   The contributions are threefold. First, we give an
+tervention. Conversely, planning an elaborate review              executable formulation that connects public review
+order may accomplish no more than earliest-deadline-              requests to an application-specific preventable-loss
+first when capacity is sufficient, or may protect a cor-          function, while keeping hidden correctness labels out-
+rect transaction while a later mistake expires.1                  side scheduling. Second, we implement complemen-
+     These possibilities arise in workflows where in-             tary protocols for feedback-dependent maintenance
+tervention has a service time and a boundary beyond               trajectories and allocation on identical saved HVAC
+which it cannot undo a consequence. A maintenance                 judgments or retail transactions. Third, we pro-
+correction can stop future downtime without erasing               vide externally grounded diagnosis evidence along-
+downtime already incurred. A retail approval gate                 side frozen paired planning gains, null results and un-
+can prevent a mistaken transaction from being posted,             favorable transfer results. The measured study makes
+but may lack authority to replace it with the intended            reviewer effectiveness a tested component rather than
+transaction. The value of a review therefore depends              an exclusively perfect assumption. Exact enumer-
+on when it finishes and what the reviewer is allowed              ation supplies an interpretable small-queue planner.
+to do.                                                            The contribution concerns the formulation, integra-
+     We ask when planning the order of a finite shared            tion and empirical analysis rather than a new exhaus-
+review queue improves outcomes over greedy benefit                tive scheduling algorithm.
+allocation and earliest-deadline-first. We also exam-
+ine how risk estimates, capacity and the performance
+
+    1 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.
+2    RELATED WORK                                          testable while retaining genuine retrieval, item selec-
+                                                           tion, payment and mutation semantics.
+Help-seeking, communication and constrained defer-
+ral address related parts of the oversight problem.
+KnowNo uses calibrated prediction sets to decide           3     REVIEW ALLOCATION
+when a language model planner should request help
+(Ren et al., 2023). Its request-admission mechanism              MODEL
+and coverage assumptions differ from ordering an al-
+ready admitted queue. Our uncertainty-first baseline       A released review request i exposes an arrival time ai ,
+ranks estimated error probability; it does not repro-      a cutoff di , a proposed action, review duration si , pub-
+duce KnowNo or provide a conformal guarantee.2             lic consequence parameters and an estimated initial-
+    Value of Information evaluates clarification by its    error probability pi . The scheduler sees only released
+expected decision utility relative to communication        requests. It cannot inspect a hidden correct action, a
+cost (Dong et al., 2026). We similarly express in-         future job or a future model output. Each nonpreemp-
+tervention value through an explicit objective, but al-    tive reviewer processes one request at a time. The
+locate a reviewer among competing pending transac-         measured HVAC application also varies the number
+tions rather than choose a clarification question. One     of reviewer slots. A review result becomes available
+Human, N Agents studies a limited audit budget un-         only when its service finishes.3
+der miscalibrated and correlated confidence (Zavattari         Let Gi (T ) be the preventable consequence if re-
+et al., 2026). That work directly establishes shared au-   quest i is initially wrong and an effective review com-
+diting as prior research. Our focus is finite-duration     pletes at time T . The expected benefit is
+intervention before a posting or correction cutoff, in-                       Bi (T ) = pi Gi (T ).              (1)
+cluding the difference between blocking an error and
+                                                           Eligibility requires release and positive benefit from
+completing a task.
+                                                           starting now, Bi (t + si ) > 0. A cutoff equality is
+    DeCCaF learns expert correctness and uses cost-
+                                                           timely. Consequences incurred before completion re-
+sensitive constrained allocation across experts (Alves
+                                                           main incurred. This expression assumes effective
+et al., 2024). We retain an ideal-review reference
+                                                           review. The HVAC study replaces error risk with
+and separately measure corrections and harm from a
+                                                           signed expected improvement to include ineffective
+model reviewer on sensor evidence. These are con-
+                                                           and harmful model reviews. Ideal correction remains
+ceptual comparisons of mechanisms, not reproduc-
+                                                           a reference, and retail separately varies corrective au-
+tions of those complete systems. Author-linked im-
+                                                           thority.
+plementations of KnowNo, Value of Information and
+DeCCaF were inspected. No author-linked released
+implementation for One Human, N Agents was lo-             3.1    Policies and Planning
+cated in the checked paper and project searches.
+    Classical scheduling already studies deadlines,        FCFS selects the earliest eligible arrival. Earliest-
+processing time and weighted consequences. Hariri et       deadline-first (EDF) selects the earliest cutoff.
+al. consider weighted late work, meaning processing        Uncertainty-first selects the largest pi . Delay-aware
+performed after a due date (Hariri et al., 1995). Guo et   greedy selects the largest Bi (t + si ). Queue-order
+al. analyze a Pareto tradeoff between weighted tardy-      search enumerates ordered subsets π of the eligible
+job counts and weighted late work (Guo et al., 2022).      current queue and maximizes
+Our losses differ, but the connection explains why ur-
+                                                                                               !
+                                                                            |π|             k
+gency, count objectives and cost objectives can favor                       ∑ Bπk     t + ∑ sπ j      .          (2)
+different schedules. Exhaustive current-queue search                        k=1           j=1
+is an established method for a bounded scheduling          It dispatches the first request and replans when free.
+problem.                                                   It does not plan with unreleased arrivals or hidden la-
+    The retail substrate is τ-bench, which supplies in-    bels, and it is not a full-horizon optimal-control so-
+teractive tasks, domain policies, database tools and       lution. Ties prefer fewer reviews and then the de-
+annotated final-state validation (Yao et al., 2024). We    clared lexicographic arrival, agent and request order.
+reuse its pinned retail implementation while chang-        Value sums use stable summation. Historical numer-
+ing the user interaction and adding staging, cutoffs       ical audits distinguish exactly co-optimal tie differ-
+and review. This adaptation makes transaction review       ences from positive decision regret.
+    2 Draftingassistance: OpenAI Codex (OpenAI, 2026).         3 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.                          See the AI assistance disclosure.
+                 q
+    There are ∑k=0 q!/(q − k)! ordered subsets for        4.1    Evidence, Labels and Source Split
+q eligible requests. This is 16 at three requests
+and 1,957 at six. We enumerate them all without           The selected records contain 26 experimental days
+queue truncation. Retail additionally includes a no-      under constant-volume and variable-volume control.
+review control with the same automatic safeguards.        The inventory supplies the imposed condition for each
+Maintenance includes a myopic-benefit baseline; its       day. We group stuck and leaking variants into four
+terminal-only greedy equivalence is checked rather        supported categories: normal, outdoor damper, heat-
+than presented as independent evidence.                   ing valve and cooling valve. The binary fault column
+                                                          is cross-checked offline. Dates, filenames, fault indi-
+3.2    Pairing and Interpretation                         cators and descriptions revealing the imposed condi-
+                                                          tion are withheld from model and scheduler inputs.
+An exogenous scenario fixes jobs or source cases, ar-         Each day provides three complete 60-minute win-
+rivals, deadlines and costs. A policy run is not an       dows beginning at 10:00, 12:00 and 14:00. Ten chan-
+independent scenario. Maintenance conditions share        nels describe supply, outdoor, mixed and return tem-
+exogenous streams but receive fresh generations and       peratures, supply setpoints, and fan, damper and valve
+separate feedback histories. Retail conditions share a    commands. The model receives explicitly named
+saved prepared transaction within a generation repli-     means, minima, maxima and changes from first to
+cate because no model generation follows staging.         last reading. Fahrenheit units, fractional commands
+HVAC conditions similarly share prepared diagnoses        and recording hours are retained. Commands are not
+and review responses. These comparisons isolate al-       assumed to measure actual component position. No
+location on identical inputs, while synthetic mainte-     later observations enter a window’s evidence. Fig-
+nance measures integrated trajectories that may also      ure 1 connects a recorded example to its generated
+differ in model behavior.                                 diagnosis.
+    For each declared primary comparison, we com-             The first chronological day of each mode and cat-
+pute scenario-level paired loss differences and a per-    egory is development, giving eight days and 24 win-
+centile interval from 2,000 bootstrap resamples. Re-      dows. The remaining 18 days and 54 windows form
+tail first averages three generation replicates within    the frozen evaluation. Adjacent windows never cross
+each source bundle. All conditions for a scenario are     the split. All included days are selected from source
+resampled together. Other contrasts are secondary,        records before evaluation generation, without filter-
+with no multiplicity adjustment. A wide interval          ing on errors or policy performance. A standard-
+spanning zero is uncertainty about the effect, not evi-   ized nearest-centroid classifier fits its normalization
+dence of equivalence.                                     and class centers using development data alone and
+                                                          uses the same statistics, control mode and hour as the
+                                                          model.
+4     MEASURED HVAC DIAGNOSIS                             4.2    Fallible Review and Expected
+      STUDY                                                      Benefit
+Our principal externally grounded application is re-      The pinned Qwen model generates one diagnosis and
+view of diagnoses from measured air-handler obser-        then a separately prompted review of that diagnosis
+vations. Berkeley Lab’s public collection includes        and the same permitted observations. The review may
+both physical experiments and simulations (Grander-       preserve the category, change it or abstain. These re-
+son et al., 2020). We use only its SZCAV and SZVAV        sponses are correlated same-model judgments, not in-
+physical FLEXLAB records, pinned to Figshare ver-         dependent experts. An initial development pilot ex-
+sion 3. The experiments imposed component faults          posed ambiguous numerical arrays and frequent ab-
+on the air handler serving test cell X3A. They are        stention. One declared revision names every statis-
+laboratory measurements with controlled faults, not       tic and requests the most likely supported category.
+synthetic sensor observations or naturally occurring      All failed pilot outcomes remain saved. No further
+faults in occupied buildings.4                            prompt change follows evaluation.
+                                                              For an error indicator Ei before review and EiR af-
+                                                          ter review, define the conditional expected accuracy
+                                                          gain
+    4 Draftingassistance: OpenAI Codex (OpenAI, 2026).    gi = Pr(Ei = 1, EiR = 0 | xi ) − Pr(Ei = 0, EiR = 1 | xi ).
+See the AI assistance disclosure.                                                                                (3)
+                                                                               Generated proposal: heating valve | review: normal
+
+                                                                                        Recorded window; annotation: cooling valve
+                                                                                       Supply        Mixed       Cooling setpoint     Return
+           Control command (fraction) Temperature (deg F)
+
+
+
+
+                                                            80
+
+                                                            70
+
+                                                            60
+
+
+
+
+                                                            0.2
+
+                                                                      Cooling valve        Heating valve       Outdoor damper
+                                                            0.0
+                                                                  0               10             20             30            40          50           60
+                                                                                            Minutes after 10:00; one-minute samples
+
+Figure 1: Measured temperatures and control commands from the first source-order evaluation window. The cooling-valve
+annotation comes from the experiment inventory and is shown only for analysis. The agent receives window summaries,
+without that annotation or source date. Both its generated heating-valve proposal and the model review’s normal diagnosis
+are wrong. Recorded cooling despite a zero cooling-valve command illustrates information that the weak proposer failed to
+use reliably.
+
+
+Here xi is public proposal information. A harmful                                                             condition, not three independent machines. The ex-
+abstention counts as an unresolved task. The mod-                                                             periment models allocation across competing diag-
+eled benefit of timely review is wi gi , rather than wi pi .                                                  nostic outputs, not physical repair. Cutoffs 2, 4 and
+We estimate risk by (e + 1)/(n + 2) and signed gain                                                           6 and dimensionless error weights 4, 8 and 12 are in-
+by (c − h)/(n + 2) from development errors e, cor-                                                            dependently permuted by a public run seed. An incor-
+rections c and harms h. Proposed-category bins with                                                           rect or unresolved ticket incurs its weight at cutoff. A
+fewer than six examples use the pooled estimate. This                                                         timely completed review can change the diagnosis be-
+is a transparent small-data shrinkage rule, not a well-                                                       fore that point. It cannot undo a past consequence or
+established reviewer model.                                                                                   establish subsequent repair success.
+    The revised development set has six correct                                                                   We freeze one or two reviewer slots, service dura-
+proposals, one correction and one harmful review.                                                             tions of one, two or three ticks, and a uniform-weight
+Pooled gain is zero, and the populated heating-                                                               sensitivity with weight eight. Equal-time completion
+proposal bin has negative gain. Thus positive-benefit                                                         is timely. Search enumerates the current queue and
+eligibility declines every review in the primary condi-                                                       assigns proposed reviews to the next available slot.
+tion. This mathematical consequence is frozen before                                                          Measured GPU latency is recorded separately from
+evaluation. A secondary risk-only condition deliber-                                                          these assumed service times. All six policies reuse
+ately ignores reviewer harm while applying the same                                                           identical saved proposals and review responses. This
+saved responses. An ideal condition returns the anno-                                                         yields 3,888 paired policy replays without additional
+tated category only when selected review completes.                                                           generations.
+It bounds reviewer effectiveness, without giving hid-                                                             The primary contrast is search minus greedy loss
+den labels to scheduling.                                                                                     with signed-gain model review, one slot, two-tick ser-
+                                                                                                              vice and heterogeneous weights. We resample whole
+4.3    Constructed Oversight Dynamics                                                                         experimental days 2,000 times with seed 20260917,
+                                                                                                              stratifying by control mode and keeping all matched
+The three windows become retrospective diagnosis                                                              conditions together. Eighteen day blocks on one piece
+tickets after 14:59, and all are released at abstract tick                                                    of equipment support conditional within-facility sum-
+zero. They describe the same equipment and imposed                                                            maries. They do not support a cross-building popula-
+                                                                                                              tion interval, and 54 windows are not 54 independent
+                                                                                                              cases.
+4.4   Diagnostic and Allocation Results                   5    SYNTHETIC MECHANISM
+                                                               STUDY
+The proposer correctly labels 19 of 54 windows
+(35.2%), versus 27 (50.0%) for the conventional clas-     A separate civilian maintenance simulation exposes
+sifier. It proposes a heating-valve fault on 51 win-      binary faults through invented noisy clues with accu-
+dows, correctly identifying all 18 heating cases but      racies 0.8 and 0.6. It is not measured ventilation data.
+none of the 15 cooling or 12 damper cases. The con-       Two fresh model samples accompany each job; the
+ventional baseline identifies 14 heating, seven damper    first executes and the second supplies agreement in-
+and six normal windows, but also misses every cool-       formation. Completed ideal supervision can correct
+ing case. The task remains difficult for both methods.    an action and change later feedback histories. An
+These results establish a substantial diagnosis bottle-   error accumulates downtime until correction or clo-
+neck, not a reliable deployed fault detector.             sure, plus a terminal penalty. Public arrivals, costs
+    Across saved review pairs, review corrects one of     and deadlines are independent of hidden faults.5
+35 wrong proposals and leaves 34 unresolved. It pre-           The frozen evaluation contains 2,752 episodes
+serves 13 of 19 correct proposals, changes five to a      across original, constructed competition, larger work-
+wrong category and abstains on one. Five review           loads and an objective extension. The supplement
+responses abstain in total. There are no malformed        preserves complete distributions, risk definitions, ma-
+proposals, malformed reviews or failed generation at-     trices and results. Search minus greedy at two-tick
+tempts in the final evaluation. Review-everything ac-     service is −0.094 [−0.563, 0.344] on 64 original sce-
+curacy is 14/54, below initial accuracy. Frozen risk      narios and −1.313 [−2.250, −0.438] on 64 competi-
+has Brier score 0.2305 and AUROC 0.5023. Sparse,          tion scenarios. Competition releases three requests to-
+nearly tied risks provide little discrimination.          gether and uses terminal penalties only. Search beats
+    All primary policies decline review and have mean     EDF there by 2.563 points at two ticks, while both
+loss 15.333 with 19 correct diagnoses. Search mi-         reach zero loss at one tick.
+nus greedy is exactly zero on all 18 day blocks. The           On the six-agent workload, search minus greedy
+degenerate paired interval describes a shared frozen      is −6.188 [−9.376, −3.281] at one tick and −0.219
+admission rule, not evidence that scheduling poli-        [−2.313, 1.969] at two ticks. Lower capacity does not
+cies are equivalent. Ignoring reviewer harm produces      monotonically increase the value of planning. Ana-
+search and greedy loss 18.000, although search per-       lytical risk improves prediction scores without con-
+forms 54 reviews versus 39. Their sequences differ        sistent allocation gains. Adding an incorrect-closure
+on 15 days with no loss difference. Risk-only search      penalty reduces wrong closures at one tick while in-
+is worse than no review by 2.667 points, with interval    creasing original cost. These positive, null and unfa-
+[0.217,5.778].                                            vorable findings illustrate mechanisms and objective
+    Under ideal review, search attains zero loss ver-     tradeoffs without providing external task validation.
+sus greedy’s 3.333, a paired difference of −3.333
+[−4.889, −1.778], with ten day wins, eight ties and
+no losses. EDF also attains zero and chooses the same
+sequence as search. With three simultaneous equal-        6    RETAIL TRANSFER AND
+duration requests and cutoffs 2, 4 and 6, earliest-            INTERVENTION LIMITS
+deadline ordering can fit every two-tick review. This
+structural explanation limits the interpretation of the   The complementary retail application adapts pinned
+ideal-reference advantage. Figure 2 shows correct-        τ-bench tools, policies and task records (Yao et al.,
+ness alongside modeled loss. Capacity sensitivity,        2024). Its customer and transaction records are sim-
+all day differences and first-qualifying timelines are    ulated benchmark data. GPU proposals and multi-
+in the supplement. No measured equipment damage,          step executable workflows are genuine. Cancellation,
+energy saving or human-review effectiveness follows       modification and returns/exchanges require account
+from these results.                                       retrieval, policy interpretation, confirmation and a
+                                                          validated mutation. Automatic tool guards remain
+                                                          enabled. An added staging boundary lets completed
+                                                          simulated review intervene before a constructed post-
+                                                          ing cutoff. This is an adapted benchmark study, not
+
+                                                              5 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+                                                          See the AI assistance disclosure.
+                                                                     Saved model review                                                                             Ideal review upper bound
+          Modeled loss / experimental day
+
+
+
+
+                                                                                                                    Modeled loss / experimental day
+                                            20                                                                                                        20
+
+
+                                            15                                                                                                        15
+
+
+                                            10                                                                                                        10
+
+
+                                             5                                                                                                         5
+
+
+                                             0                                                                                                         0
+                                                      ne        FS        F       k           y                                                               ne            F      k             dy
+                                                                        ED    Ris           ed         rch                                                           FS   ED    Ris         ee          ar
+                                                                                                                                                                                                             ch
+                                                  No       FC                           e
+                                                                                                  Se
+                                                                                                    a                                                       No     FC                                 Se
+                                                                                      Gr                                                                                               Gr
+
+                                            1.0                                                                                                       1.0
+   Correct diagnosis fraction
+
+
+
+
+                                                                                                             Correct diagnosis fraction
+                                            0.8                                                                                                       0.8
+
+                                            0.6                                                                                                       0.6
+
+                                            0.4                                                                                                       0.4
+
+                                            0.2                                                                                                       0.2
+
+                                            0.0                                                                                                       0.0
+                                                      e        S          F       k       dy                                                                  ne            F      k             dy
+                                                   on       CF          ED    Ris       ee             rch                                                           FS   ED    Ris         ee          ar
+                                                                                                                                                                                                             ch
+                                                  N        F                                      Se
+                                                                                                    a                                                       No     FC                                 Se
+                                                                                      Gr                                                                                               Gr
+
+Figure 2: Externally annotated diagnosis correctness and simulated weighted loss, one reviewer and two-tick service. The
+left condition uses development-fitted signed model-review benefit and admits no reviews. The right assumes ideal completed
+review. Proposals are generated from measured windows; loss weights and scheduling dynamics are constructed. Bars show
+95% day-block bootstrap intervals conditional on one facility, with all paired windows and conditions retained.
+
+
+an official τ-bench score.6                                                                                                            one bundle win, 29 ties and two losses. Search com-
+    The operational objective combines an                                                                                              pletes 222 jobs versus greedy’s 223 and has mean loss
+unresolved-service cost of four with a dimen-                                                                                          3.708 versus 3.458. This primary result is unfavorable
+sionless wrong-posting weight. Original ideal review                                                                                   to search.
+can replace a staged transaction with its annotated                                                                                        The robustness follow-up excludes all 120 previ-
+target. A restricted reviewer can instead approve or                                                                                   ously used accounts across upstream splits. It evalu-
+block, preventing a wrong posting while leaving the                                                                                    ates 24 fresh cases in eight bundles, again with three
+service request unresolved. A separate complexity                                                                                      replicates. Under restricted authority and two-tick
+condition adds one tick for multi-item proposals.                                                                                      service, search minus greedy is +1.667 [0.000,4.667],
+Customer reconfirmation after replacement, real pro-                                                                                   with zero wins, six ties and two losses. Search blocks
+cessing cutoffs and empirical consequence weights                                                                                      eight wrong transactions versus greedy’s twelve,
+remain unresolved assumptions in the source-based                                                                                      while both complete the same 39 initially correct
+methodological review.                                                                                                                 tasks. Twenty-one unstaged failures remain. Full
+    The original evaluation uses 96 source cases in                                                                                    correction and complexity time both give a +2.333
+32 bundles, three generation replicates and 288 GPU                                                                                    search-minus-greedy difference, although complex-
+workflows. All 1,152 policy replays share prepara-                                                                                     ity raises both losses. Post hoc reuse of the original
+tions within each replicate. Fifty-five unstaged fail-                                                                                 preparations is reported separately in the supplement.
+ures remain outside the review boundary. At one tick                                                                                       These negative results have explanatory value.
+every review policy corrects every staged error. At                                                                                    Preserving a public review opportunity can prioritize
+two ticks, search minus greedy mean loss is +0.250                                                                                     a correct transaction while a wrong one expires. Re-
+with a 95% bundle-paired interval [−0.333, 1.000],                                                                                     stricted authority changes which consequence is pre-
+                                                                                                                                       ventable without necessarily changing review order.
+                                                                                                                                       More completed reviews do not imply more corrected
+   6 Drafting assistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.
+tasks. The main claims therefore retain both unfavor-     and complexity times are constructed quantities. Ex-
+able retail comparisons rather than treating synthetic    act annotated equality can overstate some operational
+planning gains as a universal result.                     distinctions. No measured human review perfor-
+                                                          mance, retailer savings or large-queue scalability fol-
+                                                          lows.
+7    DISCUSSION
+Planning helps when interventions are effective, com-     8    CONCLUSION
+pete for time and ordering preserves opportunities that
+greedy selection would lose. The measured applica-        Shared review can be studied as a timed intervention
+tion shows why effectiveness must be checked first. A     problem with an application-specific preventable-loss
+frozen signed-gain estimate declines harmful model        function. The resulting framework exposes differ-
+review; ideal review creates an ordering benefit that     ences between uncertainty, urgency, expected bene-
+EDF already captures in the simple deadline struc-        fit and queue planning while preserving the informa-
+ture. Constructed maintenance competition provides        tion boundary. Frozen maintenance evidence sup-
+that condition. The original maintenance workload         ports a conditional planning benefit and objective
+and the retail study show why a favorable mechanism       tradeoffs. The retail primary result is unfavorable
+does not imply a general policy ranking. Public con-      to search, and its operational follow-up tests what
+tention can involve correct requests, some errors are     changes when review can block rather than complete
+already infeasible, and later arrivals are outside the    a transaction. Measured sensor evidence adds a cen-
+planner’s current state.7                                 tral qualification: review can introduce errors, and
+    Capacity changes the opportunity set. When ev-        source-grounded task correctness does not validate
+ery useful queued error can be corrected, simple re-      assumed operational savings. The combined evidence
+view policies can match search despite different or-      supports analyzing capacity, error ranking, reviewer
+ders. When capacity is severely constrained, too          effectiveness and corrective authority together when
+few feasible combinations may remain for ordering to      designing oversight for language model workflows.8
+help. More completed reviews can then coexist with
+fewer corrections. The meaningful outcome is pre-
+ventable operational consequence, not sequence di-        AI ASSISTANCE AND
+versity alone.
+    The reviewer objective and authority must also be     REPRODUCIBILITY
+explicit. A search policy that optimizes weighted cost
+can close fewer jobs correctly. A block-only reviewer     OpenAI Codex assisted implementation, test and
+can prevent processing harm while leaving service un-     analysis code, source checking, figure code, and draft-
+finished. These outcomes are consistent with their ob-    ing and revision throughout this manuscript and sup-
+jectives and should not be converted into claims of       plement (OpenAI, 2026). Numerical results derive
+universal superiority. The robustness study isolates      from measured source windows, annotated condi-
+these mechanisms without changing risk estimates or       tions, logged GPU generations and deterministic sim-
+agent preparation.                                        ulation, with declared tests and replay checks. Fig-
+    Our evidence is limited to one model and bounded      ures plot those saved measurements. AI is not an au-
+workloads. Measured HVAC experiments cover one            thor. Human authors remain responsible for verifi-
+laboratory unit, two control modes and deliberately       cation, interpretation and submission. Source snap-
+imposed faults. Their 18 evaluation days are corre-       shots, declarations, raw evidence, ledgers and re-
+lated through common equipment, and both diagno-          production commands accompany the local research
+sis methods miss the cooling class. Model review is       package. Previously disclosed publication redactions
+weak and correlated with proposal errors. Synthetic       remove unsolicited credential-like model text from
+faults supply a transparent mechanism study, while        auxiliary arguments and prompt histories, preserv-
+retail records offer executable tools but shared tem-     ing original hashes and unchanged transactions, la-
+plates and possible training exposure. Scripted confir-   bels and outcomes. Exact originals remain on the au-
+mation and complete-transaction correction simplify       thorized pod. Deterministic replay does not promise
+customer interaction. Deadlines, processing weights       bitwise regeneration from a seed.
+
+    7 Draftingassistance: OpenAI Codex (OpenAI, 2026).        8 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+See the AI assistance disclosure.                         See the AI assistance disclosure.
+REFERENCES                                                          (1995). Single machine scheduling to minimize to-
+                                                                    tal weighted late work. ORSA Journal on Computing,
+Alves, J. V., Leitão, D., Jesus, S., Sampaio, M. O. P.,             7(2):232–242.
+     Liébana, J., Saleiro, P., Figueiredo, M. A. T., and       OpenAI (2026).         Codex.      OpenAI documentation.
+     Bizarro, P. (2024). Cost-sensitive learning to defer to        https://learn.chatgpt.com/docs/codex/cli. Accessed 10
+     multiple experts with workload constraints. Transac-           September 2026.
+     tions on Machine Learning Research.                       Ren, A. Z., Dixit, A., Bodrova, A., Singh, S., Tu, S., Brown,
+Dong, Y. R., Hu, T., Hui, Z., Zhang, C., Vulić, I.,                N., Xu, P., Takayama, L., Xia, F., Varley, J., Xu,
+     Bobu, A., and Collier, N. (2026). Value of informa-            Z., Sadigh, D., Zeng, A., and Majumdar, A. (2023).
+     tion: A framework for human-agent communication.               Robots that ask for help: Uncertainty alignment for
+     arXiv:2601.06407.                                              large language model planners. In Proceedings of
+Granderson, J., Lin, G., Harding, A., Im, P., and Chen, Y.          the 7th Conference on Robot Learning, volume 229
+     (2020). Building fault detection data to aid diagnostic        of Proceedings of Machine Learning Research, pages
+     algorithm creation and performance testing. Scientific         661–682. PMLR.
+     Data, 7:65.                                               Yao, S., Shinn, N., Razavi, P., and Narasimhan, K. (2024).
+Guo, S., Lu, L., Yuan, J., Ng, C. T., and Cheng, T. C. E.           τ-bench: A benchmark for tool-agent-user interaction
+     (2022). Pareto-scheduling with double-weighted jobs            in real-world domains. arXiv:2406.12045.
+     to minimize the weighted number of tardy jobs and         Zavattari, C., Tommasi, A., and Prencipe, G. (2026). One
+     total weighted late work. Naval Research Logistics,            human, N agents: Audit-budget allocation for LLM
+     69(5):816–837.                                                 agent fleets under miscalibrated, correlated confi-
+Hariri, A. M. A., Potts, C. N., and Van Wassenhove, L. N.           dence. arXiv:2607.28317.
+

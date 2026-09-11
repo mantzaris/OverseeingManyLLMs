@@ -1,0 +1,28 @@
+[
+  {
+    "case_id": "run13_w1",
+    "role": "proposal",
+    "retry": 0,
+    "started_utc": "2026-09-11T02:58:13.970557+00:00",
+    "request": {
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "messages": [
+        {
+          "role": "system",
+          "content": "This is a closed-set component diagnosis task for a single-zone air handler. Choose the MOST LIKELY condition among normal, outdoor_damper, heating_valve, cooling_valve. These are the only possible annotated conditions; faults include stuck or leaking components. Use abstain only if observations are missing or unusable, not merely because certainty is impossible. Temperatures are degrees Fahrenheit; controls are fractional commands, not verified physical positions. Supply air substantially above its cooling setpoint despite cooling can indicate heating leakage; excessive cooling relative to mixed air and setpoints can indicate cooling-valve trouble. Compare outdoor, return and mixed temperatures with damper commands. Assess all evidence. Do not infer repair outcomes. Reply only JSON: {\"diagnosis\":\"category\",\"reason\":\"brief evidence\"}."
+        },
+        {
+          "role": "user",
+          "content": "{\"equipment_mode\":\"SZCAV\",\"n_samples\":60,\"readings\":{\"supply_cooling_setpoint\":{\"mean\":86.0,\"min\":86.0,\"max\":86.0,\"last_minus_first\":0.0},\"cooling_valve_command\":{\"mean\":0.0,\"min\":0.0,\"max\":0.0,\"last_minus_first\":0.0},\"outdoor_damper_command\":{\"mean\":0.15,\"min\":0.15,\"max\":0.15,\"last_minus_first\":0.0},\"fan_speed_command\":{\"mean\":0.5,\"min\":0.5,\"max\":0.5,\"last_minus_first\":0.0},\"supply_heating_setpoint\":{\"mean\":57.21,\"min\":54.61,\"max\":58.79,\"last_minus_first\":-4.18},\"heating_valve_command\":{\"mean\":0.25,\"min\":0.0,\"max\":0.38800446,\"last_minus_first\":-0.169},\"mixed_air_temperature\":{\"mean\":65.302,\"min\":64.53,\"max\":66.61,\"last_minus_first\":1.41},\"outdoor_temperature\":{\"mean\":64.375,\"min\":63.84,\"max\":65.09,\"last_minus_first\":1.25},\"return_air_temperature\":{\"mean\":64.885,\"min\":63.59,\"max\":66.69,\"last_minus_first\":1.28},\"supply_air_temperature\":{\"mean\":57.849,\"min\":53.43,\"max\":63.28,\"last_minus_first\":3.65}},\"sample_interval_minutes\":1,\"units\":\"sat/heat_sp/cool_sp/outdoor/mixed/return: degrees F; fan/damper/cool_valve/heat_valve: fractional control signals\",\"window_end\":\"12:59\",\"window_start\":\"12:00\"}"
+        }
+      ],
+      "temperature": 0.3,
+      "top_p": 1,
+      "max_tokens": 128,
+      "seed": 736222082
+    },
+    "response": "{\"id\":\"chatcmpl-332eb48c871c4d388269c76ae6815382\",\"object\":\"chat.completion\",\"created\":1789095493,\"model\":\"Qwen/Qwen2.5-7B-Instruct\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"diagnosis\\\":\\\"heating_valve\\\",\\\"reason\\\":\\\"Supply air temperature is substantially below the cooling setpoint and heating valve is partially open, indicating potential heating valve leakage.\\\"}\",\"refusal\":null,\"annotations\":null,\"audio\":null,\"function_call\":null,\"tool_calls\":[],\"reasoning_content\":null},\"logprobs\":null,\"finish_reason\":\"stop\",\"stop_reason\":null,\"token_ids\":null}],\"service_tier\":null,\"system_fingerprint\":null,\"usage\":{\"prompt_tokens\":615,\"total_tokens\":651,\"completion_tokens\":36,\"prompt_tokens_details\":null},\"prompt_logprobs\":null,\"prompt_token_ids\":null,\"kv_transfer_params\":null}",
+    "success": true,
+    "elapsed_seconds": 0.6966217756271362
+  }
+]
