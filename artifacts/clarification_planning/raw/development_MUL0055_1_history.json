@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0055_1_history",
+      "elapsed_seconds": 1.3667669339338318,
+      "request_sha256": "c1d482114f599fb091f437f142c29fbef1111b8df7c2502be946432b2ba86e9c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answers\": {\n    \"hotel.area\": \"west\",\n    \"hotel.stars\": \"3\",\n    \"restaurant.area\": \"west\",\n    \"restaurant.food\": \"indian\",\n    \"restaurant.pricerange\": \"expensive\"\n  }\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132338,
+        "id": "chatcmpl-10097cdde5a649ebbedecc015773abb3",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 56,
+          "prompt_tokens": 729,
+          "prompt_tokens_details": null,
+          "total_tokens": 785
+        }
+      },
+      "started_utc": "2026-09-11T13:12:18.099667+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0055_1_history",
+  "input_tokens": 729,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need a restaurant in the west that serves Hungarian cuisine,\n1 ASSISTANT: I'm sorry. There is no matching restaurant. Do you want to try a different area or food type?\n2 USER: I guess let's check and see if there are any Hungarian restaurants in other parts of town. What is in the south?\n3 ASSISTANT: I'm sorry there are no hungarian restaurants coming up anywhere.  Is there another type of cuisine you'd like me to look for?\n4 USER: Are there any restaurants in the west and in the expensive price range that serves indian food?\n5 ASSISTANT: There are 5 of them. I hear the Cocum is very good. Would you be interested in booking it?\n6 USER: Is this location in the west? If so yes, i would like to book a table.\n7 ASSISTANT: Great, what day, time, and number of people would you like to book for at Cocum?\n8 USER: Please book a table for 7 people at 11:45 on monday.\n9 ASSISTANT: I'm sorry that time slot is not available that day. Would you care to try for a different time or day perhaps?\n10 USER: Let's try 10:45.\n11 ASSISTANT: I was able to get you a table for 7 at Cocum on Monday at 10:45. Reference number is : AZ2DU7IR. Can I be of any further assistance today?\n12 USER: Yes, I am also looking for a three star hotel located in the same area as the restaurant.\n13 ASSISTANT: Hobsons House is a moderately-priced, 3-star guesthouse in the west. It offers free internet and parking. Would you like me to book this for you?\n14 USER: Great, can I please have the address and phone number?\n15 ASSISTANT: Certainly. Hobsons House is located at 96 Barton Road. It's phone number is 01223304906. Is there anything else I can help you with today?\n16 USER: Actually, yes. I need a taxi to transport between the two places. I want to make sure it arrives at Cocum at the booked time. Any ideas?\n17 ASSISTANT: I have your taxi scheduled to arrive in time for your parties reservation. Is there antying else I can take care of for you?\n18 USER: Can I get the contact number and car type please. \n19 ASSISTANT: Certainly Booked car type blue bmw, and Contact number 07581556997. Is there anything else I can help you with today?\n20 USER: I think that should be it thank you\n21 ASSISTANT: Thank you for booking with us and have a great day.\nFIELDS [\"hotel.area\",\"hotel.stars\",\"restaurant.area\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1010724,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c1d482114f599fb091f437f142c29fbef1111b8df7c2502be946432b2ba86e9c",
+  "status": "ok"
+}

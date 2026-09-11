@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0154_1_memory",
+      "elapsed_seconds": 1.1461404950823635,
+      "request_sha256": "0c174644adf9224dd0615279abfa472a369ff424756edd8704ab5ed6f17140a5",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"centre\",\"hotel.pricerange\":null,\"restaurant.food\":\"modern european\",\"restaurant.pricerange\":\"cheap\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132513,
+        "id": "chatcmpl-a34f7752ec50423bbb6880d3abce5ba4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 31,
+          "prompt_tokens": 203,
+          "prompt_tokens_details": null,
+          "total_tokens": 234
+        }
+      },
+      "started_utc": "2026-09-11T13:15:12.962761+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0154_1_memory",
+  "input_tokens": 203,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"hotel.area\",\"hotel.pricerange\",\"restaurant.food\",\"restaurant.pricerange\"],\"memories\":[{\"key\":\"restaurant.pricerange\",\"quote\":\"cheap restaurant\",\"turn\":0,\"value\":\"cheap\"},{\"key\":\"restaurant.food\",\"quote\":\"modern european food\",\"turn\":0,\"value\":\"modern european\"},{\"key\":\"hotel.area\",\"quote\":\"Can you find me something in the centre?\",\"turn\":6,\"value\":\"centre\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1071436,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "0c174644adf9224dd0615279abfa472a369ff424756edd8704ab5ed6f17140a5",
+  "status": "ok"
+}

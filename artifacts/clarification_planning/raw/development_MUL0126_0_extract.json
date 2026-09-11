@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0126_0_extract",
+      "elapsed_seconds": 1.2728765381034464,
+      "request_sha256": "17b12b9661a1d63a41454c1e33023d64227323f7cf74a89338c8e66831972178",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"italian\",\"turn\":0,\"quote\":\"Italian restaurant in Cambridge\"},\"{\"]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132385,
+        "id": "chatcmpl-b6f24d04d6ac4bb4bc9a046fc1aeebaf",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 28,
+          "prompt_tokens": 553,
+          "prompt_tokens_details": null,
+          "total_tokens": 581
+        }
+      },
+      "started_utc": "2026-09-11T13:13:04.750413+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0126_0_extract",
+  "input_tokens": 553,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I am looking for an expensive Italian restaurant in Cambridge.\n1 ASSISTANT: We have quite a few. May I suggest Frankie and Bennys? They are in the area of Centre at Market Hill City Centre. \n2 USER: Great, can you book a table for 8 people at 19:00 on wednesday\n3 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : OE4QDLK7.\n4 USER: Thanks! I am also looking for a guesthouse in Cambridge.\n5 ASSISTANT: There are 24 guesthouses in cambridge, do you have any information to narrow it down?\n6 USER: It should be in the same price range as the restaurant, with free wifi and a star of 4.\n7 ASSISTANT: There is no place matching your criteria. Do you want to broaden your search?\n8 USER: Yes, please broaden the price search.\n9 ASSISTANT: There are 33 available options in the moderate to cheap price range. Do you have any location preference to narrow down the search?\n10 USER: How about any type of hotel in Cambridge, guesthouse or other?\n11 ASSISTANT: How does university arms hotel sound? It is a hotel in town centre, expensive price range & 4 stars. Would you like to book a room?\n12 USER: It sounds great but does it also have free wifi and parking. I really need that.\n13 ASSISTANT: Yes, it offers both. Would you like me to book you a room?\n14 USER: No, I just need the address and postcode, please.\n15 ASSISTANT: They are at regent street\tpostcode cb21ad\n16 USER: Thank you. Goodbye.\n17 ASSISTANT: You're welcome. Enjoy your trip.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 996783,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "17b12b9661a1d63a41454c1e33023d64227323f7cf74a89338c8e66831972178",
+  "status": "ok"
+}

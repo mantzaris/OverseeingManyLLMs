@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0093_1_extract",
+      "elapsed_seconds": 2.8614936489611864,
+      "request_sha256": "72851135a11c2a951476456ca453494c5a2f9ac2616cadddc61bce25b408dc36",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.name\",\"value\":\"The Lucky Star\",\"turn\":2,\"quote\":\"The Lucky Star is located at Leisure Park Clifton Way Cherry Hinton.\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":6,\"quote\":\"but a guesthouse with free wifi is preferable.\"},{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":4,\"quote\":\"I also need a moderate priced hotel with free parking to stay at.\"},{\"key\":\"hotel.stars\",\"value\":\"4\",\"turn\":11,\"quote\":\"It is rated 4 stars.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132366,
+        "id": "chatcmpl-55b03857cd0d4e3fabb7cf56186db156",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 124,
+          "prompt_tokens": 485,
+          "prompt_tokens_details": null,
+          "total_tokens": 609
+        }
+      },
+      "started_utc": "2026-09-11T13:12:46.208360+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0093_1_extract",
+  "input_tokens": 485,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, could you help me with finding a restaurant called The Lucky Star?\n1 ASSISTANT: The Lucky Star is located at Leisure Park Clifton Way Cherry Hinton. Would you like to book there?\n2 USER: Yes. Please reserve table for five at Monday on 11:15 and get me the reference number\n3 ASSISTANT: All booked! Your reference number is S0FC5MN8.\n4 USER: I also need a moderate priced hotel with free parking to stay at.\n5 ASSISTANT: There are 14 total hotels in cambridge that meet these specifications. Is there a particular part of town you are interested in staying in?\n6 USER: No particular town, but a guesthouse with free wifi is preferable.\n7 ASSISTANT: There are 12 such guesthouses. Do you have a preference on star rating?\n8 USER: I do not.\n9 ASSISTANT: I recommend the Acorn Guest House. If you let me know the number of people staying, your arrival day, and how many nights, I'll happily book a room for you.\n10 USER: And can I ask what star rating that has before I book? I actually realized I might care.\n11 ASSISTANT: It is rated 4 stars. Should I book it?\n12 USER: Yes please, thank you.\n13 ASSISTANT: Of course, will that be all for today?\n14 USER: Yes! Thank you for your help.\n15 ASSISTANT: Excellent. Have a great rest of your day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1030974,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "72851135a11c2a951476456ca453494c5a2f9ac2616cadddc61bce25b408dc36",
+  "status": "ok"
+}

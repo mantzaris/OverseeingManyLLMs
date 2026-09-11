@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0177_0_extract",
+      "elapsed_seconds": 2.2006182339973748,
+      "request_sha256": "946f5d130cf692de2b27f91a62f98392d5d8a0a9ad90df2a5f9e86fe2ddce1da",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"hotel.area\",\"value\":\"north\",\"turn\":0,\"quote\":\"in the north of Cambridge\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":1,\"quote\":\"moderately priced guesthouse-type\"},{\"key\":\"restaurant.area\",\"value\":\"north\",\"turn\":8,\"quote\":\"are there no cheap international food in the north?\"},{\"key\":\"restaurant.cuisine\",\"value\":\"italian\",\"turn\":10,\"quote\":\"is there any Italian restaurants?\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132514,
+        "id": "chatcmpl-b2875a6111214c9e853739a6f2015bd8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 101,
+          "prompt_tokens": 546,
+          "prompt_tokens_details": null,
+          "total_tokens": 647
+        }
+      },
+      "started_utc": "2026-09-11T13:15:14.385046+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0177_0_extract",
+  "input_tokens": 546,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, I need a hotel that includes free wifi in the north of Cambridge.\n1 ASSISTANT: Yes I have many listings for that type of hotel,if you tell me your price range I can narrow down your options.\n2 USER: Hotel doesn't need to have free parking. I don't care about price range.\n3 ASSISTANT: The avalon is a moderately priced guesthouse-type that matches your criteria.\n4 USER: What is the postcode, price range, and address?\n5 ASSISTANT: The postcode for the Avalon is cb43pd, it is moderately priced hotel, and it is located at 62 gilbert road.\n6 USER: Thank you so much. I am also looking for information on a place to dine in the same area of the hotel. I would prefer international food.\n7 ASSISTANT: Unfortunately there are no matching restaurants in the North. Would you like to try a different type of cuisine, or a different area?\n8 USER: Maybe... are you sure there is no cheap international food in the north?\n9 ASSISTANT: No I am sorry there are no locations I have found. Is there anything else I can help you with?\n10 USER: Since there is no cheap international restaurants, is there any Italian restaurants?\n11 ASSISTANT: There is one, Da Vinci Pizzeria, would you like to book that?\n12 USER: Hold off on booking. Could you give me the address and phone number for it?\n13 ASSISTANT: Sure, da vinci pizzeria is located at 20 Milton Road Chesterton postcode cb41jy, phone 01223351707.  Can I help you with anything else?\n14 USER: No that should be all thank you\n15 ASSISTANT: Thank you, goodbye.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 948248,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "946f5d130cf692de2b27f91a62f98392d5d8a0a9ad90df2a5f9e86fe2ddce1da",
+  "status": "ok"
+}

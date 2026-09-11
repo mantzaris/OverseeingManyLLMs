@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0154_0_history",
+      "elapsed_seconds": 1.3573049519909546,
+      "request_sha256": "bafcff7ba4aa9c63064b1745de5591b69fd105f380a3f06500ca5eeaf438167b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.area\":\"centre\",\"hotel.pricerange\":\"cheap\",\"restaurant.food\":\"modern european\",\"restaurant.pricerange\":\"cheap\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132507,
+        "id": "chatcmpl-485886ec022a47108f8f053786c18a00",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 31,
+          "prompt_tokens": 531,
+          "prompt_tokens_details": null,
+          "total_tokens": 562
+        }
+      },
+      "started_utc": "2026-09-11T13:15:06.525432+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0154_0_history",
+  "input_tokens": 531,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a cheap restaurant that serves modern european food.\n1 ASSISTANT: the river bar steakhouse and grill meets your preferences. They are located in centre at Quayside Off Bridge Street.\n2 USER: Thank you very much.\n3 ASSISTANT: You're welcome, goodbye.\n4 USER: Wait, I need a reservation, please. Can I get a table on Wednesday at 18:45 for 2 people? I'll need the reference number.\n5 ASSISTANT: Your reservation is all set, reference number is U4UFT1IY\n6 USER: I need a cheap place to stay, too. Can you find me something in the centre?\n7 ASSISTANT: The Alexander Bed and Breakfast guesthouse is 4 stars and the El Shaddai is 0 stars.  Would you like me to book one of these options for you?\n8 USER: The Alexander Bed and Breakfast guesthouse will be fine, thanks.\n9 ASSISTANT: Thank you. Is there anything else I can help you with today?\n10 USER: I need more information about the guesthouse, do they have free parking?  What is the address and phone number?\n11 ASSISTANT: Parking is free, the phone number is 01223525725 and the address is 56 saint barnabas road. \n12 USER: Could you book a taxi for me? I am looking for one to take me between the restaurant and hotel and i need it to arrive at the restaurant by the booked time.\n13 ASSISTANT: I have booked the taxi, the contact number is 07846881745. The car type is a grey ford. Anything else I can help you with today?\n14 USER: No that's all I needed. Thank you!\n15 ASSISTANT: You're Welcome. Thank you for using our services.\nFIELDS [\"hotel.area\",\"hotel.pricerange\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 971435,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "bafcff7ba4aa9c63064b1745de5591b69fd105f380a3f06500ca5eeaf438167b",
+  "status": "ok"
+}

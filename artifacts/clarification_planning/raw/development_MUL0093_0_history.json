@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0093_0_history",
+      "elapsed_seconds": 0.6431701350957155,
+      "request_sha256": "9c19953845c535992c161f478d901a4f74595aa065aa37c69d17e6868ba7ec05",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.pricerange\":\"moderate\",\"hotel.type\":\"guesthouse\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132364,
+        "id": "chatcmpl-d591ff6663964156a4f5829b96b31e1f",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 442,
+          "prompt_tokens_details": null,
+          "total_tokens": 461
+        }
+      },
+      "started_utc": "2026-09-11T13:12:44.411629+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0093_0_history",
+  "input_tokens": 442,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, could you help me with finding a restaurant called The Lucky Star?\n1 ASSISTANT: The Lucky Star is located at Leisure Park Clifton Way Cherry Hinton. Would you like to book there?\n2 USER: Yes. Please reserve table for five at Monday on 11:15 and get me the reference number\n3 ASSISTANT: All booked! Your reference number is S0FC5MN8.\n4 USER: I also need a moderate priced hotel with free parking to stay at.\n5 ASSISTANT: There are 14 total hotels in cambridge that meet these specifications. Is there a particular part of town you are interested in staying in?\n6 USER: No particular town, but a guesthouse with free wifi is preferable.\n7 ASSISTANT: There are 12 such guesthouses. Do you have a preference on star rating?\n8 USER: I do not.\n9 ASSISTANT: I recommend the Acorn Guest House. If you let me know the number of people staying, your arrival day, and how many nights, I'll happily book a room for you.\n10 USER: And can I ask what star rating that has before I book? I actually realized I might care.\n11 ASSISTANT: It is rated 4 stars. Should I book it?\n12 USER: Yes please, thank you.\n13 ASSISTANT: Of course, will that be all for today?\n14 USER: Yes! Thank you for your help.\n15 ASSISTANT: Excellent. Have a great rest of your day!\nFIELDS [\"hotel.pricerange\",\"hotel.type\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 930975,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "9c19953845c535992c161f478d901a4f74595aa065aa37c69d17e6868ba7ec05",
+  "status": "ok"
+}

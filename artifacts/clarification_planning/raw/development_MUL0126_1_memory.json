@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0126_1_memory",
+      "elapsed_seconds": 0.6310986500466242,
+      "request_sha256": "6200cffb97d3d51de50f936f52cfb9f173352e3365ec5cdd35e51c5d21221a0e",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"restaurant.food\":\"italian\",\"restaurant.pricerange\":\"expensive\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132390,
+        "id": "chatcmpl-fa7bdf806800424cbe6b0848fae2d1c2",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 154,
+          "prompt_tokens_details": null,
+          "total_tokens": 173
+        }
+      },
+      "started_utc": "2026-09-11T13:13:10.581202+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0126_1_memory",
+  "input_tokens": 154,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the requested travel preference fields from ALL supplied current shared memories. Select by domain and attribute; do not transfer a similar value across domains. Memories were extracted from a user dialogue and may be incomplete or wrong. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}}, every requested field, UNKNOWN when absent/conflicting. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging hotel/guesthouse; others lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "{\"fields\":[\"restaurant.food\",\"restaurant.pricerange\"],\"memories\":[{\"key\":\"restaurant.pricerange\",\"quote\":\"expensive Italian restaurant in Cambridge\",\"turn\":0,\"value\":\"expensive\"}]}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1096785,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "6200cffb97d3d51de50f936f52cfb9f173352e3365ec5cdd35e51c5d21221a0e",
+  "status": "ok"
+}

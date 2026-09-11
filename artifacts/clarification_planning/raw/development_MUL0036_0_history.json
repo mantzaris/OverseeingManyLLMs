@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0036_0_history",
+      "elapsed_seconds": 0.9424436420667917,
+      "request_sha256": "35d760c1bcc10383e94ef1719d5a9b80df7c03770688d7adacfd0ffa17eeb39b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"restaurant.area\": \"south\",\n  \"restaurant.food\": \"chinese\",\n  \"restaurant.pricerange\": \"cheap\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132297,
+        "id": "chatcmpl-245563a4530d434b9eac73a768fb4c33",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 31,
+          "prompt_tokens": 660,
+          "prompt_tokens_details": null,
+          "total_tokens": 691
+        }
+      },
+      "started_utc": "2026-09-11T13:11:37.511547+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0036_0_history",
+  "input_tokens": 660,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need the address of the Worth House hotel.\n1 ASSISTANT: sure thing. which worth house hotel do you need the address for?\n2 USER: What options do I have?\n3 ASSISTANT: The worth house guesthouse in the northern side of town is located at 152 chesterton road, is this the one you are looking for? \n4 USER: Yes! Can you book it for 2 people and 5 nights starting Saturday?\n5 ASSISTANT: Yes I have booked the Worth House guesthouse for 2 people for 5 nights beginning Saturday. Your reference number is W9945XIS. Can I help with anything else?\n6 USER: I am also for a restaurant, I need it to be in the south and at a cheap price range, preferably a Panasian place.\n7 ASSISTANT: I'm not seeing any cheap panasian restaurants in the south. Would you like me to look for something else?\n8 USER: How about a cheap Chinese place?\n9 ASSISTANT: There is 1. It is called The Lucky Star and its address is Cambridge Leisure Park Clifton Way Cherry Hinton. Would you like me to make a reservation for you?\n10 USER: Yes, book me a table for 2 on Saturday at 19:45.\n11 ASSISTANT: I'm sorry, there are no reservations available at that day/time. Is there another day/time that would work for you?\n12 USER: Ok, how about 18:45 instead?\n13 ASSISTANT: I have booked The Lucky Star for 2 at 18:45, the reference number is RVESWV8I. Is there anything else I can help with?\n14 USER: Can I have a taxi take me to the restaurant from the hotel? I need it to arrive by the time my reservation is booked for. \n15 ASSISTANT: Your taxi has been booked. You have a reservation for a yellow skoda. The contact number is 07404779442. Is there anything else I can help you with?\n16 USER: May I have the contact number for the taxi service?\n17 ASSISTANT: The contact number for the taxi service is 07404779442. If there anything else I can help you with?\n18 USER: No thank you, all of my questions have been answered. Thank you very much for your assistance.\n19 ASSISTANT: You're welcome. Have a nice day. \nFIELDS [\"restaurant.area\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 974343,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "35d760c1bcc10383e94ef1719d5a9b80df7c03770688d7adacfd0ffa17eeb39b",
+  "status": "ok"
+}

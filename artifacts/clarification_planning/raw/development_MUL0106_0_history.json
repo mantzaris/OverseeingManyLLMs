@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0106_0_history",
+      "elapsed_seconds": 1.4083804599940777,
+      "request_sha256": "8be4a089999b1ff867656a2204a630e104d2970114fdabc1ba033d1d626e7c50",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.area\": \"east\",\n  \"hotel.pricerange\": \"cheap\",\n  \"hotel.stars\": \"4\",\n  \"hotel.type\": \"guesthouse\",\n  \"restaurant.area\": \"east\",\n  \"restaurant.pricerange\": \"expensive\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132375,
+        "id": "chatcmpl-80e2ccf62a304f05a2f8b7c0ccbca42f",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 507,
+          "prompt_tokens_details": null,
+          "total_tokens": 567
+        }
+      },
+      "started_utc": "2026-09-11T13:12:55.587748+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0106_0_history",
+  "input_tokens": 507,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I would like to book a five star, or closest to it, in the east part of town please.\n1 ASSISTANT: There are several hotels with those characteristics. Could you narrow down by price range and hotel type you want?\n2 USER: I am looking to stay in a guesthouse in the expensive price range. \n3 ASSISTANT: There are no hotels which match your criteria. Can I help you find something else?\n4 USER: What about a hotel in a cheap price range?\n5 ASSISTANT: Your options are: Allenbell, Autumn house, and Leverton house. All of these guesthouses have 4 stars, are in the east part of town, and offer free parking and WiFi. \n6 USER: I would like to book the Autumn house starting Monday for 4 nights for 2 people.\n7 ASSISTANT: Great your reference number is DPEISTWK.\n8 USER: What expensive restaurants are in the East part of town?\n9 ASSISTANT: There is Yu Garden and Royal Standard.\n10 USER: What cheap restaurants are in the East part of town?\n11 ASSISTANT: The Missing Sock is a cheap restaurant in the east part of town. They serve international food. Would you like me to book that for you?\n12 USER: Yes please for 2 people on monday, thanks.\n13 ASSISTANT: Absolutely. What time would you like?\n14 USER: I need that for 13:00 and I would appreciate a reference number.\n15 ASSISTANT: I booked that reservation for you. Your reference number is VN4QZ2M1. Is there anything else I can help you with?\n16 USER: No thank you\n17 ASSISTANT: You're welcome. Have a nice day.\nFIELDS [\"hotel.area\",\"hotel.pricerange\",\"hotel.stars\",\"hotel.type\",\"restaurant.area\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 957310,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8be4a089999b1ff867656a2204a630e104d2970114fdabc1ba033d1d626e7c50",
+  "status": "ok"
+}

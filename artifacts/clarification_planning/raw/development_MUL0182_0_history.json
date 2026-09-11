@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0182_0_history",
+      "elapsed_seconds": 1.1962449080310762,
+      "request_sha256": "0b3019ed976c6d5affdd77db62009a3fda8efce726b618d0023dbd849afe7ed2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.area\": \"centre\",\n  \"hotel.pricerange\": \"expensive\",\n  \"hotel.type\": \"hotel\",\n  \"restaurant.area\": \"centre\",\n  \"restaurant.food\": \"korean\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132541,
+        "id": "chatcmpl-32e46047f2a84052bb4651a4c03edbb6",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 48,
+          "prompt_tokens": 530,
+          "prompt_tokens_details": null,
+          "total_tokens": 578
+        }
+      },
+      "started_utc": "2026-09-11T13:15:41.659071+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0182_0_history",
+  "input_tokens": 530,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need a Korean restaurant in the centre of town.\n1 ASSISTANT: How about little seoul? It's expensive and in the center of town.\n2 USER: Is there other choices that you could provide?\n3 ASSISTANT: I'm sorry, there are no other options for the criteria you have provided. Would you like more information about little seoul?\n4 USER: i want to make a booking for 8 people at 13:30 on Monday. please do send me a reference number.\n5 ASSISTANT: Okay I would be more than happy to assist you with that but I need to know how many will be in your party and what time please.\n6 USER: Please book for 8 people on Monday at 13:30.\n7 ASSISTANT: Booking was successful. The table will be reserved for 15 minutes. Reference number is : 20X96EGN. Is there anything else you would like for me to do?\n8 USER: I'm also looking for hotel in the same area. \n9 ASSISTANT: There are more than thirty options to choose from. Do you have a preferred star rating or price range?\n10 USER: I want one in centre, also expensive and free parking please.\n11 ASSISTANT: There are two hotels that meet that criteria. The gonville hotel and the university arms hotel. Do you have a star rating preference?\n12 USER: I also need free wifi. Stars don't matter, but can you get me their phone number?\n13 ASSISTANT: The Gonville's phone is 01223366611 and the University Arms Hotel's number is 01223351241. Can I help with anything else today?\n14 USER: No, that's it. Thank you. Goodbye!\n15 ASSISTANT: Alright then. Have a good stay!\nFIELDS [\"hotel.area\",\"hotel.pricerange\",\"hotel.type\",\"restaurant.area\",\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 933122,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "0b3019ed976c6d5affdd77db62009a3fda8efce726b618d0023dbd849afe7ed2",
+  "status": "ok"
+}

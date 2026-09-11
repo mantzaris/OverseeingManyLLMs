@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0049_0_history",
+      "elapsed_seconds": 0.6939259819919243,
+      "request_sha256": "ace148b832a8a9c40c32772949edaf4ecc0f0e55adbe57de2c9fd09cfca0813c",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"restaurant.area\": \"centre\",\n  \"restaurant.food\": \"mediterranean\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132309,
+        "id": "chatcmpl-59171e61af1744b79fa99f8abc2c08fc",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 21,
+          "prompt_tokens": 505,
+          "prompt_tokens_details": null,
+          "total_tokens": 526
+        }
+      },
+      "started_utc": "2026-09-11T13:11:49.110778+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0049_0_history",
+  "input_tokens": 505,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I need to find a Hamilton Lodge in Cambridge.\n1 ASSISTANT: I have one for you, phone is 01223365664. Enjoy\n2 USER: I need to know how many stars it has and the hotel type?\n3 ASSISTANT: It is a guesthouse and is valued at 3 stars.\n4 USER: What is the hotel type and what area is it located?\n5 ASSISTANT: The hotel type is guesthouse and the area is north.\n6 USER: Thank you. I would also like to find a restaurant located in the centre of town that specializes in unusual cuisine.\n7 ASSISTANT: I'm sorry, there are no restaurants in the centre that serve unusual cuisines.\n8 USER: How about Mediterranean food then?\n9 ASSISTANT: There are 3 options. Do you prefer cheap or expensive?\n10 USER: I'm not sure. What is the price range?\n11 ASSISTANT: The Gardina is cheap, while La Mimosa and Shiraz Restaurant are both expensive.  Would you like more information on one of these?\n12 USER: Any of them will work. I need transportation to get there. Any information on taxis?\n13 ASSISTANT: Sure. Which restaurant would you like to arrive at and when?\n14 USER: I would like to leave the hotel by 22:00 to go to The Gardina. Please let me know the contact number and car type.\n15 ASSISTANT: OK! I have booked you a black Tesla leaving Hamilton Lodge at 22:00 and heading to The Gardenia. The Driver's number is 07825515577. \n16 USER: Okay, sounds good.  Thanks for all your help!\n17 ASSISTANT: Not a problem! Have a great day!\nFIELDS [\"restaurant.area\",\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 962038,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ace148b832a8a9c40c32772949edaf4ecc0f0e55adbe57de2c9fd09cfca0813c",
+  "status": "ok"
+}

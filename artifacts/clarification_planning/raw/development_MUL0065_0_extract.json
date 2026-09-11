@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0065_0_extract",
+      "elapsed_seconds": 4.315350129967555,
+      "request_sha256": "c89b9bfacf0d88d290c9e7a7350cf95b8f3a539e29aa6c36643672b5d37b2d24",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":1,\"quote\":\"in the southern part of town\"},{\"key\":\"restaurant.name\",\"value\":\"Restaurant Alimentum\",\"turn\":3,\"quote\":\"Restaurant Alimentum for 8 people on Wednesday at 16:30? That would be good.\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":4,\"quote\":\"I would prefer a guesthouse. That's the only thing that really matters.\"},{\"key\":\"hotel.facility\",\"value\":\"free parking\",\"turn\":6,\"quote\":\"I specifically want free parking and don't mind if there is no Internet.\"},{\"key\":\"hotel.facility\",\"value\":\"free wifi\",\"turn\":8,\"quote\":\"How about a place with free parking and free wifi?\"},{\"key\":\"hotel.stars\",\"value\":\"4\",\"turn\":11,\"quote\":\"I've booked you at the allenbell guesthouse 517a coldham lane for three nights starting wednesday for 8 guests.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132341,
+        "id": "chatcmpl-b292ffe3fef34c2587a7ffccbaad86e4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 215,
+          "prompt_tokens": 563,
+          "prompt_tokens_details": null,
+          "total_tokens": 778
+        }
+      },
+      "started_utc": "2026-09-11T13:12:20.943236+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0065_0_extract",
+  "input_tokens": 563,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a restaurant, in the moderate price range, in the southern part of town.\n1 ASSISTANT: Pizza Hut Cherry Hinton and Restaurant Alimentum both meet your criteria. Would you like a table at one of these?\n2 USER: How about Restaurant Alimentum for 8 people on Wednesday at 16:30? That would be good.\n3 ASSISTANT: Your booking was successful. Reference number 6NOL39Q9. Can I help you with anything else?\n4 USER: Yes I also need a place to stay. I would prefer a guesthouse. That's the only thing that really matters.\n5 ASSISTANT: There are 24 guesthouses. Would you like to narrow this down by price range, area, star rating, or amenities?\n6 USER: I specifically want free parking and don't mind if there is no Internet.\n7 ASSISTANT: That narrows it down to 21 places. Is there a price range, area, or star rating you're looking for?\n8 USER: How about a place with free parking and free wifi? \n9 ASSISTANT: Certainly,  acorn guest house, alexander bed and breakfast, allenbell, and archway house are all four star rated.\n10 USER: Great I need 8 people for 3 nights starting wednesday.\n11 ASSISTANT: OK, I've booked you at the allenbell guesthouse 517a coldham lane for three nights starting wednesday for 8 guests. Your reference number is 1E099Y11. Is there anything else?\n12 USER: Is this acceptable? Is there anything else I can help you with?\n13 ASSISTANT: Will you be needing further assistance today?\n14 USER: No. Thank you that is all I needed.\n15 ASSISTANT: Your welcome! Have a good day! Goodbye.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 936429,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c89b9bfacf0d88d290c9e7a7350cf95b8f3a539e29aa6c36643672b5d37b2d24",
+  "status": "ok"
+}

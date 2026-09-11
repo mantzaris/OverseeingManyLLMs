@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0128_0_history",
+      "elapsed_seconds": 1.2616668950067833,
+      "request_sha256": "28eaba699ee9868b87a4c6c5fe6562bc5b30b51d89c69ff7b5c69511be3ada4e",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.area\": \"north\",\n  \"hotel.pricerange\": \"moderate\",\n  \"hotel.type\": \"guesthouse\",\n  \"restaurant.area\": \"north\",\n  \"restaurant.food\": \"indian\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132393,
+        "id": "chatcmpl-846feb2b42e443938ecb5a96877f7e72",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 49,
+          "prompt_tokens": 582,
+          "prompt_tokens_details": null,
+          "total_tokens": 631
+        }
+      },
+      "started_utc": "2026-09-11T13:13:13.666291+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0128_0_history",
+  "input_tokens": 582,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Are the any guest house type places to stay in the north part of town available?\n1 ASSISTANT: There are several available. Would you like us to book one for you?\n2 USER: as long as it has free wifi and is moderately priced in the area of north.\n3 ASSISTANT: There are 8 guesthouses on the north side of town that offer free internet and are moderately priced. What dates would you like to book and for how many people?\n4 USER: book for 2 people for days starting may 5 to may 7.\n5 ASSISTANT: We have acorn guest house, arbury lodge guesthouse, archway house, avalon, hamilton lodge, home from home, kirkwood house, or limehouse?\n6 USER: Can you book the limehouse for 1 person to stay 4 nights starting saturday?\n7 ASSISTANT: Booking was unsuccessful. Would you like to book for another day or a shorter stay?\n8 USER: how about 3 nights? Also could I get the reference number for the limehouse, and do you know if there is Indian food nearby it?\n9 ASSISTANT: I have successfully booked your room at the Limehouse. Your reference number is 4VB8JH2B. As for the restaurant, do you have any preferences as far as price range goes?\n10 USER: No preferences for the price range, but I'd like it to be in the same area as the hotel.\n11 ASSISTANT: There is the Nirala, it is moderately priced and the Royal Spice which is in the cheap price range.  Would you like me to book a table for you at one of these locations?\n12 USER: No thanks. I just need the phone number and postcode for each.\n13 ASSISTANT: The number for The Nirala is 01223360966 cb41uy. The number for Royal Spice is 01733553355 and the postcode is cb41eh.\n14 USER: Thank you. That's all I need today.\n15 ASSISTANT: Thank you and have a good day.\nFIELDS [\"hotel.area\",\"hotel.pricerange\",\"hotel.type\",\"restaurant.area\",\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 944779,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "28eaba699ee9868b87a4c6c5fe6562bc5b30b51d89c69ff7b5c69511be3ada4e",
+  "status": "ok"
+}

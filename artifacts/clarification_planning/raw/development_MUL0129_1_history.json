@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0129_1_history",
+      "elapsed_seconds": 0.47240416100248694,
+      "request_sha256": "a1705205bd422456d1e780ec71de116a6e762c59f09d02c8a787a0c52e4162bd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"restaurant.food\":\"modern global\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132409,
+        "id": "chatcmpl-06d081050e2e431fa7ae47d074e2bae3",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 10,
+          "prompt_tokens": 362,
+          "prompt_tokens_details": null,
+          "total_tokens": 372
+        }
+      },
+      "started_utc": "2026-09-11T13:13:28.853306+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0129_1_history",
+  "input_tokens": 362,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm visiting Cambridge and would like some suggestions for an upscale restaurant which serves modern global cuisine.\n1 ASSISTANT: I'm sorry. There is no matching restaurant. Would you like to try a different food type or price range?\n2 USER: Yes, how about a chinese restaurant?\n3 ASSISTANT: I found nine expensive Chinese restaurants.  Is there a part of town that you would prefer?\n4 USER: I don't care what part of town it is in, I will need the postcode though.\n5 ASSISTANT: The restaurant Yu Garden has a postcode of cb58pa. Can I help you with anything else today?\n6 USER: Yes! I'm looking for a particular hotel, the name is home from home.\n7 ASSISTANT: That is a moderately priced guesthouse in the north. \n8 USER: Great can I get their address, whether they have free parking, and internet?\n9 ASSISTANT: The address is 78-80 milton road. They have free parking and internet. \n10 USER: Thank you. That's everything I will need today.\n11 ASSISTANT: Wonderful, I'm glad I could assist you, have a wonderful stay.\nFIELDS [\"restaurant.food\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1069328,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "a1705205bd422456d1e780ec71de116a6e762c59f09d02c8a787a0c52e4162bd",
+  "status": "ok"
+}

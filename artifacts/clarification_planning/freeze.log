@@ -1,0 +1,184 @@
+{
+  "frozen_utc": "2026-09-11T13:28:19.217245+00:00",
+  "baseline": "569c0603dc297c36faff2cb22558c80180adc004",
+  "generation_replicates": 2,
+  "task_rule": "At least two supported requested domains. One distinct executable shortlist per domain, no masked evidence, no selection on generated errors or complementary gains.",
+  "empirical_methods": [
+    "semantic_memory",
+    "full_history",
+    "one_step",
+    "completion",
+    "depth2",
+    "depth3",
+    "generic2",
+    "no_scope",
+    "request_specific",
+    "ideal_depth2"
+  ],
+  "response_budgets": [
+    0,
+    1,
+    2,
+    4,
+    6,
+    "unlimited"
+  ],
+  "error_weights": [
+    2,
+    4,
+    8
+  ],
+  "defer_weight": 1,
+  "question_cost": 1,
+  "question_penalty": 0.05,
+  "primary": {
+    "budget": 2,
+    "error_weight": 4,
+    "contrasts": [
+      "depth2 minus one_step",
+      "depth2 minus semantic_memory"
+    ],
+    "outcome": "terminal loss; report correct/incorrect/unfinished tasks, project correctness and additional responses separately",
+    "independent_unit": "source dialogue"
+  },
+  "analysis": {
+    "seed": 82164,
+    "bootstrap_resamples": 2000,
+    "replicates_averaged_before_resampling": true,
+    "all_matched_conditions_resampled_together": true,
+    "intervals": "paired percentile 95%, two prespecified descriptive primary comparisons, no significance-based selection or multiplicity claim",
+    "examples": "First lexicographic qualifying dialogue for favorable, tied, unfavorable primary loss contrasts; replicate zero display"
+  },
+  "synthetic": {
+    "families": [
+      "independent",
+      "shared",
+      "complementary",
+      "mixed",
+      "scope_exception",
+      "wrong_sharing",
+      "revision",
+      "revocation",
+      "noisy_response",
+      "unresolved_response",
+      "memory_suffices",
+      "zero_value",
+      "large_generic_trap",
+      "misspecified"
+    ],
+    "development_seeds": [
+      2000,
+      2001,
+      2002,
+      2003
+    ],
+    "evaluation_seeds": [
+      5000,
+      5001,
+      5002,
+      5003,
+      5004,
+      5005,
+      5006,
+      5007,
+      5008,
+      5009,
+      5010,
+      5011,
+      5012,
+      5013,
+      5014,
+      5015,
+      5016,
+      5017,
+      5018,
+      5019
+    ],
+    "grid": {
+      "overlap": [
+        "none",
+        "one",
+        "full"
+      ],
+      "arity": [
+        1,
+        2,
+        3
+      ],
+      "development_seeds": [
+        2100,
+        2101
+      ],
+      "evaluation_seeds": [
+        6000,
+        6001,
+        6002,
+        6003,
+        6004,
+        6005,
+        6006,
+        6007,
+        6008,
+        6009,
+        6010,
+        6011
+      ]
+    },
+    "methods": [
+      "no_review",
+      "memory",
+      "uncertainty",
+      "depth1",
+      "completion",
+      "depth2",
+      "depth3",
+      "generic2",
+      "no_scope",
+      "request_specific"
+    ],
+    "instances": 388,
+    "expected_rows": 23280,
+    "response_conditions": "accurate; separate 0.2 symmetric errors and 0.3 unresolved; misspecified value/scope priors are separate families"
+  },
+  "expected_empirical_rows": 17280,
+  "additional_generation_calls": 288,
+  "prior_development_calls": 108,
+  "total_forecast_calls": 396,
+  "attempt_ceiling": 1200,
+  "scheduled_call_ceiling": 600,
+  "forecast": {
+    "measured_development_mean_attempt_seconds": 1.567670374852174,
+    "remaining_generation_seconds": 451.48906795742613,
+    "conservative_seconds": 902.9781359148523,
+    "analysis_reserve_minutes": 45,
+    "inference_cutoff_utc": "2026-09-11T15:20:24+00:00"
+  },
+  "model": {
+    "name": "Qwen/Qwen2.5-7B-Instruct",
+    "revision": "a09a35458c702b33eeacc393d103063234e8bc28",
+    "dtype": "bfloat16",
+    "gpu": "RTX 6000 Ada",
+    "cpu_offload_gb": 0,
+    "temperature": 0.3,
+    "top_p": 1,
+    "max_model_len": 2048,
+    "output_tokens_extract": 640,
+    "output_tokens_other": 256,
+    "serial": true
+  },
+  "search": {
+    "depths": [
+      1,
+      2,
+      3
+    ],
+    "candidate_width": 8,
+    "completion_block_size": 3,
+    "node_limit": 25000,
+    "exact_factor_limit": 6,
+    "exact_budget_limit": 6,
+    "small_pruning_sensitivity_width": 2
+  },
+  "failure_handling": "At most one transport retry; no reruns for poor answers. Preserve parse/context/transport failures, unresolved responses, incorrect releases and unfinished tasks. No replacement source IDs.",
+  "estimator_hash": "00aefac6d21500403d2cc02013bd7487dd23a4f630122463adde94d184113537"
+}

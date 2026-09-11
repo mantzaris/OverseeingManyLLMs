@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0178_0_extract",
+      "elapsed_seconds": 2.2423952920362353,
+      "request_sha256": "5262081075af61825d4968f4f12096cc6a6b2994ec1601fdc65de7aec9e7a4f1",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"in the centre\"},{\"key\":\"restaurant.food\",\"value\":\"chinese\",\"turn\":0,\"quote\":\"Chinese restaurant\"},{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":2,\"quote\":\"moderate price range\"},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":12,\"quote\":\"centre\"},{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":12,\"quote\":\"moderate hotel\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132525,
+        "id": "chatcmpl-714e8b88f3ef4a9aaec436aa2696c632",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 109,
+          "prompt_tokens": 673,
+          "prompt_tokens_details": null,
+          "total_tokens": 782
+        }
+      },
+      "started_utc": "2026-09-11T13:15:24.912393+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0178_0_extract",
+  "input_tokens": 673,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, I am looking for a Chinese restaurant in the centre. \n1 ASSISTANT: There are 10 Chinese restaurants in the centre. Is there a particular price range you're interested in?\n2 USER: Yes, I would prefer a restaurant in the moderate price range.\n3 ASSISTANT: Might I suggest the Jinling Noodle Bar? I can book a table there for you, if you like.\n4 USER: No, thank you. I would like the address, phone number and postcode, please.\n5 ASSISTANT: Sure. The address is 11 Peas Hill City Centre, the postcode is cb23pp, and the phone number is 01223566188. What else can I do for you?\n6 USER: Yes I'm also looking for a place to stay.\n7 ASSISTANT: Sure, I have 33 hotel options available. Can you tell me more about what you need? What area or price range, perhaps?\n8 USER: Is there anything within walking distance of the Jinling?   \n9 ASSISTANT: I have a cheaper guesthouse nearby the restaurant named El Shaddai or an expensive hotel called CityRoomz. Would you like more information on one of those?\n10 USER: I am looking for a hotel with free wifi available for 3 people for 3 nights starting sunday\n11 ASSISTANT: Ok, Cityroomz has free wifi. Unfortunately, they cannot book for 3 nights. Would you like to try El Shaddai or another night?\n12 USER: Actually, I'd like a moderate hotel in the centre with free wifi. I need to book it for 3 people for 3 nights starting Sunday. And a reference number please?\n13 ASSISTANT: Great! You're all set. Your reference number is G7YT1WEQ. How else may I assist you?\n14 USER: Yes. I'd like to book a taxi between both places. I want to leave the hotel by 20:00. Please provide me with a contact number and car type.\n15 ASSISTANT: Great, you have a black Toyota booked from Cityroomz to Jinling Noodle Bar, the contact number is 07486349106\n\n16 USER: Thank you so much, that's all I need\n17 ASSISTANT: You're welcome! It was a pleasure assisting you!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 961529,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5262081075af61825d4968f4f12096cc6a6b2994ec1601fdc65de7aec9e7a4f1",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0135_0_history",
+      "elapsed_seconds": 1.2124710229691118,
+      "request_sha256": "2d3e8bf7b2888a186c66b110938d8036fe21dfc947c3fd40c069ba6a7e065133",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answers\": {\n    \"hotel.area\": \"south\",\n    \"hotel.stars\": \"\",\n    \"restaurant.food\": \"portuguese\",\n    \"restaurant.pricerange\": \"cheap\"\n  }\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132413,
+        "id": "chatcmpl-8c6324ddf8a5468b97f615f6378b41d0",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 46,
+          "prompt_tokens": 592,
+          "prompt_tokens_details": null,
+          "total_tokens": 638
+        }
+      },
+      "started_utc": "2026-09-11T13:13:33.341215+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0135_0_history",
+  "input_tokens": 592,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a local,cheap place to eat.\n1 ASSISTANT: There are a total of 22 restaurants that are cheap. Any particular food type you would like?\n2 USER: Yes, I am looking for portuguese food.\n3 ASSISTANT: I found two restaurants in the area that serve Portuguese food. Would you like me to book one now?\n4 USER: No thank you, could you provide me with the phone number and postcode?\n5 ASSISTANT: The phone number is 01223327908 and postcode is cb23ar\n6 USER: Thank you I need a place to stay also. I was hoping to stay in the east.\n7 ASSISTANT: There are 5 hotels in the east. Do you prefer the moderate or cheap price range?\n8 USER: I don't really know what price range. I would like it to have a 3 star rating and free wifi though.\n9 ASSISTANT: I was not able to find any hotels matching that requirement.\n10 USER: Ok, could you check in the south area for one instead?\n11 ASSISTANT: I found two: Bridge Guest House in a moderate price range or The Lensfield Hotel in an expensive price range. Would you like to book one?\n12 USER: Okay, what is the postcode of the Bridge Guest House?\n13 ASSISTANT: The postcode for the Bridge Guest House is cb28rj. \n14 USER: I will need a taxi from the hotel to the restaurant. I want to leave the hotel by 7:15.\n15 ASSISTANT: I have booked you taxi fro your hotel to nandos city centre, leaving at 07:15. The contact number is 07137465500. Can I help with anything else?\n16 USER: What type of car is the taxi?\n17 ASSISTANT: The taxi is a blue tesla. Is there anything else I can help you with?\n18 USER: No, that's all I need today. I appreciate all your help - thanks!\n19 ASSISTANT: I'm glad we could be of service, have a nice day!\nFIELDS [\"hotel.area\",\"hotel.stars\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 968047,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "2d3e8bf7b2888a186c66b110938d8036fe21dfc947c3fd40c069ba6a7e065133",
+  "status": "ok"
+}

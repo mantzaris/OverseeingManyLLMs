@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0129_1_extract",
+      "elapsed_seconds": 2.0826184160541743,
+      "request_sha256": "57b128abf39a90e422b78a32c9e45a2237f6bd9861d8502919053553b37c2d6a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"modern global\",\"turn\":0,\"quote\":\"modern global cuisine\"},{\"key\":\"restaurant.pricerange\",\"value\":\"expensive\",\"turn\":0,\"quote\":\"upscale restaurant which serves modern global cuisine\"},{\"key\":\"restaurant.cuisine\",\"value\":\"chinese\",\"turn\":3,\"quote\":\"a chinese restaurant\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":7,\"quote\":\"is a moderately priced guesthouse\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132406,
+        "id": "chatcmpl-fc266b1a6479468fb083c981de777393",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 97,
+          "prompt_tokens": 411,
+          "prompt_tokens_details": null,
+          "total_tokens": 508
+        }
+      },
+      "started_utc": "2026-09-11T13:13:26.493837+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0129_1_extract",
+  "input_tokens": 411,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm visiting Cambridge and would like some suggestions for an upscale restaurant which serves modern global cuisine.\n1 ASSISTANT: I'm sorry. There is no matching restaurant. Would you like to try a different food type or price range?\n2 USER: Yes, how about a chinese restaurant?\n3 ASSISTANT: I found nine expensive Chinese restaurants.  Is there a part of town that you would prefer?\n4 USER: I don't care what part of town it is in, I will need the postcode though.\n5 ASSISTANT: The restaurant Yu Garden has a postcode of cb58pa. Can I help you with anything else today?\n6 USER: Yes! I'm looking for a particular hotel, the name is home from home.\n7 ASSISTANT: That is a moderately priced guesthouse in the north. \n8 USER: Great can I get their address, whether they have free parking, and internet?\n9 ASSISTANT: The address is 78-80 milton road. They have free parking and internet. \n10 USER: Thank you. That's everything I will need today.\n11 ASSISTANT: Wonderful, I'm glad I could assist you, have a wonderful stay.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1069327,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "57b128abf39a90e422b78a32c9e45a2237f6bd9861d8502919053553b37c2d6a",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0142_1_extract",
+      "elapsed_seconds": 5.410852447967045,
+      "request_sha256": "e3747b7354ad5fc4cc55e716f587aaed190c847ffd2b610a44189154c7391e66",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.pricerange\",\"value\":\"moderate\",\"turn\":1,\"quote\":\"moderately priced place to dine that is located somewhere near the centre\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":6,\"quote\":\"Is there a guesthouse with free parking and wifi nearby?\"},{\"key\":\"hotel.pricerange\",\"value\":\"cheap\",\"turn\":6,\"quote\":\"Is there a guesthouse with free parking and wifi nearby?\"},{\"key\":\"hotel.stars\",\"value\":\"4\",\"turn\":7,\"quote\":\"The Alexander Bed and Breakfast a 4 star guesthouse in the centre part of town in the cheap price range. Does this sound acceptable to book?\"},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":7,\"quote\":\"The Alexander Bed and Breakfast a 4 star guesthouse in the centre part of town in the cheap price range. Does this sound acceptable to book?\"},{\"key\":\"hotel.pricerange\",\"value\":\"cheap\",\"turn\":12,\"quote\":\"Is it available for a single night stay?\"},{\"key\":\"hotel.type\",\"value\":\"guesthouse\",\"turn\":18,\"quote\":\"I'll want to leave the guesthouse to arrive at our lunch reservation by 11:30. Please let me know the car type of the taxi and a contact number.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132496,
+        "id": "chatcmpl-638fc03f2894496394fc3a3f4327832f",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 276,
+          "prompt_tokens": 703,
+          "prompt_tokens_details": null,
+          "total_tokens": 979
+        }
+      },
+      "started_utc": "2026-09-11T13:14:55.970419+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0142_1_extract",
+  "input_tokens": 703,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Can you help me fine a local restaurant? I am looking for a moderately priced place to dine that is located somewhere near the centre.\n1 ASSISTANT: There are a total of 21 restaurants that match that criteria. Is there a certain style of food you are wanting?\n2 USER: No particular food style, but I need a reservation for 1 on Saturday at 11:30, once I decide on a place I will need a reference number. \n3 ASSISTANT: Do you have a further preference to reduce the number of acceptable entries?\n4 USER: I am also looking for a place to stay. I need a guesthouse with free wifi.\n5 ASSISTANT: Booking was successful at yippee noodle bar. The table will be reserved for 15 minutes. Reference number is : K1103XE1.\n6 USER: Thank you!  Is there a guesthouse with free parking and wifi nearby?\n7 ASSISTANT: We have the Alexander Bed and Breakfast a 4 star guesthouse in the centre part of town in the cheap price range. Does this sound acceptable to book?\n8 USER: Are there any hotels instead of guesthouses with the same criteria? \n9 ASSISTANT: The University Arms Hotel might be your best bet. It is an expensive 4-star hotel in the center of town with free wifi and free parking. \n10 USER: Actually, can you please book the Alexander Bed and Breakfast instead? I'll be arriving on Saturday and need a room for 4 nights. Just one person.\n11 ASSISTANT: I'm sorry, but there are no vacancies for your requested time. Would you like to try a different day or perhaps a shorter stay?\n12 USER: Is it available for a single night stay?\n13 ASSISTANT: Yes. I have booked your reservation for one night. The reference number is Q1BD4PP0\n14 USER: I also need a taxi in order to commute \n15 ASSISTANT: when do you want to depart and/or arrive?\n16 USER: I'll want to leave the guesthouse to arrive at our lunch reservation by 11:30. Please let me know the car type of the taxi and a contact number.\n17 ASSISTANT: I have booked you a taxi meeting your requirements. It is a yellow volkswagen and the contact number is 07340142322.\n18 USER: Great. Thank you. That is all I need for today. \n19 ASSISTANT: Good day then, pleasure serving you.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1013270,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "e3747b7354ad5fc4cc55e716f587aaed190c847ffd2b610a44189154c7391e66",
+  "status": "ok"
+}

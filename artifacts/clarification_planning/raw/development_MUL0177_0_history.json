@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0177_0_history",
+      "elapsed_seconds": 1.1473060899879783,
+      "request_sha256": "1381b45d9a6abc048bd6c55c38fe40d08a71617da892c0a7d215834c4576ac79",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.area\": \"north\",\n  \"restaurant.area\": \"north\",\n  \"restaurant.food\": \"international\",\n  \"restaurant.pricerange\": \"cheap\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132517,
+        "id": "chatcmpl-1b67da105b2e4f75aabd6f548c4cb421",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 509,
+          "prompt_tokens_details": null,
+          "total_tokens": 547
+        }
+      },
+      "started_utc": "2026-09-11T13:15:17.018326+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0177_0_history",
+  "input_tokens": 509,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hi, I need a hotel that includes free wifi in the north of Cambridge.\n1 ASSISTANT: Yes I have many listings for that type of hotel,if you tell me your price range I can narrow down your options.\n2 USER: Hotel doesn't need to have free parking. I don't care about price range.\n3 ASSISTANT: The avalon is a moderately priced guesthouse-type that matches your criteria.\n4 USER: What is the postcode, price range, and address?\n5 ASSISTANT: The postcode for the Avalon is cb43pd, it is moderately priced hotel, and it is located at 62 gilbert road.\n6 USER: Thank you so much. I am also looking for information on a place to dine in the same area of the hotel. I would prefer international food.\n7 ASSISTANT: Unfortunately there are no matching restaurants in the North. Would you like to try a different type of cuisine, or a different area?\n8 USER: Maybe... are you sure there is no cheap international food in the north?\n9 ASSISTANT: No I am sorry there are no locations I have found. Is there anything else I can help you with?\n10 USER: Since there is no cheap international restaurants, is there any Italian restaurants?\n11 ASSISTANT: There is one, Da Vinci Pizzeria, would you like to book that?\n12 USER: Hold off on booking. Could you give me the address and phone number for it?\n13 ASSISTANT: Sure, da vinci pizzeria is located at 20 Milton Road Chesterton postcode cb41jy, phone 01223351707.  Can I help you with anything else?\n14 USER: No that should be all thank you\n15 ASSISTANT: Thank you, goodbye.\nFIELDS [\"hotel.area\",\"restaurant.area\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 948249,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "1381b45d9a6abc048bd6c55c38fe40d08a71617da892c0a7d215834c4576ac79",
+  "status": "ok"
+}

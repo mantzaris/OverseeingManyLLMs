@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0082_1_history",
+      "elapsed_seconds": 0.6276101469993591,
+      "request_sha256": "018d9236b55df62ebea8e5488d1b3c6e09ed1a0a7ee696ca1a0b97c8c18baf4b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answers\":{\"hotel.pricerange\":\"moderate\",\"hotel.type\":\"guesthouse\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132360,
+        "id": "chatcmpl-85081de2b2774b2b81d17fac33c9049d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 19,
+          "prompt_tokens": 433,
+          "prompt_tokens_details": null,
+          "total_tokens": 452
+        }
+      },
+      "started_utc": "2026-09-11T13:12:40.127141+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0082_1_history",
+  "input_tokens": 433,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I looking for a restaurant called Golden House\n1 ASSISTANT: The Golden House is a Chinese restaurant at 12 Lensfield Road City Centre. Would you like their phone number?\n2 USER: I would like to know the food type and price range of the restaurant please.\n3 ASSISTANT: The golden house serves Chinese cuisine and the price range is cheap. Would you like me to place a reservation for you?\n4 USER: Please let me think about it, in the meantime, can you tell me what guesthouses include free parking?\n5 ASSISTANT: There are 21 guesthouses that include free parking, did you have an area or price range in mind?\n6 USER: Yes. I would like it to be in the moderate price range. Also, I'd prefer free wifi.\n7 ASSISTANT: I have 12 guesthouses that are moderately priced and include free wifi. Is there an area that you prefer to stay in?\n8 USER: No, any one of them will do. Please choose one for me and book a room for 8 people for 5 nights for Tuesday. Thanks. \n9 ASSISTANT: OK, you're booked at the acorn guest house, 82 arbury road, for 5 nights starting Tuesday. Your reference number is F2CK0QDQ. Is there anything else?\n10 USER: No, that is all. Thank you very much.\n11 ASSISTANT: Thank you for using our service. Have a great day!\nFIELDS [\"hotel.pricerange\",\"hotel.type\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1076725,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "018d9236b55df62ebea8e5488d1b3c6e09ed1a0a7ee696ca1a0b97c8c18baf4b",
+  "status": "ok"
+}

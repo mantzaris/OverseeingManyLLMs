@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0065_1_history",
+      "elapsed_seconds": 0.8693558890372515,
+      "request_sha256": "b767d6ceb0560bdcd57558b45979cf656737af48bedff7bb34c98a7f9fe76de3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.type\": \"guesthouse\",\n  \"restaurant.area\": \"south\",\n  \"restaurant.pricerange\": \"moderate\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132352,
+        "id": "chatcmpl-a7e67532013f445eac46c0209d1fdd88",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 32,
+          "prompt_tokens": 523,
+          "prompt_tokens_details": null,
+          "total_tokens": 555
+        }
+      },
+      "started_utc": "2026-09-11T13:12:32.131632+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0065_1_history",
+  "input_tokens": 523,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a restaurant, in the moderate price range, in the southern part of town.\n1 ASSISTANT: Pizza Hut Cherry Hinton and Restaurant Alimentum both meet your criteria. Would you like a table at one of these?\n2 USER: How about Restaurant Alimentum for 8 people on Wednesday at 16:30? That would be good.\n3 ASSISTANT: Your booking was successful. Reference number 6NOL39Q9. Can I help you with anything else?\n4 USER: Yes I also need a place to stay. I would prefer a guesthouse. That's the only thing that really matters.\n5 ASSISTANT: There are 24 guesthouses. Would you like to narrow this down by price range, area, star rating, or amenities?\n6 USER: I specifically want free parking and don't mind if there is no Internet.\n7 ASSISTANT: That narrows it down to 21 places. Is there a price range, area, or star rating you're looking for?\n8 USER: How about a place with free parking and free wifi? \n9 ASSISTANT: Certainly,  acorn guest house, alexander bed and breakfast, allenbell, and archway house are all four star rated.\n10 USER: Great I need 8 people for 3 nights starting wednesday.\n11 ASSISTANT: OK, I've booked you at the allenbell guesthouse 517a coldham lane for three nights starting wednesday for 8 guests. Your reference number is 1E099Y11. Is there anything else?\n12 USER: Is this acceptable? Is there anything else I can help you with?\n13 ASSISTANT: Will you be needing further assistance today?\n14 USER: No. Thank you that is all I needed.\n15 ASSISTANT: Your welcome! Have a good day! Goodbye.\nFIELDS [\"hotel.type\",\"restaurant.area\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1036430,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b767d6ceb0560bdcd57558b45979cf656737af48bedff7bb34c98a7f9fe76de3",
+  "status": "ok"
+}

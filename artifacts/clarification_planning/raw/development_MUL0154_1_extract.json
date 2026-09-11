@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0154_1_extract",
+      "elapsed_seconds": 2.1643897580215707,
+      "request_sha256": "8ae2940e6830ae1b111dbdbadd6bae5f9a62e78942cc7b7141238b3360b710f1",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.pricerange\",\"value\":\"cheap\",\"turn\":0,\"quote\":\"cheap restaurant\"},{\"key\":\"restaurant.food\",\"value\":\"modern european\",\"turn\":0,\"quote\":\"modern european food\"},{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":6,\"quote\":\"Can you find me something in the centre?\"},{\"key\":\"hotel.type\",\"value\":\"bed and breakfast\",\"turn\":7,\"quote\":\"The Alexander Bed and Breakfast guesthouse will be fine, thanks.\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132509,
+        "id": "chatcmpl-f06bb4fc723f484a9398ea08de9b1d73",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 102,
+          "prompt_tokens": 565,
+          "prompt_tokens_details": null,
+          "total_tokens": 667
+        }
+      },
+      "started_utc": "2026-09-11T13:15:09.398659+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0154_1_extract",
+  "input_tokens": 565,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I'm looking for a cheap restaurant that serves modern european food.\n1 ASSISTANT: the river bar steakhouse and grill meets your preferences. They are located in centre at Quayside Off Bridge Street.\n2 USER: Thank you very much.\n3 ASSISTANT: You're welcome, goodbye.\n4 USER: Wait, I need a reservation, please. Can I get a table on Wednesday at 18:45 for 2 people? I'll need the reference number.\n5 ASSISTANT: Your reservation is all set, reference number is U4UFT1IY\n6 USER: I need a cheap place to stay, too. Can you find me something in the centre?\n7 ASSISTANT: The Alexander Bed and Breakfast guesthouse is 4 stars and the El Shaddai is 0 stars.  Would you like me to book one of these options for you?\n8 USER: The Alexander Bed and Breakfast guesthouse will be fine, thanks.\n9 ASSISTANT: Thank you. Is there anything else I can help you with today?\n10 USER: I need more information about the guesthouse, do they have free parking?  What is the address and phone number?\n11 ASSISTANT: Parking is free, the phone number is 01223525725 and the address is 56 saint barnabas road. \n12 USER: Could you book a taxi for me? I am looking for one to take me between the restaurant and hotel and i need it to arrive at the restaurant by the booked time.\n13 ASSISTANT: I have booked the taxi, the contact number is 07846881745. The car type is a grey ford. Anything else I can help you with today?\n14 USER: No that's all I needed. Thank you!\n15 ASSISTANT: You're Welcome. Thank you for using our services.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1071434,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8ae2940e6830ae1b111dbdbadd6bae5f9a62e78942cc7b7141238b3360b710f1",
+  "status": "ok"
+}

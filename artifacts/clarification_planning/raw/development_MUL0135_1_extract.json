@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0135_1_extract",
+      "elapsed_seconds": 3.4056939650326967,
+      "request_sha256": "724dcf4e8c4d458ce6c425308aa23552d79229c54d3df66da68f0a6216532192",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"portuguese\",\"turn\":2,\"quote\":\"Yes, I am looking for portuguese food.\"},{\"key\":\"hotel.stars\",\"value\":\"3\",\"turn\":9,\"quote\":\"I would like it to have a 3 star rating\"},{\"key\":\"hotel.area\",\"value\":\"south\",\"turn\":10,\"quote\":\"Ok, could you check in the south area for one instead?\"},{\"key\":\"restaurant.area\",\"value\":\"city centre\",\"turn\":15,\"quote\":\"I have booked you taxi fro your hotel to nandos city centre, leaving at 07:15.\"},{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":11,\"quote\":\"I found two: Bridge Guest House in a moderate price range\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132416,
+        "id": "chatcmpl-bf338b1d43f144458af6d1d2189e8bfc",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 167,
+          "prompt_tokens": 628,
+          "prompt_tokens_details": null,
+          "total_tokens": 795
+        }
+      },
+      "started_utc": "2026-09-11T13:13:35.966381+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0135_1_extract",
+  "input_tokens": 628,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: I am looking for a local,cheap place to eat.\n1 ASSISTANT: There are a total of 22 restaurants that are cheap. Any particular food type you would like?\n2 USER: Yes, I am looking for portuguese food.\n3 ASSISTANT: I found two restaurants in the area that serve Portuguese food. Would you like me to book one now?\n4 USER: No thank you, could you provide me with the phone number and postcode?\n5 ASSISTANT: The phone number is 01223327908 and postcode is cb23ar\n6 USER: Thank you I need a place to stay also. I was hoping to stay in the east.\n7 ASSISTANT: There are 5 hotels in the east. Do you prefer the moderate or cheap price range?\n8 USER: I don't really know what price range. I would like it to have a 3 star rating and free wifi though.\n9 ASSISTANT: I was not able to find any hotels matching that requirement.\n10 USER: Ok, could you check in the south area for one instead?\n11 ASSISTANT: I found two: Bridge Guest House in a moderate price range or The Lensfield Hotel in an expensive price range. Would you like to book one?\n12 USER: Okay, what is the postcode of the Bridge Guest House?\n13 ASSISTANT: The postcode for the Bridge Guest House is cb28rj. \n14 USER: I will need a taxi from the hotel to the restaurant. I want to leave the hotel by 7:15.\n15 ASSISTANT: I have booked you taxi fro your hotel to nandos city centre, leaving at 07:15. The contact number is 07137465500. Can I help with anything else?\n16 USER: What type of car is the taxi?\n17 ASSISTANT: The taxi is a blue tesla. Is there anything else I can help you with?\n18 USER: No, that's all I need today. I appreciate all your help - thanks!\n19 ASSISTANT: I'm glad we could be of service, have a nice day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1068046,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "724dcf4e8c4d458ce6c425308aa23552d79229c54d3df66da68f0a6216532192",
+  "status": "ok"
+}

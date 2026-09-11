@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0187_0_history",
+      "elapsed_seconds": 1.1782776119653136,
+      "request_sha256": "fd1f0cc438216c9f0c42b0146aa496333f833fa5c21b1963afa51139aeb671c1",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"hotel.area\": \"east\",\n  \"hotel.pricerange\": \"moderate\",\n  \"restaurant.food\": \"british\",\n  \"restaurant.pricerange\": \"moderate\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132555,
+        "id": "chatcmpl-84edd308d99646ff8d0b15590ae396a4",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 44,
+          "prompt_tokens": 593,
+          "prompt_tokens_details": null,
+          "total_tokens": 637
+        }
+      },
+      "started_utc": "2026-09-11T13:15:54.877533+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0187_0_history",
+  "input_tokens": 593,
+  "request": {
+    "max_tokens": 256,
+    "messages": [
+      {
+        "content": "Answer the listed CURRENT travel preference fields from the supplied USER dialogue. Respect domains, changes, exceptions and explicit references. Assistant suggestions alone are not user decisions. Return JSON {\"answers\":{\"hotel.area\":\"centre\"}} keyed by every requested field; use UNKNOWN when unsupported. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; cuisine and attraction type lower-case. No confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I am looking for a moderate priced place to eat that serves British food in Cambridge.\n1 ASSISTANT: Would you be interested in a couple of recommendations? I have The Copper Kettle in the centre and Saint Johns Chop House in the west. Both serve great British cuisine.\n2 USER: Can I have The Copper Kettle's phone number and address, please?\n3 ASSISTANT: Of course! The Copper Kettle's number is 01223323361 and they are located at 4 Kings Parade City Centre.\n4 USER: What is the area for The copper Kettle? \n5 ASSISTANT: The Copper Kettle is located in the center of town.\n6 USER: I would like to book a cab please.\n7 ASSISTANT: Alright. I will need more information first. Where can the taxi pick you up, when would you like to leave, and when do you need to arrive?\n8 USER: I don't care.\n9 ASSISTANT: I am sorry, I cannot book a taxi for you without this information.\n10 USER: I need a place to stay please. \n11 ASSISTANT: I have 33 results for a place to stay. Would you prefer a hotel or a guesthouse? Did you have a preference on location? \n12 USER: Someplace moderately priced with free wifi on the east side of town would be best.\n13 ASSISTANT: There are 3 results for a place to stay, would you like me to book you a room now?\n14 USER: Sure. I need to book it for 3 people staying for 4 nights starting sunday. Please provide a reference number. Thanks! \n15 ASSISTANT: A and B Guest House meets your criteria so I have booked it for you.  The reference number is N5NTPZKL.  \n16 USER: Thanks. That's everything I need.\n17 ASSISTANT: All right, if you're sure you don't need a taxi as well, have a very good day, then.\n18 USER: I will.  Thanks for your help.\n19 ASSISTANT: If you need to book a taxi , please call back. Thank you.\nFIELDS [\"hotel.area\",\"hotel.pricerange\",\"restaurant.food\",\"restaurant.pricerange\"]",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 929328,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "fd1f0cc438216c9f0c42b0146aa496333f833fa5c21b1963afa51139aeb671c1",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "development_MUL0082_1_extract",
+      "elapsed_seconds": 1.4429853369947523,
+      "request_sha256": "04eebf14dca73023aea5bfd760bbb2c63fe84c0f08c3e63a95228c1905b493c1",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"records\":[{\"key\":\"restaurant.food\",\"value\":\"chinese\",\"turn\":2,\"quote\":\"The golden house serves Chinese cuisine\"},{\"key\":\"hotel.pricerange\",\"value\":\"moderate\",\"turn\":7,\"quote\":\"I have 12 guesthouses that are moderately priced and include free wifi\"}]}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789132358,
+        "id": "chatcmpl-d2cd266453a341459d1d35ef9c93e382",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 63,
+          "prompt_tokens": 476,
+          "prompt_tokens_details": null,
+          "total_tokens": 539
+        }
+      },
+      "started_utc": "2026-09-11T13:12:38.389634+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "development_MUL0082_1_extract",
+  "input_tokens": 476,
+  "request": {
+    "max_tokens": 640,
+    "messages": [
+      {
+        "content": "Extract CURRENT travel preferences actually stated or accepted by the USER. Return JSON {\"records\":[{\"key\":\"hotel.area\",\"value\":\"centre\",\"turn\":0,\"quote\":\"exact USER substring\"}]}. Keys: hotel.area, hotel.pricerange, hotel.stars, hotel.type, restaurant.area, restaurant.pricerange, restaurant.food, attraction.area, attraction.type. Respect domain, changes and references. Assistant suggestions alone are not user decisions. Normalize area centre/north/south/east/west; price cheap/moderate/expensive; stars digits; lodging type hotel/guesthouse; other values lower-case. Omit unknown/no-preference. At most nine records, short exact source quotations. Do not supply confidence scores.",
+        "role": "system"
+      },
+      {
+        "content": "0 USER: Hello, I looking for a restaurant called Golden House\n1 ASSISTANT: The Golden House is a Chinese restaurant at 12 Lensfield Road City Centre. Would you like their phone number?\n2 USER: I would like to know the food type and price range of the restaurant please.\n3 ASSISTANT: The golden house serves Chinese cuisine and the price range is cheap. Would you like me to place a reservation for you?\n4 USER: Please let me think about it, in the meantime, can you tell me what guesthouses include free parking?\n5 ASSISTANT: There are 21 guesthouses that include free parking, did you have an area or price range in mind?\n6 USER: Yes. I would like it to be in the moderate price range. Also, I'd prefer free wifi.\n7 ASSISTANT: I have 12 guesthouses that are moderately priced and include free wifi. Is there an area that you prefer to stay in?\n8 USER: No, any one of them will do. Please choose one for me and book a room for 8 people for 5 nights for Tuesday. Thanks. \n9 ASSISTANT: OK, you're booked at the acorn guest house, 82 arbury road, for 5 nights starting Tuesday. Your reference number is F2CK0QDQ. Is there anything else?\n10 USER: No, that is all. Thank you very much.\n11 ASSISTANT: Thank you for using our service. Have a great day!",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 1076724,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "04eebf14dca73023aea5bfd760bbb2c63fe84c0f08c3e63a95228c1905b493c1",
+  "status": "ok"
+}
