@@ -2,6 +2,22 @@
 
 This map separates the adapted retail evidence from the preserved synthetic-maintenance evidence.
 
+
+## Current measured-data claims
+
+| Proposed claim | Exact evidence | Scope and limit |
+|---|---|---|
+| The primary application uses measured laboratory observations | [Provenance](../artifacts/stage7_empirical/provenance.json), [source checksums](../artifacts/stage7_empirical/source_checksums.json), [cases](../artifacts/stage7_empirical/cases.json) | 26 day conditions on one FLEXLAB unit, manually imposed faults. Not simulated sensors, occupied-building operations or natural fault incidence. |
+| Evaluation separates whole source days | [Frozen declaration](../artifacts/stage7_empirical/declaration.json), [focused tests](../artifacts/stage7_empirical/focused_tests_freeze.txt) | Eight development, 18 evaluation days; 54 correlated windows. Not 54 independent source units. |
+| Diagnosis and model review are weak | [Class diagnostics](../artifacts/stage7_empirical/analysis/class_diagnostics.csv), [review diagnostics](../artifacts/stage7_empirical/analysis/extra_diagnostics.json), [all diagnoses](../artifacts/stage7_empirical/analysis/diagnoses.csv) | 19/54 proposal correctness versus conventional 27/54. One correction, five wrong-label introductions and one harmful abstention. No claim of reliable deployed diagnosis. |
+| Primary scheduling tie is mechanical | [Paired table](../artifacts/stage7_empirical/analysis/paired.csv), model / heterogeneous / capacity 1 / duration 2 / search-greedy | 0 [0,0], W/T/L 0/18/0 because frozen nonpositive signed gain declines every review. Not evidence of population policy equivalence. |
+| Ignoring reviewer harm can worsen outcomes | Same paired table, model_risk / heterogeneous / 1 / 2 / search-no_review | +2.667 [0.217,5.778]. Secondary predeclared mechanism ablation on saved responses, not a recalibrated method or real business loss. |
+| Ideal review gives a conditional ordering benefit already captured by EDF | Same paired table, ideal / heterogeneous / 1 / 2 | Search-greedy -3.333 [-4.889,-1.778], 10/8/0; search-EDF zero. Perfect label correction is a reference and cutoffs 2/4/6 are constructed. |
+| Resource and deterministic replay accounting reconcile | [Verification](../artifacts/stage7_empirical/verification.json), [replay](../artifacts/stage7_empirical/replay_verification.txt), [ledger](../artifacts/stage7_empirical/ledger.jsonl) | 204 GPU attempts, no failures/retries, 3,888 paired policy replays. No claim of bitwise fresh-generation reproducibility. |
+
+The current manuscript makes measured HVAC the principal externally grounded study. Historical maintenance and retail claims below remain unchanged and distribution-specific. SQL and optional synthetic fraud were not evaluated.
+
+
 ## Fresh robustness and separate post hoc sensitivity
 
 The submission manuscript is [main.tex](main.tex) / [main.pdf](main.pdf); the [supplement](supplement.pdf) contains complete outcome and resource tables. Stage 6 does not overwrite or pool the historical primary results.

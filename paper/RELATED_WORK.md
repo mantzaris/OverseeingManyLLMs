@@ -54,3 +54,10 @@ volume 229 and pages 661--682. The cited arXiv records for tau-bench, One Human
 N Agents, Value of Information and DeCCaF were rechecked on 2026-09-10.
 The AI-assistance citation identifies the research preparation tool; it is
 separate from the Qwen model whose experimental generations are measured.
+
+
+## Measured diagnosis substrate and secondary SQL access
+
+Granderson, Lin, Harding, Im and Chen (2020), *Building fault detection data to aid diagnostic algorithm creation and performance testing*, Scientific Data 7, article 65, [DOI](https://doi.org/10.1038/s41597-020-0398-6), supply an externally curated collection that explicitly separates laboratory experiments and simulation. The [official LBNL record](https://eta.lbl.gov/publications/building-fault-detection-data-aid) verifies the bibliographic details. Stage 7 selects only the physical SZCAV/SZVAV subset from [Figshare version 3](https://figshare.com/articles/dataset/LBNLDataSynthesisInventory_pdf/11752740/3). We inherit measured signals and imposed-condition labels, add diagnostic proposals and review allocation, and do not inherit empirical review duration, costs or repair effects. The bibliography includes the verified article.
+
+The [BIRD-Critic repository](https://github.com/bird-bench/BIRD-CRITIC-1#dataset-uses) states that reference SQL and hidden test cases are excluded from public records and require email contact. No such contact was authorized or made. [BIRD-SQL](https://bird-bench.github.io/) offers accessible development references and databases, but no completed SQL comparison fits this stage's remaining original budget. These are access/scope checks, not implemented SQL baselines. BIRD-Critic's realistic issues and constructed records should not be described collectively as observed production activity. Optional OpenL2D/FiFAR was not used and would be synthetic supplementary evidence, not measured-data validation.

@@ -1,57 +1,57 @@
  Supplement to Planning Shared Review for Language Model Workflows
                with Expiring Intervention Opportunities
 
-                                           Anonymous Companion Material
+                                            Anonymous Companion Material
 
 
 
 Keywords:        Reproducibility, Review Semantics, Paired Evaluation.
 
-Abstract:        This companion records experimental matrices, operational assumptions, source-case provenance, paired ro-
-                 bustness diagnostics and replay procedures for the shared-review study. It separates the original maintenance
-                 distributions from constructed competition, and separates fresh retail source cases from post hoc analysis of
-                 earlier preparations. Detailed outcome tables retain failures and blocked unresolved requests. The main paper
-                 contains the formulation, central comparisons, uncertainty and limitations needed to assess its claims. This
-                 supplement provides additional inspection and reproduction detail. It is a local research companion and is not
-                 represented as an accepted supplementary submission under the conference policy.
+Abstract:        This companion documents measured air-handler diagnosis, fallible model review, synthetic scheduling mech-
+                 anisms and adapted retail transfer. It provides source provenance, whole-day splits, reviewer transition counts,
+                 paired capacity sensitivities, queue timelines and reproduction procedures. Measured signals and experimen-
+                 tally imposed labels remain distinct from generated proposals and assumed oversight dynamics. Complete
+                 historical maintenance and retail tables retain positive, null and unfavorable findings, including unresolved
+                 preparation failures. The main paper contains the formulation and central comparisons needed to assess its
+                 claims. This supplement supplies detailed inspection material and is a local research companion, not a claim
+                 of an accepted supplementary submission under conference policy.
 
 
 
-1     MEASURED HVAC EVIDENCE                                       same imposed condition. They are retrospectively
-      AND SENSITIVITY                                              available after the final window closes. Their simulta-
-                                                                   neous arrival is an assumed backlog condition, not an
-The primary measured application uses Figshare ar-                 observed pattern of building fault incidence. A policy
-ticle 11752740, version 3, under its CC0 dedica-                   changes a recorded diagnosis, not a sensor trajectory.
-tion. Only SZCAV.csv and SZVAV.csv are selected.                   Labels support diagnosis scoring but cannot establish
-Source checksums, inventory tables, all day assign-                repair efficacy, energy savings or physical harm pre-
-ments, public summaries and selected one-minute                    vention.
-signals are saved with the evidence. The original CSV                   Ten channels retain original Fahrenheit units and
-downloads remain outside Git. The source contains                  fractional controls. Means, minima, maxima and
-manually imposed faults on one FLEXLAB air han-                    first-to-last changes are deterministic within-window
-dler; labels are experimentally established conditions,            summaries. No evaluation normalization is fit. The
-while scheduling and weighted consequences are con-                conventional classifier standardizes 42 public fea-
-structed.1                                                         tures, comprising 40 statistics, mode and hour, using
-                                                                   development means and standard deviations. Zero-
-                                                                   variance dimensions receive scale one. It assigns the
-1.1    Source and Information Boundaries                           closest class centroid by squared Euclidean distance.
-                                                                   It is a transparent baseline rather than a tuned state-
-All 26 recorded days are included, with eight develop-             of-the-art fault detector.
-ment days and 18 evaluation days. Each contributes
+1     MEASURED HVAC EVIDENCE                                             The three tickets from an experimental day are
+      AND SENSITIVITY                                               correlated snapshots of the same equipment under the
+                                                                    same imposed condition. They are retrospectively
+The primary measured application uses the collec-                   available after the final window closes. Their simulta-
+tion of (Granderson et al., 2020), specifically Figshare            neous arrival is an assumed backlog condition, not an
+article 11752740, version 3, under its CC0 dedica-                  observed pattern of building fault incidence. A policy
+tion. Only SZCAV.csv and SZVAV.csv are selected.                    changes a recorded diagnosis, not a sensor trajectory.
+Source checksums, inventory tables, all day assign-                 Labels support diagnosis scoring but cannot establish
+ments, public summaries and selected one-minute                     repair efficacy, energy savings or physical harm pre-
+signals are saved with the evidence. The original CSV               vention.
+downloads remain outside Git. The source contains                        Ten channels retain original Fahrenheit units and
+manually imposed faults on one FLEXLAB air han-                     fractional controls. Means, minima, maxima and
+dler; labels are experimentally established conditions,             first-to-last changes are deterministic within-window
+while scheduling and weighted consequences are con-                 summaries. No evaluation normalization is fit. The
+structed.1                                                          conventional classifier standardizes 42 public fea-
+                                                                    tures, comprising 40 statistics, mode and hour, using
+                                                                    development means and standard deviations. Zero-
+1.1    Source and Information Boundaries                            variance dimensions receive scale one. It assigns the
+                                                                    closest class centroid by squared Euclidean distance.
+All 26 recorded days are included, with eight develop-              It is a transparent baseline rather than a tuned state-
+ment days and 18 evaluation days. Each contributes                  of-the-art fault detector.
 three windows, totaling 78 distinct source windows.
-The initial and revised development collections reuse              1.2    Frozen Conditions and Resource
-the same 24 development windows and do not cre-                           Use
-ate additional source units. Evaluation has one gen-
-eration replicate. Source date, filename, fault indica-            The declaration fixes six policies, two weight
-tor and imposed-condition description are evaluator-               schemes, one or two review slots, service times
-only. Control mode and recording hour are public.                  one/two/three, and three review-benefit conditions.
-Dates are not needed for diagnosis and are excluded                These give 216 paired policy runs per experimen-
-to reduce answer-bearing metadata exposure. Public-                tal day and 3,888 total. The primary signed-gain
-source pretraining contamination cannot be ruled out.              rule, secondary risk-only ablation and ideal reference
-    The three tickets from an experimental day are                 all reuse the same generated proposal/review pair for
-correlated snapshots of the same equipment under the               each window. No policy gets privileged observations.
-                                                                   Review output takes effect only at completed service;
-    1 Draftingassistance: OpenAI Codex (OpenAI, 2026).             invalid output preserves the proposal, while absten-
-See the AI assistance disclosure.                                  tion is unresolved. Reviews must finish by cutoff
+The initial and revised development collections reuse
+the same 24 development windows and do not cre-                     1.2     Frozen Conditions and Resource
+ate additional source units. Evaluation has one gen-                        Use
+eration replicate. Source date, filename, fault indica-
+tor and imposed-condition description are evaluator-                The declaration fixes six policies, two weight
+only. Control mode and recording hour are public.                   schemes, one or two review slots, service times
+Dates are not needed for diagnosis and are excluded                 one/two/three, and three review-benefit conditions.
+to reduce answer-bearing metadata exposure. Public-                 These give 216 paired policy runs per experimen-
+source pretraining contamination cannot be ruled out.               tal day and 3,888 total. The primary signed-gain
+                                                                    rule, secondary risk-only ablation and ideal reference
+    1 Draftingassistance: OpenAI Codex (OpenAI, 2026).              all reuse the same generated proposal/review pair for
+See the AI assistance disclosure.                                   each window. No policy gets privileged observations.
 Table 1: Measured-data evaluation by experimentally annotated component category. Counts are windows, nested within
 experimental days on one unit. Proposed and reviewed labels are generated. The conventional baseline uses development data
 only.
@@ -62,49 +62,51 @@ only.
               cooling valve          5          15                   0                1                  0
 
 
-equality. No late result cancels an incurred loss.              1.4      Secondary Application Access and
-    Development uses 48 initial and 48 revised calls.                    Reproduction
-Evaluation adds 108 calls. All 204 GPU attempts suc-
-ceed, with no retry, using 125,765 prompt tokens and            BIRD-Critic-SQLite public records omit reference
-9,131 completion tokens. Maximum actual input and               solutions and hidden tests; the official repository of-
-output lengths are 745 and 93 tokens, within the ex-            fers them through email contact. No contact was
-isting 2,048-token context and 128-token output al-             made. BIRD-SQL provides accessible development
-lowance. Total measured generation-request time is              references and database downloads, but its required
-174.66 seconds, and the slowest attempt is 1.73 sec-            database audit and execution study did not fit the re-
-onds. This measured latency is distinct from assumed            maining original execution deadline. No SQL or op-
-review service time. GPU evidence verifies BF16 on              tional synthetic fraud result is claimed. This keeps a
-the RTX 6000 Ada, the pinned Qwen revision and                  completed measured primary study separate from un-
-zero CPU offloading. Server token and call deltas rec-          executed applications.
-oncile exactly.                                                     The     saved-output      command       is    bash
-    Signed-gain admission declines all primary re-              scripts/replay_stage7.sh.            It verifies every
-views because fitted gains are nonpositive. That rule           attempt, frozen input, source summary and policy
-misses the one realized potentially helpful model re-           trace, recomputes tables in a temporary directory,
-view while avoiding six harmful changes. These are              regenerates vector figures, and builds the manuscript
-consequences of a sparse development fit, not an or-            and supplement. It does not change the frozen traces
-acle identifying harmful evaluation cases. Review-              or their measured planning latency. Exact GPU re-
-pair diagnostics contain five wrong-category intro-             generation uses the recorded public task files and role
-ductions and one harmful abstention. Four further ab-           prompts, but requires a new explicit authorization
-stentions occur on already wrong proposals. Aggre-              and fresh output directory after the historical dead-
-gate error-risk AUROC is 0.5023, Brier score 0.2305,            line. Seed reuse alone does not guarantee identical
-pooled-development Brier 0.2349 and constant-half               generations.
-Brier 0.2500. The prediction ranking is nearly unin-
+Review output takes effect only at completed service;           1.4      Secondary Application Access and
+invalid output preserves the proposal, while absten-                     Reproduction
+tion is unresolved. Reviews must finish by cutoff
+equality. No late result cancels an incurred loss.              BIRD-Critic-SQLite public records omit reference
+    Development uses 48 initial and 48 revised calls.           solutions and hidden tests; the official repository of-
+Evaluation adds 108 calls. All 204 GPU attempts suc-            fers them through email contact. No contact was
+ceed, with no retry, using 125,765 prompt tokens and            made. BIRD-SQL provides accessible development
+9,131 completion tokens. Maximum actual input and               references and database downloads, but its required
+output lengths are 745 and 93 tokens, within the ex-            database audit and execution study did not fit the re-
+isting 2,048-token context and 128-token output al-             maining original execution deadline. No SQL or op-
+lowance. Total measured generation-request time is              tional synthetic fraud result is claimed. This keeps a
+174.66 seconds, and the slowest attempt is 1.73 sec-            completed measured primary study separate from un-
+onds. This measured latency is distinct from assumed            executed applications.
+review service time. GPU evidence verifies BF16 on                  The     saved-output      command       is    bash
+the RTX 6000 Ada, the pinned Qwen revision and                  scripts/replay_stage7.sh.            It verifies every
+zero CPU offloading. Server token and call deltas rec-          attempt, frozen input, source summary and policy
+oncile exactly.                                                 trace, recomputes tables in a temporary directory,
+    Signed-gain admission declines all primary re-              regenerates vector figures, and builds the manuscript
+views because fitted gains are nonpositive. That rule           and supplement. It does not change the frozen traces
+misses the one realized potentially helpful model re-           or their measured planning latency. Exact GPU re-
+view while avoiding six harmful changes. These are              generation uses the recorded public task files and role
+consequences of a sparse development fit, not an or-            prompts, but requires a new explicit authorization
+acle identifying harmful evaluation cases. Review-              and fresh output directory after the historical dead-
+pair diagnostics contain five wrong-category intro-             line. Seed reuse alone does not guarantee identical
+ductions and one harmful abstention. Four further ab-           generations.
+stentions occur on already wrong proposals. Aggre-
+gate error-risk AUROC is 0.5023, Brier score 0.2305,
+pooled-development Brier 0.2349 and constant-half
+Brier 0.2500. The prediction ranking is nearly unin-            2     EVIDENCE ORGANIZATION
 formative despite its modest Brier improvement over
-the constant reference.
-                                                                2     EVIDENCE ORGANIZATION
-1.3    First-Qualifying Queue Examples                          The evidence package retains immutable declarations,
+the constant reference.                                         The evidence package retains immutable declarations,
                                                                 source snapshots, model requests and responses,
-The rule selects the first numerical source run satis-          event traces, estimators and accounting ledgers. De-
-fying each comparison sign, without ranking by ef-              velopment chronology resides in stage reports rather
-fect magnitude. The primary model-review condition              than the main scientific argument. Original, competi-
-has only ties. Its first tie is run01, where no reviews         tion and larger maintenance distributions remain sep-
-are admitted. The ideal reference has a first benefit           arate. Original retail and the fresh operational follow-
-at run02, with difference −8, and a first tie at run01.         up are also separate cohorts.2
-Neither has an unfavorable search-minus-greedy case                 The completed maintenance evaluation contains
-under the declared primary capacity. Absence is re-             2,752 episodes, with 304 development episodes and
-ported rather than replacing the rule with a favorable          128 separate repeated-request diagnostic generations.
-example from another configuration.                             Its 48,320 GPU attempts include all development,
-                                                                evaluation and diagnostic calls. The original retail
-                                                                    2 Draftingassistance: OpenAI Codex (OpenAI, 2026).
+                                                                event traces, estimators and accounting ledgers. De-
+1.3    First-Qualifying Queue Examples                          velopment chronology resides in stage reports rather
+                                                                than the main scientific argument. Original, competi-
+The rule selects the first numerical source run satis-          tion and larger maintenance distributions remain sep-
+fying each comparison sign, without ranking by ef-              arate. Original retail and the fresh operational follow-
+fect magnitude. The primary model-review condition              up are also separate cohorts.2
+has only ties. Its first tie is run01, where no reviews             The completed maintenance evaluation contains
+are admitted. The ideal reference has a first benefit           2,752 episodes, with 304 development episodes and
+at run02, with difference −8, and a first tie at run01.         128 separate repeated-request diagnostic generations.
+Neither has an unfavorable search-minus-greedy case             Its 48,320 GPU attempts include all development,
+under the declared primary capacity. Absence is re-             evaluation and diagnostic calls. The original retail
+ported rather than replacing the rule with a favorable
+example from another configuration.                                 2 Draftingassistance: OpenAI Codex (OpenAI, 2026).
                                                                 See the AI assistance disclosure.
                                       model review; W/T/L 0/18/0                       ideal review; W/T/L 10/8/0
                               0
@@ -637,9 +639,9 @@ tables and patch hashes are retained. Frozen prepara-       cases and mixed init
 tion code and source snapshots remain intact.               comparisons involve different generation seeds and
                                                             often later prompt histories; they do not measure
                                                             identical-request nondeterminism.
-8    GENERATION AND PLANNING                                    Across fresh operational conditions, actual search
+8    HISTORICAL RESOURCE                                        Across fresh operational conditions, actual search
                                                             dispatch reaches two eligible requests. Its 114 such
-     COSTS                                                  decisions examine five ordered subsets and aver-
+     ACCOUNTING                                             decisions examine five ordered subsets and aver-
                                                             age 0.04832 ms, with maximum 0.11583 ms on the
 Experiments use Qwen/Qwen2.5-7B-Instruct revi-              recorded host. Three pending requests can appear in
 sion                                                        no-review diagnostic states; the exact planner is not
@@ -817,41 +819,37 @@ are scenario-bundle wins, ties and losses. Only the fresh approve/block two-tick
                               2.5
 
                               0.0
-                                    00          01        02         03         04           05          06        07
+                                    00          01        02         03         04           05          06         07
                                                        Source bundle (three replicates averaged)
 
 Figure 8: All eight fresh primary bundle differences, after averaging three generation replicates. Zero values remain explicit.
 
 
-10                           REPLAY AND                                   use the unchanged official template class, style and
-                             REPRODUCTION                                 bibliography style. Source and build details are in the
-                                                                          reproduction guide and stage report.
-From a clean checkout, saved-data analysis requires                           Previously disclosed Stage 5 redactions remove
-Python 3.8 or later, NumPy and Matplotlib. It makes                       unsolicited credential-like model text from auxiliary
-no inference requests. The declared inference path is                     arguments and later prompt histories. Original re-
-one-shot, deadline-guarded and separate from analy-                       quest, response and file hashes remain, with exact
-sis. Reproducing a fresh model output is not guar-                        originals retained on the authorized pod and in an ig-
-anteed by its seed. In earlier maintenance evi-                           nored local evidence directory. Transactions, states,
-dence, 38 identical-request groups had mixed actions;                     labels and accounting do not change. Public redacted
-fresh generation variation and changes in feedback-                       prompts are not claimed to be byte-identical regenera-
-dependent prompts are separate phenomena.10                               tion inputs. Any new follow-up publication redaction
-    The short saved-data path is:                                         is separately recorded under its own evidence root.
+10                           REPLAY AND                                   Those historical audits write under the Stage 6 root;
+                             REPRODUCTION                                 current audits are redirected into Stage 7. Histori-
+                                                                          cal reference traces are checked against their original
+From a clean checkout, saved-data analysis requires                       values and all historical artifact hashes are preserved.
+Python 3.8 or later, NumPy and Matplotlib. It makes                       The manuscript and supplement use the unchanged
+no inference requests. The declared inference path is                     official template class, style and bibliography style.
+one-shot, deadline-guarded and separate from analy-                       Source and build details are in the reproduction guide
+sis. Reproducing a fresh model output is not guar-                        and stage report.
+anteed by its seed. In earlier maintenance evi-                               Previously disclosed Stage 5 redactions remove
+dence, 38 identical-request groups had mixed actions;                     unsolicited credential-like model text from auxiliary
+fresh generation variation and changes in feedback-                       arguments and later prompt histories. Original re-
+dependent prompts are separate phenomena.10                               quest, response and file hashes remain, with exact
+     The historical Stage 6 saved-data command, used                      originals retained on the authorized pod and in an ig-
+at its recorded commit, is:                                               nored local evidence directory. Transactions, states,
+                                                                          labels and accounting do not change. Public redacted
                bash scripts/replay_stage6.sh
-This command verifies evidence, replays both co-
-horts, regenerates diagnostic tables and figures, and
-                                                                          AI ASSISTANCE
-builds both PDFs. New analyses write only under the
-                                                                          OpenAI Codex assisted code, analysis, source check-
-Stage 6 root. Historical reference traces are checked
-                                                                          ing, figure code and manuscript drafting and revi-
-against their original values and all historical artifact
-                                                                          sion throughout this companion (OpenAI, 2026). Re-
-hashes are preserved. The manuscript and supplement
-                                                                          ported numeric evidence comes from retained model
+                                                                          prompts are not claimed to be byte-identical regenera-
+For the current measured-data package use the Stage                       tion inputs. Any new follow-up publication redaction
+7 command in Section 1.4, which writes audits under                       is separately recorded under its own evidence root.
+Stage 7 and preserves historical evidence. The his-
+torical command verifies evidence, replays both re-
+tail cohorts, regenerates tables and builds their PDFs.
+
     10 Drafting
-                                                                          outputs and deterministic simulation. Human authors
               assistance: OpenAI Codex (OpenAI, 2026).
-                                                                          must review and take responsibility for the complete
 See the AI assistance disclosure.
 Table 9: Post hoc Stage 5 preparations. Absolute outcomes across three generation replicates per bundle. Totals are repeated-
 condition counts, not independent samples. S and W denote service and wrong-posting loss. B is blocked unresolved requests
@@ -895,67 +893,89 @@ and U is unstaged failures.
        Complexity time / 2    Search           380    3.958    272    108        220        13     0    55        13
 
 
-submission. No human expert validation, author iden-
-tity, funding or conflict declaration is invented.
+AI ASSISTANCE                                                         algorithm creation and performance testing. Scientific
+                                                                      Data, 7:65.
+OpenAI Codex assisted code, analysis, source check-              OpenAI (2026).         Codex.     OpenAI documentation.
+ing, figure code and manuscript drafting and revi-                    https://learn.chatgpt.com/docs/codex/cli. Accessed 10
+sion throughout this companion (OpenAI, 2026). Re-                    September 2026.
+ported numeric evidence comes from retained model                Shopify (2026a). Canceling orders. Shopify Help Cen-
+                                                                      ter. https://help.shopify.com/en/manual/fulfillment/
+outputs and deterministic simulation. Human authors                   managing-orders/canceling-orders. Accessed 10
+must review and take responsibility for the complete                  September 2026.
+submission. No human expert validation, author iden-             Shopify (2026b). Editing orders. Shopify Help Cen-
+tity, funding or conflict declaration is invented.                    ter. https://help.shopify.com/en/manual/fulfillment/
+                                                                      managing-orders/editing-orders.        Accessed      10
+                                                                      September 2026.
+                                                                 Shopify (2026c).       Processing and managing returns.
+REFERENCES                                                            Shopify Help Center.          https://help.shopify.com/
+                                                                      en/manual/fulfillment/managing-orders/returns/
+Granderson, J., Lin, G., Harding, A., Im, P., and Chen, Y.            processing-returns. Accessed 10 September 2026.
+    (2020). Building fault detection data to aid diagnostic
+                                                                 Yao, S., Shinn, N., Razavi, P., and Narasimhan, K. (2024).
 Table 10: Post hoc Stage 5 preparations. Review resources. Time and waiting are summed abstract ticks. Utilization is mean
 occupied fraction of the processing horizon. More reviews do not necessarily imply more useful interventions.
-     Condition / base       Policy         Reviews     Corrections     Time    Waiting    Utilization      Multi-eligible
-     Correction / 1         No review              0             0        0          0           0.000               301
-     Correction / 1         FCFS                 233            51      233        115           0.459               115
-     Correction / 1         EDF                  233            51      233        115           0.459               115
-     Correction / 1         Uncertainty          224            51      224         97           0.442               115
-     Correction / 1         Greedy               224            51      224         97           0.442               115
-     Correction / 1         Search               233            51      233        115           0.459               115
-     Correction / 2         No review              0             0        0          0           0.000               212
-     Correction / 2         FCFS                 182            28      364        152           0.712                87
-     Correction / 2         EDF                  190            33      380        191           0.740               103
-     Correction / 2         Uncertainty          169            41      338        104           0.664                83
-     Correction / 2         Greedy               169            41      338        104           0.664                83
-     Correction / 2         Search               190            40      380        184           0.740               103
-     Approve/block / 1      No review              0             0        0          0           0.000               301
-     Approve/block / 1      FCFS                 233             0      233        115           0.459               115
-     Approve/block / 1      EDF                  233             0      233        115           0.459               115
-     Approve/block / 1      Uncertainty          224             0      224         97           0.442               115
-     Approve/block / 1      Greedy               224             0      224         97           0.442               115
-     Approve/block / 1      Search               233             0      233        115           0.459               115
-     Approve/block / 2      No review              0             0        0          0           0.000               212
-     Approve/block / 2      FCFS                 182             0      364        152           0.712                87
-     Approve/block / 2      EDF                  190             0      380        191           0.740               103
-     Approve/block / 2      Uncertainty          169             0      338        104           0.664                83
-     Approve/block / 2      Greedy               169             0      338        104           0.664                83
-     Approve/block / 2      Search               190             0      380        182           0.740               103
-     Complexity time / 1    No review              0             0        0          0           0.000               290
-     Complexity time / 1    FCFS                 219            46      239        107           0.472               106
-     Complexity time / 1    EDF                  233            51      256        133           0.506               115
-     Complexity time / 1    Uncertainty          216            49      237        104           0.467               109
-     Complexity time / 1    Greedy               216            49      237        104           0.467               109
-     Complexity time / 1    Search               232            50      254        132           0.502               114
-     Complexity time / 2    No review              0             0        0          0           0.000               200
-     Complexity time / 2    FCFS                 175            25      365        144           0.714                86
-     Complexity time / 2    EDF                  186            31      386        177           0.755                98
-     Complexity time / 2    Uncertainty          161            41      337         88           0.664                79
-     Complexity time / 2    Greedy               161            41      337         88           0.664                79
-     Complexity time / 2    Search               186            38      386        170           0.755                98
+     Condition / base       Policy         Reviews    Corrections    Time    Waiting    Utilization   Multi-eligible
+     Correction / 1         No review             0             0        0         0         0.000              301
+     Correction / 1         FCFS                233            51      233       115         0.459              115
+     Correction / 1         EDF                 233            51      233       115         0.459              115
+     Correction / 1         Uncertainty         224            51      224        97         0.442              115
+     Correction / 1         Greedy              224            51      224        97         0.442              115
+     Correction / 1         Search              233            51      233       115         0.459              115
+     Correction / 2         No review             0             0        0         0         0.000              212
+     Correction / 2         FCFS                182            28      364       152         0.712               87
+     Correction / 2         EDF                 190            33      380       191         0.740              103
+     Correction / 2         Uncertainty         169            41      338       104         0.664               83
+     Correction / 2         Greedy              169            41      338       104         0.664               83
+     Correction / 2         Search              190            40      380       184         0.740              103
+     Approve/block / 1      No review             0             0        0         0         0.000              301
+     Approve/block / 1      FCFS                233             0      233       115         0.459              115
+     Approve/block / 1      EDF                 233             0      233       115         0.459              115
+     Approve/block / 1      Uncertainty         224             0      224        97         0.442              115
+     Approve/block / 1      Greedy              224             0      224        97         0.442              115
+     Approve/block / 1      Search              233             0      233       115         0.459              115
+     Approve/block / 2      No review             0             0        0         0         0.000              212
+     Approve/block / 2      FCFS                182             0      364       152         0.712               87
+     Approve/block / 2      EDF                 190             0      380       191         0.740              103
+     Approve/block / 2      Uncertainty         169             0      338       104         0.664               83
+     Approve/block / 2      Greedy              169             0      338       104         0.664               83
+     Approve/block / 2      Search              190             0      380       182         0.740              103
+     Complexity time / 1    No review             0             0        0         0         0.000              290
+     Complexity time / 1    FCFS                219            46      239       107         0.472              106
+     Complexity time / 1    EDF                 233            51      256       133         0.506              115
+     Complexity time / 1    Uncertainty         216            49      237       104         0.467              109
+     Complexity time / 1    Greedy              216            49      237       104         0.467              109
+     Complexity time / 1    Search              232            50      254       132         0.502              114
+     Complexity time / 2    No review             0             0        0         0         0.000              200
+     Complexity time / 2    FCFS                175            25      365       144         0.714               86
+     Complexity time / 2    EDF                 186            31      386       177         0.755               98
+     Complexity time / 2    Uncertainty         161            41      337        88         0.664               79
+     Complexity time / 2    Greedy              161            41      337        88         0.664               79
+     Complexity time / 2    Search              186            38      386       170         0.755               98
 
 
-
-Table 11: Post hoc Stage 5 preparations. Search-minus-comparator loss differences. Negative favors search. Intervals resam-
+     τ-bench: A benchmark for tool-agent-user interaction
+     in real-world domains. arXiv:2406.12045.
+Table 11: Post hoc Stage 5 preparations. Search-minus-comparator loss differences. Negative favors search. Intervals resam-
 ple bundles; W/T/L are scenario-bundle wins, ties and losses. Only the fresh approve/block two-tick search–greedy row is
 primary.
-                    Condition           Comparator     Base    Difference     95% interval        W/T/L
-                    Correction          greedy            1           0.000   [0.000, 0.000]      0/32/0
-                    Correction          edf               1           0.000   [0.000, 0.000]      0/32/0
-                    Correction          greedy            2           0.250   [-0.333, 0.917]     1/29/2
-                    Correction          edf               2          -0.875   [-2.000, 0.000]     3/29/0
-                    Approve/block       greedy            1           0.000   [0.000, 0.000]      0/32/0
-                    Approve/block       edf               1           0.000   [0.000, 0.000]      0/32/0
-                    Approve/block       greedy            2           0.125   [-0.167, 0.500]     1/29/2
-                    Approve/block       edf               2          -0.667   [-1.417, -0.083]    4/28/0
-                    Complexity time     greedy            1          -0.083   [-0.250, 0.000]     1/31/0
-                    Complexity time     edf               1           0.167   [0.000, 0.500]      0/31/1
-                    Complexity time     greedy            2           0.500   [-0.083, 1.250]     1/28/3
-                    Complexity time     edf               2          -0.875   [-2.000, 0.000]     3/29/0
-                             Base review: 1 tick                                         Base review: 2 ticks
+                    Condition           Comparator      Base    Difference    95% interval       W/T/L
+                    Correction          greedy             1         0.000    [0.000, 0.000]     0/32/0
+                    Correction          edf                1         0.000    [0.000, 0.000]     0/32/0
+                    Correction          greedy             2         0.250    [-0.333, 0.917]    1/29/2
+                    Correction          edf                2        -0.875    [-2.000, 0.000]    3/29/0
+                    Approve/block       greedy             1         0.000    [0.000, 0.000]     0/32/0
+                    Approve/block       edf                1         0.000    [0.000, 0.000]     0/32/0
+                    Approve/block       greedy             2         0.125    [-0.167, 0.500]    1/29/2
+                    Approve/block       edf                2        -0.667    [-1.417, -0.083]   4/28/0
+                    Complexity time     greedy             1        -0.083    [-0.250, 0.000]    1/31/0
+                    Complexity time     edf                1         0.167    [0.000, 0.500]     0/31/1
+                    Complexity time     greedy             2         0.500    [-0.083, 1.250]    1/28/3
+                    Complexity time     edf                2        -0.875    [-2.000, 0.000]    3/29/0
+
+
+
+
+                             Base review: 1 tick                                         Base review: 2 ticks
          Correction                                                   Correction
 
 
@@ -972,23 +992,4 @@ primary.
 
 Figure 9: Post hoc saved-preparation sensitivity. The 32 bundles are separate from the eight fresh bundles and are not pooled
 for inference.
-REFERENCES
-OpenAI (2026).         Codex.     OpenAI documentation.
-     https://learn.chatgpt.com/docs/codex/cli. Accessed 10
-     September 2026.
-Shopify (2026a). Canceling orders. Shopify Help Cen-
-     ter. https://help.shopify.com/en/manual/fulfillment/
-     managing-orders/canceling-orders. Accessed 10
-     September 2026.
-Shopify (2026b). Editing orders. Shopify Help Cen-
-     ter. https://help.shopify.com/en/manual/fulfillment/
-     managing-orders/editing-orders.        Accessed      10
-     September 2026.
-Shopify (2026c).       Processing and managing returns.
-     Shopify Help Center.          https://help.shopify.com/
-     en/manual/fulfillment/managing-orders/returns/
-     processing-returns. Accessed 10 September 2026.
-Yao, S., Shinn, N., Razavi, P., and Narasimhan, K. (2024).
-     τ-bench: A benchmark for tool-agent-user interaction
-     in real-world domains. arXiv:2406.12045.
 

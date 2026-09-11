@@ -1,0 +1,44 @@
+\section{SYNTHETIC MECHANISM DETAILS}
+\noindent The maintenance environment exposes binary ventilation faults through two independent noisy clues. Faults have equal prior probability, with clue accuracies 0.8 and 0.6. An agent chooses a filter replacement or sensor reset from a public manual. Two fresh model samples are drawn per job. The first action executes; the second supplies agreement information. Review may correct the executed action and provide definitive feedback for later jobs.\draftcredit
+
+An initially wrong action incurs downtime rate $c_i$ until correction or deadline, plus terminal incorrect-closure penalty $K_i$. A timely correction at $T$ prevents
+\begin{equation}
+ G_i(T)=\ind[T\leq d_i]\{c_i(d_i-T)+K_i\}.
+ \label{eq:maintenance}
+\end{equation}
+The original workload uses three agents, two jobs each and a 12-tick horizon. Releases occur at wave bases 0 and 6 with zero-or-one jitter. Relative windows are drawn from 1, 2 and 5, downtime rates from 0, 1 and 3, and terminal penalties from 0 and 8.
+
+A constructed competition workload releases all three jobs together at 0 and 6. Each wave independently permutes windows 2, 4 and 5 and penalties 4, 8 and 12, with zero downtime. It was motivated by limited competition in earlier development, then evaluated on new frozen scenarios. A larger workload has three or six agents, three jobs each, a 24-tick horizon and waves at 0, 8 and 16 with independent zero-or-one jitter. Windows are 2, 4 and 6, downtime rates 0, 1 and 3, and penalties 0, 4, 8 and 12. Stable per-agent streams pair the first three agents across team sizes. Public assignments are independent of hidden faults.
+
+\subsection{Risk and Frozen Evaluation}
+The primary risk estimate is an agreement-bin estimator fit on an earlier development set. Laplace smoothing gives $(e+1)/(n+2)$ for $e$ errors among $n$ jobs; bins with fewer than ten examples use pooled calibration risk. Initial first-action labels are included regardless of review selection. The frozen values are $13/89$ for agreement and pooled $18/98$ for sparse disagreement.
+
+Alternative estimates use pooled risk or a public analytical reference with knowledge of the synthetic observation model. Following agreeing clues has error probability $1/7$; following the stronger disagreeing clue has error probability $3/11$. Choosing the opposite action gives the complementary probability. The reference does not inspect the realized fault. Both samples are retained in every condition. Prediction rescoring uses saved outputs; policy comparisons under alternative risk use actual new trajectories.
+
+The frozen evaluation contains 2,752 episodes. Original and competition workloads each use 64 scenarios and six policies at one- and two-tick reviews. Alternative-risk comparisons use the first 32 scenarios of each workload for greedy and search. Larger-workload comparisons use 32 scenarios with four policies across both team sizes and capacities. A separately declared objective study uses 16 scenarios. The development and evaluation partitions remain separate.
+
+\subsection{Results and Boundary Conditions}
+Table~\ref{tab:maintenance} reports central search--greedy contrasts. At two ticks, search gains in constructed competition but has little measured advantage in the original workload. It wins, ties and loses against greedy on 15, 42 and 7 competition scenarios, versus 3, 59 and 2 original scenarios. Search versus EDF in two-tick competition is $-2.5625$ points, with interval [$-4.0000,-1.3125$]. At one tick, search and EDF both attain zero competition loss despite different review sequences on 62 of 64 scenarios.
+
+\begin{table*}[t]
+\caption{Frozen maintenance results. Differences are search minus greedy mean loss with 95\% paired scenario-bootstrap intervals. Workload distributions are analyzed separately.}
+\label{tab:maintenance}\centering\small
+\begin{tabular}{llrrrrl}
+\toprule
+Workload & Agents / scenarios & Review ticks & Search & Greedy & EDF & Paired difference \\
+\midrule
+Original & 3 / 64 & 2 & 7.328 & 7.422 & 7.656 & $-0.094\;[-0.563,\;0.344]$ \\
+Competition & 3 / 64 & 2 & 1.688 & 3.000 & 4.250 & $-1.313\;[-2.250,-0.438]$ \\
+Competition & 3 / 64 & 1 & 0.000 & 0.375 & 0.000 & $-0.375\;[-0.688,-0.125]$ \\
+Larger & 6 / 32 & 1 & 16.188 & 22.375 & 23.688 & $-6.188\;[-9.376,-3.281]$ \\
+Larger & 6 / 32 & 2 & 36.563 & 36.781 & 46.000 & $-0.219\;[-2.313,\;1.969]$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The larger workload gives a stronger one-tick planning benefit and a small, uncertain two-tick difference. Reduced capacity does not monotonically increase the value of planning. Some requests are already infeasible when the reviewer becomes free. In the original two-tick search runs, only 32 of 156 dispatches have multiple eligible requests, whereas competition has 224 of 256. Such public contention is a prerequisite for many sequencing effects, but it does not guarantee competing actual errors.
+
+Risk calibration and allocation utility diverge. The frozen estimator predicts roughly 0.15 error while observed errors reach about 0.25--0.32. On two-tick search trajectories, analytical risk improves Brier score from 0.213 to 0.157 in the original workload and from 0.200 to 0.164 in competition. Yet fresh matched-prefix alternative-risk rollouts yield no consistent allocation gain. Better probability scores alone do not establish better counterfactual policy performance.
+
+Weighted cost also differs from task correctness. In the six-agent one-tick workload, search has lower loss than EDF but more incorrect closures. Adding a declared penalty $\lambda$ per incorrect closure to the search objective changes both intervention benefit and eligibility. With $\lambda=8$ rather than zero, original cost increases by 1.75 points [$0.188,3.438$], while incorrect closures decrease by 0.75 [$0.375,1.125$] per scenario. The common augmented objective $\loss+8U$ improves by 4.25 points, where $U$ counts incorrect closures. At two ticks this improvement weakens and the augmented objective is slightly worse. This is a tradeoff between objectives, not a universally superior policy.
+

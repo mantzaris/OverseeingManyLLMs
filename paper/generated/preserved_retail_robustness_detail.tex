@@ -1,0 +1,27 @@
+\section{OPERATIONAL ROBUSTNESS STUDY}
+\noindent A source-based methodological review identified corrective authority, confirmation, family-specific processing stages, review complexity and consequence valuation as unresolved assumptions. It was not independent human expert validation. We froze two one-factor changes, retaining the original condition at both base capacities, the same six policies and the frozen application estimator.\draftcredit
+
+\subsection{Authority and Complexity Changes}
+Under restricted authority, a completed review perfectly detects whether the staged proposal is wrong. A correct proposal is approved unchanged. A wrong proposal is blocked, leaving the account unchanged and the service unresolved. It is removed from the queue and cannot post later. Blocking counts neither as task completion nor correction. The preventable loss is therefore
+\begin{equation}
+ G_i^{\mathrm{block}}(T)=\ind[T\leq d_i]W_i.
+ \label{eq:block}
+\end{equation}
+The missing service benefit is substantive. Since $W_i$ varies, replacing $4+W_i$ by $W_i$ is not a uniform rescaling and can change risk-weighted rankings. Perfect detection remains idealized, and labels are still unavailable before completed review.
+
+The separate complexity condition retains full correction authority and uses
+\begin{equation}
+ s_i=s+\ind[\text{proposed item-list length}\geq 2],
+ \label{eq:complexity}
+\end{equation}
+where $s$ is one or two ticks. This public proxy captures an additional item-checking burden without fitting review times. A mistaken omission may reduce the apparent complexity, which is retained as a limitation. Arrivals, cutoffs, consequence weights, preparation and risk remain unchanged. We do not evaluate an authority-by-complexity factorial design.
+
+Two outcomes follow mathematically. No-review loss is invariant across variants. Under perfect blocking, every policy's correct-task count equals the initially correct staged count, since neither a wrong nor an unstaged request can be completed by blocking. These invariances are semantic checks rather than empirical discoveries.
+
+\subsection{Fresh Source Cases and Analysis}
+We audit all 500 train, 20 dev and 115 test records at the pinned revision, excluding all 120 Stage 5 accounts across source splits. Eligibility retains the original explicit-instruction, supported single-transaction criteria and source-intent consistency checks. Only ten unused eligible modification accounts remain, so a 16-bundle design is infeasible. The declared fallback selects eight globally disjoint bundles from 24 training cases, reserving modification first and then cancellation and returns/exchanges in source order. The source pool is not filtered using model outcomes or expected scheduling gains.
+
+Three fresh replicates yield 72 workflow attempts. The same preparations feed six policies, two base durations and three operational variants, giving 864 policy episodes without repeated GPU calls for scheduling. The primary comparison is search minus greedy under restricted authority at base duration two. We average replicates within each of the eight bundles and use 2,000 common-index bootstrap draws with seed 20260916. Individual bundle differences accompany the interval. The same variants applied to the earlier 32 bundles are explicitly post hoc saved-data sensitivity, analyzed separately and never pooled with the fresh cases.
+
+\input{generated/stage6_results}
+

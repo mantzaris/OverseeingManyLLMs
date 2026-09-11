@@ -3,8 +3,10 @@
 \title{Supplement to Planning Shared Review for Language Model Workflows with Expiring Intervention Opportunities}
 \author{\authorname{Anonymous Companion Material}}
 \keywords{Reproducibility, Review Semantics, Paired Evaluation.}
-\abstract{This companion records experimental matrices, operational assumptions, source-case provenance, paired robustness diagnostics and replay procedures for the shared-review study. It separates the original maintenance distributions from constructed competition, and separates fresh retail source cases from post hoc analysis of earlier preparations. Detailed outcome tables retain failures and blocked unresolved requests. The main paper contains the formulation, central comparisons, uncertainty and limitations needed to assess its claims. This supplement provides additional inspection and reproduction detail. It is a local research companion and is not represented as an accepted supplementary submission under the conference policy.}
+\abstract{This companion documents measured air-handler diagnosis, fallible model review, synthetic scheduling mechanisms and adapted retail transfer. It provides source provenance, whole-day splits, reviewer transition counts, paired capacity sensitivities, queue timelines and reproduction procedures. Measured signals and experimentally imposed labels remain distinct from generated proposals and assumed oversight dynamics. Complete historical maintenance and retail tables retain positive, null and unfavorable findings, including unresolved preparation failures. The main paper contains the formulation and central comparisons needed to assess its claims. This supplement supplies detailed inspection material and is a local research companion, not a claim of an accepted supplementary submission under conference policy.}
 \onecolumn\maketitle\normalsize\setcounter{footnote}{0}\vfill
+
+\input{hvac_supplement}
 
 \section{EVIDENCE ORGANIZATION}
 \noindent The evidence package retains immutable declarations, source snapshots, model requests and responses, event traces, estimators and accounting ledgers. Development chronology resides in stage reports rather than the main scientific argument. Original, competition and larger maintenance distributions remain separate. Original retail and the fresh operational follow-up are also separate cohorts.\draftcredit
@@ -20,6 +22,8 @@ The original distribution and competition matrices contribute 1,536 episodes, al
 Maintenance model inputs contain released public job information and that agent's own history. Schedulers receive public request records rather than private job objects. Before review completion, neither has definitive fault labels. Reviews finish before same-tick deadline closure, so equality can prevent a terminal penalty. Downtime accumulated before correction remains. Search has no access to the generator's future waves.
 
 Retail preparation has its own agent history and no access to annotated targets. Authentication, account ownership, retrieval and confirmation checks apply before a mutation can be staged. The scheduler then receives only arrived transaction requests and public risk, cost, cutoff and service-time fields. Hidden proposal correctness is consulted by completed perfect review and offline scoring. Other-policy choices logged on the same public state are diagnostics and do not alter the executed policy.
+
+\input{generated/preserved_maintenance_detail}
 
 \section{RETAIL SOURCE AND SEMANTICS}
 \noindent The source is the MIT-licensed retail component of $\tau$-bench \cite{yao2024tau}, pinned at revision
@@ -79,6 +83,8 @@ Source order is train, dev, test, then ascending index. Modification is reserved
 
 The full frozen follow-up is 72 workflow attempts and 864 policy episodes. Its maximum preparation cost is 1,008 ordinary calls or 2,016 attempts with one retry per call. The stage-wide ceiling is 6,000 attempts. Model settings, source hashes, estimator, conditions, comparisons and failure handling were committed before the first fresh call. No difficult case is replaced.
 
+\input{generated/preserved_retail_robustness_detail}
+
 \section{PAIRED ANALYSIS DETAILS}
 \noindent For each source bundle, the three generation replicates are averaged before comparing policies. Bootstrap draws resample entire bundles, with all conditions kept together. The fresh sample therefore has eight independent bundle units. The post hoc sensitivity uses 32 earlier bundles and is not pooled with it. Fixed seed 20260916 generates 2,000 common-index resamples for the follow-up analyses.\draftcredit
 
@@ -88,7 +94,7 @@ A reporting-direction defect in secondary completion rows was detected and repai
 
 \input{generated/robustness_tables}
 
-\section{GENERATION AND PLANNING COSTS}
+\section{HISTORICAL RESOURCE ACCOUNTING}
 \noindent Experiments use Qwen/Qwen2.5-7B-Instruct revision
 \begin{quote}\small\ttfamily
 a09a35458c702b33eeacc393d103063234e8bc28
@@ -109,19 +115,18 @@ Earlier maintenance exact search reached six eligible requests and 1,957 ordered
 \section{REPLAY AND REPRODUCTION}
 \noindent From a clean checkout, saved-data analysis requires Python 3.8 or later, NumPy and Matplotlib. It makes no inference requests. The declared inference path is one-shot, deadline-guarded and separate from analysis. Reproducing a fresh model output is not guaranteed by its seed. In earlier maintenance evidence, 38 identical-request groups had mixed actions; fresh generation variation and changes in feedback-dependent prompts are separate phenomena.\draftcredit
 
-The short saved-data path is:
+The historical Stage 6 saved-data command, used at its recorded commit, is:
 \begin{quote}\small\ttfamily
 bash scripts/replay\_stage6.sh
 \end{quote}
-This command verifies evidence, replays both cohorts, regenerates diagnostic tables and figures, and builds both PDFs.
-New analyses write only under the Stage 6 root. Historical reference traces are checked against their original values and all historical artifact hashes are preserved. The manuscript and supplement use the unchanged official template class, style and bibliography style. Source and build details are in the reproduction guide and stage report.
+For the current measured-data package use the Stage 7 command in Section 1.4, which writes audits under Stage 7 and preserves historical evidence. The historical command verifies evidence, replays both retail cohorts, regenerates tables and builds their PDFs.
+Those historical audits write under the Stage 6 root; current audits are redirected into Stage 7. Historical reference traces are checked against their original values and all historical artifact hashes are preserved. The manuscript and supplement use the unchanged official template class, style and bibliography style. Source and build details are in the reproduction guide and stage report.
 
 Previously disclosed Stage 5 redactions remove unsolicited credential-like model text from auxiliary arguments and later prompt histories. Original request, response and file hashes remain, with exact originals retained on the authorized pod and in an ignored local evidence directory. Transactions, states, labels and accounting do not change. Public redacted prompts are not claimed to be byte-identical regeneration inputs. Any new follow-up publication redaction is separately recorded under its own evidence root.
 
 \section*{AI ASSISTANCE}
 OpenAI Codex assisted code, analysis, source checking, figure code and manuscript drafting and revision throughout this companion \cite{openai2026codex}. Reported numeric evidence comes from retained model outputs and deterministic simulation. Human authors must review and take responsibility for the complete submission. No human expert validation, author identity, funding or conflict declaration is invented.
 
-\clearpage
 \bibliographystyle{apalike}
 {\small\bibliography{references}}
 \end{document}

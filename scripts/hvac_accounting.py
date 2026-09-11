@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Append a Stage 7 clock without changing historical clocks or accounting."""
+from datetime import datetime,timezone
+from pathlib import Path
+import json,subprocess,hashlib
+root=Path('artifacts/stage7_empirical');a=json.loads((root/'authorization.json').read_text());v=json.loads((root/'verification.json').read_text());old=json.loads(Path('artifacts/stage6_robustness/cumulative_accounting.json').read_text());now=datetime.now(timezone.utc)
+baseline=json.loads(subprocess.check_output(['git','show','d9b39589:reports/implementation_clock.json']));clock=json.loads(Path('reports/implementation_clock.json').read_text());key=next(k for k,x in baseline.items() if isinstance(x,list) and any(isinstance(y,dict) and y.get('name')=='stage6_robustness' for y in x))
+for k,x in baseline.items():assert clock[k][:len(x)]==x if k==key else clock[k]==x,k
+start=datetime.fromisoformat(a['started_utc']);original=datetime.fromisoformat(clock['overall_started_utc']);deadline=datetime.fromisoformat(clock['overall_deadline_utc']);assert now<deadline,'Original 36-hour deadline reached'
+total=dict(old['total']);total['scheduled_calls']+=v['scheduled_calls'];total['attempts']+=v['generation_attempts'];total['retries']+=v['retries'];total['failed_attempts']+=v['failed_attempts'];total['prompt_tokens']+=v['prompt_tokens'];total['completion_tokens']+=v['completion_tokens']
+result=dict(report_checkpoint_utc=now.isoformat(),stage7_started_utc=a['started_utc'],stage7_elapsed_seconds=(now-start).total_seconds(),original_started_utc=original.isoformat(),original_deadline_utc=deadline.isoformat(),cumulative_elapsed_seconds=(now-original).total_seconds(),remaining_seconds=(deadline-now).total_seconds(),overrun_seconds=max(0,(now-deadline).total_seconds()),stage7={k:v[k] for k in ('scheduled_calls','generation_attempts','retries','failed_attempts','prompt_tokens','completion_tokens','inference_seconds')},cumulative=total,provider_price=None,provider_allocation_seconds=None,billing_limitation='Runtime metrics do not expose provider allocation charges.',finish_marker='Final task commit committer timestamp includes final packaging after this checkpoint; historical clocks and inter-stage gaps are retained.')
+(root/'accounting.json').write_text(json.dumps(result,indent=2)+'\n')
+entry=dict(a,reported_utc=now.isoformat(),elapsed_seconds_at_report=result['stage7_elapsed_seconds'],overall_elapsed_seconds_at_report=result['cumulative_elapsed_seconds'],overall_remaining_seconds_at_report=result['remaining_seconds'],result='completed_18_measured_day_blocks_54_evaluation_pairs_3888_replays_and_manuscript',**result['stage7'])
+clock[key]=[x for x in clock[key] if x.get('name')!='stage7_empirical']+[entry];Path('reports/implementation_clock.json').write_text(json.dumps(clock,indent=2)+'\n');print(json.dumps(result,indent=2))

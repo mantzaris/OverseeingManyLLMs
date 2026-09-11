@@ -11,7 +11,9 @@ with tempfile.TemporaryDirectory(prefix='hvac_replay_') as folder:
     m.ROOT=temp
     with contextlib.redirect_stdout(io.StringIO()):m.analyze()
     tables=['episodes.csv','diagnoses.csv','policy_summary.csv','paired.csv','bundle_differences.csv']
-    for name in tables:assert (temp/'analysis'/name).read_bytes()==(root/'analysis'/name).read_bytes(),name
+    # Git normalizes CSV CRLF to LF in a clean checkout. Universal-newline text
+    # comparison retains every value and column while allowing that transport detail.
+    for name in tables:assert (temp/'analysis'/name).read_text()==(root/'analysis'/name).read_text(),name
     current=json.loads((temp/'analysis/diagnostics.json').read_text());saved=json.loads((root/'analysis/diagnostics.json').read_text())
     for k in current:
         if k not in ('planning_mean_ms','planning_max_ms'):assert current[k]==saved[k],k

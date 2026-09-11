@@ -1,12 +1,28 @@
 # OverseeingManyLLMs
 
-A reproducible research framework for allocating one simulated reviewer across LLM agents. It includes synthetic civilian maintenance and an adapted τ-bench retail application with genuine retrieval, confirmation and mutation-tool workflows. Review duration, expiring intervention opportunities, risk estimates and operational loss are explicit; supervision is simulated throughout.
+A reproducible research framework for allocating one simulated reviewer across LLM agents. It includes measured laboratory HVAC diagnosis, synthetic civilian maintenance, and adapted tau-bench retail workflows on simulated customer records. Review duration, expiring intervention opportunities, risk estimates and operational loss are explicit; supervision is simulated throughout.
 
 Start with the [practical application report](reports/STAGE5_PRACTICAL.md), [source/adaptation table](paper/RETAIL_ADAPTATION.md), and completed [Stage 4 research report](reports/STAGE4_RESEARCH.md), [research draft](paper/RESEARCH_DRAFT.md), [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
 
 Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy baseline. Calibration uses 16 FCFS episodes with provisional **p=0.5**; the frozen estimator then drives five policies on eight development scenarios. The declared scope is 56 episodes, 672 experimental calls, and at most one placement generation. A bin with fewer than ten calibration examples uses the smoothed pooled estimate. This development batch is not a held-out effectiveness study.
 
 All 56 episodes completed and replayed: **672 experimental generations plus one placement**, with no retries or failures. Calibration had 87 agreeing pairs (12 errors) and nine disagreeing pairs (five errors), so disagreement used pooled fallback. Validation loss totaled 60 for FCFS/uncertainty-first and 62 for myopic/greedy/queue search; each policy corrected two jobs. Queue search and greedy chose identical review orders on all eight scenarios. These ties and negative results are retained.
+
+## Measured HVAC study and current manuscript
+
+The principal externally grounded application uses **measured FLEXLAB sensor data** with experimentally imposed fault labels. Eight whole days are development and **18 held-out day blocks on one air handler** supply 54 proposal/review pairs. Windows and policy replays are not independent buildings or source cases.
+
+The proposer gets **19/54** diagnoses correct, versus **27/54** for a development-trained conventional baseline. Model review corrects one error but makes six correct proposals unresolved. The frozen signed-benefit rule declines review, so the primary search-minus-greedy difference is mechanically **0 [0, 0]**, with 18 day ties. This is not proof of scheduling-policy equivalence. Risk-only scheduling applies harmful reviews and raises search loss relative to no review by **2.667 [0.217, 5.778]**. Under ideal review, search improves on greedy by **3.333 [1.778, 4.889]** loss points, while **EDF matches search**.
+
+All **204 GPU attempts** succeed, with no retries. The **3,888 paired scheduling traces** and result tables replay without inference. Arrivals, cutoffs, review duration and loss weights remain constructed assumptions; no repair outcomes, energy savings or human performance are measured. SQL was not evaluated because Critic reference assets require contact and a valid BIRD-SQL fallback did not fit the remaining original deadline.
+
+Read the [Stage 7 report](reports/STAGE7_EMPIRICAL.md), [provenance](artifacts/stage7_empirical/provenance.json), [assumption assessment](paper/HVAC_ASSUMPTIONS.md), [eight-page manuscript](paper/main.pdf), [17-page supplement](paper/supplement.pdf), and [reproduction guide](paper/STAGE7_REPRODUCTION.md). The main paper retains both unfavorable retail comparisons and condenses synthetic maintenance into a mechanism study.
+
+```bash
+bash scripts/replay_stage7.sh
+```
+
+This reconstructs saved-output tables, figures and PDFs without new inference. Historical artifacts, clocks and redaction provenance are preserved. The original server remains healthy. No new server or paid resource was provisioned.
 
 ## Robustness study and ICAART manuscript
 
@@ -25,9 +41,9 @@ The restricted-authority primary result is unfavorable to search: **+1.6667 loss
 
 At one tick, every review policy prevents all staged errors in each fresh condition. The restricted-authority completion floor and no-review invariance follow from the semantics. They are not new empirical discoveries. The fresh eight bundles and the post hoc 32-bundle sensitivity remain separate; broad source templates are shared and public-data contamination is not ruled out.
 
-Read the [Stage 6 report](reports/STAGE6_ROBUSTNESS.md), [source-based assumption review](paper/RETAIL_ASSUMPTION_REVIEW.md), [manuscript](paper/main.pdf), [supplement](paper/supplement.pdf), and [reproduction guide](paper/STAGE6_REPRODUCTION.md). The nine-page manuscript and ten-page supplement use the official ICAART 2027 template. Human authors must finalize submission declarations and confirm AI-disclosure/supplement handling; nothing is pushed or submitted.
+Read the [Stage 6 report](reports/STAGE6_ROBUSTNESS.md), [source-based assumption review](paper/RETAIL_ASSUMPTION_REVIEW.md), [manuscript](paper/main.pdf), [supplement](paper/supplement.pdf), and [reproduction guide](paper/STAGE6_REPRODUCTION.md). The Stage 6 manuscript originally had nine pages and its supplement ten, preserved at commit d9b39589. The current PDFs linked above incorporate Stage 7 using the same official ICAART 2027 template. Human authors must finalize submission declarations and confirm AI-disclosure/supplement handling; nothing is pushed or submitted.
 
-With the analysis dependencies and LaTeX installed, reproduce saved tables, figures and both PDFs without inference:
+At the preserved Stage 6 commit `d9b39589`, reproduce its saved tables, figures and original PDFs without inference using the command below. On current main, use the Stage 7 command above for the updated manuscript and audits that write only to the new artifact directory.
 
 ```bash
 bash scripts/replay_stage6.sh
