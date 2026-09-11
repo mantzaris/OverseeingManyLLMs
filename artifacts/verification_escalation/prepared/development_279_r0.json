@@ -1,0 +1,49 @@
+{
+  "answered": {
+    "sql": "SELECT T2.Street_Address FROM Transactions AS T1 JOIN Properties AS T2 ON T1.property_id = T2.property_id WHERE T1.TypeOfTransaction = 'Rent'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the locations (City) of rental properties from the database.",
+          "sql": "SELECT City FROM Properties WHERE Property_Type IN ('Single Family Home', 'Condo', 'Townhouse', 'Loft') AND property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the addresses of rental properties in the database.",
+          "sql": "SELECT Street_Address FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        },
+        {
+          "meaning": "Identify the cities where rental properties are located in the database.",
+          "sql": "SELECT City FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        },
+        {
+          "meaning": "List the property IDs and addresses of all properties that are being rented out.",
+          "sql": "SELECT property_id, Street_Address FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        }
+      ],
+      "source_quote_sha256": "e9dd49b55f803b2de6bf76e8cdf05f6c9297a74246abff011100fc58b0106a5c",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "279",
+  "public_hash": "39647d5f07ab54fcc447a1a5c237a7628781f213b3ff32d7d7da0d9ba477a3e6",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Select the street addresses of rental properties from the database.",
+        "sql": "SELECT Street_Address FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+      }
+    ],
+    "source_quote_sha256": "92387d93e55f0fc0b94ac830f52a442f3412c97c00810f752ef41b41b129a7eb",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

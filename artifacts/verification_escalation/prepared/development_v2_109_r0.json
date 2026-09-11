@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT system_name FROM Systems WHERE system_id IN (SELECT system_id FROM It_Support_Specialists_Systems GROUP BY system_id HAVING COUNT(it_specialist_id) = (SELECT COUNT(*) FROM It_Support_Specialists))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List all systems that each support specialist works with.",
+          "sql": "SELECT s.name, GROUP_CONCAT(sys.system_name) AS systems FROM It_Support_Specialists s JOIN It_Support_Specialists_Systems iss ON s.id = iss.it_specialist_id JOIN Systems sys ON iss.system_id = sys.system_id GROUP BY s.id, s.name"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all systems that each support specialist works with, including duplicates.",
+          "sql": "SELECT s.system_name, i.name FROM It_Support_Specialists i JOIN It_Support_Specialists_Systems iss ON i.id = iss.it_specialist_id JOIN Systems s ON iss.system_id = s.system_id"
+        },
+        {
+          "meaning": "For each support specialist, list the systems they work with, including duplicates and showing the specialist's name.",
+          "sql": "SELECT i.name, s.system_name FROM It_Support_Specialists i JOIN It_Support_Specialists_Systems iss ON i.id = iss.it_specialist_id JOIN Systems s ON iss.system_id = s.system_id"
+        },
+        {
+          "meaning": "List all unique systems that each support specialist works with, without duplicates.",
+          "sql": "SELECT i.name, GROUP_CONCAT(DISTINCT s.system_name) AS systems FROM It_Support_Specialists i JOIN It_Support_Specialists_Systems iss ON i.id = iss.it_specialist_id JOIN Systems s ON iss.system_id = s.system_id GROUP BY i.name"
+        }
+      ],
+      "source_quote_sha256": "3719be3a7150c1619ebe411dc22848b3db2f635ae6b280b251d9a3c4125d1b0e",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "109",
+  "public_hash": "9af09082e8a803431bbae394caabe13a86cec636141a056a13664cdfe793377e",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Identify the systems that all support specialists work with.",
+        "sql": "SELECT system_name FROM Systems WHERE system_id IN (SELECT system_id FROM It_Support_Specialists_Systems GROUP BY system_id HAVING COUNT(it_specialist_id) = (SELECT COUNT(*) FROM It_Support_Specialists))"
+      },
+      {
+        "meaning": "List the systems that any support specialist works with.",
+        "sql": "SELECT system_name FROM Systems WHERE system_id IN (SELECT system_id FROM It_Support_Specialists_Systems)"
+      },
+      {
+        "meaning": "Find the systems that at least one support specialist works with.",
+        "sql": "SELECT system_name FROM Systems WHERE system_id IN (SELECT system_id FROM It_Support_Specialists_Systems GROUP BY system_id HAVING COUNT(it_specialist_id) >= 1)"
+      }
+    ],
+    "source_quote_sha256": "79981e4064e7074af9d15eb95bc9d62bc3b3ccc295ae3e8405077901c8fb642f",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

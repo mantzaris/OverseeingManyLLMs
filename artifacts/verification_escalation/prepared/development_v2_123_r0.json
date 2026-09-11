@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles GROUP BY RoleID HAVING COUNT(HospitalID) = (SELECT COUNT(*) FROM Hospitals))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the salary of the role that each hospital has, implying each hospital has at least one role and we should list the role's salary for each hospital.",
+          "sql": "SELECT H.Name AS HospitalName, MR.RoleName, MR.Salary FROM Hospitals H JOIN Hospitals_Medical_Roles HMR ON H.HospitalID = HMR.HospitalID JOIN MedicalRoles MR ON HMR.RoleID = MR.RoleID"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the salary of the most common role at each hospital.",
+          "sql": "SELECT H.Name, MR.RoleName, MR.Salary FROM Hospitals H JOIN Hospitals_Medical_Roles HM ON H.HospitalID = HM.HospitalID JOIN MedicalRoles MR ON HM.RoleID = MR.RoleID GROUP BY H.Name, MR.RoleName ORDER BY COUNT(*) DESC LIMIT 1"
+        },
+        {
+          "meaning": "Find the salary of any role that each hospital has, without considering the frequency of roles.",
+          "sql": "SELECT H.Name, MR.RoleName, MR.Salary FROM Hospitals H JOIN Hospitals_Medical_Roles HM ON H.HospitalID = HM.HospitalID JOIN MedicalRoles MR ON HM.RoleID = MR.RoleID"
+        },
+        {
+          "meaning": "Find the salary of the role that each hospital has, assuming each hospital has only one role.",
+          "sql": "SELECT H.Name, MR.RoleName, MR.Salary FROM Hospitals H JOIN Hospitals_Medical_Roles HM ON H.HospitalID = HM.HospitalID JOIN MedicalRoles MR ON HM.RoleID = MR.RoleID LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "a88d14c4f6463645db2ecee5d8c9ac520a6d8b476a2b36a0497a1efaca7a7820",
+      "unrepresented_possible": true
+    }
+  },
+  "id": "123",
+  "public_hash": "6542f9653aca7d78ae17b8b0ea1080884155355054054629e9cfc6c66f16946a",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Find the salary of the role that is common to all hospitals, which is 'Registered Nurse'.",
+        "sql": "SELECT Salary FROM MedicalRoles WHERE RoleName = 'Registered Nurse';"
+      },
+      {
+        "meaning": "Find the salary of the role that each hospital has in common, which is 'Registered Nurse'.",
+        "sql": "SELECT Salary FROM MedicalRoles WHERE RoleName = 'Registered Nurse';"
+      },
+      {
+        "meaning": "Find the salary of the role that is present in at least one hospital, which is 'Registered Nurse'.",
+        "sql": "SELECT Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles);"
+      }
+    ],
+    "source_quote_sha256": "ff5300705f26b580f8a4a7dc752394da336deea2bb2671e6ce0abf5c7258863a",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Minimum_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the job with the highest salary and list the required experience and preferred experience.",
+          "sql": "SELECT Minimum_Years, Preferred_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the job with the highest salary and the required experience for that position.",
+          "sql": "SELECT Minimum_Years, Preferred_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+        },
+        {
+          "meaning": "Find the job with the highest salary and the experience requirements for that position, including minimum and preferred years.",
+          "sql": "SELECT Minimum_Years, Preferred_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+        },
+        {
+          "meaning": "Identify the job with the highest salary and list the experience requirements (minimum and preferred years) for that position.",
+          "sql": "SELECT Minimum_Years, Preferred_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+        }
+      ],
+      "source_quote_sha256": "cbaf41efc484326f70a37956f3885e720ccd7352e3ee551c952ea0e5875175e0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "266",
+  "public_hash": "0eb62cb068900da284b91a45e917f31b02b2dfce742cf4893b855ab4119faaa0",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Find the job with the highest salary and the minimum years of experience required for that job.",
+        "sql": "SELECT Minimum_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+      },
+      {
+        "meaning": "Find the job with the highest salary and the preferred years of experience for that job.",
+        "sql": "SELECT Preferred_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+      },
+      {
+        "meaning": "Find the job with the highest salary and the average years of experience (minimum and preferred) required for that job.",
+        "sql": "SELECT (Minimum_Years + Preferred_Years) / 2 AS Average_Years FROM Jobs WHERE Salary = (SELECT MAX(Salary) FROM Jobs)"
+      }
+    ],
+    "source_quote_sha256": "5af6ae149b8b429db0d666af0fea1bdbe8c4aca583ef19f4458ee88d119ae189",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

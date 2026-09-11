@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles GROUP BY RoleID HAVING COUNT(HospitalID) = (SELECT COUNT(*) FROM Hospitals))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "The salary of each role that is associated with a hospital.",
+          "sql": "SELECT RoleName, Salary FROM MedicalRoles"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the salary of each role that is associated with a hospital.",
+          "sql": "SELECT RoleName, Salary FROM MedicalRoles"
+        },
+        {
+          "meaning": "Find the salary of the role that each hospital has in common.",
+          "sql": "SELECT RoleName, Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles GROUP BY RoleID HAVING COUNT(HospitalID) = (SELECT COUNT(*) FROM Hospitals))"
+        },
+        {
+          "meaning": "Find the salary of the role that is associated with each hospital.",
+          "sql": "SELECT MR.RoleName, MR.Salary FROM MedicalRoles MR JOIN Hospitals_Medical_Roles HMR ON MR.RoleID = HMR.RoleID JOIN Hospitals H ON HMR.HospitalID = H.HospitalID"
+        }
+      ],
+      "source_quote_sha256": "a88d14c4f6463645db2ecee5d8c9ac520a6d8b476a2b36a0497a1efaca7a7820",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "123",
+  "public_hash": "6542f9653aca7d78ae17b8b0ea1080884155355054054629e9cfc6c66f16946a",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "What is the salary for a position that is common to all hospitals?",
+        "sql": "SELECT RoleName, Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles GROUP BY RoleID HAVING COUNT(HospitalID) = (SELECT COUNT(*) FROM Hospitals))"
+      },
+      {
+        "meaning": "What is the salary for the most common role across all hospitals?",
+        "sql": "SELECT RoleName, Salary FROM MedicalRoles WHERE RoleID = (SELECT RoleID FROM Hospitals_Medical_Roles GROUP BY RoleID ORDER BY COUNT(HospitalID) DESC LIMIT 1)"
+      },
+      {
+        "meaning": "What is the salary for a role that each hospital has at least one instance of?",
+        "sql": "SELECT RoleName, Salary FROM MedicalRoles WHERE RoleID IN (SELECT RoleID FROM Hospitals_Medical_Roles)"
+      }
+    ],
+    "source_quote_sha256": "ff5300705f26b580f8a4a7dc752394da336deea2bb2671e6ce0abf5c7258863a",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

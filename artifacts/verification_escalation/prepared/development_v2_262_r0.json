@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Salary_Range FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "compensation details for software developers",
+          "sql": "SELECT T2.Salary_Range, T2.Hourly_Rate FROM Position AS T1 JOIN SalaryDetails AS T2 ON T1.Id = T2.PositionId WHERE T1.Title = 'Software Developer'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "The salary range for software developers as listed in the database.",
+          "sql": "SELECT Salary_Range FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+        },
+        {
+          "meaning": "The hourly rate for software developers as listed in the database.",
+          "sql": "SELECT Hourly_Rate FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+        },
+        {
+          "meaning": "The compensation details for software developers, including both salary range and hourly rate as listed in the database.",
+          "sql": "SELECT Salary_Range, Hourly_Rate FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+        }
+      ],
+      "source_quote_sha256": "a1e394e334f1c2abde85bc161a4cc18c39e2e9a81bcd49fc1d0562414be0ed57",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "262",
+  "public_hash": "a112e95af20d848e3f66edee7c0e554b771de428772cdcbd65193738382d7d8d",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Salary range for software developers",
+        "sql": "SELECT Salary_Range FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+      },
+      {
+        "meaning": "Hourly rate for software developers",
+        "sql": "SELECT Hourly_Rate FROM SalaryDetails WHERE PositionId = (SELECT Id FROM Position WHERE Title = 'Software Developer')"
+      },
+      {
+        "meaning": "Total compensation including salary and benefits for software developers",
+        "sql": "SELECT sd.Salary_Range, sd.Hourly_Rate FROM SalaryDetails sd JOIN Position p ON sd.PositionId = p.Id WHERE p.Title = 'Software Developer'"
+      }
+    ],
+    "source_quote_sha256": "268ee112779b578a43eef398592fa08012f71bb19bda890356dfc4466746cb52",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

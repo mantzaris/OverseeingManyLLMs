@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT T3.model FROM manufacturers AS T1 JOIN plane_details AS T2 ON T1.id = T2.manufacturer_id JOIN planes AS T3 ON T2.plane_id = T3.id WHERE T1.name = 'Boeing' AND T3.number_of_seats = 180 UNION SELECT T3.model FROM manufacturers AS T1 JOIN plane_details AS T2 ON T1.id = T2.manufacturer_id JOIN planes AS T3 ON T2.plane_id = T3.id WHERE T1.name = 'Airbus' AND T3.number_of_seats = 180"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List Boeing and Airbus models with exactly 180 seats.",
+          "sql": "SELECT model FROM planes WHERE number_of_seats = 180 AND manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus'))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all Boeing and Airbus models that have exactly 180 seats.",
+          "sql": "SELECT model FROM planes WHERE number_of_seats = 180 AND manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus'))"
+        },
+        {
+          "meaning": "List all Boeing and Airbus models that have a maximum of 180 seats.",
+          "sql": "SELECT model FROM planes WHERE number_of_seats <= 180 AND manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus'))"
+        },
+        {
+          "meaning": "List all Boeing and Airbus models that have at least 180 seats.",
+          "sql": "SELECT model FROM planes WHERE number_of_seats >= 180 AND manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus'))"
+        }
+      ],
+      "source_quote_sha256": "40535e23ea867482bbf240725a57930dd0cbe3c1a259990dc40f7bd1db6325c2",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "106",
+  "public_hash": "5384824328cd51f90af46a4955ab53a65c9e1008d95bb7b125ef5849b8d2b60f",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all Boeing and Airbus models with exactly 180 seats.",
+        "sql": "SELECT model FROM planes WHERE manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus')) AND number_of_seats = 180"
+      },
+      {
+        "meaning": "List all Boeing and Airbus models that can seat 180 passengers, including those with a capacity of 180 or fewer.",
+        "sql": "SELECT model FROM planes WHERE manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus')) AND number_of_seats >= 180"
+      },
+      {
+        "meaning": "List all Boeing and Airbus models that have a seating capacity of 180, including those with a capacity of 180 or more, but only include exact matches.",
+        "sql": "SELECT model FROM planes WHERE manufacturer_id IN (SELECT id FROM manufacturers WHERE name IN ('Boeing', 'Airbus')) AND number_of_seats = 180"
+      }
+    ],
+    "source_quote_sha256": "a28509a092cb772a05dd737c9a40423bd489be89a8b361e9db689621e4944bac",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

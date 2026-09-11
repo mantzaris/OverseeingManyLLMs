@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Street_Address FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction IN ('Rent', 'Lease'))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "To find the locations of rental properties, we need to identify properties that are listed as 'Rent' in the Transactions table and then retrieve their addresses from the Properties table.",
+          "sql": "SELECT Properties.Street_Address, Properties.City FROM Properties JOIN Transactions ON Properties.property_id = Transactions.property_id WHERE Transactions.TypeOfTransaction = 'Rent'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the locations of rental properties (properties that are rented out) in the database.",
+          "sql": "SELECT City FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        },
+        {
+          "meaning": "Find the locations of all properties that are listed by real estate offices that handle rentals.",
+          "sql": "SELECT City FROM Properties WHERE real_estate_office_id IN (SELECT real_estate_office_id FROM RealEstateOffices WHERE Name IN (SELECT Name FROM RealEstateOffices WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')))"
+        },
+        {
+          "meaning": "Find the locations of properties that are currently being rented out (assuming the transactions table has up-to-date rental information).",
+          "sql": "SELECT City FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction = 'Rent')"
+        }
+      ],
+      "source_quote_sha256": "e9dd49b55f803b2de6bf76e8cdf05f6c9297a74246abff011100fc58b0106a5c",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "279",
+  "public_hash": "39647d5f07ab54fcc447a1a5c237a7628781f213b3ff32d7d7da0d9ba477a3e6",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Street addresses of rental properties in the database",
+        "sql": "SELECT Street_Address FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction IN ('Rent', 'Lease'))"
+      },
+      {
+        "meaning": "City of rental properties in the database",
+        "sql": "SELECT City FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction IN ('Rent', 'Lease'))"
+      },
+      {
+        "meaning": "Real estate offices associated with rental properties in the database",
+        "sql": "SELECT Real_Estate_Offices FROM Properties WHERE property_id IN (SELECT property_id FROM Transactions WHERE TypeOfTransaction IN ('Rent', 'Lease'))"
+      }
+    ],
+    "source_quote_sha256": "92387d93e55f0fc0b94ac830f52a442f3412c97c00810f752ef41b41b129a7eb",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

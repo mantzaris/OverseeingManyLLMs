@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT Name FROM Restaurants WHERE Cuisine = 'Italian' UNION SELECT Name FROM Restaurants WHERE Food_Service = 'Café' AND Cuisine = 'Italian'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find restaurants and cafes that serve Italian cuisine.",
+          "sql": "SELECT * FROM Restaurants WHERE Cuisine = 'Italian'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find restaurants and cafes that serve Italian cuisine.",
+          "sql": "SELECT Name, Address FROM Restaurants WHERE Cuisine = 'Italian'"
+        },
+        {
+          "meaning": "Find all restaurants and cafes, including those that serve Italian cuisine.",
+          "sql": "SELECT Name, Address FROM Restaurants"
+        },
+        {
+          "meaning": "Find restaurants and cafes that serve Italian cuisine and are currently available for reservations.",
+          "sql": "SELECT R.Name, R.Address FROM Restaurants R JOIN Tables T ON R.ID = T.RestaurantID WHERE R.Cuisine = 'Italian' AND T.Status = 'Available'"
+        }
+      ],
+      "source_quote_sha256": "eaa972581c325bc52125763722698bc2fbf14dda395c0559a9c288ddce49643f",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "5",
+  "public_hash": "2eae497d650524fbf9f558858007ff631354f7583a97c1b244af726110a6ea77",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all restaurants and cafes that serve Italian cuisine.",
+        "sql": "SELECT Name FROM Restaurants WHERE Cuisine = 'Italian'"
+      },
+      {
+        "meaning": "List all restaurants and cafes that serve Italian cuisine, including their addresses.",
+        "sql": "SELECT Name, Address FROM Restaurants WHERE Cuisine = 'Italian'"
+      },
+      {
+        "meaning": "List all restaurants and cafes that serve Italian cuisine, including their names and the tables they have available.",
+        "sql": "SELECT R.Name, T.Number FROM Restaurants R JOIN Tables T ON R.ID = T.RestaurantID WHERE R.Cuisine = 'Italian'"
+      }
+    ],
+    "source_quote_sha256": "eaa972581c325bc52125763722698bc2fbf14dda395c0559a9c288ddce49643f",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT responsibility FROM Responsibilities WHERE id IN (SELECT responsibilityId FROM Internships_Responsibilities WHERE internshipId IN (SELECT id FROM Internships)) GROUP BY responsibility HAVING COUNT(responsibilityId) = (SELECT COUNT(*) FROM Internships)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Return a list of responsibilities associated with each internship.",
+          "sql": "SELECT I.title, R.responsibility FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON IR.responsibilityId = R.id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the responsibilities associated with each internship.",
+          "sql": "SELECT I.title, R.responsibility FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON R.id = IR.responsibilityId"
+        },
+        {
+          "meaning": "Identify the primary responsibility for each internship.",
+          "sql": "SELECT I.title, R.responsibility FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON R.id = IR.responsibilityId GROUP BY I.title, R.responsibility ORDER BY I.title, R.responsibility"
+        },
+        {
+          "meaning": "Provide a summary of responsibilities for each internship, listing all associated responsibilities.",
+          "sql": "SELECT I.title, GROUP_CONCAT(R.responsibility) AS responsibilities FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON R.id = IR.responsibilityId GROUP BY I.title"
+        }
+      ],
+      "source_quote_sha256": "1e8f2c82a74652bbcc2637f24f38ccda70bd529714de4d2494f989f9967a1033",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "115",
+  "public_hash": "aead8a8277f3275aaf1527e61c7497be3b76226033119d9b587ac3c57b3bcb9c",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Which specific responsibilities are associated with each internship?",
+        "sql": "SELECT I.title, R.responsibility FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON IR.responsibilityId = R.id"
+      },
+      {
+        "meaning": "Which shared responsibility is common among all internships?",
+        "sql": "SELECT R.responsibility FROM Responsibilities R JOIN Internships_Responsibilities IR ON R.id = IR.responsibilityId GROUP BY R.responsibility HAVING COUNT(DISTINCT IR.internshipId) = (SELECT COUNT(*) FROM Internships)"
+      },
+      {
+        "meaning": "Which responsibilities are associated with each internship, considering the shared responsibility among all internships?",
+        "sql": "SELECT I.title, R.responsibility FROM Internships I JOIN Internships_Responsibilities IR ON I.id = IR.internshipId JOIN Responsibilities R ON IR.responsibilityId = R.id"
+      }
+    ],
+    "source_quote_sha256": "0f7a3ec9cd734f32a997ce19d50ca32017fd4f08e98a0c9d75a9db003d8bd55b",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "development"
+}

@@ -1,0 +1,35 @@
+test_bag_null_shape (research.verification_escalation.test_protocol.Semantics) ... ok
+test_baseline_agreement (research.verification_escalation.test_protocol.Semantics) ... ok
+test_budget (research.verification_escalation.test_protocol.Semantics) ... ok
+test_conditional_omission (research.verification_escalation.test_protocol.Semantics) ... ok
+test_empty_trap (research.verification_escalation.test_protocol.Semantics) ... ok
+test_failure_not_equivalence (research.verification_escalation.test_protocol.Semantics) ... ok
+test_information_isolation (research.verification_escalation.test_protocol.Semantics) ... FAIL
+test_process_constraint (research.verification_escalation.test_protocol.Semantics) ... ok
+test_replay (research.verification_escalation.test_protocol.Semantics) ... ok
+test_scope_exception (research.verification_escalation.test_protocol.Semantics) ... FAIL
+test_snapshot_invalidation (research.verification_escalation.test_protocol.Semantics) ... ok
+test_source_scope (research.verification_escalation.test_protocol.Semantics) ... ok
+test_write_guard (research.verification_escalation.test_protocol.Semantics) ... ok
+
+======================================================================
+FAIL: test_information_isolation (research.verification_escalation.test_protocol.Semantics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/verification_escalation/test_protocol.py", line 8, in test_information_isolation
+    t,p,y,a=instance('missing_preference',7000);c=Controller(t,p,1);q=c.next_question();y[t[0]['id']]='SELECT 999';a.clear();self.assertEqual(q,Controller(t,p,1).next_question())
+AssertionError: {'tas[460 chars]00016321090515702963}}, {'meaning': 'order thr[1097 chars]e7a'} != {'tas[460 chars]00016295898240059614}}, {'meaning': 'order thr[1099 chars]e7a'}
+Diff is 3653 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_scope_exception (research.verification_escalation.test_protocol.Semantics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/verification_escalation/test_protocol.py", line 25, in test_scope_exception
+    t,p,y,a=instance('scope_exception',7000);c=Controller(t,p,1);q=c.next_question();c.answer(q,{'sql_by_task':a});self.assertEqual(sum(r['status']=='released' for r in c.records.values()),1)
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.027s
+
+FAILED (failures=2)
