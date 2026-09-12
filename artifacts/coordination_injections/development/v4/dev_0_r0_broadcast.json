@@ -1,0 +1,1294 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": true,
+      "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "84077",
+            4571
+          ],
+          [
+            "85123A",
+            3633
+          ],
+          [
+            "22834",
+            3322
+          ],
+          [
+            "21212",
+            3266
+          ],
+          [
+            "22693",
+            2617
+          ]
+        ],
+        "seconds": 0.028961166040971875,
+        "status": "ok",
+        "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [
+          "chart"
+        ],
+        "query": {
+          "country": "United Kingdom",
+          "customer": "all",
+          "end": "2011-01-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "start": "2010-12-01"
+        },
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "analysis",
+      "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "appendix": {
+      "accepted": false,
+      "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+      "dependencies": {},
+      "online_issues": [
+        "malformed_or_blocked"
+      ],
+      "proposal": {
+        "notify": [],
+        "status": "keep"
+      },
+      "revision": 1,
+      "role": "appendix"
+    },
+    "chart": {
+      "accepted": false,
+      "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+      "dependencies": {
+        "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+      },
+      "online_issues": [
+        "malformed_or_blocked"
+      ],
+      "proposal": {
+        "notify": [],
+        "status": "keep"
+      },
+      "revision": 1,
+      "role": "chart"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_analysis",
+      "request_sha256": "54023c6adbcfc8bc0dd1e9b9640e0e829247a6ecae7791a3e87bf9a2963af643",
+      "seconds": 1.9646394639275968,
+      "status": "ok",
+      "tokens": 621
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_chart",
+      "request_sha256": "d7a26b3556fef63c97e6cb780d0078bbf9aa3c10ad52c3c41500ab1d1dcbae72",
+      "seconds": 0.39521239197347313,
+      "status": "ok",
+      "tokens": 623
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_appendix",
+      "request_sha256": "c1effb390a9fd48b94fbf9c467a641b9be88cca02800c51337e623afad44aa00",
+      "seconds": 0.6282004790846258,
+      "status": "ok",
+      "tokens": 535
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_1_chart",
+      "request_sha256": "b4b3ce6b2cf93f9746f65da0ace622bc2b67ecbf7c5f2adea00883e33a02c13b",
+      "seconds": 0.3728705099783838,
+      "status": "ok",
+      "tokens": 629
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_1_appendix",
+      "request_sha256": "518205c00cccafdd2129e90df347be1503c0f7222d073c52c12964e5c155cf5f",
+      "seconds": 0.5404984729830176,
+      "status": "ok",
+      "tokens": 535
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix",
+    "chart"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "2547352c4331a06d631dd8a9531627d5a845f909b3565d1d9d43ccf571154f5c",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Restrict the main analysis, chart and report to United Kingdom. Keep the appendix under its original all-country brief.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_analysis",
+        "delivery": "direct",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_0_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_1_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_0_r0_broadcast_after_ordinary_1_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.028961166040971875,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2010-12-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'United Kingdom' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "dd8e2eec87d14eafb72083595b105caa92c8091647752735a1b641020455a46b",
+          "dependencies": {
+            "analysis": "ad17020315f96c430c1d9a13b81fa8d7d6e75ef03e7a23dede000c8634e44a15"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 1
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "broadcast",
+  "month": "2010-12",
+  "project_id": "dev_0",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "missing_artifact"
+      ],
+      "role": "chart",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "chart",
+      "round": 1,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "appendix",
+      "round": 1,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 5.6486121859634295,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}

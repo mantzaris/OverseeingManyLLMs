@@ -1,0 +1,1703 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": true,
+      "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            77183600000
+          ],
+          [
+            "85123A",
+            15223210000
+          ],
+          [
+            "DOT",
+            13921820000
+          ],
+          [
+            "22423",
+            12800600000
+          ],
+          [
+            "21108",
+            6870410000
+          ]
+        ],
+        "seconds": 0.01740843302104622,
+        "status": "ok",
+        "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [
+          "chart"
+        ],
+        "query": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "value_micro",
+          "start": "2011-01-01"
+        },
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "analysis",
+      "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "appendix": {
+      "accepted": true,
+      "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            74215
+          ],
+          [
+            "85123A",
+            5533
+          ],
+          [
+            "21212",
+            3411
+          ],
+          [
+            "21108",
+            3246
+          ],
+          [
+            "17003",
+            3181
+          ]
+        ],
+        "seconds": 0.017799937981180847,
+        "status": "ok",
+        "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [
+          "immediate dependent roles"
+        ],
+        "query": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "start": "2011-01-01"
+        },
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "appendix",
+      "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "chart": {
+      "accepted": true,
+      "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+      "dependencies": {
+        "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+      },
+      "online_issues": [],
+      "points": [
+        [
+          "23166",
+          77183600000
+        ],
+        [
+          "85123A",
+          15223210000
+        ],
+        [
+          "DOT",
+          13921820000
+        ],
+        [
+          "22423",
+          12800600000
+        ],
+        [
+          "21108",
+          6870410000
+        ]
+      ],
+      "proposal": {
+        "notify": [
+          "report"
+        ],
+        "status": "replace",
+        "title": "Top 5 Positive Value_micro from 2011-01-01 to 2011-02-01",
+        "view": {
+          "limit": 5,
+          "source": "analysis",
+          "unit": "micro_GBP"
+        }
+      },
+      "revision": 2,
+      "role": "chart",
+      "unit": "micro_GBP"
+    },
+    "report": {
+      "accepted": true,
+      "claims": {
+        "displayed_products": 5,
+        "displayed_total": 125999640000,
+        "top_stock": "23166",
+        "top_value": 77183600000
+      },
+      "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+      "dependencies": {
+        "chart": "34ec9821ef8aa4b30d4639f5db7a7aa34d395fdd23bcec996d4109978d754180"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [],
+        "status": "replace",
+        "summary": {
+          "source": "chart",
+          "unit": "micro_GBP"
+        },
+        "text": "This report ranks the top 5 positive value_micro from 2011-01-01 to 2011-02-01, showing the stock code and its value in micro_GBP.",
+        "tool": "summarize"
+      },
+      "revision": 2,
+      "role": "report",
+      "unit": "micro_GBP"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_analysis",
+      "request_sha256": "4a27c642402825afdb4c1e372b14c7bd4adba59e7ed426689a609af95fbcb84e",
+      "seconds": 1.9376736129634082,
+      "status": "ok",
+      "tokens": 767
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_chart",
+      "request_sha256": "b74bf642588053fca253139a473b9087173d76d351a28202a00546eb38efc7b5",
+      "seconds": 2.3038765989476815,
+      "status": "ok",
+      "tokens": 800
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_report",
+      "request_sha256": "c99bc0669caf030b135bcea062316fd123ac19032a7a77f9ffcab632709e2751",
+      "seconds": 2.0598912429995835,
+      "status": "ok",
+      "tokens": 830
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_appendix",
+      "request_sha256": "7ce9b801a6c26dc7968ee890fe63ecfa0277f9782411d3f25bfa0c2931f83ead",
+      "seconds": 1.9960857880068943,
+      "status": "ok",
+      "tokens": 659
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix",
+    "chart",
+    "report"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.023244382115080953,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "query_parameters_do_not_match_applicable_contract",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 20], ['F', 11], ['B', 7], ['A', 2]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.018925576005131006,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3e2b944d581ae3586036c7e6a047965ea71dfd0d12c66b69fec5ca947765cd37"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:analysis",
+            "unit_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 1,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 89586,
+            "top_stock": "23166",
+            "top_value": 74215
+          },
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "chart": "8628c168627d23dc0e3ddd57c9605bdb6c49a5831e8212108a9eb55aff599597"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:chart",
+            "unit_mismatch"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sold from 2011-01-01 to 2011-02-01, showing the stock code and the number of units sold."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Rank the main outputs by recorded positive line value, not item quantity. Preserve the original quantity appendix.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01740843302104622,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.018925576005131006,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3e2b944d581ae3586036c7e6a047965ea71dfd0d12c66b69fec5ca947765cd37"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "stale_dependency:analysis",
+            "unit_mismatch",
+            "chart_does_not_match_current_analysis"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 1,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 89586,
+            "top_stock": "23166",
+            "top_value": 74215
+          },
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "chart": "8628c168627d23dc0e3ddd57c9605bdb6c49a5831e8212108a9eb55aff599597"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:chart",
+            "unit_mismatch"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sold from 2011-01-01 to 2011-02-01, showing the stock code and the number of units sold."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_analysis",
+        "delivery": "direct",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01740843302104622,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.018925576005131006,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "23166",
+              77183600000
+            ],
+            [
+              "85123A",
+              15223210000
+            ],
+            [
+              "DOT",
+              13921820000
+            ],
+            [
+              "22423",
+              12800600000
+            ],
+            [
+              "21108",
+              6870410000
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Value_micro from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "micro_GBP"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "micro_GBP"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 89586,
+            "top_stock": "23166",
+            "top_value": 74215
+          },
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "chart": "8628c168627d23dc0e3ddd57c9605bdb6c49a5831e8212108a9eb55aff599597"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "stale_dependency:chart",
+            "unit_mismatch",
+            "report_claims_do_not_match_chart"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sold from 2011-01-01 to 2011-02-01, showing the stock code and the number of units sold."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01740843302104622,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.018925576005131006,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "23166",
+              77183600000
+            ],
+            [
+              "85123A",
+              15223210000
+            ],
+            [
+              "DOT",
+              13921820000
+            ],
+            [
+              "22423",
+              12800600000
+            ],
+            [
+              "21108",
+              6870410000
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Value_micro from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "micro_GBP"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "micro_GBP"
+        },
+        "report": {
+          "accepted": true,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 125999640000,
+            "top_stock": "23166",
+            "top_value": 77183600000
+          },
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "chart": "34ec9821ef8aa4b30d4639f5db7a7aa34d395fdd23bcec996d4109978d754180"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "micro_GBP"
+            },
+            "text": "This report ranks the top 5 positive value_micro from 2011-01-01 to 2011-02-01, showing the stock code and its value in micro_GBP.",
+            "tool": "summarize"
+          },
+          "revision": 2,
+          "role": "report",
+          "unit": "micro_GBP"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_report",
+        "delivery": "direct",
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01740843302104622,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.017799937981180847,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "immediate dependent roles"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "23166",
+              77183600000
+            ],
+            [
+              "85123A",
+              15223210000
+            ],
+            [
+              "DOT",
+              13921820000
+            ],
+            [
+              "22423",
+              12800600000
+            ],
+            [
+              "21108",
+              6870410000
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Value_micro from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "micro_GBP"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "micro_GBP"
+        },
+        "report": {
+          "accepted": true,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 125999640000,
+            "top_stock": "23166",
+            "top_value": 77183600000
+          },
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "chart": "34ec9821ef8aa4b30d4639f5db7a7aa34d395fdd23bcec996d4109978d754180"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "micro_GBP"
+            },
+            "text": "This report ranks the top 5 positive value_micro from 2011-01-01 to 2011-02-01, showing the stock code and its value in micro_GBP.",
+            "tool": "summarize"
+          },
+          "revision": 2,
+          "role": "report",
+          "unit": "micro_GBP"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v5_dev_2_r0_broadcast_after_ordinary_0_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01740843302104622,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.017799937981180847,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "immediate dependent roles"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "23166",
+              77183600000
+            ],
+            [
+              "85123A",
+              15223210000
+            ],
+            [
+              "DOT",
+              13921820000
+            ],
+            [
+              "22423",
+              12800600000
+            ],
+            [
+              "21108",
+              6870410000
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Value_micro from 2011-01-01 to 2011-02-01",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "micro_GBP"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "micro_GBP"
+        },
+        "report": {
+          "accepted": true,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 125999640000,
+            "top_stock": "23166",
+            "top_value": 77183600000
+          },
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "chart": "34ec9821ef8aa4b30d4639f5db7a7aa34d395fdd23bcec996d4109978d754180"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "micro_GBP"
+            },
+            "text": "This report ranks the top 5 positive value_micro from 2011-01-01 to 2011-02-01, showing the stock code and its value in micro_GBP.",
+            "tool": "summarize"
+          },
+          "revision": 2,
+          "role": "report",
+          "unit": "micro_GBP"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "broadcast",
+  "month": "2011-01",
+  "project_id": "dev_2",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "query_parameters_do_not_match_applicable_contract",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 20], ['F', 11], ['B', 7], ['A', 2]]. Check the explicit requirements."
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "stale_dependency:analysis",
+        "unit_mismatch",
+        "chart_does_not_match_current_analysis"
+      ],
+      "role": "chart",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "stale_dependency:chart",
+        "unit_mismatch",
+        "report_claims_do_not_match_chart"
+      ],
+      "role": "report",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 10.631678632926196,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}

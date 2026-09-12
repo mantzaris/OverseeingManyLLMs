@@ -1,0 +1,1845 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": false,
+      "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            77183600000
+          ],
+          [
+            "85123A",
+            15223210000
+          ],
+          [
+            "DOT",
+            13921820000
+          ],
+          [
+            "22423",
+            12800600000
+          ],
+          [
+            "21108",
+            6870410000
+          ]
+        ],
+        "seconds": 0.01677666394971311,
+        "status": "ok",
+        "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+      },
+      "online_issues": [
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+      ],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "value_micro",
+          "scope": "main",
+          "start": "2011-01-01"
+        },
+        "notify": [
+          "chart"
+        ],
+        "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+        "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 4,
+      "role": "analysis"
+    },
+    "appendix": {
+      "accepted": false,
+      "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            74215
+          ],
+          [
+            "37413",
+            5568
+          ],
+          [
+            "85123A",
+            5533
+          ],
+          [
+            "21212",
+            3411
+          ],
+          [
+            "21108",
+            3246
+          ]
+        ],
+        "seconds": 0.016239484073594213,
+        "status": "ok",
+        "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+      },
+      "online_issues": [
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "start": "2011-01-01"
+        },
+        "notify": [
+          "data_engineer",
+          "data_analyst"
+        ],
+        "plan": "Execute the updated SQL query.",
+        "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 4,
+      "role": "appendix"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_0_analysis",
+      "request_sha256": "5b2f7aaa9b6fe23ac680fe37f43d1e8ca641c75db6504fd6d67ed0c0429472a1",
+      "seconds": 4.115394891938195,
+      "status": "ok",
+      "tokens": 1206
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_0_appendix",
+      "request_sha256": "79d53657da7e685e42b3f53f6b766db7f557f3652f36d30c97851643c4faf043",
+      "seconds": 3.7982278410345316,
+      "status": "ok",
+      "tokens": 1139
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_1_analysis",
+      "request_sha256": "8f50dd21f589e7b53cc4453f9d706529e0ce87af5c564b072574099c85121699",
+      "seconds": 3.958537159021944,
+      "status": "ok",
+      "tokens": 1225
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_1_appendix",
+      "request_sha256": "eaaacf6de71a6961552ea1ba2bf1ca2f22d3ad80efdb43c1bcb33e9acfb5c69c",
+      "seconds": 3.6751247530337423,
+      "status": "ok",
+      "tokens": 1147
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.01578813197556883,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015284789958968759,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Rank the main outputs by recorded positive line value, not item quantity. Preserve the original quantity appendix.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.015967322047799826,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015284789958968759,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_0_analysis",
+        "delivery": "shared_state",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.015967322047799826,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015284789958968759,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.015967322047799826,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015284789958968759,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.015967322047799826,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.017599651939235628,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_0_appendix",
+        "delivery": "shared_state",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.015967322047799826,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.017599651939235628,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01677666394971311,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.017599651939235628,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_1_analysis",
+        "delivery": "shared_state",
+        "role": "analysis"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01677666394971311,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.017599651939235628,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "chart"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01677666394971311,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.017599651939235628,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01677666394971311,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.016239484073594213,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_2_r0_shared_state_after_ordinary_1_appendix",
+        "delivery": "shared_state",
+        "role": "appendix"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.01677666394971311,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates for January 2011 by value_micro.",
+            "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.016239484073594213,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "data_engineer",
+              "data_analyst"
+            ],
+            "plan": "Execute the updated SQL query.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "appendix"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 1
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "shared_state",
+  "month": "2011-01",
+  "project_id": "dev_2",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "stale_instruction",
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000]]; got [['C', 40000000], ['F', 22000000], ['A', 8000000], ['B', 7000000], ['G', 0]]. Check the explicit requirements."
+      ],
+      "role": "analysis",
+      "round": 1,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "role": "appendix",
+      "round": 1,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 17.15283101098612,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}

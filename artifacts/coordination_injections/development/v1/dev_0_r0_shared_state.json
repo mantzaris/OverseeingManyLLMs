@@ -1,0 +1,1579 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": false,
+      "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "84077",
+            4571
+          ],
+          [
+            "85123A",
+            3633
+          ],
+          [
+            "22834",
+            3322
+          ],
+          [
+            "21212",
+            3266
+          ],
+          [
+            "22693",
+            2617
+          ]
+        ],
+        "seconds": 0.019074618932791054,
+        "status": "ok",
+        "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+      },
+      "online_issues": [
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "proposal": {
+        "applied": {
+          "country": "United Kingdom",
+          "customer": "all",
+          "end": "2011-01-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "scope": "main",
+          "start": "2010-12-01"
+        },
+        "notify": [
+          "chart"
+        ],
+        "plan": "Generate top five stock-code aggregates based on units sold.",
+        "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 4,
+      "role": "analysis"
+    },
+    "appendix": {
+      "accepted": false,
+      "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+      "dependencies": {},
+      "execution": {
+        "rows": [],
+        "seconds": 0.0002374629257246852,
+        "status": "ok",
+        "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "online_issues": [
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-01-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "scope": "appendix",
+          "start": "2010-12-01"
+        },
+        "notify": [
+          "appendix"
+        ],
+        "plan": "Generate top five stock-code aggregates based on units.",
+        "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 4,
+      "role": "appendix"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_0_analysis",
+      "request_sha256": "d8a08bfdb7750350085213281495fbd1e7a698b1cd2e566b3fdac0d3d81511dc",
+      "seconds": 4.038267761003226,
+      "status": "ok",
+      "tokens": 981
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_0_appendix",
+      "request_sha256": "bb696047502a7ce72ec6b21e5866b3de300272f910bdec009331d11a12f5324d",
+      "seconds": 4.177723444066942,
+      "status": "ok",
+      "tokens": 984
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_1_analysis",
+      "request_sha256": "a3600f5fab430cb04b8a09f5a8b1cec90e6ddf6ecf157691cbc103703fda7e55",
+      "seconds": 3.9419183350401,
+      "status": "ok",
+      "tokens": 979
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_1_appendix",
+      "request_sha256": "0667a6af5d4a6650d381b7f7a9ba81a9e6814808d2e5a8e220b0ad87e0fb0b05",
+      "seconds": 4.021300797001459,
+      "status": "ok",
+      "tokens": 984
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "2547352c4331a06d631dd8a9531627d5a845f909b3565d1d9d43ccf571154f5c",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                5195
+              ],
+              [
+                "21212",
+                4106
+              ],
+              [
+                "85123A",
+                3752
+              ],
+              [
+                "22834",
+                3502
+              ],
+              [
+                "22197",
+                2738
+              ]
+            ],
+            "seconds": 0.01931601297110319,
+            "status": "ok",
+            "table_hash": "e014c2f82f7f556bc3a1590320ede77fa272931dc255f753011f8724f1bbdaad"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "declared_contract_mismatch",
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002346669789403677,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Restrict the main analysis, chart and report to United Kingdom. Keep the appendix under its original all-country brief.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.01882233703508973,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002346669789403677,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_0_analysis",
+        "delivery": "shared_state",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.01882233703508973,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002346669789403677,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.01882233703508973,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002346669789403677,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.01882233703508973,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002181919990107417,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_0_appendix",
+        "delivery": "shared_state",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.01882233703508973,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002181919990107417,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.019074618932791054,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002181919990107417,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_1_analysis",
+        "delivery": "shared_state",
+        "role": "analysis"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.019074618932791054,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002181919990107417,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "chart"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.019074618932791054,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002181919990107417,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 3,
+          "role": "appendix"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.019074618932791054,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002374629257246852,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v1_dev_0_r0_shared_state_after_ordinary_1_appendix",
+        "delivery": "shared_state",
+        "role": "appendix"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "07342ee52ca3be8a9b9107b587a5133200779f00684a64949487b9e9fbf75285",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "84077",
+                4571
+              ],
+              [
+                "85123A",
+                3633
+              ],
+              [
+                "22834",
+                3322
+              ],
+              [
+                "21212",
+                3266
+              ],
+              [
+                "22693",
+                2617
+              ]
+            ],
+            "seconds": 0.019074618932791054,
+            "status": "ok",
+            "table_hash": "c699bcdc81fd3a3511883a87887c1fc9b1151b04291a2ae4a2212ec78454e514"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "United Kingdom",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units sold.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE is_cancel = 0 AND unit_price_micro > 0 AND country = 'United Kingdom' AND invoice_date >= '2010-12-01' AND invoice_date < '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "97a87156bf760ab7d9399750e379ec3e6aec9f1f3cb21b36d8d78487ea0aba48",
+          "dependencies": {},
+          "execution": {
+            "rows": [],
+            "seconds": 0.0002374629257246852,
+            "status": "ok",
+            "table_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "online_issues": [
+            "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-01-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix",
+              "start": "2010-12-01"
+            },
+            "notify": [
+              "appendix"
+            ],
+            "plan": "Generate top five stock-code aggregates based on units.",
+            "sql": "SELECT stock_code, SUM(quantity) AS units FROM transactions WHERE country='ALL' AND is_cancel=0 AND unit_price_micro>0 AND quantity>0 AND customer_id IS NULL AND invoice_date BETWEEN '2010-12-01' AND '2011-01-01' GROUP BY stock_code ORDER BY units DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 4,
+          "role": "appendix"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 1
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "shared_state",
+  "month": "2010-12",
+  "project_id": "dev_0",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "stale_instruction",
+        "declared_contract_mismatch",
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "role": "analysis",
+      "round": 1,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "shared_state",
+      "feedback": [
+        "Public contract probe mismatch: check date, country, inclusion, customer, metric, grouping and ordering."
+      ],
+      "role": "appendix",
+      "round": 1,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 17.593197393929586,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}

@@ -1,0 +1,2059 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": true,
+      "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            74215
+          ],
+          [
+            "85123A",
+            5533
+          ],
+          [
+            "21212",
+            3411
+          ],
+          [
+            "21108",
+            3246
+          ],
+          [
+            "17003",
+            3181
+          ]
+        ],
+        "seconds": 0.016839450923725963,
+        "status": "ok",
+        "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+      },
+      "online_issues": [],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "scope": "main",
+          "start": "2011-01-01"
+        },
+        "notify": [
+          "chart"
+        ],
+        "plan": "Execute the required SQL query to aggregate stock codes.",
+        "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 1,
+      "role": "analysis"
+    },
+    "appendix": {
+      "accepted": false,
+      "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            74215
+          ],
+          [
+            "37413",
+            5568
+          ],
+          [
+            "85123A",
+            5533
+          ],
+          [
+            "21212",
+            3411
+          ],
+          [
+            "21108",
+            3246
+          ]
+        ],
+        "seconds": 0.015382197918370366,
+        "status": "ok",
+        "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+      },
+      "online_issues": [
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "scope": "appendix"
+        },
+        "notify": [
+          "data_analyst",
+          "data_engineer"
+        ],
+        "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+        "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "appendix"
+    },
+    "chart": {
+      "accepted": false,
+      "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+      "dependencies": {
+        "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+      },
+      "online_issues": [
+        "declared_contract_mismatch"
+      ],
+      "points": [
+        [
+          "23166",
+          74215
+        ],
+        [
+          "85123A",
+          5533
+        ],
+        [
+          "21212",
+          3411
+        ],
+        [
+          "21108",
+          3246
+        ],
+        [
+          "17003",
+          3181
+        ]
+      ],
+      "proposal": {
+        "applied": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "scope": "main",
+          "start": "2011-01-01"
+        },
+        "notify": [
+          "report"
+        ],
+        "plan": "Generate bar-chart specification from provided data.",
+        "points": [
+          [
+            "23166",
+            74215
+          ],
+          [
+            "85123A",
+            5533
+          ],
+          [
+            "21212",
+            3411
+          ],
+          [
+            "21108",
+            3246
+          ],
+          [
+            "17003",
+            3181
+          ]
+        ],
+        "status": "replace",
+        "title": "Top 5 Stock Codes by Units Sold",
+        "unit": "items"
+      },
+      "revision": 2,
+      "role": "chart"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_analysis",
+      "request_sha256": "2b8fad26c242ca4015a21461793ef7f408f95724c2fa53689b59266d1ef2f2bf",
+      "seconds": 3.8266400549327955,
+      "status": "ok",
+      "tokens": 790
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_chart",
+      "request_sha256": "fe0865f61328d9caab442c0d09a7e3347af4d76f6c7991a759f8c432fdf7ca1b",
+      "seconds": 4.180837434018031,
+      "status": "ok",
+      "tokens": 712
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_appendix",
+      "request_sha256": "a9c3e4c6d9c87e0242b8115be17498ce673904fdb7aacb737107d15e8b651e97",
+      "seconds": 3.6485809449804947,
+      "status": "ok",
+      "tokens": 782
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_1_chart",
+      "request_sha256": "be6588865e04e58cf0f91c8b8b7dfeb950927c6e35da0f7b541706cf0407daf9",
+      "seconds": 4.224364381982014,
+      "status": "ok",
+      "tokens": 860
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_1_appendix",
+      "request_sha256": "a6c733c6890e4719e88cad728313c120a4c5d08f7a1d33c64bc6df5669831ec7",
+      "seconds": 3.540172490058467,
+      "status": "ok",
+      "tokens": 1001
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "failed"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix",
+    "chart"
+  ],
+  "epoch": 0,
+  "events": [
+    {
+      "artifacts": {},
+      "event": "initial",
+      "extra": {},
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_analysis",
+        "delivery": "direct",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.01723710505757481,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_0_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.01723710505757481,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.01723710505757481,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 2,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_1_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.01723710505757481,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 2,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015382197918370366,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 2,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v2_dev_3_r0_targeted_before_ordinary_1_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "seconds": 0.016839450923725963,
+            "status": "ok",
+            "table_hash": "36ee5183997238ac6864f60be153088a6fa907ab0b1746690768fce1154eaf59"
+          },
+          "online_issues": [],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "chart"
+            ],
+            "plan": "Execute the required SQL query to aggregate stock codes.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 AND unit_price_micro > 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "37413",
+                5568
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ]
+            ],
+            "seconds": 0.015382197918370366,
+            "status": "ok",
+            "table_hash": "914b4d5a3e85594a8bea5b3320aa9fa48da4e644797115de4a4e2f50fd603677"
+          },
+          "online_issues": [
+            "declared_contract_mismatch",
+            "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "appendix"
+            },
+            "notify": [
+              "data_analyst",
+              "data_engineer"
+            ],
+            "plan": "Execute the required SQL query to produce the top five stock-code aggregates.",
+            "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5;",
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "6bac1553df756a6c7560685fe2a6ce9f5114d8d4a4aad8bcdf177173f12f0504",
+          "dependencies": {
+            "analysis": "3a7de09f263a9f6246d66642e6098ba57c9ee85b717598a652eac2570c24c1f5"
+          },
+          "online_issues": [
+            "declared_contract_mismatch"
+          ],
+          "points": [
+            [
+              "23166",
+              74215
+            ],
+            [
+              "85123A",
+              5533
+            ],
+            [
+              "21212",
+              3411
+            ],
+            [
+              "21108",
+              3246
+            ],
+            [
+              "17003",
+              3181
+            ]
+          ],
+          "proposal": {
+            "applied": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "scope": "main",
+              "start": "2011-01-01"
+            },
+            "notify": [
+              "report"
+            ],
+            "plan": "Generate bar-chart specification from provided data.",
+            "points": [
+              [
+                "23166",
+                74215
+              ],
+              [
+                "85123A",
+                5533
+              ],
+              [
+                "21212",
+                3411
+              ],
+              [
+                "21108",
+                3246
+              ],
+              [
+                "17003",
+                3181
+              ]
+            ],
+            "status": "replace",
+            "title": "Top 5 Stock Codes by Units Sold",
+            "unit": "items"
+          },
+          "revision": 2,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 1
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "targeted",
+  "month": "2011-01",
+  "project_id": "dev_3",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "direct",
+      "feedback": [
+        "missing_artifact"
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "missing_artifact"
+      ],
+      "role": "chart",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "missing_artifact"
+      ],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "declared_contract_mismatch"
+      ],
+      "role": "chart",
+      "round": 1,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "declared_contract_mismatch",
+        "Public synthetic probe mismatch (not real-data reference): expected [['C', 20], ['F', 11], ['B', 7], ['A', 2]]; got [['G', 50], ['C', 20], ['F', 11], ['B', 7], ['J', 3]]. Check the explicit requirements."
+      ],
+      "role": "appendix",
+      "round": 1,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 20.864525162032805,
+  "stress": "ordinary",
+  "user_changes": 0,
+  "user_questions": 0
+}

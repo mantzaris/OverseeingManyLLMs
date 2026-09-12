@@ -1,0 +1,1294 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": true,
+      "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "23166",
+            77183600000
+          ],
+          [
+            "85123A",
+            15223210000
+          ],
+          [
+            "DOT",
+            13921820000
+          ],
+          [
+            "22423",
+            12800600000
+          ],
+          [
+            "21108",
+            6870410000
+          ]
+        ],
+        "seconds": 0.018219008925370872,
+        "status": "ok",
+        "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [
+          "chart"
+        ],
+        "query": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-02-01",
+          "inclusion": "positive",
+          "metric": "value_micro",
+          "start": "2011-01-01"
+        },
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "analysis",
+      "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "appendix": {
+      "accepted": false,
+      "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+      "dependencies": {},
+      "online_issues": [
+        "malformed_or_blocked"
+      ],
+      "proposal": {
+        "notify": [],
+        "status": "keep"
+      },
+      "revision": 1,
+      "role": "appendix"
+    },
+    "chart": {
+      "accepted": false,
+      "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+      "dependencies": {
+        "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+      },
+      "online_issues": [
+        "malformed_or_blocked"
+      ],
+      "proposal": {
+        "notify": [],
+        "status": "keep"
+      },
+      "revision": 1,
+      "role": "chart"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_analysis",
+      "request_sha256": "8a762db7415f7571c1b01af6f12259c452722a14cf3ced4505c48edd9756fdab",
+      "seconds": 1.9104286360088736,
+      "status": "ok",
+      "tokens": 618
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_chart",
+      "request_sha256": "1f69bd7df88c8d7d13c49a6e3ac434b21ce0438a9d82ee5a4fc8cbb48f8f6b5a",
+      "seconds": 0.6135274010011926,
+      "status": "ok",
+      "tokens": 657
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_appendix",
+      "request_sha256": "b93ac1fe14d499de53a10a88cb9787b62c403b7262b69b4099aa3d4b83fb9104",
+      "seconds": 0.7090266550658271,
+      "status": "ok",
+      "tokens": 538
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_1_chart",
+      "request_sha256": "58629b6a5d1403d0bb392eb12261632b5830d17c7b987537624eacb386bfa3cb",
+      "seconds": 0.6077917619841173,
+      "status": "ok",
+      "tokens": 663
+    },
+    {
+      "attempts": 1,
+      "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_1_appendix",
+      "request_sha256": "38913ee648864b297ae86607ba99c8671e0a05aa51dcadc047ef150efda42b1b",
+      "seconds": 0.35848725703544915,
+      "status": "ok",
+      "tokens": 532
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "appendix",
+    "chart"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "ff821c0c42f138a39e022f9ae31cf5db4359cc5f0c6c6e9d3273835c28a745f8",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "analysis"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Rank the main outputs by recorded positive line value, not item quantity. Preserve the original quantity appendix.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_analysis",
+        "delivery": "direct",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_0_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_1_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "dependency_wait",
+      "extra": {
+        "role": "report"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "development_v4_dev_2_r0_broadcast_after_ordinary_1_appendix",
+        "delivery": "direct",
+        "role": "appendix"
+      },
+      "round": 1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "c05579a305f1fa86bf3c81dab69fac4c7aaa3af29bd1624dc3d474ad105a99a4",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "23166",
+                77183600000
+              ],
+              [
+                "85123A",
+                15223210000
+              ],
+              [
+                "DOT",
+                13921820000
+              ],
+              [
+                "22423",
+                12800600000
+              ],
+              [
+                "21108",
+                6870410000
+              ]
+            ],
+            "seconds": 0.018219008925370872,
+            "status": "ok",
+            "table_hash": "1a7c7af5795d0e4339e86cc47ff35a8231cc8577d7dcaa8a7bb7c89f2377a03c"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-02-01",
+              "inclusion": "positive",
+              "metric": "value_micro",
+              "start": "2011-01-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(line_value_micro) AS value FROM transactions WHERE invoice_date >= '2011-01-01' AND invoice_date < '2011-02-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": false,
+          "consumed_contract_hash": "d66ddf0221fd931d33359f3589823c40a41daf525222ea27c47d30e893721196",
+          "dependencies": {},
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "appendix"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "41be8aafac1069c4108accaf44003edb1936aec2b363b06d4138049eb0554f16",
+          "dependencies": {
+            "analysis": "770271bd37c878f707527d62731057c76bc6445be37d904249979b37d4327ce1"
+          },
+          "online_issues": [
+            "malformed_or_blocked"
+          ],
+          "proposal": {
+            "notify": [],
+            "status": "keep"
+          },
+          "revision": 1,
+          "role": "chart"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 1
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "broadcast",
+  "month": "2011-01",
+  "project_id": "dev_2",
+  "rep": 0,
+  "routes": [
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "missing_artifact"
+      ],
+      "role": "chart",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "appendix",
+      "round": 0,
+      "scope": "appendix",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "chart",
+      "round": 1,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "malformed_or_blocked"
+      ],
+      "role": "appendix",
+      "round": 1,
+      "scope": "appendix",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 5.666322291945107,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}
