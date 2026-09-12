@@ -102,6 +102,8 @@ bash paper/adaptive_correction_transfer/build.sh
 python3 -m research.adaptive_correction_transfer.prototype.server --port 9034
 ```
 
+A separate checkout at results commit `1b31c602` passed the full saved-output command and LaTeX build. All 16 analysis CSV tables matched after canonical row ordering, and all 24 PDF/SVG/PNG figure exports matched byte for byte. Timing fields are deliberately not claimed byte-stable. `clean_checkout_verification.json` records these checks. The existing remote model server remained healthy (`gpu_final.json`); the final process audit found no stage tunnel or local demonstration server still running (`cleanup.json`).
+
 The first command reconstructs saved evidence without inference. The last starts the local replay desk at http://127.0.0.1:9034/. See README.md for the collection provenance, official data download, API and exact GPU configuration. Scientific figures are generated from CSV tables as PDF, SVG and PNG. The separate illustrated note is `paper/adaptive_correction_transfer/main.pdf`; historical manuscript sources remain unchanged.
 '''
  (ROOT/'research/adaptive_correction_transfer/REPORT.md').write_text(report)

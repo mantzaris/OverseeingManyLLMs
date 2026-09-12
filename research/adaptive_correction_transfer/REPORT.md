@@ -83,7 +83,7 @@ Replay verified 364 complete evaluation traces and 1334 unique actual prompts wi
 
 At this ledger checkpoint the stage used 2083 scheduled calls, 2058 attempt intents, 2058 returned GPU generations, 0 failed transport attempts and 0 retries. Statuses: `{'context_limit': 25, 'ok': 2058}`. Eight returned responses were unparseable JSON; these are separate from transport failures. Tokens: 2103772 input and 172836 output. Development, failed preflight checks, primary evaluation and diagnostics are all included. Final resource closure is recorded in `resource_ledger.json`.
 
-Stage elapsed: 2h 0m 1s. Cumulative wall since the original start, including gaps: 62h 28m 54s; overrun beyond the original 36-hour target: 26h 28m 54s. This stage has separate explicit authorization and is not backdated into the original budget. Existing Qwen2.5-7B BF16 RTX6000Ada service was reused without CPU offloading. No paid resources, human participants or outbound messages were added.
+Stage elapsed: 2h 4m 8s. Cumulative wall since the original start, including gaps: 62h 33m 1s; overrun beyond the original 36-hour target: 26h 33m 1s. This stage has separate explicit authorization and is not backdated into the original budget. Existing Qwen2.5-7B BF16 RTX6000Ada service was reused without CPU offloading. No paid resources, human participants or outbound messages were added.
 
 ## Reproduce and demonstrate
 
@@ -92,5 +92,7 @@ bash research/adaptive_correction_transfer/reproduce.sh
 bash paper/adaptive_correction_transfer/build.sh
 python3 -m research.adaptive_correction_transfer.prototype.server --port 9034
 ```
+
+A separate checkout at results commit `1b31c602` passed the full saved-output command and LaTeX build. All 16 analysis CSV tables matched after canonical row ordering, and all 24 PDF/SVG/PNG figure exports matched byte for byte. Timing fields are deliberately not claimed byte-stable. `clean_checkout_verification.json` records these checks. The existing remote model server remained healthy (`gpu_final.json`); the final process audit found no stage tunnel or local demonstration server still running (`cleanup.json`).
 
 The first command reconstructs saved evidence without inference. The last starts the local replay desk at http://127.0.0.1:9034/. See README.md for the collection provenance, official data download, API and exact GPU configuration. Scientific figures are generated from CSV tables as PDF, SVG and PNG. The separate illustrated note is `paper/adaptive_correction_transfer/main.pdf`; historical manuscript sources remain unchanged.
