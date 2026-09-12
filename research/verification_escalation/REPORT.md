@@ -370,9 +370,9 @@ tables and figures without new inference after downloading the original source.
 <!-- ACCOUNTING_START -->
 The separately authorized session began **2026-09-11 23:08:26 UTC**, with deadline
 **2026-09-12 02:08:26 UTC** and inference cutoff **01:23:26 UTC**. At the final
-accounting checkpoint `2026-09-12T00:53:48.700237+00:00`, elapsed time was
-**1h 45m 23s**. The final repository commit follows this
-checkpoint. The selected experiment and reporting finished before the three-hour
+accounting checkpoint `2026-09-12T00:57:56.542761+00:00`, elapsed time was
+**1h 49m 31s**. The research package and build cleanup are committed; only the closing evidence
+and ledger commit follows this checkpoint. The selected experiment and reporting finished before the three-hour
 limit; unused time and call allowance were not filled with additional experiments.
 
 | Batch | Scheduled calls | GPU attempts |
@@ -392,7 +392,7 @@ provider allocation or billing time. The last generation began at
 provisioned. Price and provider billing/allocation totals were unavailable.
 
 Cumulative wall time from the preserved original start is
-**57h 14m 52s**, or **21h 14m 52s**
+**57h 19m 0s**, or **21h 19m 0s**
 beyond the original 36-hour target. This includes inter-session gaps and is not a
 sum of active research hours. The original deadline was already past when this
 new session was authorized. Cumulative recorded inference is **57,358 scheduled
@@ -409,3 +409,17 @@ headless browser, inference tunnels and experiment workers have stopped. The
 existing GPU server remains running. See `resource_ledger.json`,
 `final_service_status.json` and `temporary_service_cleanup.json`.
 <!-- ACCOUNTING_END -->
+
+
+## Final clean-checkout verification and commits
+
+The package commit is `6f4f36a8`; build metadata cleanup is `1d2e761e`. Protocol
+freezes remain `ab3c62df` and `58c366d7`, with the post hoc direct-reader declaration
+at `80f5722a`. A clean local checkout of `1d2e761e`, containing no unredacted raw
+model envelopes or private case file, reconstructed the source cases from the
+hash-verified cached author archive. The documented one-command replay passed all
+21,264 primary, diagnostic, synthetic and derived sensitivity rows, their applicable
+event logs, and primary/secondary analyses, with zero model calls. See
+`clean_checkout_verification.json` and `clean_checkout_reproduction.log`.
+The original author download was verified earlier in the session; the clean check
+used that cached archive rather than claiming a second fresh network download.
