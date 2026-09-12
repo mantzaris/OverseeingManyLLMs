@@ -15,6 +15,11 @@ def answer(c,q,replica,stage='primary',previous=None):
     cid=f"{stage}_r{replica}_{q['id']}"
     seed=912000+replica*10000+c['source_index']*10+q['order']
     started=time.monotonic();payload,raw=generate(cid,messages(c,q,previous),seed,230)
+    prior=ART/'prepared'/f'{cid}.json'
+    if prior.exists():
+        stored=read(prior)
+        if stored['request_sha256']!=raw['request_sha256']:raise ValueError('Prepared request identity changed')
+        return stored  # Cache replay never rewrites recorded generation timings.
     output=prepare(payload,c)
     row=dict(call_id=cid,context_id=c['id'],question_id=q['id'],replica=replica,output=output,
              request_sha256=raw['request_sha256'],status=raw['status'],elapsed_seconds=time.monotonic()-started,

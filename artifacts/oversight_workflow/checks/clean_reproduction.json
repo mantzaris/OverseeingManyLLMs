@@ -1,0 +1,24 @@
+{
+  "all_tables_identical": true,
+  "clean_git_archive": true,
+  "commit": "3b4626f1",
+  "external_source_and_original_checkout_reads_blocked": true,
+  "guard_source": "import os,builtins,io,socket\nblocked=['/tmp/adaptive-transfer-sources','/home/resort/Documents/repos/OverseeingManyLLMs']\ndef guard(fn):\n def wrapped(file,*a,**kw):\n  if isinstance(file,(str,bytes,os.PathLike)):\n   name=os.path.abspath(os.fsdecode(file))\n   if any(name==p or name.startswith(p+'/') for p in blocked):raise RuntimeError('Clean replay attempted external source/original-checkout access: '+name)\n  return fn(file,*a,**kw)\n return wrapped\nbuiltins.open=guard(builtins.open);io.open=guard(io.open)\n_connect=socket.socket.connect\ndef connect(self,address):\n if isinstance(address,tuple):\n  if address[0] not in ['127.0.0.1','localhost','::1'] or address[1] in [8000,8021]:raise RuntimeError('Network/GPU disabled in clean saved-output reproduction')\n return _connect(self,address)\nsocket.socket.connect=connect\n",
+  "limitation": "Numerical saved replay was tested. Software timings and PDF/SVG metadata are not asserted bitwise reproducible. Subsequent changes only clarify prose/figure labels and final accounting.",
+  "loopback_http_test_only": true,
+  "matched_tables": [
+    "answer_summary.json",
+    "scenarios.csv",
+    "conditions.csv",
+    "pause_checkpoint.csv",
+    "answer_quality.csv",
+    "contrasts.json",
+    "revision_summary.json",
+    "latency.json",
+    "paired_bundles.csv"
+  ],
+  "model_attempts_after": 300,
+  "model_attempts_before": 300,
+  "network_and_gpu_connections_blocked": true,
+  "tests_passed": 16
+}

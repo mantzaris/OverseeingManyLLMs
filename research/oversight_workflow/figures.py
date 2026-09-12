@@ -31,12 +31,14 @@ def main():
         end=next(e['at'] for e in events if e['action']=='receive' and e['payload']['id']==rid)
         worker=offers[i]['payload']['agent'];color={'Worker 1':'#3267a2','Worker 2':'#087f7a','Worker 3':'#b77a28'}[worker]
         ax.plot([start,end],[i,i],color=color,lw=5,alpha=.5);ax.scatter([end],[i],color=color,s=17,zorder=5)
+    from matplotlib.lines import Line2D
+    ax.legend(handles=[Line2D([0],[0],color=c,lw=4,label=w) for w,c in [('Worker 1','#3267a2'),('Worker 2','#087f7a'),('Worker 3','#b77a28')]],loc='upper right',frameon=False,fontsize=7)
     ax.set_yticks(range(len(ids)));ax.set_yticklabels([f'Q{i+1}' for i in range(len(ids))]);ax.invert_yaxis();ax.set_ylabel('Distinct financial questions');ax.set_title('Observed live task lifetime and answer arrival (12 questions, 2 sources)')
     selections=[e for e in events if e['action']=='select' and e['response']['ok']]
     for i,e in enumerate(selections):
         end=next((x['at'] for x in events if x['at']>e['at'] and x['action']=='decide' and x['response']['ok'] and x['payload']['id']==e['payload']['id']),events[-1]['at'])
         focus.barh(i,end-e['at'],left=e['at'],color='#087f7a',height=.35)
-        focus.text((e['at']+.15) if i==0 else (end-.10),i,f"Pinned Q{ids.index(e['payload']['id'])+1}",ha='left' if i==0 else 'right',va='center',fontsize=8,color='white')
+        focus.text((e['at']+.15) if i==0 else (e['at']-.15),i,f"Pinned Q{ids.index(e['payload']['id'])+1}",ha='left' if i==0 else 'right',va='center',fontsize=8,color='white' if i==0 else '#087f7a')
     pause=next(e['at'] for e in events if e['action']=='pause');resume=next(e['at'] for e in events if e['action']=='resume')
     for a in (ax,focus):a.axvspan(pause,resume,color='#d7a747',alpha=.15)
     for e in events:

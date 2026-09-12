@@ -72,3 +72,30 @@ annotations are separated by code path from online sources.
 The resource ledger records stage and cumulative wall time and explicitly retains
 the overrun beyond the original 36-hour target. The existing GPU service is retained;
 only local test servers and browser workers started for this stage are stopped.
+
+## Recorded resource use and verification
+
+Stage wall time at the final closure is
+**1h 33m 13s**. The authorized deadline remains
+2026-09-12T13:57:11+00:00; no historical timestamp is reset. Cumulative elapsed wall
+time from the original start, including gaps and subsequent separately authorized
+work, is **68h 51m 27s**. This exceeds the original
+36-hour target by **32h 51m 27s**. It is not work
+claimed to fit inside that original window.
+
+This stage used 300 scheduled GPU calls and
+300 actual attempts, 0 failed attempts,
+0 retries, 211,738 prompt tokens and
+20,240 completion tokens. Summed request time was
+459.3 seconds. The prior cumulative ledger plus this
+stage contains 61,777 scheduled calls and
+61,729 attempts; the historical difference is retained.
+No paid resource was provisioned and there are zero participant observations.
+
+Saved-output reproduction passed from a clean Git export with original-checkout,
+external source-cache and GPU/network access blocked. All nine numerical tables
+matched. There are 17 focused protocol/API/closure tests, 41 relevant historical
+regression tests and 62 scripted Chromium checks. All 144 completed scenario traces,
+six browser journals, the live demonstration and the actual-source walkthrough
+replay. The seven-page official-template PDF and all six scientific figures were
+rendered and inspected. Evidence is in `artifacts/oversight_workflow/checks/`.

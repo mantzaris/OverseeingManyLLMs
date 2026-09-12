@@ -212,6 +212,36 @@ The resource ledger records stage and cumulative wall time and explicitly retain
 the overrun beyond the original 36-hour target. The existing GPU service is retained;
 only local test servers and browser workers started for this stage are stopped.
 '''
+    def hms(seconds):
+        n=int(seconds);return f'{n//3600}h {(n%3600)//60}m {n%60}s'
+    report+=f'''
+## Recorded resource use and verification
+
+Stage wall time at the {'final closure' if ledger['final'] else 'latest checkpoint'} is
+**{hms(ledger['stage_elapsed_seconds'])}**. The authorized deadline remains
+{ledger['deadline_utc']}; no historical timestamp is reset. Cumulative elapsed wall
+time from the original start, including gaps and subsequent separately authorized
+work, is **{hms(ledger['cumulative_wall_seconds'])}**. This exceeds the original
+36-hour target by **{hms(ledger['original_36h_overrun_seconds'])}**. It is not work
+claimed to fit inside that original window.
+
+This stage used {ledger['scheduled_calls']} scheduled GPU calls and
+{ledger['attempts']} actual attempts, {ledger['failed_attempts']} failed attempts,
+{ledger['retries']} retries, {ledger['prompt_tokens']:,} prompt tokens and
+{ledger['completion_tokens']:,} completion tokens. Summed request time was
+{ledger['generation_seconds']:.1f} seconds. The prior cumulative ledger plus this
+stage contains {ledger['cumulative']['scheduled_calls']:,} scheduled calls and
+{ledger['cumulative']['attempts']:,} attempts; the historical difference is retained.
+No paid resource was provisioned and there are zero participant observations.
+
+Saved-output reproduction passed from a clean Git export with original-checkout,
+external source-cache and GPU/network access blocked. All nine numerical tables
+matched. There are 17 focused protocol/API/closure tests, 41 relevant historical
+regression tests and 62 scripted Chromium checks. All 144 completed scenario traces,
+six browser journals, the live demonstration and the actual-source walkthrough
+replay. The seven-page official-template PDF and all six scientific figures were
+rendered and inspected. Evidence is in `artifacts/oversight_workflow/checks/`.
+'''
     (ROOT/'research/oversight_workflow/REPORT.md').write_text(report)
     paper=ROOT/'paper/oversight_workflow';paper.mkdir(exist_ok=True)
     (paper/'numbers.tex').write_text('\n'.join([f'\\newcommand{{\\SourceCount}}{{24}}',f'\\newcommand{{\\QuestionCount}}{{145}}',f'\\newcommand{{\\AnswerCount}}{{290}}',f'\\newcommand{{\\ExactCount}}{{{int(a["em"])}}}',f'\\newcommand{{\\JointCount}}{{{a["joint"]}}}',f'\\newcommand{{\\EmptyCount}}{{{a["unfinished"]}}}',f'\\newcommand{{\\EventCount}}{{{v["scenario_events"]:,}}}',f'\\newcommand{{\\StableCount}}{{{v["stable_checks"]:,}}}',f'\\newcommand{{\\BrowserChecks}}{{{v["browser_checks"]}}}'])+'\n')

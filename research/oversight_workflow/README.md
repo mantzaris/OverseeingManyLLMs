@@ -123,3 +123,8 @@ development questions and their actual pilot answers. They are disjoint from the
 labeled as a training fixture. It illustrates version authority without inserting
 a false financial answer. The facilitator instructions and questionnaires remain
 prospective materials; this preview does not collect or assert participant data.
+
+After final closure, the stage transport rejects new calls even if its original
+cutoff has not yet passed. Exact cached requests remain readable without rewriting
+their timing evidence. This keeps later use from silently changing the completed
+stage's ledger. A future authorized collection needs its own namespace and clock.

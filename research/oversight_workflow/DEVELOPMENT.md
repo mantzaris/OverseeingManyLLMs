@@ -84,3 +84,8 @@ model outputs and their original requests are unchanged.
   same application lock as session changes. A delayed command cannot pass an old
   session check and then act on a newly started desk. These atomicity repairs do
   not alter the frozen task/decision semantics or saved logical outcomes.
+- Closing the stage seals new inference in its transport when the final ledger is
+  present. Exact cached requests remain readable and no longer overwrite prepared
+  timing records. A new namespace/authorization is required for later collection.
+  The focused closure test confirms refusal before a network call. Historical
+  authorization files and the running model server are unchanged.
