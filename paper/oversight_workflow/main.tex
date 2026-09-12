@@ -6,6 +6,7 @@
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 \usepackage{SCITEPRESS}
+\usepackage{flushend}
 \brokenpenalty=10000
 \newcommand{\credit}{\footnote{AI drafting assistance: OpenAI Codex \cite{codex}. See the disclosure.}}
 \input{numbers}
@@ -13,7 +14,7 @@
 \title{Overseeing Many LLMs: A User-Controlled Review Queue for Concurrent Agent Workflows}
 \author{\authorname{Anonymous Submission}}
 \keywords{Human-Agent Interaction, Language Model Agents, Review Workflows, Concurrency, Decision Support.}
-\abstract{Concurrent language model workers can produce more requests than one user can immediately inspect. We present a review workflow that preserves active evidence during arrivals, keeps unfinished work visible and associates release authority with an exact output version. The implemented desk supports worker conversations, a central queue and optional source-based sessions through one asynchronous event protocol. A frozen study uses 24 fresh TAT-QA contexts, 145 original questions and two generated-answer replicas. The model produces 61 exact matches among 290 answers, with 38 empty outputs retained. Across 144 matched wall-clock software scenarios, all 13,236 events replay consistently and active-review checks detect no unintended changes. All three interfaces finish the ideal scripted workload, so completion ties mechanically. Source sessions do not demonstrate an efficiency advantage. We distinguish these software results from human effectiveness and provide disjoint task packets, training and a prospective counterbalanced study. The contribution is a specified and executable oversight workflow with evidence about its concurrency and release behavior, not a claim of reduced human workload.}
+\abstract{Concurrent language model workers produce outputs that a user must inspect, defer or release while other work continues. We argue that these outputs should be individually reviewable, versioned requests with stable evidence and visible unfinished work. Our implemented desk connects asynchronous workers to a common review-and-release protocol, with a central queue and optional source sessions. A completed software evaluation uses 24 TAT-QA financial-report contexts, 145 original questions and 290 actual model answers. All 13,236 scenario events replay consistently, and active-review checks preserve the inspected output during arrivals. Ideal scripted corrections yield a mechanical completion tie, not a human benefit. Initial exact match is 61/290. A subsequent audit restores seven parser-lost displays, reducing empty or unsupported answer fields from 38 to 31 without changing exact match. The runnable formative pilot has two nine-minute queue/session blocks and a separate four-minute source-only diagnostic. No participant observations exist. This position paper contributes a specified oversight workflow, its real-data software characterization and an executable evaluation protocol. Whether source sessions improve correct review or experienced control remains to be measured.}
 \onecolumn\maketitle\normalsize\setcounter{footnote}{0}\vfill
 
 \section{INTRODUCTION}
@@ -22,7 +23,7 @@ require a decision, what evidence supports them, and what remains unfinished.
 An arriving answer should not replace the source they are reading. A postponed
 question should retain its draft and history. If an agent revises an answer after
 approval, the new artifact should not silently inherit permission to be released.
-These are concrete requirements for maintaining control of concurrent work.\credit
+These are concrete requirements for a workflow in which the user retains authority over release.\credit
 
 We investigate how a person can organize, inspect and resolve competing actionable
 requests while retaining visibility of unfinished work and control of release.
@@ -38,11 +39,13 @@ ordering and uncertain correction reuse did not consistently improve outcomes.
 Those findings motivate separate decisions, direct evidence and explicit user
 control. They do not validate this interface.
 
-Our contributions are a precise review-and-release protocol, a working desk with
-live and saved-output adapters, and a frozen real-data software evaluation. The
+Our position is that outputs awaiting action should be explicit review objects,
+rather than only entries in an agent transcript. We operationalize that position
+in a review-and-release protocol, a desk with live and saved-output adapters, and
+a frozen real-data software evaluation. The
 protocol makes accounting, focus stability and version authority testable under
-concurrent arrivals. A prospective human study compares the central queue with
-optional source sessions while keeping fundamental approval semantics common.
+concurrent arrivals. A completed preparation package makes a formative comparison of the central queue
+and optional source sessions runnable, with fundamental approval semantics common.
 We present this as a position supported by an implemented system and measured
 software behavior. Human review quality and experienced workload remain open
 empirical questions.
@@ -51,9 +54,9 @@ empirical questions.
 Agent dashboards and intervention interfaces already have close precedents.
 AgentGUI supports concurrent desks, activity views, intervention and saved
 sessions. Its eight-participant evaluation concerns trace comprehension, while
-a separate experiment tests automated steering \cite{agentgui}. Our evaluation
-concerns actionable output requests and exact-version release, not a reproduction
-of its user study.\credit
+a separate experiment tests automated steering \cite{agentgui}. That evidence
+is stronger than ours on human interaction. Our question concerns which individual
+output may be released after inspection; we have not compared the two systems.\credit
 
 AGDebugger provides queues, pause/step controls, message edits and checkpointed
 conversation forks. Its studies examine error identification and steering of
@@ -66,8 +69,12 @@ allocation. Chien et al. compare open-queue and shortest-job-first presentation
 \cite{chien}. Research on interruption recovery motivates retaining a postponed
 task's context \cite{iqbal}. We apply these established principles without
 interpreting queue length, token counts or scripted action time as mental demand.
-The proposed contribution is a specified workflow and its implementation and
-evaluation, not priority for an oversight interface or a new scheduling rule.
+These predecessors do not establish that our workflow bundle is better. Nor does
+our review establish that they lack every analogous safeguard. The narrower
+research position is to make release authority, active evidence and unfinished
+work explicit, then evaluate them with the same source tasks and decision rules.
+B is a competent ordinary queue, not a deliberately fragile baseline. A/B/C are
+configurations of our application, not reproductions of the cited systems.
 
 \section{REVIEW PROTOCOL}
 \subsection{Requests, Sources and Versions}
@@ -94,7 +101,11 @@ The experimental observation cutoff is not a business processing deadline.
 \subsection{Actions and Authority}
 Approval authorizes one exact request/version. Release is a separate action and
 requires approval of the current version. A user correction creates and approves
-a new version of that answer only. Rejection blocks the answer and resolves the
+a new version of that answer only. Separating approval from release lets a user
+record an inspection decision while withholding the artifact from the local released
+set, for example while checking another question. Release here is an application
+record, not an external financial transaction. The extra action may itself cost
+effort; its usefulness has not been measured. Rejection blocks the answer and resolves the
 review, but does not complete the underlying question correctly. Deferral retains
 the source, draft, note and history, with an optional return time. Withdrawal is
 explicit and does not erase prior events or undo any previously recorded release.
@@ -155,18 +166,26 @@ active answer, source or text controls. It refuses older state sequences and
 protects against delayed responses from a prior session. User actions and displayed
 request/version identities are logged. A deferred review restores its note and
 source. Saved sessions can be restored without launching workers. The ordinary
-interface never loads reference annotations.
+interface never loads reference annotations. A stable version prevents a decision
+from being attached to content that changed while it was being inspected; it does
+not establish that the inspection was adequate.
 
 Condition A presents worker conversations with unread indicators, navigable
 threads and source access. B presents a central conventional queue with one stable
-active review. C adds optional bounded source sessions, prominent pending-work
-views and admission controls. All conditions share source access, exact-version
+active review. C adds optional bounded source sessions and admission controls.
+Pending work remains visible in all three. All conditions share source access, exact-version
 approval, explicit release and deferral semantics. Release guards are identical across conditions.
 
 The prospective primary contrast is B versus C. A is a contextual baseline.
 C is a workflow bundle rather than an isolated batching mechanism. The software
 comparison measures its behavior under declared scripts; it does not estimate
 how people choose groups, defer work or use the pause control.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{../../artifacts/oversight_workflow/walkthrough/source_session_component.png}
+\caption{Actual interface capture during scripted replay. Three original questions share one financial source, while their generated answers and review decisions remain separate. The first selected source and first three questions determine this example. The long descriptive answer is retained despite imperfect benchmark agreement. This is software interaction, not a participant observation.}
+\label{fig:desk}
+\end{figure*}
 
 \section{REAL-DATA EVALUATION DESIGN}
 \subsection{Sources and Generation}
@@ -194,9 +213,9 @@ before fresh generation.
 
 The service is pinned Qwen2.5-7B-Instruct in BF16 on one RTX 6000 Ada, with zero CPU
 offloading. Temperature is 0.3, top-$p$ is 1, and output allowance is 230 tokens
-within a 2,048-token model context. Seeds are recorded. The six development calls,
-290 initial answers and four revisions consume 300 attempts. No request is replaced
-because it fails or produces an inconvenient answer.
+within a 2,048-token model context. Seeds are recorded. The saved model and source provenance, request accounting and reproduction commands
+remain in the evidence package. No new inference was used to prepare the formative
+pilot or this handoff. None of the original answers was replaced because of its score.
 
 \subsection{Matched Software Scenarios}
 Twelve constructed bundles each contain two source contexts. Both replicas run in
@@ -213,19 +232,19 @@ once for 0.35 seconds. C pauses new starts from 0.25 to 0.65 seconds and may ret
 up to three source-related questions. Actual saved rechecks enter the declared
 replica-zero scenarios at 0.8 seconds. Every scenario ends at 2.2 seconds.
 
-Methods share the saved answers, sources and eligible-start schedules. C's pause
-can change actual arrival times, but never the offered denominator. Every action
-and failure is retained. The unit for paired summaries is a source bundle, after
-averaging generation replicas. A fixed-seed bootstrap resamples 12 matched bundles
-2,000 times. Such intervals describe the constructed scripts and do not estimate
-human effects. A separate live demonstration holds one review while real answers
-arrive and tests a version change without disclosing annotations.
+Methods share saved answers, sources and eligible-start schedules. C's pause can
+change arrival times, but never the offered denominator. All attempts and failures
+are retained. Bundle-level paired summaries average generation replicas across
+12 bundles; they characterize the scripts, not people. A separate live demonstration
+holds one review while real answers arrive and tests a version change without
+showing annotations.
 
 \section{RESULTS}
 \subsection{Answer Quality and Scripted Completion}
 The initial model achieves \ExactCount/\AnswerCount\ exact matches (21.0\%), a
 mean token F1 of 22.61\%, and \JointCount/\AnswerCount\ joint answer/scale matches.
-There are \EmptyCount\ empty answers. All returned bodies are parseable JSON.
+The historical projection has \EmptyCount\ empty or unsupported answer fields.
+All returned bodies are parseable JSON.
 Optional citations supplied in a string instead of a list trigger 157 legacy
 formatting flags without removing the readable answer or source. This distinction
 matters when interpreting representation validity.\credit
@@ -237,11 +256,9 @@ script interval of zero. This is a mechanical result, not human equivalence.
 The low initial model accuracy makes the distinction between generated work and
 ideal correction particularly important.
 
-C does not improve throughput. Under lower arrival concentration, its pause is
-followed by a larger queue and longer arrival-to-selection times. At higher
-concentration, all configurations reach similar queue peaks. These results expose
-the cost of pausing rather than assuming that a smaller visible queue is a benefit.
-Figure~\ref{fig:accounting} includes work that has not started during the pause.
+C does not improve scripted throughput. Its lower-load pause increases queue size
+and arrival-to-selection time. Figure~\ref{fig:accounting} retains tasks that have
+not started, so pausing cannot improve a completion denominator by hiding work.
 
 \begin{table}[t]
 \caption{Measured scripted outcomes on 24 source contexts and two replicas. Peak is the mean sampled queue maximum. Wait is arrival-to-selection time, including resumed reviews. All releases use ideal simulated supervision.}
@@ -267,7 +284,7 @@ A six-second scripted active review overlaps observed arrivals while new task
 starts are paused for two seconds. In-flight generation continues. A fresh model
 revision creates a new version, and the earlier approval attempt is refused.
 The demonstration retains all twelve unresolved requests rather than claiming a
-person completed them (Figure~\ref{fig:live}).
+person completed them. The saved live timeline is available in the evidence package.
 
 Across local measurements, median atomic handler time is \HandlerMedian{} ms and its 95th
 percentile is \HandlerPHigh{} ms. Median browser HTTP round trip is \HttpMedian{} ms, with a 95th
@@ -280,47 +297,96 @@ Chromium tests pass \BrowserChecks\ checks across all interfaces, including type
 notes and focus during arrivals, source grouping, deferral, resumption, stale-state
 rejection, explicit release, connection recovery and a timed study cutoff.
 Figure~\ref{fig:desk} shows the source-session component.
-The failure record includes early harness
-errors, a private annotation-lookup defect, a journal-restoration defect and a source-session UI timing defect
-that were repaired without replacing sources or model outputs. The implementation
-also received concurrency and snapshot-accounting fixes. These repairs and the
-original declaration are preserved.
+Earlier harness and implementation defects were repaired with their failed runs
+retained. The evidence package records those repairs, exact timing boundaries and
+focused tests. No historical answer or result table was overwritten.
 
-\begin{figure*}[t]
-\centering\includegraphics[width=.94\textwidth]{../../artifacts/oversight_workflow/figures/live_timeline.pdf}
-\caption{Observed task lifetimes and answer arrivals from actual GPU workers. Lifetimes include waiting for the shared serial model service. The lower panel records scripted review and revision actions. No duration in this figure is measured human review time.}
-\label{fig:live}
-\end{figure*}
 
-\begin{figure*}[t]
-\centering\includegraphics[width=\textwidth]{../../artifacts/oversight_workflow/walkthrough/source_session_component.png}
-\caption{Actual interface capture during scripted replay. Three original questions share one financial source, while their generated answers and review decisions remain separate. The first selected source and first three questions determine this example. The long descriptive answer is retained despite imperfect benchmark agreement. This is software interaction, not a participant observation.}
-\label{fig:desk}
-\end{figure*}
 
-\section{PROSPECTIVE HUMAN EVALUATION}
-The next study compares B and C under two arrival concentrations within participants.
-Four disjoint six-context packets are balanced using public source length and
-question count. Williams condition orders cross packet rotations to avoid repeated
-answers within a participant. All conditions retain identical evidence, approval
-semantics and per-question authority. Training uses previously inspected development
-material outside the scored packets.\credit
 
-The primary outcome is the proportion of all offered questions ending with a
-correct current-version release in a fixed session. Incorrect approvals, incorrect
-releases and unresolved work are reported separately. Rejection is not successful
-completion. Interaction measures include deferral, source revisits, active review
-intervals and resumption-to-decision time. Raw NASA-TLX items measure reported
-workload \cite{tlx}; custom perceived-control items are retained separately rather
-than presented as a validated combined scale.
 
-Analysis must account for both participants and source contexts. Clicks, questions
-and replicas cannot be treated as independent people. A formative pilot should
-check timing, accessibility, packet difficulty and the variance of paired outcomes.
-No powered sample size is claimed without those observations and a justified
-meaningful difference. Ethics review, consent and recruitment authorization remain
-necessary before involving participants. The supplied materials do not substitute
-for those steps, and no model-generated users are counted as participants.
+\subsection{Subsequent Answer and Display Audit}
+Pilot preparation audited all 38 historical empty fields against saved raw responses.
+Seven nested-array answers had been lost by the display parser. A uniform pilot-only
+projection restores their existing components, leaving 31 empty or unsupported
+fields. Exact match remains 61/290 and joint answer/scale correctness remains
+59/290. The original 38-empty table and raw answers are preserved. Display recovery
+is not an accuracy improvement.
+
+Of 24 explicitly empty answer arrays, eight have answer-bearing text elsewhere
+and four contain partial or qualified text. The pilot exposes the original response
+in an expandable view without promoting explanations into scored answers. The
+157 optional evidence-format flags include 32 jointly correct answers. A format
+flag is therefore not a correctness label.
+
+A reproducibly stratified audit of 22 nonempty answers includes ten correct controls
+and twelve scored errors across answer types and source contexts. Nine errors show
+clear content or unit problems. Three raise unresolved wording, scale or rounding
+questions. These developer assessments are neither independent adjudication nor
+an estimate of error causes across all 229 nonmatches. The publicly selected pilot
+packets retain 36 questions from six contexts, with seven correct replica-zero
+drafts and five empty fields. Selection uses public size and question features,
+not model scores. Review may require reconstructing many answers. The source-only
+diagnostic is necessary because the usefulness of these drafts is still unknown.
+
+\section{RUNNABLE FORMATIVE PILOT}
+\subsection{Design and Treatment}
+The current prepared protocol is \texttt{formative-v1}, not a completed human study.
+It has separate-source training, two nine-minute B/C blocks, and a four-minute
+source-only diagnostic. The earlier interface-by-load effectiveness proposal
+remains a later design option, not part of this pilot. There is one constructed
+arrival schedule in B and C. The software wrapper, packets, forms, export and
+analysis have been exercised with explicitly separated software fixtures. There
+are no participant observations.\credit
+
+Three packets each contain two sources and twelve original questions. Public
+source length, table size and calculation wording guide selection and matching.
+The six contexts are reused benchmark material, not fresh independent financial
+reports. Training uses another source. Each participant sees disjoint sources in
+B, C and the diagnostic. Eighteen assignments cross all six B/C/source-only orders
+with three packet rotations. Coarse matching and counterbalancing do not guarantee
+equal difficulty or eliminate general learning.
+
+B and C share saved drafts, complete source access, a calculator, stable active
+review, notes, individual decisions and exact-version release. C additionally
+provides up to three source-session cards, session-aware next selection and
+pause/resume of new task starts. Pending work remains visible in both. This is a
+workflow-bundle comparison, not isolation of a grouping button. All twelve questions
+are offered at block start, with starts eligible in two six-question waves at
+0--20 and 180--200 seconds. Pausing does not remove work from the denominator.
+
+The source-only block offers six original questions from its disjoint packet without
+model proposals. Its position rotates. It diagnoses source comprehension, calculation
+difficulty and possible reconstruction burden. Different question and time
+allocations mean it is not a controlled assistance-effect estimate. A better
+source-only performance cannot by itself establish that the drafts harm review,
+nor can a worse performance establish that they help.
+
+\subsection{Outcomes and Collection Boundary}
+The primary descriptions are correct current-version releases, incorrect releases
+and unfinished work among all offered questions. A correct release requires
+official answer exact match and scale agreement. Approval without release is
+separate; rejection is blocked work, not correct completion. Official exact match
+and token F1 are retained, with scale agreement also reported. A blinded adjudication
+workflow can add reasoned judgments on released answers, including exact-match
+controls, without overwriting official scores. No such independent judgments exist.
+
+Interaction records retain deferral, resumption, source revisits, grouping, admission
+controls and focus interruptions. Select-to-action elapsed time is not continuous
+reading time. Raw NASA-TLX items measure reported workload \cite{tlx}; custom control
+items remain separate. No ratings are filled by scripts. The participant is the
+paired B/C unit. Individual trajectories, missing blocks and packet/order imbalance
+precede any interval. A small formative sample cannot establish superiority,
+equivalence or population generalization across reports.
+
+The first authorized collection should identify source or unit misunderstandings,
+incorrect releases, missing-draft burden and failed resumption. A later effectiveness
+study needs a meaningful target difference and variance estimates that account for
+participants and sources. The prepared materials supply neither institutional
+authorization nor consent. Investigator practice is development evidence, and
+software fixtures cannot silently enter participant analysis. Any change after
+practice or formative observations must receive a new development version before
+subsequent comparison.
 
 \section{DISCUSSION AND CONCLUSION}
 The workflow makes concurrent outputs addressable objects with explicit review
@@ -329,19 +395,27 @@ in focus, inspect its original evidence, postpone it without losing context and
 see what remains before choosing the next task. The implementation and real-data
 traces make these behaviors inspectable and reproducible.\credit
 
-The evaluation also limits the argument. Standard queues and version checks are
-strong predecessors, and the scripted experiment does not establish a session
-advantage. Ideal corrections turn weak model answers into perfect released outputs
-under an artificial service time. Source grouping may reduce repeated inspection,
-but it may also distract users or delay unrelated work. Strict version checks may
-require another review even when a regenerated answer appears unchanged. These
-tradeoffs require interaction observations.
+Real source data matter because the desk must display authentic tables, units,
+prose and imperfect answers, rather than idealized cards. They reveal missing
+outputs, substantial calculation errors and annotation ambiguities that a clean
+fixture would conceal. They do not supply real agent arrival patterns or measured
+financial-review behavior. The ideal script reveals whether the protocol accepts
+and records a correction, not whether a person can identify or produce it.
 
-We therefore recommend the system as a position for testing user-controlled review,
-not as an established workload-reduction technique. The smallest next step is the
-prepared formative B/C study, followed by a prospectively specified effectiveness
-comparison. More elaborate automatic allocation is not required to investigate
-whether people can review more correct work while retaining control.
+Ordinary queues and version checks remain strong explanations of the system's
+reliability. No session advantage has been demonstrated. Source sessions may save
+revisits, or distract from unrelated questions; separate release may support
+intentional withholding, or add needless actions. Low-quality drafts may make
+answering directly from the source preferable. The prepared pilot can identify
+these feasibility issues, but its diagnostic block cannot quantify an assistance
+effect under matched allocations.
+
+The position is therefore specific and testable: treat concurrent agent outputs
+as individual, versioned review requests, keep their evidence stable and account
+for all unfinished work. We provide the implementation and measured software
+behavior needed to test that position. The next milestone is real interaction
+evidence from the prepared, authorized formative comparison, before a claim of
+improved review quality, efficiency, perceived control or workload is made.
 
 \section*{AI ASSISTANCE AND REPRODUCIBILITY}
 OpenAI Codex assisted with implementation, analysis, testing, figures and manuscript
@@ -349,8 +423,10 @@ drafting \cite{codex}. It is not an author or a participant. Human authors remai
 responsible for verification and submission. The separate research package contains
 frozen sources and settings, raw generations, private evaluator projections,
 event traces, prospective study materials and one-command saved-output reproduction.
-Historical studies and their manuscripts remain unchanged. No participant study,
-public submission or push was performed in this stage.
+Historical evidence remains available separately. The review PDF omits author
+identities and repository links; a public development history may still make the
+work identifiable. Authors must resolve disclosure and artifact-sharing choices
+before submission. No participant study has been conducted.
 
 \bibliographystyle{apalike}
 \bibliography{references}

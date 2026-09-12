@@ -1,5 +1,10 @@
 # Decision desk for concurrent agent work
 
+**Current handoff:** [position paper, frozen formative pilot and Alex's walkthrough](handoff/README.md).
+The compact pilot replaces no historical results and has no participant observations.
+Its source-only diagnostic is separate from the older effectiveness-study proposal.
+
+
 Review actual model answers beside their original financial source. Keep a request
 in focus while others arrive, defer it with a note, optionally inspect related
 questions together, pause new task starts, and approve/release a specific version.

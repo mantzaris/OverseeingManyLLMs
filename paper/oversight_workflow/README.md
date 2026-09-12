@@ -1,26 +1,32 @@
-# ICAART-oriented workflow draft
+# Active ICAART workflow position paper
 
-Build from the repository root:
+`main.tex` and `main.pdf` are the **one active workflow manuscript**, using the
+unchanged official SCITEPRESS template. Other papers in this repository preserve
+historical research. The current draft is eight pages and separates completed
+software evaluation, completed formative-pilot preparation and an unperformed
+human study. See [SUBMISSION.md](SUBMISSION.md) for current format verification
+and remaining author/disclosure decisions.
+
+Build from saved inputs, without inference or repeating the software matrix:
 
 ```bash
-bash research/oversight_workflow/reproduce.sh
 bash paper/oversight_workflow/build.sh
 ```
 
-`main.pdf` is a separate anonymous, seven-page position-paper draft using the
-unchanged official SCITEPRESS template verified for ICAART 2027. It does not
-replace `paper/main.tex` or any historical manuscript. Numerical macros and tables
-come from the saved-output analysis. The interface image is an actual Chromium
-capture of the first selected financial source, not a generated mockup.
+Numerical macros and the scripted result table remain the historical saved-output
+products. Existing vector diagrams and an actual Chromium component capture are
+reused. The live timeline and full figure set remain in the parent evidence
+package; the main paper uses a compact subset. No paper figure depicts participant
+results. The seven recovered answer displays leave exact match at 61/290.
 
-The measured claims concern asynchronous software behavior and real model outputs.
-No participant performance, cognitive-load benefit or first-interface claim is
-made. The prospective human-study protocol is under
-`research/oversight_workflow/HUMAN_STUDY.md`.
+The prepared study is [formative-v1](../../research/oversight_workflow/pilot/PROTOCOL.md):
+two nine-minute B/C blocks, a separate four-minute source-only diagnostic, disjoint
+packets and counterbalanced assignments. It is distinct from the earlier proposed
+interface-by-load effectiveness study. No participant observations exist.
 
-Before submission, the human authors must finalize authorship, responsibility,
-AI-assistance declarations, anonymity and venue-specific upload choices. The local
-repository has public historical provenance, so an anonymous review artifact needs
-appropriate preparation. Nothing was submitted or pushed in this stage. A powered
-human effectiveness claim would require an authorized study with a justified
-sample size and prospective analysis.
+Use the [author handoff](../../research/oversight_workflow/handoff/README.md),
+[claim-evidence table](../../research/oversight_workflow/handoff/CLAIMS.md) and
+[internal reviewer memo](../../research/oversight_workflow/handoff/REVIEWER_MEMO.md)
+for review, then the short investigator walkthrough. The complete original
+software reproduction remains `bash research/oversight_workflow/reproduce.sh`;
+it need not be rerun to build this manuscript or try the frozen pilot.

@@ -26,6 +26,21 @@ Open http://127.0.0.1:9041 for saved-answer replay; no inference is required.
 Dependencies and live-mode limits are documented in the package README. All earlier
 studies, negative findings, clocks and manuscripts below remain preserved.
 
+The current [author handoff](research/oversight_workflow/handoff/README.md) provides
+an eight-page position paper and a 10–15 minute investigator walkthrough of the
+frozen [formative pilot](research/oversight_workflow/pilot/PROTOCOL.md). Its two
+nine-minute B/C blocks and four-minute source-only diagnostic are prepared,
+with **no participant observations**. The pilot's seven restored answer displays
+leave exact match unchanged at 61/290. Start private practice with:
+
+```bash
+python3 -m research.oversight_workflow.pilot.server --port 9042
+```
+
+Open http://127.0.0.1:9042 on the same workstation. If the handoff preview is already
+running, use it without starting another server. Current participant collection
+requires the investigator's actual institutional determination and consent process.
+
 ## Historical research framework
 
 
