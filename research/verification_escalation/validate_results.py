@@ -40,10 +40,12 @@ def run():
      a=next(r for r in z if r['method']=='recovery_completion');d=next(r for r in z if r['method']=='recovery_depth2')
      assert all(a[k]==d[k] for k in ['correct','wrong','unfinished','questions','loss'])
  checks.append('Depth-two and minimum-completion equivalence checked in every one-intent case')
- ledger=read(ART/'resource_ledger.json');assert ledger['scheduled_calls']==540 and ledger['attempts']==534
- generated=read(ART/'generation_manifest.json');repair=[r for r in generated if r['call_id'].startswith('repair_')]
+ ledger=read(ART/'resource_ledger.json');assert ledger['scheduled_calls']<=600 and ledger['attempts']<=1200
+ generated=read(ART/'generation_manifest.json');core=[r for r in generated if not r['call_id'].startswith('direct_reader_')]
+ assert len(core)==540 and sum(len(r['attempts']) for r in core)==534
+ repair=[r for r in generated if r['call_id'].startswith('repair_')]
  assert len(repair)==156 and sum(len(r['attempts']) for r in repair)==156
- checks.append('156 corrected follow-up calls; 540 session schedules and 534 GPU attempts')
+ checks.append('156 corrected follow-up calls; 540 core schedules and 534 core GPU attempts; secondary audit counted separately')
  out=dict(status='passed',checks=checks,primary_source_units=24,replicates=48,policy_rows=3240,new_calls_during_audit=0)
  write_json(root/'validation.json',out);print(out);return out
 if __name__=='__main__':run()

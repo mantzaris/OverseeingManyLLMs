@@ -60,3 +60,10 @@ five frontend examples, not the complete annotated 40-case dataset described in 
 paper. PRACTIQ publishes a generation pipeline. BIRD-Interact reference SQL/tests
 still require requesting access. No maintainer was contacted and no unavailable
 asset was circumvented. See LITERATURE.md and provenance.json for exact revisions.
+
+## Limits of source disjointness
+
+The follow-up excludes all source databases previously inspected in this exploration.
+That project-level exclusion is not evidence that the pinned model's training data
+excluded this public benchmark. Domains and construction templates are reused, and
+the source-database bootstrap does not create independence from those conventions.

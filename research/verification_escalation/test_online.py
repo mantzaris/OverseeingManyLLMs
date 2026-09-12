@@ -39,4 +39,7 @@ class OnlineTests(unittest.TestCase):
   d=Desk();d.act({'action':'inspect'});d.act({'action':'answer','value':'orders'});w={x['id']:x for x in d.state()['work']};self.assertEqual(w['partner']['status'],'unfinished');self.assertEqual(w['inventory']['reason'],'source_recovery')
  def test_two_decisions_for_narrow(self):
   d=Desk();d.act({'action':'inspect'});d.act({'action':'answer','value':'orders','only_this_request':True});self.assertEqual(d.c.spent,2)
+  self.assertEqual(d.c.records['count']['reason'],'outcome_agreement')
+  self.assertEqual(d.c.answers[('segment','Atlas/segment')]['exceptions'],['count'])
+  self.assertNotIn('count',d.c.answers[('segment','Atlas/segment')]['sql_by_task'])
 if __name__=='__main__':unittest.main()

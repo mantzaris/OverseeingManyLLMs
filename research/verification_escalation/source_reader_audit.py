@@ -8,7 +8,7 @@ from .common import ART,read,write_json,digest
 from .data import public_task,intent_index
 from .engine import execute,MachineBudget
 
-def run(repaired=False):
+def run(repaired=False,output=None):
     root=ART/'repair' if repaired else ART
     if repaired:
         from .repair_data import public_task as task_builder
@@ -26,7 +26,7 @@ def run(repaired=False):
             sql=(prep.get('answered') or {}).get('sql');result=execute(task['snapshot'],sql,MachineBudget(1),task['contract']['ordered']);target=execute(task['snapshot'],c['refs'][intent_index(c,rep)],MachineBudget(1),task['contract']['ordered'])
             released=result['status']=='ok';correct=released and target['status']=='ok' and result['table_hash']==target['table_hash']
             rows.append(dict(id=c['id'],rep=rep,questions=0,executions=1,correct=int(correct),wrong=int(released and not correct),unfinished=int(not released),source_hash=digest(text),generated_sql=sql,classification='secondary_cached_full_instruction_prompt_diagnostic'))
-    write_json(root/'analysis/direct_source_reader.json',rows)
+    write_json(output or root/'analysis/direct_source_reader.json',rows)
     return rows
 if __name__=='__main__':
  r=run();print({k:sum(x[k] for x in r) for k in ['questions','correct','wrong','unfinished']})

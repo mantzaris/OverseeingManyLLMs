@@ -180,3 +180,14 @@ python3 scripts/audit_research_session.py
 ```
 
 The [research draft](paper/RESEARCH_DRAFT.md), [claim–evidence map](paper/CLAIM_EVIDENCE.md), and [verified related-work note](paper/RELATED_WORK.md) distinguish the framework and measured analysis from established scheduling and uncertainty-guided help-seeking methods. Supervision remains simulated; exhaustive scheduling itself is not claimed as novel.
+
+
+## Verification-guided escalation exploration
+
+The separate [research package](research/verification_escalation/README.md) includes
+a local Decision desk, a frozen SQL comparison on 24 new AMBROSIA databases,
+controlled counterexamples, and [a completed report](research/verification_escalation/REPORT.md).
+Generated-query agreement reduced questions but increased mismatched releases.
+Source recovery and targeted clarification remain the supported default; source
+integrity and candidate coverage limitations are explicit. The existing submission
+and all earlier experiments remain unchanged.

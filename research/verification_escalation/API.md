@@ -37,7 +37,9 @@ call `answer(question, response)`. A response maps independently implemented SQL
 for each registered affected task. Unknown or unresolved responses are `None`.
 Do not import benchmark evaluator files into an agent process.
 
-Use `OnlineController` for an interactive application that revises instructions.
+Use `ValidatedController` from `integrity.py` for an interactive application. It
+checks public SQLite integrity before delegating to `OnlineController`, which
+handles revised instructions.
 It retains all answer events but makes a changed dependency version eligible for
 reconsideration, without resetting spent budget. The desk also validates the
 currently displayed certificate key before applying an answer. `revise` invalidates

@@ -84,3 +84,13 @@ revision numbers. An instruction can remain active after a data snapshot changes
 The caller must explicitly replace or revoke a superseded source record; changed
 text invalidates its earlier quotation hash. The controller does not infer that a
 newer unrelated conversation turn revokes an otherwise applicable instruction.
+
+## Current online source-integrity guard
+
+The frozen terminal protocol checked query execution but did not gate on recorded
+foreign-key violations. The online ValidatedController now checks quick_check and
+foreign_key_check before candidate execution, charges the checks and caches their
+snapshot dependency. A load or integrity failure leaves the affected goals
+unfinished, never as an equality certificate. Uniform quarantine of four source
+databases is reported as post hoc saved-output sensitivity. Frozen rows remain
+unchanged; it is not presented as a fresh guarded evaluation.

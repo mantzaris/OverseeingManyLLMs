@@ -1,0 +1,11 @@
+{
+  "id": "1522",
+  "phase": "inspected_comparison",
+  "public_hash": "c6df689c5d1876c727ce41a2e49e99943077535675e35e9a56db4bfa66810bf3",
+  "rep": 0,
+  "response": {
+    "question": null,
+    "sql": "SELECT T.name, T.description FROM Treatments T JOIN Spa_Treatments ST ON T.treatment_id = ST.treatment_id GROUP BY T.treatment_id HAVING COUNT(DISTINCT ST.spa_id) = (SELECT COUNT(*) FROM Spa)",
+    "status": "ready"
+  }
+}

@@ -87,3 +87,26 @@ two-consequential-task test. It also caches unchanged failed answered SQL. The
 frozen replay counts include the original repeated failed executions (five extra
 in the primary completion condition). These online repairs do not alter saved
 experimental rows or claim a new empirical improvement.
+
+## Direct-reading baseline audit after the primary result
+
+The primary full-context control reuses a first executable interpretation from an
+enumeration prompt. To give a simpler direct reader an explicit opportunity,
+80f5722a declares a fixed answer-or-ask prompt and 52 calls on four original
+development cases plus the same 24 inspected databases/two replicas. No source
+case or primary method changes. This is post hoc and does not claim fresh
+independence. The prompt and sample were committed before these generations.
+Results: six answers, 12 matching, 30 mismatched, six unfinished at budget one.
+It does not overturn the unfavorable primary result or solve the interpretation
+problem. All 592 scheduled calls remain within the original session ceiling.
+
+## Final source-integrity review
+
+Foreign-key violations were already recorded in source metadata. Final review
+recognized that the frozen equality rule checked query execution but did not gate
+on these violations. Four corrected-set databases are affected, including one
+unsafe agreement release. Added a public online integrity guard and four semantic
+tests. A post hoc uniform-quarantine sensitivity keeps every unit and blocks
+those databases for every method. Loss 85 (completion) versus 97 (verification),
+paired difference +0.25 [0, 0.50]. No new generation or favorable replacement.
+The primary frozen results remain visible with this limitation.

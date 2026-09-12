@@ -35,7 +35,18 @@ A conditional equality argument is straightforward and established: if all
 represented executions equal table R, R is invariant over that finite set. It
 says nothing about an omitted interpretation, a changed snapshot or an explicit
 semantic/process requirement. This restricted certificate is useful software
-engineering but is not alone a sufficient research novelty claim. The report will
-recommend adoption or simplification according to the frozen results, including
-any null or harmful outcome. Synthetic favorable cases cannot override an
+engineering but is not alone a sufficient research novelty claim. The completed report recommends simplification according to the frozen results. Synthetic favorable cases cannot override an
 unfavorable operational study.
+
+## Completed assessment
+
+The frozen operational comparison saves eight answers but loses three matching
+tables. Complete reference alternatives save no answers. Uniform source-integrity
+quarantine retains the adverse point estimate with an interval including zero.
+A separately declared direct-reading audit also fails to solve the ambiguity
+problem. Existing source reading explains the defensible savings when a prior
+instruction is available. No empirical cross-task shared decision is established.
+The protocol is useful instrumentation and system design, but this evidence does
+not substantiate a new superior clarification algorithm. Keep the negative result
+and prototype separate from the main submission rather than promoting synthetic
+equality examples to evidence of practical prevalence.

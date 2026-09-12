@@ -43,8 +43,25 @@ def run(out):
   if read(ART/'repair/analysis'/name)!=read(out/'repair/analysis'/name):raise AssertionError('Repaired analysis differs '+name)
  if read(ART/'repair/evaluation/traces.json')!=read(out/'repair/evaluation/traces.json'):raise AssertionError('Repaired events differ')
  from .secondary_analysis import run as secondary
- secondary(out/'repair',source_root=ART/'repair');plot(out/'repair',synthetic_root=out)
- report=dict(status='passed',initial_flawed_adapter_rows=n,repaired_empirical_rows=repaired_n,synthetic_rows=m,policy_and_event_replay=True,analysis_tables=8,new_model_calls=0,output=str(out))
+ secondary(out/'repair',source_root=ART/'repair')
+ from .source_reader_audit import run as reader
+ reader(True,output=out/'repair/analysis/direct_source_reader.json')
+ plot(out/'repair',synthetic_root=out)
+ from .example_analysis import run as examples
+ examples(out/'repair',synthetic_root=out)
+ for name in ['secondary.json','direct_source_reader.json','matched_examples.json']:
+  if read(ART/'repair/analysis'/name)!=read(out/'repair/analysis'/name):raise AssertionError('Secondary analysis differs '+name)
+ from .direct_reader import evaluate as direct_evaluate
+ from .direct_analysis import run as direct_analysis
+ direct_evaluate(out/'direct_reader_audit');direct_analysis(out/'direct_reader_audit',out/'repair')
+ direct_n=compare_csv(ART/'direct_reader_audit/episodes.csv',out/'direct_reader_audit/episodes.csv')
+ for name in ['traces.json','analysis.json']:
+  if read(ART/'direct_reader_audit'/name)!=read(out/'direct_reader_audit'/name):raise AssertionError('Direct-reader audit differs '+name)
+ from .integrity_sensitivity import run as quarantine
+ quarantine(out/'integrity_sensitivity')
+ integrity_n=compare_csv(ART/'integrity_sensitivity/episodes.csv',out/'integrity_sensitivity/episodes.csv')
+ if read(ART/'integrity_sensitivity/analysis.json')!=read(out/'integrity_sensitivity/analysis.json'):raise AssertionError('Integrity sensitivity differs')
+ report=dict(status='passed',initial_flawed_adapter_rows=n,repaired_empirical_rows=repaired_n,synthetic_rows=m,policy_and_event_replay=True,analysis_tables=8,secondary_tables=3,posthoc_direct_reader_rows=direct_n,integrity_sensitivity_rows=integrity_n,numerical_figures=8,new_model_calls=0,output=str(out))
  write_json(out/'verification.json',report);print(json.dumps(report,indent=2));return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--output',required=True);a=p.parse_args();run(a.output)

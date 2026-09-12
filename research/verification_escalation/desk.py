@@ -3,7 +3,8 @@ import copy,time,json
 from datetime import datetime,timezone
 from pathlib import Path
 from .controller import candidates
-from .online import OnlineController as Controller
+from .online import OnlineController
+from .integrity import ValidatedController
 from .engine import verification_key
 from .common import digest,canonical
 def strip_time(value):
@@ -34,10 +35,11 @@ def demonstration():
     return tasks,prep
 
 class Desk:
-    def __init__(self,log_path=None):
+    def __init__(self,log_path=None,validate_sources=True):
+        self.controller_class=ValidatedController if validate_sources else OnlineController
         self.path=Path(log_path) if log_path else None;self.events=[];self.started=time.monotonic();self.shown=None;self.reset();self.log('started',{})
     def reset(self,method='verification',budget=3):
-        t,p=demonstration();self.c=Controller(t,p,budget,64,method);self.question=None;self.c.inspect();self.changed=[];self.shown=None
+        t,p=demonstration();self.c=self.controller_class(t,p,budget,64,method);self.question=None;self.c.inspect();self.changed=[];self.shown=None
     def state(self):
         c=self.c;work=[]
         for t in c.tasks:
@@ -50,7 +52,7 @@ class Desk:
             for x in q['candidates']:x['preview']=x['outcome'].get('table',{}).get('rows',[])
         return dict(project='Atlas customer analytics',demo=True,participant_data=False,method=c.method,question=q,work=work,answers_remaining=c.budget-c.spent,answers_spent=c.spent,checks_remaining=c.machine.limit-c.machine.used,checks_used=c.machine.used,changes=self.changed,events=c.events[-12:])
     def log(self,action,payload):
-        e=dict(utc=datetime.now(timezone.utc).isoformat(),elapsed_seconds=time.monotonic()-self.started,action=action,payload=payload,shown=strip_time(self.state()['question']),state_hash=digest(strip_time(self.state())),response_seconds=None if self.shown is None else time.monotonic()-self.shown,record_type='Scripted/development interface observation, not participant data')
+        e=dict(utc=datetime.now(timezone.utc).isoformat(),elapsed_seconds=time.monotonic()-self.started,action=action,payload=payload,shown=strip_time(self.state()['question']),state_hash=digest(strip_time(self.state())),response_seconds=None if self.shown is None else time.monotonic()-self.shown,protocol='integrity_guard_v1' if self.controller_class==ValidatedController else 'legacy',record_type='Scripted/development interface observation, not participant data')
         self.events.append(e)
         if self.path:
             self.path.parent.mkdir(parents=True,exist_ok=True)

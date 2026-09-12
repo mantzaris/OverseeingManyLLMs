@@ -27,8 +27,12 @@ try{
  await js("action({action:'reset',method:'recovery_completion',budget:1})");await js("action({action:'inspect'})");await js("action({action:'defer'})");assert(await js("state.answers_remaining===0 && state.work.some(w=>w.status==='unfinished')"),'Unresolved answer counted');
  await js("action({action:'reset',method:'verification',budget:3})");await js("action({action:'inspect'})");
  await send('Emulation.setDeviceMetricsOverride',{width:430,height:1000,deviceScaleFactor:1,mobile:true});await js('window.scrollTo(0,0)');await screenshot('mobile');
- assert(await js('document.documentElement.scrollWidth<=window.innerWidth+2'),'No mobile horizontal overflow');assert(errors.length===0,'No browser exceptions');
+ assert(await js('document.documentElement.scrollWidth<=window.innerWidth+2'),'No mobile horizontal overflow');
+ await send('Emulation.setDeviceMetricsOverride',{width:900,height:1200,deviceScaleFactor:1,mobile:false});await js("action({action:'reset',method:'verification',budget:3})");await js("action({action:'inspect'})");await js('window.scrollTo(0,0)');await wait(100);
+ const clip=await js("(()=>{const r=document.querySelector('#question').getBoundingClientRect();return {x:r.x,y:r.y+window.scrollY,width:r.width,height:r.height,scale:1}})()");
+ assert(clip.width>600 && clip.height>200,'Readable paper question capture');const capture=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true,clip});fs.writeFileSync(out+'/paper_question.png',Buffer.from(capture.data,'base64'));
+ assert(errors.length===0,'No browser exceptions');
  fs.writeFileSync(out+'/verification.json',JSON.stringify({status:'passed',type:'Scripted software demonstration, not participant observations',checks,errors},null,2)+'\n');
  fs.writeFileSync(out+'/interactions.jsonl',await(await fetch('http://127.0.0.1:9032/api/log')).text());
- console.log(checks+' browser checks, seven screenshots and actual interaction log saved');await send('Browser.close');
+ console.log(checks+' browser checks, eight screenshots and actual interaction log saved');await send('Browser.close');
 }finally{if(ws)ws.close();child.kill()}
