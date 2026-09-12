@@ -108,3 +108,17 @@ ANALYSIS for scoring and missingness, INTERVIEW for the retrospective procedure,
 and CLAIM_DECISIONS for the predeclared outcome-to-claim rules. The artifact ledger
 records the separate stage clock and zero inference. No participants were contacted,
 no GPU service was changed, and no code was pushed.
+
+## Frozen package and resources
+
+The implementation/protocol package is commit `e45b84b1ff26b3bed825b16c37f2e76afa8b9c7c`.
+Manifest `71352c921464ab4799309e6368437532ae30d9ddebe2ccf957b75ba32017ba10`
+and runtime `73562404a9e56ff83d02e65ac559bceaf714df2cfe48c0013aebda66f727e36b`
+identify the comparison. The final fixture carries that runtime fingerprint.
+This separate preparation stage used 32.77 minutes through the final verification
+checkpoint and **zero model calls, attempts or tokens**. Cumulative elapsed wall
+time is 74.754 hours from the original start, including inter-stage gaps, or 38.754
+hours beyond the original 36-hour target. Historical inference totals and clocks
+were carried forward unchanged. A small final accounting commit follows this
+checkpoint. Temporary fixture/browser processes are stopped; the existing private
+formative preview and model infrastructure are preserved.
