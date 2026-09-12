@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v1_c01_q00_transfer",
+      "elapsed_seconds": 1.6104014549637213,
+      "request_sha256": "24085a4530d53277651092d2b96ae2cca414d4ea03ab369caf2a8ba780d928fd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[\"capitalised at cost less accumulated amortisation\"],\"scale\":\"\",\"evidence\":[\"P7\",\"T0C2\"],\"operation\":\"lookup\",\"derivation\":\"Internally generated software is capitalised at cost less accumulated amortisation, as stated in paragraph P7 and reflected in column T0C2 of the table.\",\"calculation\":\"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789186417,
+        "id": "chatcmpl-f6556aea4e7640d9b72812b2ad9f9630",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 69,
+          "prompt_tokens": 1685,
+          "prompt_tokens_details": null,
+          "total_tokens": 1754
+        }
+      },
+      "started_utc": "2026-09-12T04:13:37.317038+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v1_c01_q00_transfer",
+  "input_tokens": 1685,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the original financial question using only the supplied table and paragraphs. Return ONE JSON object: {\"answer\":[\"value or span\"],\"scale\":\"\",\"evidence\":[\"T2C1\",\"P1\"],\"operation\":\"lookup|sum|difference|average|ratio|count|other\",\"derivation\":\"brief source-grounded explanation\",\"calculation\":\"\"}. Scale must be \"\", thousand, million, billion, or percent. Return numerical value in that scale, not also multiplied by it. For percent return e.g. 12.5, not 0.125. For arithmetic you may put a numeric expression using + - * / and parentheses in calculation; an exact arithmetic tool will replace answer with its result rounded to two decimals. Otherwise leave calculation empty. Distinguish amount, difference and percentage change. Cite source IDs shown. A related question's answer is not automatically your answer. If evidence is insufficient return answer:[] and explain. Keep the derivation under 35 words. No confidence score or prose outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE (zero-based row and column IDs):\nT0C0= | T0C1=Rights and licenses | T0C2=Internally generated software | T0C3=Software under development | T0C4=Total\nT1C0=Movements | T1C1=$'000 | T1C2=$'000 | T1C3=$'000 | T1C4=$'000\nT2C0=At 30 June 2019 | T2C1= | T2C2= | T2C3= | T2C4=\nT3C0=Cost | T3C1=13 | T3C2=12,961 | T3C3=16,284 | T3C4=29,259\nT4C0=Accumulated amortisation | T4C1=- | T4C2=(5,580) | T4C3=- | T4C4=(5,580)\nT5C0=Netbook amount | T5C1=13 | T5C2=7,381 | T5C3=16,284 | T5C4=23,678\nT6C0=30 June 2018 | T6C1= | T6C2= | T6C3= | T6C4=\nT7C0=Opening net book amount at 1 July 2017 | T7C1=43 | T7C2=442 | T7C3=8,053 | T7C4=8,538\nT8C0=Additions – externally acquired | T8C1=13 | T8C2=- | T8C3=5,253 | T8C4=5,266\nT9C0=Additions – internally developed | T9C1=- | T9C2=- | T9C3=1,256 | T9C4=1,256\nT10C0=Amortisation | T10C1=(43) | T10C2=(1,746) | T10C3=- | T10C4=(1,789)\nT11C0=Transfers | T11C1=- | T11C2=7,563 | T11C3=(7,563) | T11C4=-\nT12C0=Transfer between classes | T12C1=- | T12C2=744 | T12C3=- | T12C4=744\nT13C0=Disposals | T13C1=- | T13C2=(618) | T13C3=(490) | T13C4=(1,108)\nT14C0=Closing net book amount | T14C1=13 | T14C2=6,385 | T14C3=6,509 | T14C4=12,907\nT15C0=At 30 June 2018 | T15C1= | T15C2= | T15C3= | T15C4=\nT16C0=Cost | T16C1=104 | T16C2=9,555 | T16C3=6,509 | T16C4=16,168\nT17C0=Accumulated amortisation | T17C1=(91) | T17C2=(3,170) | T17C3=- | T17C4=(3,261)\nT18C0=Net book amount | T18C1=13 | T18C2=6,385 | T18C3=6,509 | T18C4=12,907\nP1: 11 Intangible assets (continued)\nP2: (a) Intangible assets\nP3: RIGHTS AND LICENCES\nP4: Certain licences that NEXTDC possesses have an indefinite useful life and are carried at cost less impairment losses and are subject to impairment review at least annually and whenever there is an indication that it may be impaired.\nP5: Other licences that NEXTDC acquires are carried at cost less accumulated amortisation and accumulated impairment losses. Amortisation is recognised on a straight-line basis over the estimated useful life. The estimated useful life and amortisation method are reviewed at the end of each annual reporting period.\nP6: INTERNALLY GENERATED SOFTWARE\nP7: Internally developed software is capitalised at cost less accumulated amortisation. Amortisation is calculated using the straight-line basis over the asset’s useful economic life which is generally two to three years. Their useful lives and potential impairment are reviewed at the end of each financial year.\nP8: SOFTWARE UNDER DEVELOPMENT\nP9: Costs incurred in developing products or systems and costs incurred in acquiring software and licenses that will contribute to future period financial benefits through revenue generation and/or cost reduction are capitalised to software and systems. Costs capitalised include external direct costs of materials and services and employee costs.\nP10: Assets in the course of construction include only those costs directly attributable to the development phase and are only recognised following completion of technical feasibility and where the Group has an intention and ability to use the asset.\nQUESTION: How was internally developed software capitalised?\nYour previous output: {'answer': ['capitalised at cost less accumulated amortisation'], 'scale': '', 'evidence': ['P7', 'T0C2'], 'operation': 'lookup', 'derivation': 'Internally generated software is capitalised at cost less accumulated amortisation, as stated in the paragraph and reflected in the table.', 'valid': True, 'issues': [], 'invalid_evidence': [], 'calculation': ''}\nVERIFIED INSPECTIONS (only these questions were inspected; explanations beyond the annotation are not certified):\nQuestion: What was the percentage change in cost of software under development between 2018 and 2019?\nAnswer: 150.18; scale: percent; annotated derivation: (16,284 - 6,509) / 6,509 \nThese records apply directly only to their stated questions and context. Recheck relevant evidence for YOUR distinct question; preserve different periods, entities and ratio scales. You may retain your answer when the correction does not apply.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 831100,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "24085a4530d53277651092d2b96ae2cca414d4ea03ab369caf2a8ba780d928fd",
+  "status": "ok"
+}

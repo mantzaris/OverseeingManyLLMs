@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v2_c07_q01_initial",
+      "elapsed_seconds": 2.280893599963747,
+      "request_sha256": "877acf0d7d4ade30cf45562807463bfde5e4f879bf0077e47cc3fbac35206bcc",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\":[\"T2C2\",\"T8C2\"],\"operation\":\"difference\",\"derivation\":\"Subtract the outstanding shares on January 1 from the outstanding shares on December 31 to find the net change in shares, then add this to the January 1 stated capital to get the December 31 stated capital.\",\"calculation\":\"898200415-903908182+20036\",\"answer\":[\"20,363\"],\"scale\":\"thousand\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789186776,
+        "id": "chatcmpl-94e7b0e3998743a7ae5a0c12c4866685",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 111,
+          "prompt_tokens": 1103,
+          "prompt_tokens_details": null,
+          "total_tokens": 1214
+        }
+      },
+      "started_utc": "2026-09-12T04:19:35.961672+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v2_c07_q01_initial",
+  "input_tokens": 1103,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Use only the supplied financial table and paragraphs to answer the original question. Think through the cited evidence before answering. Return ONE JSON object in this order: {\"evidence\":[\"T2C1\"],\"operation\":\"lookup\",\"derivation\":\"brief explanation\",\"calculation\":\"\",\"answer\":[\"value or span\"],\"scale\":\"percent\"}.\nThe example is a format, not an answer or a fixed scale. Determine scale separately from the source: use percent for numbers already expressed as percentages (including a difference in percentage points); use million/thousand/billion for amounts in that source scale; use empty string for unscaled numbers or ordinary text. A ratio reported as percent needs multiplication by 100; a number already in percent must not be multiplied again. Never transfer an amount's currency scale to a ratio.\nAllowed operation labels: lookup, sum, difference, average, ratio, count, other. For arithmetic optionally supply a numeric + - * / expression in calculation. A tool replaces answer with its result rounded to two decimals. Select operands for the requested row/period; do not average different measures unless asked. Otherwise leave calculation empty. Answer can be multiple short spans. Cite source IDs shown, not inferred cell locations. A related question is a distinct task. If unsupported, return answer:[] and explain. Derivation under 35 words. No prose outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE (zero-based row and column IDs):\nT0C0= | T0C1= | T0C2=2019 | T0C3= | T0C4=2018 | T0C5=\nT1C0= | T1C1=NOTE | T1C2=NUMBER OF SHARES | T1C3=STATED CAPITAL | T1C4=NUMBER OF SHARES | T1C5=STATED CAPITAL\nT2C0=Outstanding, January 1 | T2C1= | T2C2=898,200,415 | T2C3=20,036 | T2C4=900,996,640 | T2C5=20,091\nT3C0=Shares issued for the acquisition of AlarmForce | T3C1=34 | T3C2=– | T3C3=– | T3C4=22,531 | T3C5=1\nT4C0=Shares issued under employee stock option plan | T4C1=28 | T4C2=4,459,559 | T4C3=251 | T4C4=266,941 | T4C5=13\nT5C0=Repurchase of common shares | T5C1= | T5C2=– | T5C3=– | T5C4=(3,085,697) | T5C5=(69)\nT6C0=Shares issued under ESP | T6C1= | T6C2=1,231,479 | T6C3=75 | T6C4=– | T6C5=–\nT7C0=Shares issued under DSP | T7C1= | T7C2=16,729 | T7C3=1 | T7C4=– | T7C5=–\nT8C0=Outstanding, December 31 | T8C1= | T8C2=903,908,182 | T8C3=20,363 | T8C4=898,200,415 | T8C5=20,036\nP1: COMMON SHARES AND CLASS B SHARES\nP2: BCE’s articles of amalgamation provide for an unlimited number of voting common shares and non-voting Class B shares, all without par value. The common shares and the Class B shares rank equally in the payment of dividends and in the distribution of assets if BCE is liquidated, dissolved or wound up, after payments due to the holders of preferred shares. No Class B shares were outstanding at December 31, 2019 and 2018.\nP3: The following table provides details about the outstanding common shares of BCE.\nP4: In Q1 2018, BCE repurchased and canceled 3,085,697 common shares for a total cost of $175 million through a NCIB. Of the total cost, $69 million represents stated capital and $3 million represents the reduction of the contributed surplus attributable to these common shares. The remaining $103 million was charged to the deficit.\nP5: CONTRIBUTED SURPLUS\nP6: Contributed surplus in 2019 and 2018 includes premiums in excess of par value upon the issuance of BCE common shares and share-based compensation expense net of settlements.\nQUESTION: What is the amount of stated capital outstanding on December 31, 2019",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 821701,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "877acf0d7d4ade30cf45562807463bfde5e4f879bf0077e47cc3fbac35206bcc",
+  "status": "ok"
+}

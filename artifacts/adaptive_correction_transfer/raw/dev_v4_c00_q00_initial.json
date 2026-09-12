@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v4_c00_q00_initial",
+      "elapsed_seconds": 2.086420936975628,
+      "request_sha256": "017800838ccdf75cdbd89cface9cace4d20d73aa39bb86603aa52b0ebd53ceef",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\": [\"P2\", \"T1\", \"T2\", \"T3\", \"T4\"], \"operation\": \"list\", \"derivation\": \"The Weighted average actuarial assumptions consist of the rate of inflation, rate of increase in salaries, and discount rate as shown in the table.\", \"answer\": [\"Rate of inflation\", \"Rate of increase in salaries\", \"Discount rate\"], \"scale\": \"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789187481,
+        "id": "chatcmpl-88b42582be2d47f4b208e19281d65ad6",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 90,
+          "prompt_tokens": 500,
+          "prompt_tokens_details": null,
+          "total_tokens": 590
+        }
+      },
+      "started_utc": "2026-09-12T04:31:21.460190+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v4_c00_q00_initial",
+  "input_tokens": 500,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nQUESTION: What does the Weighted average actuarial assumptions consist of?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 821000,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "017800838ccdf75cdbd89cface9cace4d20d73aa39bb86603aa52b0ebd53ceef",
+  "status": "ok"
+}

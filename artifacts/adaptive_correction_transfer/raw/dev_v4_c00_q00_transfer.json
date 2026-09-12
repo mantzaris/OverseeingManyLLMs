@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v4_c00_q00_transfer",
+      "elapsed_seconds": 2.401956786052324,
+      "request_sha256": "f2f84a1bfab166222ba60525010d18af3f9d75e1d7a8722ec2b16a7ce507c202",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answer\": [\"Rate of inflation\", \"Rate of increase in salaries\", \"Discount rate\"],\n  \"scale\": \"\",\n  \"evidence\": [\"P2\", \"T1\", \"T2\", \"T3\", \"T4\"],\n  \"operation\": \"lookup\",\n  \"derivation\": \"The Weighted average actuarial assumptions consist of Rate of inflation, Rate of increase in salaries, and Discount rate as per the table.\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789187494,
+        "id": "chatcmpl-14404a380a494707a772777ecc0a04be",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 94,
+          "prompt_tokens": 634,
+          "prompt_tokens_details": null,
+          "total_tokens": 728
+        }
+      },
+      "started_utc": "2026-09-12T04:31:33.627788+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v4_c00_q00_transfer",
+  "input_tokens": 634,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nQUESTION: What does the Weighted average actuarial assumptions consist of?\nThis is a fresh re-solution. Recompute YOUR requested answer from the source; do not assume a prior draft was correct.\nVERIFIED INSPECTIONS (only these questions were inspected; explanations beyond the annotation are not certified):\nPrevious answer: {'answer': ['2.9'], 'scale': ''}\nQuestion: How much is the 2018 rate of inflation?\nAnswer: ['2.9']; scale: percent; annotated derivation: \nThese records apply directly only to their stated questions and context. Recheck relevant evidence for YOUR distinct question; preserve different periods, entities and ratio scales. You may retain your answer when the correction does not apply.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 831000,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "f2f84a1bfab166222ba60525010d18af3f9d75e1d7a8722ec2b16a7ce507c202",
+  "status": "ok"
+}
