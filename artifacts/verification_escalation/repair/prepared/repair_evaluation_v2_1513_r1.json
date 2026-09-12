@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT scuba_center_id, type FROM Bookings JOIN Dive_Sites ON Bookings.dive_site_id = Dive_Sites.id GROUP BY scuba_center_id, type"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the types of dive sites available at each scuba diving center.",
+          "sql": "SELECT scuba_center_id, type FROM Bookings JOIN Dive_Sites ON Bookings.dive_site_id = Dive_Sites.id GROUP BY scuba_center_id, type"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the types of dive sites available at each scuba diving center.",
+          "sql": "SELECT sdc.name, ds.type FROM Scuba_Diving_Centers sdc JOIN Bookings b ON sdc.id = b.scuba_center_id JOIN Dive_Sites ds ON ds.id = b.dive_site_id GROUP BY sdc.name, ds.type"
+        },
+        {
+          "meaning": "Count the number of different dive sites available at each scuba diving center.",
+          "sql": "SELECT sdc.name, COUNT(DISTINCT ds.type) AS num_types FROM Scuba_Diving_Centers sdc JOIN Bookings b ON sdc.id = b.scuba_center_id JOIN Dive_Sites ds ON ds.id = b.dive_site_id GROUP BY sdc.name"
+        },
+        {
+          "meaning": "Identify the most common type of dive site available at each scuba diving center.",
+          "sql": "SELECT sdc.name, ds.type, COUNT(*) AS count FROM Scuba_Diving_Centers sdc JOIN Bookings b ON sdc.id = b.scuba_center_id JOIN Dive_Sites ds ON ds.id = b.dive_site_id GROUP BY sdc.name, ds.type ORDER BY sdc.name, count DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "2db4e4b56866972750886b5bb4f599babfd2245e8461b176984d703edcc0d7e7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1513",
+  "public_hash": "1f8a483b55708613842a03ddef372d205fd690d914b01240f7f190e257168a30",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT a.name, p.program_name FROM Authorities a JOIN Authorities_Programs ap ON a.authority_id = ap.authority_id JOIN Programs p ON ap.program_id = p.program_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show each authority and the programs they have.",
+          "sql": "SELECT a.name, p.program_name FROM Authorities a JOIN Authorities_Programs ap ON a.authority_id = ap.authority_id JOIN Programs p ON ap.program_id = p.program_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show a list of programs associated with each authority.",
+          "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+        },
+        {
+          "meaning": "List all programs for each authority, including authorities that have no programs.",
+          "sql": "SELECT A.name, P.program_name FROM Authorities A LEFT JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id LEFT JOIN Programs P ON AP.program_id = P.program_id"
+        },
+        {
+          "meaning": "Display the count of programs each authority has.",
+          "sql": "SELECT A.name, COUNT(AP.id) AS program_count FROM Authorities A LEFT JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id GROUP BY A.name"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1484",
+  "public_hash": "97545d923756935d31ee76bf7f5a2e9cc0a0ac1af87c1301681d853a5c9a1895",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List the programs associated with each authority.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+      },
+      {
+        "meaning": "Display the name of each authority along with the programs they have.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+      },
+      {
+        "meaning": "Show the authority name and the specific programs each authority is responsible for.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+      }
+    ],
+    "source_quote_sha256": "436e741d2c131200ccfc18d058a290ff3ed2f291b5085319dad24cd04f95bff1",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

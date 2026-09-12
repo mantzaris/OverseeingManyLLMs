@@ -1,0 +1,49 @@
+{
+  "answered": {
+    "sql": "SELECT title FROM Film WHERE animationStudio = 'Pixar' AND awards LIKE '%Golden Globe%' UNION SELECT title FROM Film WHERE animationStudio = 'DreamWorks' AND awards LIKE '%Golden Globe%'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Give me Pixar films and DreamWorks films that won Golden Globe.",
+          "sql": "SELECT title FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks') AND 'Golden Globe' IN (SELECT award FROM Film WHERE id = Film.id)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Select films from Pixar and DreamWorks that have won the Golden Globe award.",
+          "sql": "SELECT title FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks') AND 'Golden Globe' IN (SELECT award FROM Film WHERE id = Film.id)"
+        }
+      ],
+      "source_quote_sha256": "5acb14f0a6439acdb901d545bcafcd7461467f0d149497f84cdccf6856cd176d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "467",
+  "public_hash": "950e9a73d0c195794fc25a19c720589d2a9930143df943952a779a4f79a3be96",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all Pixar and DreamWorks films that won a Golden Globe award.",
+        "sql": "SELECT title FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks') AND 'Golden Globe' IN (SELECT award FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks'))"
+      },
+      {
+        "meaning": "Identify the specific films from Pixar and DreamWorks that won the Golden Globe award.",
+        "sql": "SELECT title FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks') AND awards LIKE '%Golden Globe%'"
+      },
+      {
+        "meaning": "Provide a list of all films from Pixar and DreamWorks that have received the Golden Globe award, regardless of the specific award name.",
+        "sql": "SELECT title FROM Film WHERE animationStudio IN ('Pixar', 'DreamWorks') AND 'Golden Globe' IN (SELECT DISTINCT award FROM Film)"
+      }
+    ],
+    "source_quote_sha256": "c516af1e038f469c225ed5e622a2a6a9fe18e582ee35a24e55798e8b533ff06b",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT r.name AS resort_name, a.activityName AS activity_name FROM Resorts r JOIN Resorts_Activities ra ON r.id = ra.resortID JOIN Activities a ON ra.activityID = a.activityID"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the activities offered by every resort, including duplicates and respecting the provided ordering.",
+          "sql": "SELECT R.name, A.activityName FROM Resorts R JOIN Resorts_Activities RA ON R.id = RA.resortID JOIN Activities A ON RA.activityID = A.activityID"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all activities for each resort, including duplicates if any resort offers the same activity multiple times.",
+          "sql": "SELECT R.name AS resort_name, A.activityName FROM Resorts R JOIN Resorts_Activities RA ON R.id = RA.resortID JOIN Activities A ON RA.activityID = A.activityID"
+        },
+        {
+          "meaning": "List unique activities offered by each resort, ensuring each activity is listed only once per resort.",
+          "sql": "SELECT R.name AS resort_name, DISTINCT A.activityName FROM Resorts R JOIN Resorts_Activities RA ON R.id = RA.resortID JOIN Activities A ON RA.activityID = A.activityID"
+        },
+        {
+          "meaning": "List the primary activity offered by each resort, assuming each resort has a primary activity.",
+          "sql": "SELECT R.name AS resort_name, A.activityName FROM Resorts R JOIN Resorts_Activities RA ON R.id = RA.resortID JOIN Activities A ON RA.activityID = A.activityID WHERE RA.activityID = (SELECT activityID FROM Resorts_Activities WHERE resortID = R.id ORDER BY ROWID LIMIT 1)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1510",
+  "public_hash": "6f0ce1f9aa8b6715d0a77d5e3648fe29f525bd5faf586c1aa695e85826e30454",
+  "rep": 0,
+  "split": "evaluation"
+}

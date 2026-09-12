@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT type FROM Dive_Sites WHERE id IN (SELECT dive_site_id FROM Bookings GROUP BY dive_site_id) GROUP BY type HAVING COUNT(DISTINCT scuba_center_id) = (SELECT COUNT(*) FROM Scuba_Diving_Centers)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "To find the types of dive sites available at each scuba diving center, we need to join the Scuba_Diving_Centers and Dive_Sites tables through the Bookings table to get the relationship between dive sites and scuba centers.",
+          "sql": "SELECT DISTINCT SDC.name, DS.type FROM Scuba_Diving_Centers SDC JOIN Bookings B ON SDC.id = B.scuba_center_id JOIN Dive_Sites DS ON DS.id = B.dive_site_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the types of dive sites available at each scuba diving center.",
+          "sql": "SELECT S.name AS scuba_center_name, DS.type FROM Scuba_Diving_Centers S JOIN Bookings B ON S.id = B.scuba_center_id JOIN Dive_Sites DS ON B.dive_site_id = DS.id GROUP BY S.name, DS.type"
+        },
+        {
+          "meaning": "List the types of dive sites that have been booked at each scuba diving center.",
+          "sql": "SELECT S.name AS scuba_center_name, DS.type FROM Scuba_Diving_Centers S JOIN Bookings B ON S.id = B.scuba_center_id JOIN Dive_Sites DS ON B.dive_site_id = DS.id GROUP BY S.name, DS.type"
+        },
+        {
+          "meaning": "List the types of dive sites that are available (not necessarily booked) at each scuba diving center.",
+          "sql": "SELECT S.name AS scuba_center_name, DS.type FROM Scuba_Diving_Centers S JOIN Dive_Sites DS ON S.id = DS.scuba_center_id GROUP BY S.name, DS.type"
+        }
+      ],
+      "source_quote_sha256": "2db4e4b56866972750886b5bb4f599babfd2245e8461b176984d703edcc0d7e7",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1513",
+  "public_hash": "1f8a483b55708613842a03ddef372d205fd690d914b01240f7f190e257168a30",
+  "rep": 0,
+  "split": "evaluation"
+}

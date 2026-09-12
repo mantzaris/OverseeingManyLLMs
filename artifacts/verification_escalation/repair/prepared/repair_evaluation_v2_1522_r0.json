@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T.name, T.description FROM Treatments T WHERE T.treatment_id IN (SELECT S.treatment_id FROM Spa_Treatments S GROUP BY S.treatment_id HAVING COUNT(DISTINCT S.spa_id) = (SELECT COUNT(*) FROM Spa))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find treatments that are offered by every spa and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id GROUP BY T1.treatment_id HAVING COUNT(DISTINCT T2.spa_id) = (SELECT COUNT(*) FROM Spa)"
+        }
+      ],
+      "source_quote_sha256": "784d8e61880714fa420a94a395cbaa3a5f2dbbdd9b7d652897cecdbb5269d735",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find treatments that are offered by all spas and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id GROUP BY T1.treatment_id HAVING COUNT(DISTINCT T2.spa_id) = (SELECT COUNT(*) FROM Spa)"
+        },
+        {
+          "meaning": "List treatments that are common to all spas and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id WHERE T2.spa_id IN (SELECT spa_id FROM Spa)"
+        },
+        {
+          "meaning": "Identify treatments that are provided by every spa and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id WHERE T2.spa_id IN (SELECT spa_id FROM Spa GROUP BY spa_id HAVING COUNT(DISTINCT T2.treatment_id) = (SELECT COUNT(*) FROM Treatments))"
+        }
+      ],
+      "source_quote_sha256": "1a5f8b294b6077a3a8eeb988be56937613929540d6f718a430b675f4d678d8b9",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1522",
+  "public_hash": "c6df689c5d1876c727ce41a2e49e99943077535675e35e9a56db4bfa66810bf3",
+  "rep": 0,
+  "split": "evaluation"
+}

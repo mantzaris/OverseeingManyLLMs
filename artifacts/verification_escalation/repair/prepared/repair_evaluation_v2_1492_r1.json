@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT pw.workshop_id, pw.workshop_title, GROUP_CONCAT(t.technique_name) AS techniques FROM Photography_Workshops pw JOIN Photography_Workshops_Techniques pwt ON pw.workshop_id = pwt.photography_workshop_id JOIN Techniques t ON pwt.technique_id = t.technique_id GROUP BY pw.workshop_id, pw.workshop_title"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the techniques for every photography workshop.",
+          "sql": "SELECT pw.technique_id, t.technique_name FROM Photography_Workshops pw JOIN Photography_Workshops_Techniques pwt ON pw.workshop_id = pwt.photography_workshop_id JOIN Techniques t ON pwt.technique_id = t.technique_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all techniques used in every photography workshop.",
+          "sql": "SELECT technique_name FROM Techniques WHERE technique_id IN (SELECT technique_id FROM Photography_Workshops_Techniques WHERE photography_workshop_id IN (SELECT workshop_id FROM Photography_Workshops))"
+        },
+        {
+          "meaning": "List the unique techniques used in every photography workshop session.",
+          "sql": "SELECT DISTINCT t.technique_name FROM Techniques t JOIN Photography_Workshops_Techniques pwt ON t.technique_id = pwt.technique_id JOIN Photography_Workshops pw ON pwt.photography_workshop_id = pw.workshop_id"
+        },
+        {
+          "meaning": "List the techniques associated with each workshop leader for every photography workshop.",
+          "sql": "SELECT p.name, pw.workshop_id, t.technique_name FROM Photographers p JOIN Photography_Workshops pw ON p.photographer_id = pw.workshop_leader_id JOIN Photography_Workshops_Techniques pwt ON pw.workshop_id = pwt.photography_workshop_id JOIN Techniques t ON pwt.technique_id = t.technique_id"
+        }
+      ],
+      "source_quote_sha256": "85e49908f5c567728a1044f34a0445b63aa6c894a5b065b1d22750c54f9005d9",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1492",
+  "public_hash": "9008b8a56d58c6ad4a6e4833b940d4b2f95ce29210f3d3cc295999308dbbdbd9",
+  "rep": 1,
+  "split": "evaluation"
+}

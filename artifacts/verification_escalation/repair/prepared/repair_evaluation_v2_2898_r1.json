@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Movie.title, Studio.name FROM Movie JOIN Studio ON Movie.studio_id = Studio.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Who made each production? Split by movie",
+          "sql": "SELECT Movie.title AS movie_title, Producer.full_name AS producer_name FROM Movie JOIN Producer ON Movie.producer_id = Producer.id"
+        }
+      ],
+      "source_quote_sha256": "2f0202bebdb2c51071e305f5dba71736333e4bb06a804d976f3570762b5c83f0",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display the producer's name for each movie.",
+          "sql": "SELECT Movie.title, Producer.full_name AS made_each_production FROM Movie JOIN Producer ON Movie.producer_id = Producer.id"
+        },
+        {
+          "meaning": "List the actor's name for each character in the movie.",
+          "sql": "SELECT Character.movie_id, Actor.first_name, Actor.last_name FROM Character JOIN Actor ON Character.actor_id = Actor.id"
+        },
+        {
+          "meaning": "Show the studio name for each movie.",
+          "sql": "SELECT Movie.title, Studio.name AS made_each_production FROM Movie JOIN Studio ON Movie.studio_id = Studio.id"
+        }
+      ],
+      "source_quote_sha256": "2f0202bebdb2c51071e305f5dba71736333e4bb06a804d976f3570762b5c83f0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2898",
+  "public_hash": "48dcca4eeec39325b671c3e5e8ce72d0736734c6ea9d679524fd74dff6987ffd",
+  "rep": 1,
+  "split": "evaluation"
+}

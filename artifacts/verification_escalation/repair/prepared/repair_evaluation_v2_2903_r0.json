@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT A.name, S.description FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pa ON P.patientID = Pa.patientID JOIN Serious_Side_Effects S ON S.seriousSideEffectID = A.seriousSideEffects WHERE Pa.firstName = 'Jane' AND Pa.lastName = 'Smith'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the medicine and its side effects for Mr. Smith",
+          "sql": "SELECT A.name, CS.description, SS.description FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID LEFT JOIN Common_Side_Effects CS ON A.commonSideEffects @> ARRAY[CS.sideEffectID] LEFT JOIN Serious_Side_Effects SS ON A.seriousSideEffects @> ARRAY[SS.seriousSideEffectID] WHERE Pt.firstName || ' ' || Pt.lastName = 'Jane Smith'"
+        }
+      ],
+      "source_quote_sha256": "512b57e5dd214ae3232976f05501391d924d54343f6becbef3399f3589697651",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the name of the medicine and its common and serious side effects for Mr. Smith.",
+          "sql": "SELECT A.name, A.commonSideEffects, A.seriousSideEffects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID WHERE Pt.firstName = 'Jane' AND Pt.lastName = 'Smith'"
+        },
+        {
+          "meaning": "List the medicine and its common side effects for Mr. Smith, ignoring serious side effects.",
+          "sql": "SELECT A.name, A.commonSideEffects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID WHERE Pt.firstName = 'Jane' AND Pt.lastName = 'Smith'"
+        },
+        {
+          "meaning": "Display the medicine and its side effects (both common and serious) for Mr. Smith, including the date of prescription.",
+          "sql": "SELECT A.name, A.commonSideEffects, A.seriousSideEffects, P.datePrescribed FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID WHERE Pt.firstName = 'Jane' AND Pt.lastName = 'Smith'"
+        }
+      ],
+      "source_quote_sha256": "512b57e5dd214ae3232976f05501391d924d54343f6becbef3399f3589697651",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2903",
+  "public_hash": "20d1057aeec34f685e2a6e3783a0ba8604f640b78491c24048b956bab680739f",
+  "rep": 0,
+  "split": "evaluation"
+}

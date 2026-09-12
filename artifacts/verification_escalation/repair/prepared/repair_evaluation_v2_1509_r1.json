@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T2.national_park_id, T2.trail_id, T3.difficulty FROM National_Parks_Trails AS T2 JOIN Trails AS T3 ON T2.trail_id = T3.trail_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Return a list of trail IDs and difficulties for each national park.",
+          "sql": "SELECT NP.name, T.trail_id, T.difficulty FROM National_Parks NP JOIN National_Parks_Trails NPT ON NP.park_id = NPT.national_park_id JOIN Trails T ON NPT.trail_id = T.trail_id"
+        }
+      ],
+      "source_quote_sha256": "39c8bdc419e49ce6e24eb3fcb96b13356ede1c0df5d6a1d846b295136120c374",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "For each national park, list the trail IDs and their difficulties associated with it.",
+          "sql": "SELECT T2.trail_id, T3.difficulty FROM National_Parks AS T1 JOIN National_Parks_Trails AS T2 ON T1.park_id = T2.national_park_id JOIN Trails AS T3 ON T2.trail_id = T3.trail_id"
+        },
+        {
+          "meaning": "List all trail IDs and difficulties for each national park, including parks with no trails.",
+          "sql": "SELECT T1.park_id, T3.difficulty FROM National_Parks AS T1 LEFT JOIN National_Parks_Trails AS T2 ON T1.park_id = T2.national_park_id LEFT JOIN Trails AS T3 ON T2.trail_id = T3.trail_id"
+        },
+        {
+          "meaning": "List the trail IDs and difficulties for each national park, excluding parks with no trails.",
+          "sql": "SELECT T1.park_id, T3.difficulty FROM National_Parks AS T1 JOIN National_Parks_Trails AS T2 ON T1.park_id = T2.national_park_id JOIN Trails AS T3 ON T2.trail_id = T3.trail_id"
+        }
+      ],
+      "source_quote_sha256": "39c8bdc419e49ce6e24eb3fcb96b13356ede1c0df5d6a1d846b295136120c374",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1509",
+  "public_hash": "f172cbfe1d619a3e9be43060977890b40bd1e333278eb3b8b82b8e4b9a410d59",
+  "rep": 1,
+  "split": "evaluation"
+}

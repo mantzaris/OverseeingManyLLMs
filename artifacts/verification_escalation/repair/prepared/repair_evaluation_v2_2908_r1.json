@@ -1,0 +1,31 @@
+{
+  "answered": {
+    "sql": "SELECT T3.address FROM Medical_Device AS T1 JOIN Manufacturing_Company AS T3 ON T1.manufacturing_company_id = T3.id WHERE T1.device_name = 'Insulin Pen'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the address of the company that manufactures the Insulin Pen.",
+          "sql": "SELECT T3.address FROM Medical_Device AS T1 JOIN Manufacturing_Company AS T3 ON T1.manufacturing_company_id = T3.id WHERE T1.device_name = 'Insulin Pen';"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the country where the insulin pen is manufactured.",
+          "sql": "SELECT T3.name FROM Medical_Device AS T1 JOIN Manufacturing_Company AS T2 ON T1.manufacturing_company_id = T2.id JOIN Country AS T3 ON T3.id = T2.country_id WHERE T1.device_name = 'Insulin Pen'"
+        }
+      ],
+      "source_quote_sha256": "0e207c01707e37aa1251bb7c6789898dc43534419f52293e615f4302d0174b08",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2908",
+  "public_hash": "26ebbe49df6a23446ed48b0efbefb454d7eb45e08e16814edfc9dafdcf0f59e5",
+  "rep": 1,
+  "split": "evaluation"
+}

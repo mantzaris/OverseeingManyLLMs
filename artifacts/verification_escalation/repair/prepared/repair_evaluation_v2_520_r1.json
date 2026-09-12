@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Title FROM Movies WHERE Genre IN ('Horror', 'Thriller') AND Budget = '20 million USD'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List horrors and thrillers with a budget of exactly $20M.",
+          "sql": "SELECT Title FROM Movies WHERE Genre IN ('Horror', 'Thriller') AND Budget = '20 million USD'"
+        }
+      ],
+      "source_quote_sha256": "99603d31e42f67c65af18ec14cf43332e2ac764013755d2254bcd0d434108d8f",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List movies of genres Horror and Thriller with a budget of exactly $20M.",
+          "sql": "SELECT Title FROM Movies WHERE Genre IN ('Horror', 'Thriller') AND Budget = '20 million USD'"
+        },
+        {
+          "meaning": "List all movies with a budget of at least $20M that are either Horror or Thriller.",
+          "sql": "SELECT Title FROM Movies WHERE Genre IN ('Horror', 'Thriller') AND Budget >= '20 million USD'"
+        },
+        {
+          "meaning": "List movies of genres Horror and Thriller that have a budget close to $20M, within $1M.",
+          "sql": "SELECT Title FROM Movies WHERE Genre IN ('Horror', 'Thriller') AND Budget BETWEEN '19 million USD' AND '21 million USD'"
+        }
+      ],
+      "source_quote_sha256": "99603d31e42f67c65af18ec14cf43332e2ac764013755d2254bcd0d434108d8f",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "520",
+  "public_hash": "5cc1050b6e925e64b768be298daf9bc3d8e4ba709b62ccd41f89a6ea8bbd24d4",
+  "rep": 1,
+  "split": "evaluation"
+}

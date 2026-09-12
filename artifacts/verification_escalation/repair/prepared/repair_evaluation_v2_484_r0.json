@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Title FROM Films WHERE Genre = 'Animation' AND Release_Year = 2021 UNION SELECT Title FROM Films WHERE Genre = 'Comedy' AND Release_Year = 2021"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show animation films and comedy films released in 2021.",
+          "sql": "SELECT Title FROM Films WHERE Genre IN ('Animation', 'Comedy') AND Release_Year = 2021"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show films that are both animation and comedy genres and were released in 2021.",
+          "sql": "SELECT Title FROM Films WHERE Genre IN ('Animation', 'Comedy') AND Release_Year = 2021"
+        },
+        {
+          "meaning": "Show films that are either animation or comedy genres and were released in 2021.",
+          "sql": "SELECT Title FROM Films WHERE Genre IN ('Animation', 'Comedy') AND Release_Year = 2021"
+        },
+        {
+          "meaning": "Show films that are animation or comedy genres and were released in 2021, without duplicates.",
+          "sql": "SELECT DISTINCT Title FROM Films WHERE Genre IN ('Animation', 'Comedy') AND Release_Year = 2021"
+        }
+      ],
+      "source_quote_sha256": "64c0e317aaf6bb19b62ef54d4655630b26f8a99ffabf218f146f4042f515c309",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "484",
+  "public_hash": "6a3c1000c83fae3884e4840fc26a70e6a7481b3a02cec2696daed777058be493",
+  "rep": 0,
+  "split": "evaluation"
+}

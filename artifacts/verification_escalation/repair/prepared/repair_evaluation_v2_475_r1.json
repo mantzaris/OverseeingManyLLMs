@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT Name FROM Companies WHERE Film_Industry_Type = 'Production Company' AND Number_Of_Employees = 500 UNION SELECT Name FROM Companies WHERE Film_Industry_Type = 'Distribution Company' AND Number_Of_Employees = 500"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all the production companies and distribution companies with 500 employees.",
+          "sql": "SELECT Name FROM Companies WHERE Film_Industry_Type = 'Production Company' AND Number_Of_Employees = 500 UNION SELECT Name FROM Companies WHERE Film_Industry_Type = 'Distribution Company' AND Number_Of_Employees = 500"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show all production and distribution companies that have exactly 500 employees.",
+          "sql": "SELECT Name FROM Companies WHERE Film_Industry_Type IN ('Production Company', 'Distribution Company') AND Number_Of_Employees = 500"
+        },
+        {
+          "meaning": "Show all production and distribution companies that have at least 500 employees.",
+          "sql": "SELECT Name FROM Companies WHERE Film_Industry_Type IN ('Production Company', 'Distribution Company') AND Number_Of_Employees >= 500"
+        },
+        {
+          "meaning": "Show all production and distribution companies that have 500 or more employees, but not exactly 500.",
+          "sql": "SELECT Name FROM Companies WHERE Film_Industry_Type IN ('Production Company', 'Distribution Company') AND Number_Of_Employees > 500"
+        }
+      ],
+      "source_quote_sha256": "3f9c36411c5359bfbafbf56d5cd2bfa120622122a7e17973c0f02d0694abf85e",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "475",
+  "public_hash": "8fb9ce2df04963dea9a899ff56afcd8d39a994e1b3b7167900fa1d28e719a93e",
+  "rep": 1,
+  "split": "evaluation"
+}

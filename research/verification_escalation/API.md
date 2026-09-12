@@ -22,6 +22,7 @@ client = Client('http://127.0.0.1:9032')
 client.act(action='inspect')
 client.act(action='answer', value='spending', only_this_request=False)
 print(client.state()['work'])
+client.act(action='reconsider', task='export') # revise the shared definition
 client.act(action='snapshot')   # authored demo change, not an external database
 ```
 
@@ -48,3 +49,8 @@ The interface logs what was displayed, action payloads, source/version status,
 response time, simulated data changes, deferrals and certificate keys. Logs are
 explicitly development observations, not participant data. All database execution
 is local and read-only. This research adapter is not a general database gateway.
+
+The **Reconsider this definition** button invalidates the selected registered
+scope and makes its question eligible again. It leaves unrelated inventory and
+partner work unchanged and never restores consumed answer units. A scope record
+must be explicitly replaced or revoked when the user changes its authority.

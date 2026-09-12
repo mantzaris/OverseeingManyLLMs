@@ -1,5 +1,13 @@
 # Source provenance, access and evaluation boundary
 
+**Current principal set:** the ordering-correct follow-up contains 24 fresh
+databases, eight per ambiguity type, with two replicas. It excludes all 57
+databases used in the initial development and evaluation. Its paired source
+availability subset has six databases. `repair/split_manifest.json` records all
+IDs and exclusions. The paragraphs below also preserve the initial 48-database
+selection, whose blanket unordered contract was subsequently found defective.
+See REPAIR_PROTOCOL.md for the separate freeze and interpretation.
+
 Primary source: AMBROSIA, Saparina and Lapata, NeurIPS 2024 Datasets and Benchmarks.
 The full public-password archive contains 4,242 CSV rows on 846 databases. Human
 annotators authored ambiguous requests and disambiguated interpretations. Databases

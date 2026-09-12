@@ -3,7 +3,7 @@ import argparse,csv,json,shutil
 from pathlib import Path
 from .common import ART,ROOT,read,write_json,digest
 from .freeze import verify
-from .provenance_tools import source
+from .provenance_tools import source,repaired_source
 from .evaluate import run as empirical_run
 from .synthetic import run as synthetic_run
 from .analyze import run as analyze
@@ -33,7 +33,18 @@ def run(out):
  if read(ART/'synthetic/example_traces.json')!=read(out/'synthetic/example_traces.json'):raise AssertionError('Synthetic events differ')
  from .plot import run as plot
  plot(out)
- report=dict(status='passed',empirical_rows=n,synthetic_rows=m,policy_and_event_replay=True,analysis_tables=4,new_model_calls=0,output=str(out))
+ from .repair_freeze import verify as repair_verify
+ from .repair_evaluate import run as repair_run
+ repair_verify();repaired_source();repair_run('evaluation',out/'repair/evaluation')
+ repaired_n=compare_csv(ART/'repair/evaluation/episodes.csv',out/'repair/evaluation/episodes.csv',['controller_seconds'])
+ shutil.copyfile(ART/'repair/evaluation/episodes.csv',out/'repair/evaluation/episodes.csv')
+ analyze(out/'repair')
+ for name in ['summary.json','paired.json','coverage.json','examples.json']:
+  if read(ART/'repair/analysis'/name)!=read(out/'repair/analysis'/name):raise AssertionError('Repaired analysis differs '+name)
+ if read(ART/'repair/evaluation/traces.json')!=read(out/'repair/evaluation/traces.json'):raise AssertionError('Repaired events differ')
+ from .secondary_analysis import run as secondary
+ secondary(out/'repair',source_root=ART/'repair');plot(out/'repair',synthetic_root=out)
+ report=dict(status='passed',initial_flawed_adapter_rows=n,repaired_empirical_rows=repaired_n,synthetic_rows=m,policy_and_event_replay=True,analysis_tables=8,new_model_calls=0,output=str(out))
  write_json(out/'verification.json',report);print(json.dumps(report,indent=2));return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--output',required=True);a=p.parse_args();run(a.output)

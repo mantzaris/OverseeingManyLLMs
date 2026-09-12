@@ -53,3 +53,37 @@ when a received instruction changes their implementation. Display replay hashes
 exclude measured execution latency. The terminal-only frozen empirical runs do not
 revise after an answer; their code and results remain unchanged. Earlier failed
 browser logs are preserved.
+
+## Ordering defect and disjoint repair
+
+After the first frozen run completed, inspection found that its blanket unordered
+contract and generation prompt contradicted explicit ranking requests 2842 and
+2863. Preserve all 48-database outcomes as a flawed-adapter diagnostic. Before any
+new outcome, freeze a disjoint 24-database follow-up and infer ordering from the
+released request/instruction. Commit 58c366d7 records the repair. The same model,
+controller, comparisons and statistical definitions remain. Six additional source
+availability databases are a paired subset, not independent extra cases. The 156
+additional calls bring the declared session total to 540, below 600.
+
+## Additional boundary checks and scope of synthetic evidence
+
+A COUNT query returning zero has one result row. A new adversarial unit test shows
+that the frozen nonempty-table safeguard does not prevent equally mistaken zero
+aggregates. This is a limitation, not a post-evaluation tuning opportunity.
+The synthetic count and export are distinct goals, but count often happens to be
+invariant. Consequently, the no-sharing ablation may tie even though the export
+needs a decision. Do not attribute that tie to successful shared-answer reuse.
+The family named verification_waste is structurally another equality control;
+its name alone does not establish wasted computation. Report the executed
+arithmetic and measured costs, not the family label's intended interpretation.
+
+Further online checks found that the frozen no-sharing path has a final
+decision-level duplicate guard that can prevent a second request-specific answer
+when two consequential tasks share an identifier. The frozen empirical tasks each
+have one task, and the existing synthetic second count was invariant, so this did
+not change their quality results. Treat that ablation's generality as limited.
+OnlineController now uses request-level accounting in that mode, with a targeted
+two-consequential-task test. It also caches unchanged failed answered SQL. The
+frozen replay counts include the original repeated failed executions (five extra
+in the primary completion condition). These online repairs do not alter saved
+experimental rows or claim a new empirical improvement.

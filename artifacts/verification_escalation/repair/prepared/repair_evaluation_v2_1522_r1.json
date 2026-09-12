@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id JOIN Spa AS T3 ON T2.spa_id = T3.spa_id GROUP BY T3.spa_id, T1.name, T1.description"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find treatments that are common to all spas and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS ST ON T1.treatment_id = ST.treatment_id GROUP BY T1.treatment_id HAVING COUNT(DISTINCT ST.spa_id) = (SELECT COUNT(*) FROM Spa)"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find treatments that are offered by all spas and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id GROUP BY T1.treatment_id HAVING COUNT(DISTINCT T2.spa_id) = (SELECT COUNT(*) FROM Spa)"
+        },
+        {
+          "meaning": "List all treatments that each spa offers along with their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 JOIN Spa_Treatments AS T2 ON T1.treatment_id = T2.treatment_id"
+        },
+        {
+          "meaning": "Identify treatments that are common across all spas and their descriptions.",
+          "sql": "SELECT T1.name, T1.description FROM Treatments AS T1 WHERE T1.treatment_id IN (SELECT treatment_id FROM Spa_Treatments GROUP BY treatment_id HAVING COUNT(DISTINCT spa_id) = (SELECT COUNT(*) FROM Spa))"
+        }
+      ],
+      "source_quote_sha256": "1a5f8b294b6077a3a8eeb988be56937613929540d6f718a430b675f4d678d8b9",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1522",
+  "public_hash": "c6df689c5d1876c727ce41a2e49e99943077535675e35e9a56db4bfa66810bf3",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT T2.fullname, T2.id FROM Movie AS T1 LEFT JOIN Actor AS T2 ON T1.LeadActorId = T2.id LEFT JOIN Actress AS T3 ON T1.LeadActressId = T3.id WHERE T3.id IS NOT NULL GROUP BY T2.id ORDER BY COUNT(T1.id) DESC LIMIT 1"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the name and id of the lead actor who has appeared in the most films",
+          "sql": "SELECT A.fullname, A.id FROM Actor A JOIN Movie M ON A.id = M.LeadActorId GROUP BY A.id ORDER BY COUNT(M.id) DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the name and id of the actor who has appeared in the most films as the lead actor.",
+          "sql": "SELECT A.fullname, A.id FROM Actor A JOIN Movie M ON A.id = M.LeadActorId GROUP BY A.id ORDER BY COUNT(M.id) DESC LIMIT 1"
+        },
+        {
+          "meaning": "Show the name and id of the actor who has the highest number of lead roles, even if it's not the most films overall.",
+          "sql": "SELECT A.fullname, A.id FROM Actor A JOIN Movie M ON A.id = M.LeadActorId GROUP BY A.id ORDER BY COUNT(*) DESC LIMIT 1"
+        },
+        {
+          "meaning": "Show the name and id of the actor who has the most lead roles, considering both lead actor and lead actress roles in the same film.",
+          "sql": "SELECT A.fullname, A.id FROM Actor A JOIN (SELECT LeadActorId AS ActorId FROM Movie UNION ALL SELECT LeadActressId AS ActorId FROM Movie) AS Roles ON A.id = Roles.ActorId GROUP BY A.id ORDER BY COUNT(Roles.ActorId) DESC LIMIT 1"
+        }
+      ],
+      "source_quote_sha256": "b8d02608d0cd5f21028003e35141543821724b6e55033bb671752d0fdd2bbbb0",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2896",
+  "public_hash": "5520887f84d472557197af856188119d7e381cc530f96975c26dc772839b6088",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Show the name and id of the actor with the most films as a lead actor",
+        "sql": "SELECT A.fullname, A.id FROM Actor A JOIN Movie M ON A.id = M.LeadActorId GROUP BY A.id ORDER BY COUNT(*) DESC LIMIT 1"
+      },
+      {
+        "meaning": "Show the name and id of the actress with the most films as a lead actress (based on the explicit user requirement in the instructions)",
+        "sql": "SELECT A.fullname, A.id FROM Actress A JOIN Movie M ON A.id = M.LeadActressId GROUP BY A.id ORDER BY COUNT(*) DESC LIMIT 1"
+      },
+      {
+        "meaning": "Show the name and id of the actor with the most total roles (both lead and non-lead) in films",
+        "sql": "SELECT A.fullname, A.id FROM Actor A JOIN Role R ON A.id = R.ActorId GROUP BY A.id ORDER BY COUNT(*) DESC LIMIT 1"
+      }
+    ],
+    "source_quote_sha256": "b8d02608d0cd5f21028003e35141543821724b6e55033bb671752d0fdd2bbbb0",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

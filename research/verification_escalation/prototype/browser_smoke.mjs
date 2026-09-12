@@ -19,6 +19,8 @@ try{
  await js("action({action:'inspect'})");assert(await js("state.question.task==='export'"),'Consequential export question shown');
  assert(await js("state.question.remaining_work.length===2"),'Unaffected work visible');await screenshot('consequence_question');
  await js("answer('spending')");assert(await js("state.work.find(w=>w.id==='export').status==='released'"),'Export follows received answer');assert(await js("state.work.find(w=>w.id==='partner').status==='unfinished'"),'Partner exception preserved');await screenshot('shared_answer_exception');
+ await js("action({action:'reconsider',task:'export'})");assert(await js("state.work.find(w=>w.id==='export').status==='needs_revalidation' && state.work.find(w=>w.id==='inventory').status==='released'"),'Intent revision preserves independent work');await screenshot('intent_revision');
+ await js("action({action:'inspect'})");assert(await js("state.question.scope==='Atlas/segment' && state.answers_remaining===2"),'Revised intent can be asked without restoring spent budget');
  await js("action({action:'snapshot'})");assert(await js("state.work.every(w=>w.status==='needs_revalidation')"),'Snapshot invalidates all dependent artifacts');await screenshot('revalidation');
  await js("action({action:'inspect'})");assert(await js("state.question && state.question.task==='count'"),'Changed data makes the count consequential');
  await js("action({action:'reset',method:'verification',budget:3})");await js("action({action:'inspect'})");await js("document.querySelector('#narrow').checked=true");await js("answer('orders')");assert(await js("state.answers_remaining===1"),'Value plus narrow scope costs two decisions');await screenshot('narrow_scope');
@@ -28,5 +30,5 @@ try{
  assert(await js('document.documentElement.scrollWidth<=window.innerWidth+2'),'No mobile horizontal overflow');assert(errors.length===0,'No browser exceptions');
  fs.writeFileSync(out+'/verification.json',JSON.stringify({status:'passed',type:'Scripted software demonstration, not participant observations',checks,errors},null,2)+'\n');
  fs.writeFileSync(out+'/interactions.jsonl',await(await fetch('http://127.0.0.1:9032/api/log')).text());
- console.log(checks+' browser checks, six screenshots and actual interaction log saved');await send('Browser.close');
+ console.log(checks+' browser checks, seven screenshots and actual interaction log saved');await send('Browser.close');
 }finally{if(ws)ws.close();child.kill()}

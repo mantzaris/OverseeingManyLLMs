@@ -1,0 +1,40 @@
+{
+  "answered": {
+    "sql": "SELECT F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Genres G ON FG.film_genre_id = G.id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND (G.genre = 'Action' OR G.genre = 'Adventure')"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display action films and adventure films which star Tom Cruise.",
+          "sql": "SELECT F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Genres G ON FG.film_genre_id = G.id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND (G.genre = 'Action' OR G.genre = 'Adventure')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": null
+  },
+  "id": "469",
+  "public_hash": "5e984287bd78d76975efab553fb87d7ebe61b6c6aea4e7ce29330dfd8e5aea29",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Select films where Tom Cruise stars and the film is either an action or adventure genre.",
+        "sql": "SELECT F.title FROM Films F JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND F.film_id IN (SELECT FG.film_id FROM Film_Genres FG JOIN Genres G ON FG.film_genre_id = G.id WHERE G.genre IN ('Action', 'Adventure'))"
+      },
+      {
+        "meaning": "Select distinct films where Tom Cruise stars and the film is either an action or adventure genre, without duplicates.",
+        "sql": "SELECT DISTINCT F.title FROM Films F JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND F.film_id IN (SELECT FG.film_id FROM Film_Genres FG JOIN Genres G ON FG.film_genre_id = G.id WHERE G.genre IN ('Action', 'Adventure'))"
+      },
+      {
+        "meaning": "Select films where Tom Cruise stars and the film is either an action or adventure genre, including the film's genre information.",
+        "sql": "SELECT F.title, G.genre FROM Films F JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Genres G ON FG.film_genre_id = G.id WHERE S.star_name = 'Tom Cruise' AND G.genre IN ('Action', 'Adventure')"
+      }
+    ],
+    "source_quote_sha256": "03ef672c6ffdc7c0277e8c13ea737b02d0c1e10e9b1409374d688f9f36927534",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

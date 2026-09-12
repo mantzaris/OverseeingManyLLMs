@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT title, genre, duration FROM Movies WHERE genre = 'Action Movie' UNION SELECT title, genre, duration FROM Movies WHERE genre = 'Romantic Comedy' AND duration = 120"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all the action movies and romantic comedies with a duration of exactly 120 minutes.",
+          "sql": "SELECT title FROM Movies WHERE genre IN ('Action Movie', 'Romantic Comedy') AND duration = 120"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show all movies that are either action movies or romantic comedies and have a duration of exactly 2 hours.",
+          "sql": "SELECT title, genre, duration FROM Movies WHERE (genre = 'Action Movie' OR genre = 'Romantic Comedy') AND duration = 120"
+        },
+        {
+          "meaning": "Show all movies that are either action movies or romantic comedies and have a duration of at least 2 hours.",
+          "sql": "SELECT title, genre, duration FROM Movies WHERE (genre = 'Action Movie' OR genre = 'Romantic Comedy') AND duration >= 120"
+        },
+        {
+          "meaning": "Show all action movies and romantic comedies with a duration of exactly 2 hours, if any exist.",
+          "sql": "SELECT title, genre, duration FROM Movies WHERE (genre = 'Action Movie' OR genre = 'Romantic Comedy') AND duration = 120"
+        }
+      ],
+      "source_quote_sha256": "7ef85b8eef453b84f2c669b2980436a00b5d62dac3eb5003a9ff9f8d538544a9",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "479",
+  "public_hash": "98fadf971917a25f6edec5a21713fbde866c2db1cf856730601fba61bbcaddae",
+  "rep": 0,
+  "split": "evaluation"
+}

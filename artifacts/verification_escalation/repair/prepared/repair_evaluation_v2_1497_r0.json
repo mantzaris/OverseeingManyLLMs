@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T3.SpeciesName FROM Nature_reserves_flora_and_fauna AS T1 JOIN Flora_and_fauna AS T3 ON T1.FaunaId = T3.FaunaID JOIN Nature_Reserves AS T2 ON T1.NatureReserveId = T2.ReserveID"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the species of flora and fauna that are present in every nature reserve.",
+          "sql": "SELECT SpeciesName FROM Flora_and_fauna WHERE FaunaID IN (SELECT FaunaId FROM Nature_reserves_flora_and_fauna GROUP BY FaunaId HAVING COUNT(DISTINCT NatureReserveId) = (SELECT COUNT(*) FROM Nature_Reserves))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List the species that are present in all nature reserves.",
+          "sql": "SELECT SpeciesName FROM Flora_and_fauna WHERE FaunaID IN (SELECT FaunaId FROM Nature_reserves_flora_and_fauna GROUP BY FaunaId HAVING COUNT(NatureReserveId) = (SELECT COUNT(*) FROM Nature_Reserves))"
+        },
+        {
+          "meaning": "List the species that are present in at least one nature reserve.",
+          "sql": "SELECT SpeciesName FROM Flora_and_fauna WHERE FaunaID IN (SELECT FaunaId FROM Nature_reserves_flora_and_fauna)"
+        },
+        {
+          "meaning": "List the species that are present in each nature reserve, including duplicates.",
+          "sql": "SELECT T2.SpeciesName FROM Nature_Reserves AS T1 JOIN Nature_reserves_flora_and_fauna AS T2 ON T1.ReserveID = T2.NatureReserveId JOIN Flora_and_fauna AS T3 ON T2.FaunaId = T3.FaunaID"
+        }
+      ],
+      "source_quote_sha256": "32ab65b81ff99e05e0d93049b0577b637d881df1039502735b00e9c99a7c2756",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1497",
+  "public_hash": "c975b47feaef57d60097c2e34d808c7b7b9d3d0b08874ca213cd83f0eca28866",
+  "rep": 0,
+  "split": "evaluation"
+}

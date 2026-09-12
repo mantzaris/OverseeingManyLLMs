@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T1.name AS Award, T2.name AS Festival FROM Festival AS T1 JOIN Festival AS T2 ON T1.committee_members = 'Gerardo Prat' AND T2.committee_members = 'Gerardo Prat' WHERE T1.event = 'Award' AND T2.event = 'Film Festival'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all awards and festivals where Gerardo Prat was on the committee.",
+          "sql": "SELECT name, event FROM Festival WHERE committee_members = 'Gerardo Prat' UNION SELECT name, event FROM Award WHERE committee_members = 'Gerardo Prat'"
+        }
+      ],
+      "source_quote_sha256": "83309a886dc59d5b9994713432d954f9fa10f781ac6e36cfb2c4cae92552d5ec",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all awards and festivals where Gerardo Prat was a member of the committee.",
+          "sql": "SELECT name, event FROM Festival WHERE committee_members = 'Gerardo Prat'"
+        },
+        {
+          "meaning": "Show all awards and festivals where Gerardo Prat was involved in the committee, including both awards and film festivals.",
+          "sql": "SELECT name, event FROM Festival WHERE committee_members LIKE '%Gerardo Prat%'"
+        },
+        {
+          "meaning": "Display all awards and festivals where Gerardo Prat was explicitly listed as a committee member, excluding any implicit or alternative attachments.",
+          "sql": "SELECT name, event FROM Festival WHERE committee_members = 'Gerardo Prat'"
+        }
+      ],
+      "source_quote_sha256": "83309a886dc59d5b9994713432d954f9fa10f781ac6e36cfb2c4cae92552d5ec",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "472",
+  "public_hash": "7186a332fc79a71daeba40da5dd7c6261ce316eda0c1fc0ec914969f530c08cc",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT * FROM Films WHERE (FilmType = 'Documentary' OR FilmType = 'Short Film') AND Budget = 500000.0"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Give me all documentaries and short films with a 500K budget.",
+          "sql": "SELECT * FROM Films WHERE (FilmType = 'Documentary' OR FilmType = 'Short Film') AND Budget = 500000.0"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Select all films that are either documentaries or short films with a budget of 500,000.",
+          "sql": "SELECT * FROM Films WHERE (FilmType = 'Documentary' OR FilmType = 'Short Film') AND Budget = 500000.0"
+        },
+        {
+          "meaning": "Select all documentaries with a budget of 500,000 and also short films with a budget of 500,000.",
+          "sql": "SELECT * FROM Films WHERE (FilmType = 'Documentary' AND Budget = 500000.0) OR (FilmType = 'Short Film' AND Budget = 500000.0)"
+        },
+        {
+          "meaning": "Select all films with a budget of 500,000 that are either documentaries or short films.",
+          "sql": "SELECT * FROM Films WHERE (FilmType IN ('Documentary', 'Short Film') AND Budget = 500000.0)"
+        }
+      ],
+      "source_quote_sha256": "e13ac0a2d2b1c45ecdcce2f82a7f28bb0640586593716947917b818d589f7abc",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "477",
+  "public_hash": "9b547fd720f33c8baf676fa543103fd86917cb897cc765a3f86ea0084e680a5d",
+  "rep": 1,
+  "split": "evaluation"
+}

@@ -86,6 +86,13 @@ class Desk:
             self.changed=[t['title'] for t in c.tasks]
             for t in list(c.tasks):c.revise(t['id'],snapshot=t['snapshot']+'UPDATE customers SET orders=0 WHERE id=1;')
             c.pending=[];self.question=None
+        elif op=='reconsider':
+            task=next((t for t in c.tasks if t['id']==a.get('task')),None)
+            if task is None or task['id']=='inventory':raise ValueError('Choose a goal with an eligibility definition')
+            affected=[t for t in c.tasks if t.get('decision_id',t['id'])==task.get('decision_id',task['id']) and t['scope']==task['scope']]
+            self.changed=[t['title'] for t in affected]
+            for t in affected:c.revise(t['id'],sources=[])
+            self.question=None
         elif op=='inspect_details':pass
         else:raise ValueError('Unknown action')
         self.log(op,a);return self.state()

@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT T1.title FROM Films AS T1 JOIN Film_Genres AS T2 ON T1.film_id = T2.film_id JOIN Genres AS T3 ON T2.film_genre_id = T3.id WHERE T3.genre IN ('Action', 'Adventure') AND T1.film_id IN (SELECT film_id FROM Film_Stars WHERE film_star_id = (SELECT id FROM Stars WHERE star_name = 'Tom Cruise'))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Display action films and adventure films which star Tom Cruise.",
+          "sql": "SELECT F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Genres G ON FG.film_genre_id = G.id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND (G.genre = 'Action' OR G.genre = 'Adventure')"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Display films where Tom Cruise is a star and the film genre is either Action or Adventure.",
+          "sql": "SELECT F.title FROM Films F JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND F.film_id IN (SELECT film_id FROM Film_Genres WHERE film_genre_id IN (SELECT id FROM Genres WHERE genre IN ('Action', 'Adventure'))) ORDER BY F.title"
+        },
+        {
+          "meaning": "Display films where Tom Cruise is a star and the film genre is Action, and separately display films where Tom Cruise is a star and the film genre is Adventure.",
+          "sql": "SELECT 'Action' AS genre, F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND FG.film_genre_id = (SELECT id FROM Genres WHERE genre = 'Action') UNION SELECT 'Adventure' AS genre, F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND FG.film_genre_id = (SELECT id FROM Genres WHERE genre = 'Adventure') ORDER BY genre, title"
+        },
+        {
+          "meaning": "Display films where Tom Cruise is a star and the film genre is either Action or Adventure, without distinguishing between the two genres in the result.",
+          "sql": "SELECT F.title FROM Films F JOIN Film_Genres FG ON F.film_id = FG.film_id JOIN Film_Stars FS ON F.film_id = FS.film_id JOIN Stars S ON FS.film_star_id = S.id WHERE S.star_name = 'Tom Cruise' AND FG.film_genre_id IN (SELECT id FROM Genres WHERE genre IN ('Action', 'Adventure')) ORDER BY F.title"
+        }
+      ],
+      "source_quote_sha256": "03ef672c6ffdc7c0277e8c13ea737b02d0c1e10e9b1409374d688f9f36927534",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "469",
+  "public_hash": "5e984287bd78d76975efab553fb87d7ebe61b6c6aea4e7ce29330dfd8e5aea29",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all action films and adventure films starring Tom Cruise.",
+        "sql": "SELECT T1.title FROM Films AS T1 JOIN Film_Genres AS T2 ON T1.film_id = T2.film_id JOIN Genres AS T3 ON T2.film_genre_id = T3.id JOIN Film_Stars AS T4 ON T1.film_id = T4.film_id JOIN Stars AS T5 ON T4.film_star_id = T5.id WHERE T5.star_name = 'Tom Cruise' AND (T3.genre = 'Action' OR T3.genre = 'Adventure')"
+      },
+      {
+        "meaning": "List all action films and adventure films that feature Tom Cruise in any role.",
+        "sql": "SELECT T1.title FROM Films AS T1 JOIN Film_Genres AS T2 ON T1.film_id = T2.film_id JOIN Genres AS T3 ON T2.film_genre_id = T3.id JOIN Film_Stars ON T1.film_id = Film_Stars.film_id WHERE (T3.genre = 'Action' OR T3.genre = 'Adventure')"
+      },
+      {
+        "meaning": "List all action films and adventure films where Tom Cruise is the lead actor.",
+        "sql": "SELECT T1.title FROM Films AS T1 JOIN Film_Genres AS T2 ON T1.film_id = T2.film_id JOIN Genres AS T3 ON T2.film_genre_id = T3.id JOIN Film_Stars AS T4 ON T1.film_id = T4.film_id JOIN Stars AS T5 ON T4.film_star_id = T5.id WHERE T5.star_name = 'Tom Cruise' AND T4.role = 'Lead' AND (T3.genre = 'Action' OR T3.genre = 'Adventure')"
+      }
+    ],
+    "source_quote_sha256": "ab1e230ba9abfbef2d5bd50b4ecfe88d9f8223b7c88f5ba084aaea7149469db4",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

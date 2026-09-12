@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT E.employee_name, E.position, PO.owner_name AS past_owner FROM Employees E JOIN Healthcare_Facilities H ON E.healthcare_facility_id = H.id LEFT JOIN Past_Owners PO ON H.past_owner_id = PO.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all employee names, their positions, and the founding year of the healthcare facility they work for.",
+          "sql": "SELECT e.employee_name, e.position, f.founding_year FROM Employees e JOIN Healthcare_Facilities h ON e.healthcare_facility_id = h.id JOIN Founding_Year f ON h.founding_id = f.id"
+        }
+      ],
+      "source_quote_sha256": "4aa3e24110f16a1382434e6287f6922edd1c6435cf161e5923cf8bb55a17a509",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the names, positions, and the founding year of the healthcare facilities where employees work.",
+          "sql": "SELECT E.employee_name, E.position, F.founding_year FROM Employees E JOIN Healthcare_Facilities F ON E.healthcare_facility_id = F.id"
+        },
+        {
+          "meaning": "Display the names, positions, and the past owner of the healthcare facilities where employees are employed.",
+          "sql": "SELECT E.employee_name, E.position, PO.owner_name FROM Employees E JOIN Healthcare_Facilities F ON E.healthcare_facility_id = F.id JOIN Past_Owners PO ON F.past_owner_id = PO.id"
+        },
+        {
+          "meaning": "List the names, positions, and the acquisition year of the past owners of the healthcare facilities where employees are based.",
+          "sql": "SELECT E.employee_name, E.position, PO.acquisition_year FROM Employees E JOIN Healthcare_Facilities F ON E.healthcare_facility_id = F.id JOIN Past_Owners PO ON F.past_owner_id = PO.id"
+        }
+      ],
+      "source_quote_sha256": "4aa3e24110f16a1382434e6287f6922edd1c6435cf161e5923cf8bb55a17a509",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2919",
+  "public_hash": "4a5c12139913aff3066325b95b8bee1701c28096c5f70bc4e7e047c5072e7012",
+  "rep": 1,
+  "split": "evaluation"
+}

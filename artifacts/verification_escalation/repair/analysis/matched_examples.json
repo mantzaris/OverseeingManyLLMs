@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "category": "tie",
+      "correct": 0.0,
+      "id": "1475",
+      "method": "recovery_completion",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 0,
+      "row_count": 5,
+      "sql": "SELECT T3.feature_value FROM Communities_Features AS T1 JOIN Features AS T3 ON T1.feature_id = T3.feature_id GROUP BY T3.feature_value",
+      "table_hash": "8ca07cef4e32e87c69bb36fad943e222130cea957fedefa9a5935d1291cff0ab",
+      "unfinished": 0.0,
+      "wrong": 1.0
+    },
+    {
+      "category": "tie",
+      "correct": 0.0,
+      "id": "1475",
+      "method": "verification",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 0,
+      "row_count": 5,
+      "sql": "SELECT T3.feature_value FROM Communities_Features AS T1 JOIN Features AS T3 ON T1.feature_id = T3.feature_id GROUP BY T3.feature_value",
+      "table_hash": "8ca07cef4e32e87c69bb36fad943e222130cea957fedefa9a5935d1291cff0ab",
+      "unfinished": 0.0,
+      "wrong": 1.0
+    },
+    {
+      "category": "tie",
+      "correct": 1.0,
+      "id": "1475",
+      "method": "recovery_completion",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 1,
+      "row_count": 12,
+      "sql": "SELECT c.community_name, f.feature_value FROM Communities AS c JOIN Communities_Features AS cf ON c.community_id = cf.community_id JOIN Features AS f ON cf.feature_id = f.feature_id",
+      "table_hash": "b2245108cfdd2d01415e8a32ff60c40fd4017fae8085eb5a1f281700ec9743e8",
+      "unfinished": 0.0,
+      "wrong": 0.0
+    },
+    {
+      "category": "tie",
+      "correct": 1.0,
+      "id": "1475",
+      "method": "verification",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 1,
+      "row_count": 12,
+      "sql": "SELECT c.community_name, f.feature_value FROM Communities AS c JOIN Communities_Features AS cf ON c.community_id = cf.community_id JOIN Features AS f ON cf.feature_id = f.feature_id",
+      "table_hash": "b2245108cfdd2d01415e8a32ff60c40fd4017fae8085eb5a1f281700ec9743e8",
+      "unfinished": 0.0,
+      "wrong": 0.0
+    },
+    {
+      "category": "unfavorable",
+      "correct": 1.0,
+      "id": "1484",
+      "method": "recovery_completion",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 0,
+      "row_count": 1,
+      "sql": "SELECT P.program_name FROM Programs P JOIN Authorities_Programs AP ON P.program_id = AP.program_id GROUP BY P.program_id HAVING COUNT(DISTINCT AP.authority_id) = (SELECT COUNT(*) FROM Authorities)",
+      "table_hash": "18db444f55e452cbb845b9332e1835ed1ea63e7aab1d8e7784aac53ef8a1fde4",
+      "unfinished": 0.0,
+      "wrong": 0.0
+    },
+    {
+      "category": "unfavorable",
+      "correct": 0.0,
+      "id": "1484",
+      "method": "verification",
+      "questions": 0.0,
+      "reason": "outcome_agreement",
+      "rep": 0,
+      "row_count": 6,
+      "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id",
+      "table_hash": "e26372559991a7f09640e88a8ff270e730eea1f88187283a1d20ce59a6b299a8",
+      "unfinished": 0.0,
+      "wrong": 1.0
+    },
+    {
+      "category": "unfavorable",
+      "correct": 1.0,
+      "id": "1484",
+      "method": "recovery_completion",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 1,
+      "row_count": 6,
+      "sql": "SELECT a.name, p.program_name FROM Authorities a JOIN Authorities_Programs ap ON a.authority_id = ap.authority_id JOIN Programs p ON ap.program_id = p.program_id",
+      "table_hash": "e26372559991a7f09640e88a8ff270e730eea1f88187283a1d20ce59a6b299a8",
+      "unfinished": 0.0,
+      "wrong": 0.0
+    },
+    {
+      "category": "unfavorable",
+      "correct": 1.0,
+      "id": "1484",
+      "method": "verification",
+      "questions": 1.0,
+      "reason": "user_answer",
+      "rep": 1,
+      "row_count": 6,
+      "sql": "SELECT a.name, p.program_name FROM Authorities a JOIN Authorities_Programs ap ON a.authority_id = ap.authority_id JOIN Programs p ON ap.program_id = p.program_id",
+      "table_hash": "e26372559991a7f09640e88a8ff270e730eea1f88187283a1d20ce59a6b299a8",
+      "unfinished": 0.0,
+      "wrong": 0.0
+    }
+  ],
+  "rule": "Frozen first lexicographic ID by mean loss sign; both replicas retained. No empirical favorable loss case exists. Synthetic success uses the predeclared equal_snapshot family, seed 7200.",
+  "selection": {
+    "favorable": null,
+    "tie": "1475",
+    "unfavorable": "1484"
+  }
+}

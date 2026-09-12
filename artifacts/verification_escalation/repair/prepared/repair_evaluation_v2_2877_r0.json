@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT T2.audience_rating FROM Role AS T1 JOIN FilmReviews AS T2 ON T1.film_id = T2.film_id JOIN Actor AS T3 ON T1.actor_id = T3.id WHERE T3.name = 'Leonardo DiCaprio'"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Find the rating of the movies in which Leonardo DiCaprio has acted.",
+          "sql": "SELECT FR.critic_rating, FR.audience_rating, F.title FROM FilmReviews FR JOIN Film F ON FR.film_id = F.id JOIN Role R ON F.id = R.film_id JOIN Actor A ON R.actor_id = A.id WHERE A.name = 'Leonardo DiCaprio'"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Find the ratings of movies where Leonardo DiCaprio is an actor.",
+          "sql": "SELECT Film.title, FilmReviews.critic_rating, FilmReviews.audience_rating FROM Film JOIN FilmReviews ON Film.id = FilmReviews.film_id JOIN Role ON Film.id = Role.film_id WHERE Role.actor_id = (SELECT id FROM Actor WHERE name = 'Leonardo DiCaprio')"
+        },
+        {
+          "meaning": "Find the ratings of movies where Leonardo DiCaprio has a role.",
+          "sql": "SELECT Film.title, FilmReviews.critic_rating, FilmReviews.audience_rating FROM Film JOIN FilmReviews ON Film.id = FilmReviews.film_id JOIN Role ON Film.id = Role.film_id WHERE Role.actor_id = (SELECT id FROM Actor WHERE name = 'Leonardo DiCaprio')"
+        },
+        {
+          "meaning": "Find the ratings of movies starring Leonardo DiCaprio.",
+          "sql": "SELECT Film.title, FilmReviews.critic_rating, FilmReviews.audience_rating FROM Film JOIN FilmReviews ON Film.id = FilmReviews.film_id WHERE Film.id IN (SELECT film_id FROM Role WHERE actor_id = (SELECT id FROM Actor WHERE name = 'Leonardo DiCaprio'))"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2877",
+  "public_hash": "3f93dcc1e04e3a049f363d7d725ddcc3cfd302627777a64ce281d9c5225c897b",
+  "rep": 0,
+  "split": "evaluation"
+}

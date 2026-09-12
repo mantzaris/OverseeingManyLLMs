@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT A.name AS Medicine, GROUP_CONCAT(CASE WHEN E.sideEffectID IN (SELECT sideEffectID FROM Common_Side_Effects) THEN C.description ELSE NULL END, ', ') AS Common_Side_Effects, GROUP_CONCAT(CASE WHEN E.sideEffectID IN (SELECT seriousSideEffectID FROM Serious_Side_Effects) THEN C.description ELSE NULL END, ', ') AS Serious_Side_Effects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID JOIN Common_Side_Effects C ON A.commonSideEffects LIKE '%' || CAST(C.sideEffectID AS TEXT) || '%' JOIN Serious_Side_Effects S ON A.seriousSideEffects LIKE '%' || CAST(S.seriousSideEffectID AS TEXT) || '%' WHERE Pt.firstName = 'Jane' AND Pt.lastName = 'Smith' GROUP BY A.name"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the name of the medicine and its common side effects for Mr. Smith.",
+          "sql": "SELECT A.name, C.description FROM Antibiotic A JOIN Common_Side_Effects C ON A.commonSideEffects = C.sideEffectID JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID WHERE Pt.firstName || ' ' || Pt.lastName = 'Jane Smith'"
+        }
+      ],
+      "source_quote_sha256": "512b57e5dd214ae3232976f05501391d924d54343f6becbef3399f3589697651",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the medicine and its common and serious side effects for Mr. Smith.",
+          "sql": "SELECT A.name, C.description AS common_side_effects, D.description AS serious_side_effects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID JOIN Common_Side_Effects C ON A.commonSideEffects = C.sideEffectID JOIN Serious_Side_Effects D ON A.seriousSideEffects = D.seriousSideEffectID WHERE Pt.firstName = 'Jane' AND Pt.lastName = 'Smith'"
+        },
+        {
+          "meaning": "Show the medicine and its side effects (both common and serious) for any patient named Smith, assuming Mr. Smith is a male Smith patient.",
+          "sql": "SELECT A.name, C.description AS common_side_effects, D.description AS serious_side_effects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID JOIN Common_Side_Effects C ON A.commonSideEffects = C.sideEffectID JOIN Serious_Side_Effects D ON A.seriousSideEffects = D.seriousSideEffectID WHERE Pt.lastName = 'Smith'"
+        },
+        {
+          "meaning": "Show the medicine and its side effects (both common and serious) for Mr. Smith, assuming Mr. Smith is a patient with a first name of John.",
+          "sql": "SELECT A.name, C.description AS common_side_effects, D.description AS serious_side_effects FROM Antibiotic A JOIN Prescription P ON A.antibioticID = P.antibioticID JOIN Patient Pt ON P.patientID = Pt.patientID JOIN Common_Side_Effects C ON A.commonSideEffects = C.sideEffectID JOIN Serious_Side_Effects D ON A.seriousSideEffects = D.seriousSideEffectID WHERE Pt.firstName = 'John' AND Pt.lastName = 'Smith'"
+        }
+      ],
+      "source_quote_sha256": "512b57e5dd214ae3232976f05501391d924d54343f6becbef3399f3589697651",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2903",
+  "public_hash": "20d1057aeec34f685e2a6e3783a0ba8604f640b78491c24048b956bab680739f",
+  "rep": 1,
+  "split": "evaluation"
+}

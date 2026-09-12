@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT activityName FROM Activities WHERE activityID IN (SELECT activityID FROM Resorts_Activities GROUP BY activityID HAVING COUNT(DISTINCT resortID) = (SELECT COUNT(*) FROM Resorts))"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List the activities offered by every resort.",
+          "sql": "SELECT r.name AS resort_name, a.activityName FROM Resorts r JOIN Resorts_Activities ra ON r.id = ra.resortID JOIN Activities a ON ra.activityID = a.activityID"
+        }
+      ],
+      "source_quote_sha256": "bd67b0f63c9c0de473e51680b6bea82b352bd910eb9a6bdb1a544fb7eb8285f5",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all activities for each resort, including duplicates and maintaining the original order.",
+          "sql": "SELECT r.name AS resort_name, a.activityName FROM Resorts r JOIN Resorts_Activities ra ON r.id = ra.resortID JOIN Activities a ON ra.activityID = a.activityID"
+        },
+        {
+          "meaning": "List unique activities for each resort, removing duplicates and maintaining the original order.",
+          "sql": "SELECT r.name AS resort_name, a.activityName FROM Resorts r JOIN Resorts_Activities ra ON r.id = ra.resortID JOIN Activities a ON ra.activityID = a.activityID GROUP BY r.name, a.activityName"
+        },
+        {
+          "meaning": "List all activities for each resort, including duplicates but sorting by resort name and then activity name.",
+          "sql": "SELECT r.name AS resort_name, a.activityName FROM Resorts r JOIN Resorts_Activities ra ON r.id = ra.resortID JOIN Activities a ON ra.activityID = a.activityID ORDER BY r.name, a.activityName"
+        }
+      ],
+      "source_quote_sha256": "bd67b0f63c9c0de473e51680b6bea82b352bd910eb9a6bdb1a544fb7eb8285f5",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1510",
+  "public_hash": "6f0ce1f9aa8b6715d0a77d5e3648fe29f525bd5faf586c1aa695e85826e30454",
+  "rep": 1,
+  "split": "evaluation"
+}

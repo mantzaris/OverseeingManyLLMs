@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT P.program_name FROM Programs P JOIN Authorities_Programs AP ON P.program_id = AP.program_id GROUP BY P.program_id HAVING COUNT(DISTINCT AP.authority_id) = (SELECT COUNT(*) FROM Authorities)"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show the programs each authority has",
+          "sql": "SELECT a.name, p.program_name FROM Authorities a JOIN Authorities_Programs ap ON a.authority_id = ap.authority_id JOIN Programs p ON ap.program_id = p.program_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the authority name and the programs they are associated with.",
+          "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+        },
+        {
+          "meaning": "List each authority and the programs they oversee, including duplicates if any.",
+          "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+        },
+        {
+          "meaning": "Provide a list of authorities and the programs they are linked to, showing each program multiple times if an authority is linked to it multiple times.",
+          "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+        }
+      ],
+      "source_quote_sha256": "d8864becd36af820f1dd4123a60fe38abdeca59d9cd4dc81c5bde65a1f7f806d",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1484",
+  "public_hash": "97545d923756935d31ee76bf7f5a2e9cc0a0ac1af87c1301681d853a5c9a1895",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "List all programs associated with each authority.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id"
+      },
+      {
+        "meaning": "Show a list of unique programs each authority has.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id GROUP BY A.name, P.program_name"
+      },
+      {
+        "meaning": "Display the programs each authority has, including duplicates if any.",
+        "sql": "SELECT A.name, P.program_name FROM Authorities A JOIN Authorities_Programs AP ON A.authority_id = AP.authority_id JOIN Programs P ON AP.program_id = P.program_id ORDER BY A.name, P.program_name"
+      }
+    ],
+    "source_quote_sha256": "d8864becd36af820f1dd4123a60fe38abdeca59d9cd4dc81c5bde65a1f7f806d",
+    "unrepresented_possible": false
+  },
+  "rep": 0,
+  "split": "evaluation"
+}

@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": "SELECT E.employee_name, E.position, FY.year AS founding_year FROM Employees E JOIN Healthcare_Facilities HF ON E.healthcare_facility_id = HF.id JOIN Founding_Year FY ON HF.founding_id = FY.id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Show all employee names, positions, and the founding year of their respective healthcare facilities.",
+          "sql": "SELECT e.employee_name, e.position, f.founding_year FROM Employees e JOIN Healthcare_Facilities h ON e.healthcare_facility_id = h.id JOIN Founding_Year f ON h.founding_id = f.id"
+        }
+      ],
+      "source_quote_sha256": "4aa3e24110f16a1382434e6287f6922edd1c6435cf161e5923cf8bb55a17a509",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "Show the names, positions, and the founding year of the healthcare facilities where the employees work.",
+          "sql": "SELECT e.employee_name, e.position, fy.year FROM Employees e JOIN Healthcare_Facilities hf ON e.healthcare_facility_id = hf.id JOIN Founding_Year fy ON hf.founding_id = fy.id"
+        },
+        {
+          "meaning": "Display the names, positions, and the past owner of the healthcare facilities where the employees work.",
+          "sql": "SELECT e.employee_name, e.position, po.owner_name FROM Employees e JOIN Healthcare_Facilities hf ON e.healthcare_facility_id = hf.id JOIN Past_Owners po ON hf.past_owner_id = po.id"
+        },
+        {
+          "meaning": "List the names, positions, and the current owner of the healthcare facilities where the employees work, based on the founding year.",
+          "sql": "SELECT e.employee_name, e.position, fy.year FROM Employees e JOIN Healthcare_Facilities hf ON e.healthcare_facility_id = hf.id JOIN Founding_Year fy ON hf.founding_id = fy.id"
+        }
+      ],
+      "source_quote_sha256": "4aa3e24110f16a1382434e6287f6922edd1c6435cf161e5923cf8bb55a17a509",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2919",
+  "public_hash": "4a5c12139913aff3066325b95b8bee1701c28096c5f70bc4e7e047c5072e7012",
+  "rep": 0,
+  "split": "evaluation"
+}

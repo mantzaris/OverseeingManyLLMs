@@ -1,0 +1,57 @@
+{
+  "answered": {
+    "sql": "SELECT c.community_name, f.feature_value FROM Communities AS c JOIN Communities_Features AS cf ON c.community_id = cf.community_id JOIN Features AS f ON cf.feature_id = f.feature_id"
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "Retrieve the feature values associated with each community by joining the Communities, Communities_Features, and Features tables.",
+          "sql": "SELECT C.community_name, F.feature_value, CF.detail_description FROM Communities C JOIN Communities_Features CF ON C.community_id = CF.community_id JOIN Features F ON CF.feature_id = F.feature_id"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List all feature values associated with each community.",
+          "sql": "SELECT C.community_name, F.feature_value FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id JOIN Features AS F ON CF.feature_id = F.feature_id"
+        },
+        {
+          "meaning": "Display the feature values for each community, including duplicates.",
+          "sql": "SELECT C.community_name, F.feature_value FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id JOIN Features AS F ON CF.feature_id = F.feature_id GROUP BY C.community_name, F.feature_value"
+        },
+        {
+          "meaning": "Show detailed descriptions of features associated with each community.",
+          "sql": "SELECT C.community_name, CF.detail_description FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id"
+        }
+      ],
+      "source_quote_sha256": "033db391ee9e2b663f54f14a593d0ad73189d47c29dbe8777af6951a62278886",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "1475",
+  "public_hash": "6976b38e4e7d86e7233cb115ad1b03ed8349c4a6d179f459cfd4cf739e903cde",
+  "recovery": {
+    "candidates": [
+      {
+        "meaning": "Provide a list of feature values for each community, including all associated details.",
+        "sql": "SELECT C.community_name, F.feature_value FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id JOIN Features AS F ON CF.feature_id = F.feature_id"
+      },
+      {
+        "meaning": "List all unique feature values for each community, ignoring duplicate entries.",
+        "sql": "SELECT C.community_name, F.feature_value FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id JOIN Features AS F ON CF.feature_id = F.feature_id GROUP BY C.community_name, F.feature_value"
+      },
+      {
+        "meaning": "Display the feature values and their detailed descriptions for each community.",
+        "sql": "SELECT C.community_name, F.feature_value, CF.detail_description FROM Communities AS C JOIN Communities_Features AS CF ON C.community_id = CF.community_id JOIN Features AS F ON CF.feature_id = F.feature_id"
+      }
+    ],
+    "source_quote_sha256": "e33318c9a32285223646abe3500318f08d6c355901686b6d5f6dfe9492ba79a1",
+    "unrepresented_possible": false
+  },
+  "rep": 1,
+  "split": "evaluation"
+}

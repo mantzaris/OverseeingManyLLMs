@@ -34,4 +34,21 @@ def source():
         if target.exists() and target.read_bytes()!=b:raise ValueError('Existing source cases differ')
         if not target.exists():target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(b)
     return {'source':'verified','databases':57,'evaluation':48,'development':9,'raw_prompts':'Kept locally, excluded from Git at author request'}
+
+def repaired_source():
+    """Reconstruct the disjoint, ordering-correct follow-up without generation."""
+    source()
+    from . import repair_data
+    old=repair_data.ART
+    with tempfile.TemporaryDirectory(prefix='verification-repaired-source-') as tmp:
+        repair_data.ART=Path(tmp)
+        try:repair_data.select()
+        finally:repair_data.ART=old
+        b=(Path(tmp)/'private/cases.json').read_bytes()
+        if hashlib.sha256(b).hexdigest()!=read(old/'frozen.json')['cases_hash']:raise ValueError('Repaired source reconstruction differs')
+        if (Path(tmp)/'split_manifest.json').read_bytes()!=(old/'split_manifest.json').read_bytes():raise ValueError('Repaired split differs')
+        target=old/'private/cases.json'
+        if target.exists() and target.read_bytes()!=b:raise ValueError('Existing repaired cases differ')
+        if not target.exists():target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(b)
+    return {'source':'verified','fresh_databases':24,'excluded_prior_databases':57}
 if __name__=='__main__':print(json.dumps(source(),indent=2))

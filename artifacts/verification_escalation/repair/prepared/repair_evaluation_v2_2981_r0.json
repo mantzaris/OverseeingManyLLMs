@@ -1,0 +1,39 @@
+{
+  "answered": {
+    "sql": null
+  },
+  "calls": {
+    "audit": {
+      "candidates": [
+        {
+          "meaning": "List drugs and their effects in order of their popularity in prescriptions",
+          "sql": "SELECT D.name, E.effectText FROM Drug D JOIN Prescription P ON D.drugID = P.drugID JOIN Side_Effects SE ON D.sideEffectID = SE.sideEffectID JOIN Effectiveness E ON D.effectivenessID = E.effectivenessID GROUP BY D.name, E.effectText ORDER BY COUNT(P.prescriptionID) DESC"
+        }
+      ],
+      "source_quote_sha256": "12ae32cb1ec02d01eda3581b127c1fee3b0dc53572ed6baf239721a03d82e126",
+      "unrepresented_possible": false
+    },
+    "candidates": {
+      "candidates": [
+        {
+          "meaning": "List drugs and their effects in order of the total quantity prescribed.",
+          "sql": "SELECT D.name, E.effectText FROM Drug D JOIN Prescription P ON D.drugID = P.drugID JOIN Side_Effects E ON D.sideEffectID = E.sideEffectID GROUP BY D.name, E.effectText ORDER BY SUM(P.quantity) DESC"
+        },
+        {
+          "meaning": "List drugs and their primary effects in order of the total quantity prescribed, ignoring side effects.",
+          "sql": "SELECT D.name, E.effectText FROM Drug D JOIN Prescription P ON D.drugID = P.drugID JOIN Effectiveness E ON D.effectivenessID = E.effectivenessID GROUP BY D.name, E.effectText ORDER BY SUM(P.quantity) DESC"
+        },
+        {
+          "meaning": "List drugs and their primary effects in order of the total number of prescriptions written, ignoring the quantity prescribed.",
+          "sql": "SELECT D.name, E.effectText FROM Drug D JOIN Prescription P ON D.drugID = P.drugID JOIN Effectiveness E ON D.effectivenessID = E.effectivenessID GROUP BY D.name, E.effectText ORDER BY COUNT(P.prescriptionID) DESC"
+        }
+      ],
+      "source_quote_sha256": "70ce20a59153503f5f94c89029f2a5a439bb2df634a7336793c368f89218800f",
+      "unrepresented_possible": false
+    }
+  },
+  "id": "2981",
+  "public_hash": "44ffcde20e7b280bebc821a954f80269925812cd3a55e16b8e043de2bf43ea78",
+  "rep": 0,
+  "split": "evaluation"
+}
