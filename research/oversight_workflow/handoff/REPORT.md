@@ -114,6 +114,15 @@ reports actual elapsed time and cumulative wall time including gaps, rather than
 claiming the work fits within the original 36-hour target. Only the requested
 local preview is intentionally retained.
 
+Final accounting checkpoint: 2026-09-12 16:31:58 UTC,
+19.2 minutes of the separately authorized consolidation window. The work
+finished within the 45–60 minute target ceiling without extending tests to fill
+time. Cumulative elapsed wall time is 72.884 hours, including gaps,
+or 36.884 hours beyond the original 36-hour target. Historical
+inference totals remain 61,729 attempts; this handoff adds zero. Package commit:
+`f4cf540e`. The final accounting commit follows this checkpoint. The preview
+remains healthy with no run created, and its temporary check browser is stopped.
+
 ## Handoff decision
 
 1. **Ready for author review:** the active eight-page position paper, claim/evidence
