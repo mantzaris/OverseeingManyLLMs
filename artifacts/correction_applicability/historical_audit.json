@@ -1,0 +1,2225 @@
+{
+  "events": [
+    {
+      "audit_diagnosis": {
+        "category": "operand_order",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Reversed old operands explicitly visible: 1271-1402 despite naming later minus earlier. Correction specificity unresolved; generic arithmetic/source checking could fix this."
+      },
+      "category": "help",
+      "context_id": "5f0466453acb53d17eee77ec763d9a98",
+      "disclosure": {
+        "answer": 360.51,
+        "answer_type": "arithmetic",
+        "derivation": "(($1,271-$276)/$276) * 100",
+        "id": "4665efb69ad44f699b35aaad22a59229",
+        "previous": {
+          "answer": [
+            "3.61"
+          ],
+          "evidence": [],
+          "operation": "ratio",
+          "scale": "percent"
+        },
+        "question": "What is the percentage change in balance at January 1 and December 31 in 2017?",
+        "scale": "percent",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "1.0",
+        "before": "0.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c05_r0_adaptive_s0_q03",
+        "context": "5f0466453acb53d17eee77ec763d9a98",
+        "donor": "4665efb69ad44f699b35aaad22a59229",
+        "gain": "1.0",
+        "harm": "0",
+        "help": "1",
+        "method": "adaptive",
+        "predicted_gain": "0.10353128882624053",
+        "raw_after": "1.0",
+        "recipient": "42075d922a58203ffec3da68c9a18470",
+        "rep": "0",
+        "step": "1"
+      },
+      "recipient": {
+        "id": "42075d922a58203ffec3da68c9a18470",
+        "order": 4,
+        "question": "What is the change in balance between 2018 and 2019 at January 1?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "131"
+          ],
+          "calculation": "",
+          "derivation": "The difference in balance at January 1 between 2018 and 2019 is calculated by subtracting the 2018 value from the 2019 value.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2', 'C2']",
+            "['T2', 'C3']",
+            "['T2', 'C4']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "-131"
+          ],
+          "calculation": "",
+          "derivation": "The change in balance between 2018 and 2019 at January 1 is calculated by subtracting the 2018 balance from the 2019 balance. 1271 - 1402 = -131.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2C1', 'T2C2', 'T2C3']",
+            "['T1C2', 'T1C3']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "donor": "4665efb69ad44f699b35aaad22a59229",
+        "id": "42075d922a58203ffec3da68c9a18470",
+        "predicted_before_error": 0.726953783051344,
+        "proposal": {
+          "answer": [
+            "131"
+          ],
+          "calculation": "",
+          "derivation": "The difference in balance at January 1 between 2018 and 2019 is calculated by subtracting the 2018 value from the 2019 value.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2', 'C2']",
+            "['T2', 'C3']",
+            "['T2', 'C4']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.6,
+          "period_overlap": false,
+          "same_operation": false,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c05_r0_adaptive_s0_q03",
+          "request_sha256": "0316110151d66630950bcc7f296e9c9a15226c36d29ee02ef56919d51152f0f5",
+          "seconds": 1.8958518039435148,
+          "status": "ok",
+          "tokens": 929
+        }
+      },
+      "source": {
+        "id": "5f0466453acb53d17eee77ec763d9a98",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "A reconciliation of the beginning and ending amount of unrecognized tax benefits is as follows (in thousands):"
+          },
+          {
+            "order": 2,
+            "text": "The provision for uncertain tax positions relates to business in territories outside of the US."
+          },
+          {
+            "order": 3,
+            "text": "The Company’s policy is to classify interest and penalties on uncertain tax positions as a component of tax expense. The Company does not expect the change in uncertain tax positions to have a material impact on its financial position, results of operations, or liquidity."
+          },
+          {
+            "order": 4,
+            "text": "The Company is subject to US federal income tax as well as to income tax in multiple state and foreign jurisdictions, including the UK. Federal income tax returns of the Company are subject to IRS examination for the 2016 through 2019 tax years. State income tax returns are subject to examination for the 2015 through 2019 tax years."
+          },
+          {
+            "order": 5,
+            "text": "Currently, an audit is occurring in the United Kingdom for the year ended December 31, 2017. There are no ongoing audits in any other significant foreign tax jurisdictions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "be7455024560f1e4fa6eea9d7d9f043f",
+            "order": 1,
+            "question": "Which periods are state income tax returns subject to examination?"
+          },
+          {
+            "id": "494513cc45af080b70baeba21591262e",
+            "order": 2,
+            "question": "What do the provisions for uncertain tax positions relate to?"
+          },
+          {
+            "id": "9d2db9cd4e40f348ec38bf90eeac3d80",
+            "order": 3,
+            "question": "What does the company classify interest and penalties on uncertain tax positions as?"
+          },
+          {
+            "id": "42075d922a58203ffec3da68c9a18470",
+            "order": 4,
+            "question": "What is the change in balance between 2018 and 2019 at January 1?"
+          },
+          {
+            "id": "98251769ea613235ffdac57a28787fc8",
+            "order": 6,
+            "question": "What is the change in balance between 2017 and 2018 at January 1?"
+          },
+          {
+            "id": "4665efb69ad44f699b35aaad22a59229",
+            "order": 8,
+            "question": "What is the percentage change in balance at January 1 and December 31 in 2017?"
+          }
+        ],
+        "source_index": 5,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "",
+            "Year Ended December 31,",
+            ""
+          ],
+          [
+            "",
+            "2019",
+            "2018",
+            "2017"
+          ],
+          [
+            "Balance at January 1",
+            "$1,402",
+            "$1,271",
+            "$276"
+          ],
+          [
+            "Increases for tax positions related to the current year",
+            "—",
+            "131",
+            "995"
+          ],
+          [
+            "Decreases for tax positions related to the current year",
+            "(1,402)",
+            "—",
+            "—"
+          ],
+          [
+            "Balance at December 31",
+            "$—",
+            "$1,402",
+            "$1,271"
+          ]
+        ]
+      },
+      "source_number": 6,
+      "step": 1
+    },
+    {
+      "audit_diagnosis": {
+        "category": "output_shape",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "The old answer lists both operands and the difference. New output retains only the requested difference. Correction-specific reuse not established."
+      },
+      "category": "help",
+      "context_id": "5f0466453acb53d17eee77ec763d9a98",
+      "disclosure": {
+        "answer": 360.51,
+        "answer_type": "arithmetic",
+        "derivation": "(($1,271-$276)/$276) * 100",
+        "id": "4665efb69ad44f699b35aaad22a59229",
+        "previous": {
+          "answer": [
+            "4"
+          ],
+          "evidence": [],
+          "operation": "ratio",
+          "scale": "percent"
+        },
+        "question": "What is the percentage change in balance at January 1 and December 31 in 2017?",
+        "scale": "percent",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "1.0",
+        "before": "0.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c05_r1_adaptive_s0_q04",
+        "context": "5f0466453acb53d17eee77ec763d9a98",
+        "donor": "4665efb69ad44f699b35aaad22a59229",
+        "gain": "1.0",
+        "harm": "0",
+        "help": "1",
+        "method": "adaptive",
+        "predicted_gain": "0.10353128882624053",
+        "raw_after": "1.0",
+        "recipient": "98251769ea613235ffdac57a28787fc8",
+        "rep": "1",
+        "step": "1"
+      },
+      "recipient": {
+        "id": "98251769ea613235ffdac57a28787fc8",
+        "order": 6,
+        "question": "What is the change in balance between 2017 and 2018 at January 1?"
+      },
+      "rep": 1,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "995"
+          ],
+          "calculation": "",
+          "derivation": "The difference in balance at January 1 between 2018 and 2017 is calculated as $1,271 - $276.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2C3', 'T2C2', 'T2C1', 'T5C2']",
+            "[]"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "1271",
+            "276",
+            "995"
+          ],
+          "calculation": "",
+          "derivation": "Calculate the difference between the balance at January 1 for 2018 and 2017.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2C1', 'T2C2', 'T2C3']",
+            "['T3C1', 'T3C2', 'T3C3']",
+            "['T4C1', 'T4C2', 'T4C3']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "donor": "4665efb69ad44f699b35aaad22a59229",
+        "id": "98251769ea613235ffdac57a28787fc8",
+        "predicted_before_error": 0.726953783051344,
+        "proposal": {
+          "answer": [
+            "995"
+          ],
+          "calculation": "",
+          "derivation": "The difference in balance at January 1 between 2018 and 2017 is calculated as $1,271 - $276.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T2C3', 'T2C2', 'T2C1', 'T5C2']",
+            "[]"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "thousand",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.6,
+          "period_overlap": true,
+          "same_operation": false,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c05_r1_adaptive_s0_q04",
+          "request_sha256": "c8bf24f9f272a4a9cfe4cc8843d14125e708293c83c84586c737c883ed933ae4",
+          "seconds": 1.8189109859522432,
+          "status": "ok",
+          "tokens": 923
+        }
+      },
+      "source": {
+        "id": "5f0466453acb53d17eee77ec763d9a98",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "A reconciliation of the beginning and ending amount of unrecognized tax benefits is as follows (in thousands):"
+          },
+          {
+            "order": 2,
+            "text": "The provision for uncertain tax positions relates to business in territories outside of the US."
+          },
+          {
+            "order": 3,
+            "text": "The Company’s policy is to classify interest and penalties on uncertain tax positions as a component of tax expense. The Company does not expect the change in uncertain tax positions to have a material impact on its financial position, results of operations, or liquidity."
+          },
+          {
+            "order": 4,
+            "text": "The Company is subject to US federal income tax as well as to income tax in multiple state and foreign jurisdictions, including the UK. Federal income tax returns of the Company are subject to IRS examination for the 2016 through 2019 tax years. State income tax returns are subject to examination for the 2015 through 2019 tax years."
+          },
+          {
+            "order": 5,
+            "text": "Currently, an audit is occurring in the United Kingdom for the year ended December 31, 2017. There are no ongoing audits in any other significant foreign tax jurisdictions."
+          }
+        ],
+        "questions": [
+          {
+            "id": "be7455024560f1e4fa6eea9d7d9f043f",
+            "order": 1,
+            "question": "Which periods are state income tax returns subject to examination?"
+          },
+          {
+            "id": "494513cc45af080b70baeba21591262e",
+            "order": 2,
+            "question": "What do the provisions for uncertain tax positions relate to?"
+          },
+          {
+            "id": "9d2db9cd4e40f348ec38bf90eeac3d80",
+            "order": 3,
+            "question": "What does the company classify interest and penalties on uncertain tax positions as?"
+          },
+          {
+            "id": "42075d922a58203ffec3da68c9a18470",
+            "order": 4,
+            "question": "What is the change in balance between 2018 and 2019 at January 1?"
+          },
+          {
+            "id": "98251769ea613235ffdac57a28787fc8",
+            "order": 6,
+            "question": "What is the change in balance between 2017 and 2018 at January 1?"
+          },
+          {
+            "id": "4665efb69ad44f699b35aaad22a59229",
+            "order": 8,
+            "question": "What is the percentage change in balance at January 1 and December 31 in 2017?"
+          }
+        ],
+        "source_index": 5,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "",
+            "Year Ended December 31,",
+            ""
+          ],
+          [
+            "",
+            "2019",
+            "2018",
+            "2017"
+          ],
+          [
+            "Balance at January 1",
+            "$1,402",
+            "$1,271",
+            "$276"
+          ],
+          [
+            "Increases for tax positions related to the current year",
+            "—",
+            "131",
+            "995"
+          ],
+          [
+            "Decreases for tax positions related to the current year",
+            "(1,402)",
+            "—",
+            "—"
+          ],
+          [
+            "Balance at December 31",
+            "$—",
+            "$1,402",
+            "$1,271"
+          ]
+        ]
+      },
+      "source_number": 6,
+      "step": 1
+    },
+    {
+      "audit_diagnosis": {
+        "category": "source_binding",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Level 2 cell used for a Level 1 request; new answer uses Level 1. Donor shares a column label, not an identical numeric answer."
+      },
+      "category": "help",
+      "context_id": "eb68753385d270d4b17f5b370691851a",
+      "disclosure": {
+        "answer": [
+          "74,707"
+        ],
+        "answer_type": "span",
+        "derivation": "",
+        "id": "f4841f44c2e470088dc596e62a5cc57f",
+        "previous": {
+          "answer": [
+            "5091"
+          ],
+          "evidence": [],
+          "operation": "lookup",
+          "scale": "million"
+        },
+        "question": "How much is the level 1 FVOCI as at 31 December 2019?",
+        "scale": "million",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "1.0",
+        "before": "0.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c07_r0_adaptive_s1_q01",
+        "context": "eb68753385d270d4b17f5b370691851a",
+        "donor": "f4841f44c2e470088dc596e62a5cc57f",
+        "gain": "1.0",
+        "harm": "0",
+        "help": "1",
+        "method": "adaptive",
+        "predicted_gain": "0.016575334980287626",
+        "raw_after": "1.0",
+        "recipient": "3ab5a21154cdfa603c0fcd66d909810e",
+        "rep": "0",
+        "step": "2"
+      },
+      "recipient": {
+        "id": "3ab5a21154cdfa603c0fcd66d909810e",
+        "order": 2,
+        "question": "How much is the level 1 FVPL as at 31 December 2019?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "14,766"
+          ],
+          "calculation": "",
+          "derivation": "The level 1 FVPL as at 31 December 2019 is found in T3, C1.",
+          "evidence": [],
+          "invalid_evidence": [
+            "T3",
+            "C1"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "5091"
+          ],
+          "calculation": "",
+          "derivation": "The level 1 FVPL as at 31 December 2019 is listed in cell T3C2.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T3', 'C2']"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "f4841f44c2e470088dc596e62a5cc57f",
+        "id": "3ab5a21154cdfa603c0fcd66d909810e",
+        "predicted_before_error": 0.6039205541125858,
+        "proposal": {
+          "answer": [
+            "14,766"
+          ],
+          "calculation": "",
+          "derivation": "The level 1 FVPL as at 31 December 2019 is found in T3, C1.",
+          "evidence": [],
+          "invalid_evidence": [
+            "T3",
+            "C1"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.5,
+          "period_overlap": true,
+          "same_operation": true,
+          "same_scale": true
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c07_r0_adaptive_s1_q01",
+          "request_sha256": "c434e467c1e31f5379b11ff479abfa0cf482d63db17a343b03c8fc73bc6c96c5",
+          "seconds": 1.7074839900014922,
+          "status": "ok",
+          "tokens": 1382
+        }
+      },
+      "source": {
+        "id": "eb68753385d270d4b17f5b370691851a",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "3.3 Fair value estimation The table below analyses the Group’s financial instruments carried at fair value as at 31 December 2019 by level of the inputs to valuation techniques used to measure fair value. Such inputs are categorised into three levels within a fair value hierarchy as follows:"
+          },
+          {
+            "order": 2,
+            "text": "Quoted prices (unadjusted) in active markets for identical assets or liabilities (level 1);"
+          },
+          {
+            "order": 3,
+            "text": "Inputs other than quoted prices included within level 1 that are observable for the asset or liability, either directly (that is, as prices) or indirectly (that is, derived from prices) (level 2); and"
+          },
+          {
+            "order": 4,
+            "text": "Inputs for the asset or liability that are not based on observable market data (that is, unobservable inputs) (level 3)."
+          },
+          {
+            "order": 5,
+            "text": "The fair value of financial instruments traded in active markets is determined with reference to quoted market prices at the end of the reporting period. A market is regarded as active if quoted prices are readily and regularly available from an exchange, dealer, broker, industry group, pricing service, or regulatory agency, and those prices represent actual and regularly occurring market transactions on an arm’s length basis. These instruments are included in level 1."
+          },
+          {
+            "order": 6,
+            "text": "The fair value of financial instruments that are not traded in an active market is determined by using valuation techniques. These valuation techniques maximise the use of observable market data where it is available and rely as little as possible on entity specific estimates. If all significant inputs required for evaluating the fair value of a financial instrument are observable, the instrument is included in level 2."
+          },
+          {
+            "order": 7,
+            "text": "If one or more of the significant inputs are not based on observable market data, the instrument is included in level 3."
+          },
+          {
+            "order": 8,
+            "text": "Specific valuation techniques used to value financial instruments mainly include: • Dealer quotes for similar instruments; • The fair value of interest rate swaps is calculated as the present value of the estimated future cash flows based on observable yield curves; and • Other techniques, such as discounted cash flow analysis, are used to determine fair value for financial instruments."
+          }
+        ],
+        "questions": [
+          {
+            "id": "61a278072de57fe1e48c9eb9beeb09f4",
+            "order": 1,
+            "question": "How is the fair value of financial instruments that are not traded in active markets determined?"
+          },
+          {
+            "id": "3ab5a21154cdfa603c0fcd66d909810e",
+            "order": 2,
+            "question": "How much is the level 1 FVPL as at 31 December 2019?"
+          },
+          {
+            "id": "f4841f44c2e470088dc596e62a5cc57f",
+            "order": 3,
+            "question": "How much is the level 1 FVOCI as at 31 December 2019?"
+          },
+          {
+            "id": "63fca6b21cf24a7e5901c0de3c26c2e0",
+            "order": 4,
+            "question": "How much did the level 1 FVPL change by from 2018 year end to 2019 year end?"
+          },
+          {
+            "id": "62f53cff04d0cd9fee521613e97978b7",
+            "order": 6,
+            "question": "How much did the level 1 FVOCI change by from 2018 year end to 2019 year end?"
+          },
+          {
+            "id": "7d4bdeda7b114d51fa835e7bad363056",
+            "order": 8,
+            "question": "How much did the level 2 OFA change by from 2018 year end to 2019 year end?"
+          }
+        ],
+        "source_index": 7,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "Level 1",
+            "Level 2",
+            "Level 3",
+            "Total"
+          ],
+          [
+            "",
+            "RMB’Million",
+            "RMB’Million",
+            "RMB’Million",
+            "RMB’Million"
+          ],
+          [
+            "As at 31 December 2019",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "FVPL",
+            "14,766",
+            "5,091",
+            "116,079",
+            "135,936"
+          ],
+          [
+            "FVOCI",
+            "74,707",
+            "–",
+            "7,014",
+            "81,721"
+          ],
+          [
+            "OFA",
+            "–",
+            "375",
+            "–",
+            "375"
+          ],
+          [
+            "Other financial liabilities",
+            "–",
+            "523",
+            "1,873",
+            "2,396"
+          ],
+          [
+            "As at 31 December 2018",
+            "",
+            "",
+            "",
+            ""
+          ],
+          [
+            "FVPL",
+            "10,875",
+            "5,009",
+            "81,993",
+            "97,877"
+          ],
+          [
+            "FVOCI",
+            "41,578",
+            "–",
+            "1,941",
+            "43,519"
+          ],
+          [
+            "OFA",
+            "–",
+            "2,032",
+            "–",
+            "2,032"
+          ],
+          [
+            "Other financial liabilities",
+            "–",
+            "40",
+            "4,466",
+            "4,506"
+          ]
+        ]
+      },
+      "source_number": 8,
+      "step": 2
+    },
+    {
+      "audit_diagnosis": {
+        "category": "period_binding_and_execution",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Recipient requests 2017-to-2018. 245 is the source variance for 2018-to-2019. New prose also asserts an incorrect subtraction. Wrong source binding and answer-computation mismatch are both visible."
+      },
+      "category": "harm",
+      "context_id": "33295076b558d53b86fd6e5537022af6",
+      "disclosure": {
+        "answer": [
+          "6,577"
+        ],
+        "answer_type": "span",
+        "derivation": "",
+        "id": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "previous": {
+          "answer": [
+            "6,577"
+          ],
+          "evidence": [
+            "T2C2"
+          ],
+          "operation": "lookup",
+          "scale": "million"
+        },
+        "question": "What was the research and development expense in 2019?",
+        "scale": "million",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "0.0",
+        "before": "1.0",
+        "bin": "evidence",
+        "call_id": "evaluation_c01_r1_adaptive_s1_q03",
+        "context": "33295076b558d53b86fd6e5537022af6",
+        "donor": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "gain": "-1.0",
+        "harm": "1",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.19193741545162732",
+        "raw_after": "0.0",
+        "recipient": "d2ef385fb6762a435a8c25c3163a94e8",
+        "rep": "1",
+        "step": "2"
+      },
+      "recipient": {
+        "id": "d2ef385fb6762a435a8c25c3163a94e8",
+        "order": 4,
+        "question": "What was the change in the research and development expense between 2017 and 2018?"
+      },
+      "rep": 1,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "245"
+          ],
+          "calculation": "",
+          "derivation": "The difference in R&D expense between 2018 ($6,332 million) and 2017 ($6,059 million) is $245 million. P7 mentions the effect of foreign currency on expenses, but the variance in dollars directly states the change.",
+          "evidence": [
+            "T2C5",
+            "P7"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "difference",
+          "scale": "million",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "273"
+          ],
+          "calculation": "",
+          "derivation": "The research and development expense in 2018 was $6,332 million, and in 2017 it was $6,059 million. The difference is $6,332 - $6,059.",
+          "evidence": [
+            "T2C1",
+            "T2C2",
+            "T2C3"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "difference",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "id": "d2ef385fb6762a435a8c25c3163a94e8",
+        "predicted_before_error": 0.6512762762762763,
+        "proposal": {
+          "answer": [
+            "245"
+          ],
+          "calculation": "",
+          "derivation": "The difference in R&D expense between 2018 ($6,332 million) and 2017 ($6,059 million) is $245 million. P7 mentions the effect of foreign currency on expenses, but the variance in dollars directly states the change.",
+          "evidence": [
+            "T2C5",
+            "P7"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "difference",
+          "scale": "million",
+          "valid": true
+        },
+        "relation": {
+          "bin": "evidence",
+          "evidence_overlap": true,
+          "lexical_similarity": 0.75,
+          "period_overlap": false,
+          "same_operation": false,
+          "same_scale": true
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c01_r1_adaptive_s1_q03",
+          "request_sha256": "4e3e09cdbdb5af9a964c06ddc90151e102550d9688b083cea0775526e79e8ec7",
+          "seconds": 2.356929323053919,
+          "status": "ok",
+          "tokens": 1370
+        }
+      },
+      "source": {
+        "id": "33295076b558d53b86fd6e5537022af6",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "Research and Development (“R&D”), Sales and Marketing, and General and Administrative (“G&A”) Expenses"
+          },
+          {
+            "order": 2,
+            "text": "R&D, sales and marketing, and G&A expenses are summarized in the following table (in millions, except percentages):"
+          },
+          {
+            "order": 3,
+            "text": "R&D Expenses R&D expenses increased due to higher headcount-related expenses and, to a lesser extent, higher acquisition-related costs, higher contracted services and higher discretionary spending."
+          },
+          {
+            "order": 4,
+            "text": "We continue to invest in R&D in order to bring a broad range of products to market in a timely fashion. If we believe that we are unable to enter a particular market in a timely manner with internally developed products, we may purchase or license technology from other businesses, or we may partner with or acquire businesses as an alternative to internal R&D."
+          },
+          {
+            "order": 5,
+            "text": "Sales and Marketing Expenses Sales and marketing expenses increased due to higher headcount-related expenses, higher discretionary spending and, to a lesser extent, higher contracted services and higher acquisition-related costs, partially offset by lower share-based compensation expense."
+          },
+          {
+            "order": 6,
+            "text": "G&A Expenses G&A expenses decreased due to a benefit from the $400 million litigation settlement with Arista Networks and lower contracted services, partially offset by higher discretionary spending and higher headcount-related expenses."
+          },
+          {
+            "order": 7,
+            "text": "Effect of Foreign Currency In fiscal 2019, foreign currency fluctuations, net of hedging, decreased the combined R&D, sales and marketing, and G&A expenses by approximately $233 million, or 1.3%, compared with fiscal 2018. In fiscal 2018, foreign currency fluctuations, net of hedging, increased the combined R&D, sales and marketing, and G&A expenses by approximately $93 million, or 0.5%, compared with fiscal 2017."
+          }
+        ],
+        "questions": [
+          {
+            "id": "dab39e83b38ceedf0797e94847ca2dae",
+            "order": 1,
+            "question": "Which years does the table provide information for R&D, sales and marketing, and G&A expenses?"
+          },
+          {
+            "id": "414b4ef29d5fb8114a86f0d8a33ddace",
+            "order": 2,
+            "question": "What was the research and development expense in 2019?"
+          },
+          {
+            "id": "77ccdc4a2f152ed1708466fec79576fb",
+            "order": 3,
+            "question": "What was the sales and marketing expense in 2017?"
+          },
+          {
+            "id": "d2ef385fb6762a435a8c25c3163a94e8",
+            "order": 4,
+            "question": "What was the change in the research and development expense between 2017 and 2018?"
+          },
+          {
+            "id": "41cad27df8a55d8e3200e8238bf41641",
+            "order": 6,
+            "question": "How many years did general and administrative expense exceed $2,000 million?"
+          },
+          {
+            "id": "109554b000f2e51b7bbb7d4f85dca24a",
+            "order": 8,
+            "question": "What was the percentage change in the total expenses between 2017 and 2018?"
+          }
+        ],
+        "source_index": 1,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "",
+            "Years Ended",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "July 27, 2019",
+            "July 28, 2018",
+            "July 29, 2017",
+            "Variance in Dollars",
+            "Variance in Percent"
+          ],
+          [
+            "Research and development",
+            "$ 6,577",
+            "$ 6,332",
+            "$6,059",
+            "$245",
+            "4%"
+          ],
+          [
+            "Percentage of revenue",
+            "12.7%",
+            "12.8%",
+            "12.6%",
+            "",
+            ""
+          ],
+          [
+            "Sales and marketing",
+            "9,571",
+            "9,242",
+            "9,184",
+            "329",
+            "4%"
+          ],
+          [
+            "Percentage of revenue",
+            "18.4%",
+            "18.7%",
+            "19.1%",
+            "",
+            ""
+          ],
+          [
+            "General and administrative",
+            "1,827",
+            "2,144",
+            "1,993",
+            "(317)",
+            "(15)%"
+          ],
+          [
+            "Percentage of revenue",
+            "3.5%",
+            "4.3%",
+            "4.2%",
+            "",
+            ""
+          ],
+          [
+            "Total",
+            "$17,975",
+            "$17,718",
+            "$17,236",
+            "$257",
+            "1%"
+          ],
+          [
+            "Percentage of revenue",
+            "34.6%",
+            "35.9%",
+            "35.9%",
+            "",
+            ""
+          ]
+        ]
+      },
+      "source_number": 2,
+      "step": 2
+    },
+    {
+      "audit_diagnosis": {
+        "category": "operation",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Percentage change became a raw ratio, losing subtraction of one and percent conversion. Donor is explanatory prose, so reusable numeric correction scope is unsupported."
+      },
+      "category": "harm",
+      "context_id": "1424e718ab72e7d0bc792bbed0f42df6",
+      "disclosure": {
+        "answer": [
+          "result of lower purchases of customer premise equipment and lower investments related to the initial launch of Ignite TV."
+        ],
+        "answer_type": "span",
+        "derivation": "",
+        "id": "8251e63e0583f439d05c2837e1cf9cc1",
+        "previous": {
+          "answer": [
+            "lower purchases of customer premise equipment and lower investments related to the initial launch of Ignite TV"
+          ],
+          "evidence": [],
+          "operation": "other",
+          "scale": ""
+        },
+        "question": "What caused the decrease in capital expenditure in cable in 2019?",
+        "scale": "",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "0.0",
+        "before": "1.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c03_r0_adaptive_s0_q05",
+        "context": "1424e718ab72e7d0bc792bbed0f42df6",
+        "donor": "8251e63e0583f439d05c2837e1cf9cc1",
+        "gain": "-1.0",
+        "harm": "1",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.12655961679642902",
+        "raw_after": "0.0",
+        "recipient": "b3f09952dc5e77da6253497100ff5389",
+        "rep": "0",
+        "step": "1"
+      },
+      "recipient": {
+        "id": "b3f09952dc5e77da6253497100ff5389",
+        "order": 8,
+        "question": "What was the percentage increase / (decrease) in capital expenditure from 2018 to 2019?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "1.01"
+          ],
+          "calculation": "",
+          "derivation": "The ratio of 2019 capital expenditures to 2018 capital expenditures is 2807/2790.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T7', 'C2']",
+            "['T7', 'C3']",
+            "['T7', 'C4']"
+          ],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "percent",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "0.61"
+          ],
+          "calculation": "",
+          "derivation": "The ratio of 2019 capital expenditures to 2018 capital expenditures minus 1.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T7', 'C3']",
+            "['T7', 'C2']",
+            "['T1', 'C3']",
+            "['T1', 'C2']"
+          ],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "percent",
+          "valid": true
+        },
+        "donor": "8251e63e0583f439d05c2837e1cf9cc1",
+        "id": "b3f09952dc5e77da6253497100ff5389",
+        "predicted_before_error": 0.7595363656339266,
+        "proposal": {
+          "answer": [
+            "1.01"
+          ],
+          "calculation": "",
+          "derivation": "The ratio of 2019 capital expenditures to 2018 capital expenditures is 2807/2790.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T7', 'C2']",
+            "['T7', 'C3']",
+            "['T7', 'C4']"
+          ],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "percent",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.42857142857142855,
+          "period_overlap": true,
+          "same_operation": false,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c03_r0_adaptive_s0_q05",
+          "request_sha256": "64f1721dd5bf397116b01305b0978307987e8dc4a8fac3a0ce26168e7f9892c0",
+          "seconds": 1.6361823530169204,
+          "status": "ok",
+          "tokens": 1322
+        }
+      },
+      "source": {
+        "id": "1424e718ab72e7d0bc792bbed0f42df6",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "CAPITAL EXPENDITURES"
+          },
+          {
+            "order": 2,
+            "text": "Capital expenditures include costs associated with acquiring property, plant and equipment and placing it into service. The telecommunications business requires extensive and continual investments, including investment in new technologies and the expansion of capacity and geographical reach. Expenditures related to the acquisition of spectrum licences and additions to right-of-use assets are not included in capital expenditures and do not factor into the calculation of free cash flow or capital intensity. See “Managing Our Liquidity and Financial Resources”, “Key Performance Indicators”, and “Non-GAAP Measures and Related Performance Measures” for more information."
+          },
+          {
+            "order": 3,
+            "text": "Capital expenditures are significant and have a material impact on our cash flows; therefore, our management teams focus on planning, funding, and managing them. We believe this measure best reflects our cost of property, plant and equipment in a given period and is a simpler measure for comparing between periods."
+          },
+          {
+            "order": 4,
+            "text": "1 Includes additions to property, plant and equipment net of proceeds on disposition, but does not include expenditures for spectrum licences or additions to right-of-use assets. 2 As defined. See “Key Performance Indicators”."
+          },
+          {
+            "order": 5,
+            "text": "WIRELESS The increase in capital expenditures in Wireless this year was a result of investments made to upgrade our wireless network to continue delivering reliable performance for our customers. We continued augmenting our existing LTE network with 4.5G technology investments that are also 5G-ready to prepare for the commercial launch of 5G in select markets in early 2020. In 2019, we acquired spectrum licences for $1,731 million, which is not included in the table above. See “Managing Our Liquidity and Financial Resources”."
+          },
+          {
+            "order": 6,
+            "text": "CABLE The decrease in capital expenditures in Cable this year was a result of lower purchases of customer premise equipment and lower investments related to the initial launch of Ignite TV. We have continued upgrading our network infrastructure with additional fibre deployments, including increasing our fibre-to-the-home and fibre-to-the-curb distribution. These upgrades will lower the number of homes passed per node and incorporate the latest technologies to help deliver more bandwidth and an even more reliable customer experience as we progress in our Connected Home roadmap."
+          },
+          {
+            "order": 7,
+            "text": "MEDIA The increase in capital expenditures this year was a result of higher investments in renovations at various Toronto Blue Jays facilities, partially offset by lower investment in our broadcast and IT infrastructure and the sale of our publishing business."
+          },
+          {
+            "order": 8,
+            "text": "CORPORATE The increase in Corporate capital expenditures this year was a result of higher investments in IT and our various real estate facilities this year, including the impact of $25 million of proceeds from the sale of certain assets last year."
+          },
+          {
+            "order": 9,
+            "text": "CAPITAL INTENSITY Capital intensity this year was in line with 2018."
+          }
+        ],
+        "questions": [
+          {
+            "id": "88e9d40c09cf22303104880ce94bccce",
+            "order": 1,
+            "question": "What costs are associated under capital expenditure?"
+          },
+          {
+            "id": "43c792d0803c8cd37130be5e06db5ebc",
+            "order": 2,
+            "question": "What caused the increase in capital expenditures related to wireless?"
+          },
+          {
+            "id": "8251e63e0583f439d05c2837e1cf9cc1",
+            "order": 3,
+            "question": "What caused the decrease in capital expenditure in cable in 2019?"
+          },
+          {
+            "id": "cac10d43fde9e07342fa7144876e77e7",
+            "order": 4,
+            "question": "What was the increase / (decrease) in wireless capital expenditure from 2018 to 2019?"
+          },
+          {
+            "id": "d9b81db920283c307bd37d6000baafcb",
+            "order": 6,
+            "question": "What was the average cable expenditure?"
+          },
+          {
+            "id": "b3f09952dc5e77da6253497100ff5389",
+            "order": 8,
+            "question": "What was the percentage increase / (decrease) in capital expenditure from 2018 to 2019?"
+          }
+        ],
+        "source_index": 3,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "(In millions of dollars, except capital intensity)",
+            "Years ended December 31",
+            "",
+            ""
+          ],
+          [
+            "",
+            "2019",
+            "2018",
+            "%Chg"
+          ],
+          [
+            "Capital expenditures 1",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Wireless",
+            "1,320",
+            "1,086",
+            "22"
+          ],
+          [
+            "Cable",
+            "1,153",
+            "1,429",
+            "(19)"
+          ],
+          [
+            "Media",
+            "102",
+            "90",
+            "13"
+          ],
+          [
+            "Corporate",
+            "232",
+            "185",
+            "25"
+          ],
+          [
+            "Capital expenditures 1",
+            "2,807",
+            "2,790",
+            "1"
+          ],
+          [
+            "Capital intensity 2",
+            "18.6%",
+            "18.5%",
+            "0.1 pts"
+          ]
+        ]
+      },
+      "source_number": 4,
+      "step": 1
+    },
+    {
+      "audit_diagnosis": {
+        "category": "unresolved_rounding_or_generation",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "0.9 becomes 1.0 with no revised derivation. Rounding, extraction, or generic generation failure cannot be distinguished from the trace."
+      },
+      "category": "harm",
+      "context_id": "9a43ac474979cb7ecf516b5a8e7849ee",
+      "disclosure": {
+        "answer": 1.23,
+        "answer_type": "arithmetic",
+        "derivation": "((74.0-73.1)/73.1) * 100",
+        "id": "4ff6daa82c801aec0ba99bc66c830bc6",
+        "previous": {
+          "answer": [
+            "1.0"
+          ],
+          "evidence": [
+            "P2"
+          ],
+          "operation": "ratio",
+          "scale": "percent"
+        },
+        "question": "What was the percentage change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019?",
+        "scale": "percent",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "0.0",
+        "before": "1.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c04_r0_adaptive_s0_q04",
+        "context": "9a43ac474979cb7ecf516b5a8e7849ee",
+        "donor": "4ff6daa82c801aec0ba99bc66c830bc6",
+        "gain": "-1.0",
+        "harm": "1",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.12094635712870178",
+        "raw_after": "0.0",
+        "recipient": "30971c97bde0b00c35bc356eac854635",
+        "rep": "0",
+        "step": "1"
+      },
+      "recipient": {
+        "id": "30971c97bde0b00c35bc356eac854635",
+        "order": 6,
+        "question": "What was the change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "1.0"
+          ],
+          "calculation": "",
+          "derivation": "",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T8', 'C2']",
+            "['T8', 'C3']",
+            "['T9', 'C2']",
+            "['T9', 'C3']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "percent",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "0.9"
+          ],
+          "calculation": "",
+          "derivation": "Subtract 2018 weighted average number of shares outstanding including dilutive effect of share options from 2019's value.",
+          "evidence": [
+            "T8C2",
+            "T8C3"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "difference",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "4ff6daa82c801aec0ba99bc66c830bc6",
+        "id": "30971c97bde0b00c35bc356eac854635",
+        "predicted_before_error": 0.7515942129549318,
+        "proposal": {
+          "answer": [
+            "1.0"
+          ],
+          "calculation": "",
+          "derivation": "",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T8', 'C2']",
+            "['T8', 'C3']",
+            "['T9', 'C2']",
+            "['T9', 'C3']"
+          ],
+          "issues": [],
+          "operation": "difference",
+          "scale": "percent",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.9166666666666666,
+          "period_overlap": true,
+          "same_operation": false,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c04_r0_adaptive_s0_q04",
+          "request_sha256": "32aa5b25748a1660602ddd60a6123ef85954180591ee34b2b85627627a4daa60",
+          "seconds": 1.9357211829628795,
+          "status": "ok",
+          "tokens": 972
+        }
+      },
+      "source": {
+        "id": "9a43ac474979cb7ecf516b5a8e7849ee",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "NOTE 26 – EARNINGS PER SHARE AND DIVIDEND PER SHARE"
+          },
+          {
+            "order": 2,
+            "text": "When calculating diluted earnings per share for 2018 and 2017, RSUs have been omitted as they are out-of-the-money and thus anti-dilutive, but the RSUs may potentially dilute earnings per share in the future. Please refer to note 3 for information on the RSU share options."
+          }
+        ],
+        "questions": [
+          {
+            "id": "1eefb8a6e023d742f3afec9d7fe47974",
+            "order": 1,
+            "question": "Why have RSUs been omitted when calculating diluted earnings per share for 2018 and 2017?"
+          },
+          {
+            "id": "09310d9e9059dc5a998344ed5b321da5",
+            "order": 2,
+            "question": "What information does note 3 provide?"
+          },
+          {
+            "id": "4b3da5e65da1ec752806e0f145a93544",
+            "order": 3,
+            "question": "What are the types of earnings/(loss) per share provided in the table?"
+          },
+          {
+            "id": "c1b603a70e0ae7c693dd5ee6faae8185",
+            "order": 4,
+            "question": "In which year was the weighted average number of shares largest?"
+          },
+          {
+            "id": "30971c97bde0b00c35bc356eac854635",
+            "order": 6,
+            "question": "What was the change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019?"
+          },
+          {
+            "id": "4ff6daa82c801aec0ba99bc66c830bc6",
+            "order": 8,
+            "question": "What was the percentage change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019?"
+          }
+        ],
+        "source_index": 4,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "2019",
+            "2018",
+            "2017"
+          ],
+          [
+            "EARNINGS PER SHARE",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Net profit/(loss) for the year (USDm)",
+            "166.0",
+            "-34.8",
+            "2.4"
+          ],
+          [
+            "Million shares",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Weighted average number of shares",
+            "74.3",
+            "73.4",
+            "62.3"
+          ],
+          [
+            "Weighted average number of treasury shares",
+            "-0.3",
+            "-0.3",
+            "-0.3"
+          ],
+          [
+            "Weighted average number of shares outstanding",
+            "74.0",
+            "73.1",
+            "62.0"
+          ],
+          [
+            "Dilutive effect of outstanding share options",
+            "0.0",
+            "-",
+            "-"
+          ],
+          [
+            "Weighted average number of shares outstanding incl. dilutive effect of share options",
+            "74.0",
+            "73.1",
+            "62.0"
+          ],
+          [
+            "Basic earnings/(loss) per share (USD)",
+            "2.24",
+            "-0.48",
+            "0.04"
+          ],
+          [
+            "Diluted earnings/(loss) per share (USD)",
+            "2.24",
+            "-0.48",
+            "0.04"
+          ]
+        ]
+      },
+      "source_number": 5,
+      "step": 1
+    },
+    {
+      "audit_diagnosis": {
+        "category": "source_binding_and_aggregation",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Revised answer uses a different reporting column and a single asset instead of total current assets. Original current-liability selection also includes a noncurrent row; evaluator tie does not imply equivalence."
+      },
+      "category": "tie",
+      "context_id": "dc9d58a4e24a74d52f719372c1a16e7f",
+      "disclosure": {
+        "answer": 17.7,
+        "answer_type": "arithmetic",
+        "derivation": "(16.6/93.8 ) * 100",
+        "id": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "previous": {
+          "answer": [
+            "21.5"
+          ],
+          "evidence": [],
+          "operation": "ratio",
+          "scale": "percent"
+        },
+        "question": "What is the percentage of adjustment to the balance of as reported prepaid expenses and other current assets?",
+        "scale": "percent",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "0.0",
+        "before": "0.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c00_r0_adaptive_s1_q05",
+        "context": "dc9d58a4e24a74d52f719372c1a16e7f",
+        "donor": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "gain": "0.0",
+        "harm": "0",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.12849429022036898",
+        "raw_after": "0.0",
+        "recipient": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "rep": "0",
+        "step": "2"
+      },
+      "recipient": {
+        "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "order": 8,
+        "question": "What is the ratio of total current assets balance, as reported, to total current liabilities balance, as reported?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "1.22"
+          ],
+          "calculation": "",
+          "derivation": "The ratio of the as reported receivables ($840.4 million) to the as reported other accrued liabilities ($691.6 million).",
+          "evidence": [
+            "T1C1",
+            "T5C1"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "million",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "0.94"
+          ],
+          "calculation": "",
+          "derivation": "Calculate the total current assets by summing up the as reported values of receivables, inventories, and prepaid expenses. Then, calculate the total current liabilities by summing up the as reported values of other accrued liabilities and other noncurrent liabilities. Finally, divide the total current assets by the total current liabilities.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T1', 'C1', 'T2', 'C1', 'T3', 'C1']",
+            "['T4', 'C1', 'T5', 'C1', 'T6', 'C1']"
+          ],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "predicted_before_error": 0.7622737183712793,
+        "proposal": {
+          "answer": [
+            "1.22"
+          ],
+          "calculation": "",
+          "derivation": "The ratio of the as reported receivables ($840.4 million) to the as reported other accrued liabilities ($691.6 million).",
+          "evidence": [
+            "T1C1",
+            "T5C1"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "million",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.36363636363636365,
+          "period_overlap": false,
+          "same_operation": true,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c00_r0_adaptive_s1_q05",
+          "request_sha256": "08fbedec29f94ee57522445602e24fb0d21607e74c0f0692e7c3a12f31bc3ee7",
+          "seconds": 2.2095525909680873,
+          "status": "ok",
+          "tokens": 1192
+        }
+      },
+      "source": {
+        "id": "dc9d58a4e24a74d52f719372c1a16e7f",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "We utilized a comprehensive approach to evaluate and document the impact of the guidance on our current accounting policies and practices in order to identify material differences, if any, that would result from applying the new requirements to our revenue contracts. We did not identify any material differences resulting from applying the new requirements to our revenue contracts. In addition, we did not identify any significant changes to our business processes, systems, and controls to support recognition and disclosure requirements under the new guidance. We adopted the provisions of Topic 606 in fiscal 2019 utilizing the modified retrospective method. We recorded a $0.5 million cumulative effect adjustment, net of tax, to the opening balance of fiscal 2019 retained earnings, a decrease to receivables of $7.6 million, an increase to inventories of $2.8 million, an increase to prepaid expenses and other current assets of $6.9 million, an increase to other accrued liabilities of $1.4 million, and an increase to other noncurrent liabilities of $0.2 million. The adjustments primarily related to the timing of recognition of certain customer charges, trade promotional expenditures, and volume discounts."
+          },
+          {
+            "order": 2,
+            "text": "The effect of the changes made to our Consolidated Balance Sheet as of May 26, 2019 for the adoption of Topic 606 was as follows:"
+          },
+          {
+            "order": 3,
+            "text": "Notes to Consolidated Financial Statements - (Continued) Fiscal Years Ended May 26, 2019, May 27, 2018, and May 28, 2017 (columnar dollars in millions except per share amounts)"
+          }
+        ],
+        "questions": [
+          {
+            "id": "a1b54eff7de3dc7bfab148325c7a940b",
+            "order": 1,
+            "question": "What method did the company use when Topic 606 in fiscal 2019 was adopted?"
+          },
+          {
+            "id": "e1ebf2222c9950fbf5375e54a65729f2",
+            "order": 2,
+            "question": "How much was the cumulative-effect adjustment to the opening balance of fiscal 2019 retained earnings?"
+          },
+          {
+            "id": "7c510956809977a550837006a464fd91",
+            "order": 3,
+            "question": "What are the balances (without Adoption of Topic 606, in millions) of inventories and other accrued liabilities, respectively?"
+          },
+          {
+            "id": "200c49c9af38ccc05eb04a1b4f96e34c",
+            "order": 4,
+            "question": "What is the percentage of adjustment to the balance of as reported prepaid expenses and other current assets?"
+          },
+          {
+            "id": "218914f020d11b337a73438eac532cd0",
+            "order": 6,
+            "question": "What is the percentage change of the balance of inventories after being adjusted?"
+          },
+          {
+            "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+            "order": 8,
+            "question": "What is the ratio of total current assets balance, as reported, to total current liabilities balance, as reported?"
+          }
+        ],
+        "source_index": 0,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "Current assets",
+            "As Reported",
+            "Adjustments",
+            "Balances without Adoption of Topic 606"
+          ],
+          [
+            "Receivables, less allowance for doubtful accounts",
+            "$831.7",
+            "$8.7",
+            "$840.4"
+          ],
+          [
+            "Inventories .",
+            "1,571.7",
+            "(3.1)",
+            "1,568.6"
+          ],
+          [
+            "Prepaid expenses and other current assets",
+            "93.8",
+            "(16.6)",
+            "77.2"
+          ],
+          [
+            "Current liabilities",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Other accrued liabilities",
+            "691.6",
+            "(1.1)",
+            "690.5"
+          ],
+          [
+            "Other noncurrent liabilities .",
+            "1,951.8",
+            "(2.5)",
+            "1,949.3"
+          ]
+        ]
+      },
+      "source_number": 1,
+      "step": 2
+    },
+    {
+      "audit_diagnosis": {
+        "category": "unchanged_wrong_aggregation",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Same incorrect output retains noncurrent liabilities in the current-liability denominator. No evidence that the disclosure resolved that distinction."
+      },
+      "category": "tie",
+      "context_id": "dc9d58a4e24a74d52f719372c1a16e7f",
+      "disclosure": {
+        "answer": 17.7,
+        "answer_type": "arithmetic",
+        "derivation": "(16.6/93.8 ) * 100",
+        "id": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "previous": {
+          "answer": [
+            "21.5"
+          ],
+          "evidence": [],
+          "operation": "ratio",
+          "scale": "percent"
+        },
+        "question": "What is the percentage of adjustment to the balance of as reported prepaid expenses and other current assets?",
+        "scale": "percent",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "0.0",
+        "before": "0.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c00_r1_adaptive_s0_q05",
+        "context": "dc9d58a4e24a74d52f719372c1a16e7f",
+        "donor": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "gain": "0.0",
+        "harm": "0",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.12849429022036898",
+        "raw_after": "0.0",
+        "recipient": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "rep": "1",
+        "step": "1"
+      },
+      "recipient": {
+        "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "order": 8,
+        "question": "What is the ratio of total current assets balance, as reported, to total current liabilities balance, as reported?"
+      },
+      "rep": 1,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "0.94"
+          ],
+          "calculation": "",
+          "derivation": "Sum the as reported values of receivables, inventories, and prepaid expenses to get the total current assets, then divide by the total current liabilities as reported.",
+          "evidence": [
+            "T1C2",
+            "T2C2",
+            "T3C2",
+            "T4C0",
+            "T5C2",
+            "T6C2"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "sum",
+          "scale": "million",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "0.94"
+          ],
+          "calculation": "",
+          "derivation": "Calculate the ratio of total current assets (receivables, inventories, prepaid expenses) to total current liabilities (other accrued liabilities, other noncurrent liabilities) as reported.",
+          "evidence": [],
+          "invalid_evidence": [
+            "['T1', 'C1', 'T2', 'C1', 'T3', 'C1']",
+            "['T4', 'C1', 'T5', 'C1', 'T6', 'C1']"
+          ],
+          "issues": [],
+          "operation": "ratio",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "200c49c9af38ccc05eb04a1b4f96e34c",
+        "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+        "predicted_before_error": 0.7622737183712793,
+        "proposal": {
+          "answer": [
+            "0.94"
+          ],
+          "calculation": "",
+          "derivation": "Sum the as reported values of receivables, inventories, and prepaid expenses to get the total current assets, then divide by the total current liabilities as reported.",
+          "evidence": [
+            "T1C2",
+            "T2C2",
+            "T3C2",
+            "T4C0",
+            "T5C2",
+            "T6C2"
+          ],
+          "invalid_evidence": [],
+          "issues": [],
+          "operation": "sum",
+          "scale": "million",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.36363636363636365,
+          "period_overlap": false,
+          "same_operation": true,
+          "same_scale": false
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c00_r1_adaptive_s0_q05",
+          "request_sha256": "dc67e54d260ba939c1473e24a1c81eeff1e80d1fbb07b0868ddde515fc14171f",
+          "seconds": 2.785191172035411,
+          "status": "ok",
+          "tokens": 1137
+        }
+      },
+      "source": {
+        "id": "dc9d58a4e24a74d52f719372c1a16e7f",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "We utilized a comprehensive approach to evaluate and document the impact of the guidance on our current accounting policies and practices in order to identify material differences, if any, that would result from applying the new requirements to our revenue contracts. We did not identify any material differences resulting from applying the new requirements to our revenue contracts. In addition, we did not identify any significant changes to our business processes, systems, and controls to support recognition and disclosure requirements under the new guidance. We adopted the provisions of Topic 606 in fiscal 2019 utilizing the modified retrospective method. We recorded a $0.5 million cumulative effect adjustment, net of tax, to the opening balance of fiscal 2019 retained earnings, a decrease to receivables of $7.6 million, an increase to inventories of $2.8 million, an increase to prepaid expenses and other current assets of $6.9 million, an increase to other accrued liabilities of $1.4 million, and an increase to other noncurrent liabilities of $0.2 million. The adjustments primarily related to the timing of recognition of certain customer charges, trade promotional expenditures, and volume discounts."
+          },
+          {
+            "order": 2,
+            "text": "The effect of the changes made to our Consolidated Balance Sheet as of May 26, 2019 for the adoption of Topic 606 was as follows:"
+          },
+          {
+            "order": 3,
+            "text": "Notes to Consolidated Financial Statements - (Continued) Fiscal Years Ended May 26, 2019, May 27, 2018, and May 28, 2017 (columnar dollars in millions except per share amounts)"
+          }
+        ],
+        "questions": [
+          {
+            "id": "a1b54eff7de3dc7bfab148325c7a940b",
+            "order": 1,
+            "question": "What method did the company use when Topic 606 in fiscal 2019 was adopted?"
+          },
+          {
+            "id": "e1ebf2222c9950fbf5375e54a65729f2",
+            "order": 2,
+            "question": "How much was the cumulative-effect adjustment to the opening balance of fiscal 2019 retained earnings?"
+          },
+          {
+            "id": "7c510956809977a550837006a464fd91",
+            "order": 3,
+            "question": "What are the balances (without Adoption of Topic 606, in millions) of inventories and other accrued liabilities, respectively?"
+          },
+          {
+            "id": "200c49c9af38ccc05eb04a1b4f96e34c",
+            "order": 4,
+            "question": "What is the percentage of adjustment to the balance of as reported prepaid expenses and other current assets?"
+          },
+          {
+            "id": "218914f020d11b337a73438eac532cd0",
+            "order": 6,
+            "question": "What is the percentage change of the balance of inventories after being adjusted?"
+          },
+          {
+            "id": "80d7a9cd564cbd87a5bd261b263ab09f",
+            "order": 8,
+            "question": "What is the ratio of total current assets balance, as reported, to total current liabilities balance, as reported?"
+          }
+        ],
+        "source_index": 0,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "Current assets",
+            "As Reported",
+            "Adjustments",
+            "Balances without Adoption of Topic 606"
+          ],
+          [
+            "Receivables, less allowance for doubtful accounts",
+            "$831.7",
+            "$8.7",
+            "$840.4"
+          ],
+          [
+            "Inventories .",
+            "1,571.7",
+            "(3.1)",
+            "1,568.6"
+          ],
+          [
+            "Prepaid expenses and other current assets",
+            "93.8",
+            "(16.6)",
+            "77.2"
+          ],
+          [
+            "Current liabilities",
+            "",
+            "",
+            ""
+          ],
+          [
+            "Other accrued liabilities",
+            "691.6",
+            "(1.1)",
+            "690.5"
+          ],
+          [
+            "Other noncurrent liabilities .",
+            "1,951.8",
+            "(2.5)",
+            "1,949.3"
+          ]
+        ]
+      },
+      "source_number": 1,
+      "step": 1
+    },
+    {
+      "audit_diagnosis": {
+        "category": "unnecessary_regeneration",
+        "kind": "Source/trace-based development analysis, not an annotated causal error label",
+        "rationale": "Already correct 2017 sales/marketing answer changed formatting only after unrelated 2019 R&D feedback. No correctness benefit."
+      },
+      "category": "tie",
+      "context_id": "33295076b558d53b86fd6e5537022af6",
+      "disclosure": {
+        "answer": [
+          "6,577"
+        ],
+        "answer_type": "span",
+        "derivation": "",
+        "id": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "previous": {
+          "answer": [
+            "6,577"
+          ],
+          "evidence": [
+            "T2C2"
+          ],
+          "operation": "lookup",
+          "scale": "million"
+        },
+        "question": "What was the research and development expense in 2019?",
+        "scale": "million",
+        "source": "TAT-QA annotation disclosed by this inspection only"
+      },
+      "offline_metric": {
+        "accepted": "True",
+        "after": "1.0",
+        "before": "1.0",
+        "bin": "lexical",
+        "call_id": "evaluation_c01_r0_adaptive_s1_q02",
+        "context": "33295076b558d53b86fd6e5537022af6",
+        "donor": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "gain": "0.0",
+        "harm": "0",
+        "help": "0",
+        "method": "adaptive",
+        "predicted_gain": "0.05130215285675341",
+        "raw_after": "1.0",
+        "recipient": "77ccdc4a2f152ed1708466fec79576fb",
+        "rep": "0",
+        "step": "2"
+      },
+      "recipient": {
+        "id": "77ccdc4a2f152ed1708466fec79576fb",
+        "order": 3,
+        "question": "What was the sales and marketing expense in 2017?"
+      },
+      "rep": 0,
+      "repair": {
+        "accepted": true,
+        "after": {
+          "answer": [
+            "9,184"
+          ],
+          "calculation": "",
+          "derivation": "The sales and marketing expense in 2017 is shown in cell T4C3 as $9,184 million.",
+          "evidence": [],
+          "invalid_evidence": [
+            "T4",
+            "T5"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "before": {
+          "answer": [
+            "9184"
+          ],
+          "calculation": "",
+          "derivation": "Sales and marketing expense for 2017 is given in the table under the row 'Sales and marketing' and column 'July 29, 2017'.",
+          "evidence": [
+            "P2"
+          ],
+          "invalid_evidence": [
+            "T4",
+            "T1"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "donor": "414b4ef29d5fb8114a86f0d8a33ddace",
+        "id": "77ccdc4a2f152ed1708466fec79576fb",
+        "predicted_before_error": 0.6530552291421856,
+        "proposal": {
+          "answer": [
+            "9,184"
+          ],
+          "calculation": "",
+          "derivation": "The sales and marketing expense in 2017 is shown in cell T4C3 as $9,184 million.",
+          "evidence": [],
+          "invalid_evidence": [
+            "T4",
+            "T5"
+          ],
+          "issues": [],
+          "operation": "lookup",
+          "scale": "million",
+          "valid": true
+        },
+        "relation": {
+          "bin": "lexical",
+          "evidence_overlap": false,
+          "lexical_similarity": 0.2,
+          "period_overlap": false,
+          "same_operation": true,
+          "same_scale": true
+        },
+        "usage": {
+          "attempts": 1,
+          "call_id": "evaluation_c01_r0_adaptive_s1_q02",
+          "request_sha256": "f5fee47caa15e4719a3a282856de3a320bd02324fb6a352081f56e05cf7dee92",
+          "seconds": 1.7715380399022251,
+          "status": "ok",
+          "tokens": 1322
+        }
+      },
+      "source": {
+        "id": "33295076b558d53b86fd6e5537022af6",
+        "paragraphs": [
+          {
+            "order": 1,
+            "text": "Research and Development (“R&D”), Sales and Marketing, and General and Administrative (“G&A”) Expenses"
+          },
+          {
+            "order": 2,
+            "text": "R&D, sales and marketing, and G&A expenses are summarized in the following table (in millions, except percentages):"
+          },
+          {
+            "order": 3,
+            "text": "R&D Expenses R&D expenses increased due to higher headcount-related expenses and, to a lesser extent, higher acquisition-related costs, higher contracted services and higher discretionary spending."
+          },
+          {
+            "order": 4,
+            "text": "We continue to invest in R&D in order to bring a broad range of products to market in a timely fashion. If we believe that we are unable to enter a particular market in a timely manner with internally developed products, we may purchase or license technology from other businesses, or we may partner with or acquire businesses as an alternative to internal R&D."
+          },
+          {
+            "order": 5,
+            "text": "Sales and Marketing Expenses Sales and marketing expenses increased due to higher headcount-related expenses, higher discretionary spending and, to a lesser extent, higher contracted services and higher acquisition-related costs, partially offset by lower share-based compensation expense."
+          },
+          {
+            "order": 6,
+            "text": "G&A Expenses G&A expenses decreased due to a benefit from the $400 million litigation settlement with Arista Networks and lower contracted services, partially offset by higher discretionary spending and higher headcount-related expenses."
+          },
+          {
+            "order": 7,
+            "text": "Effect of Foreign Currency In fiscal 2019, foreign currency fluctuations, net of hedging, decreased the combined R&D, sales and marketing, and G&A expenses by approximately $233 million, or 1.3%, compared with fiscal 2018. In fiscal 2018, foreign currency fluctuations, net of hedging, increased the combined R&D, sales and marketing, and G&A expenses by approximately $93 million, or 0.5%, compared with fiscal 2017."
+          }
+        ],
+        "questions": [
+          {
+            "id": "dab39e83b38ceedf0797e94847ca2dae",
+            "order": 1,
+            "question": "Which years does the table provide information for R&D, sales and marketing, and G&A expenses?"
+          },
+          {
+            "id": "414b4ef29d5fb8114a86f0d8a33ddace",
+            "order": 2,
+            "question": "What was the research and development expense in 2019?"
+          },
+          {
+            "id": "77ccdc4a2f152ed1708466fec79576fb",
+            "order": 3,
+            "question": "What was the sales and marketing expense in 2017?"
+          },
+          {
+            "id": "d2ef385fb6762a435a8c25c3163a94e8",
+            "order": 4,
+            "question": "What was the change in the research and development expense between 2017 and 2018?"
+          },
+          {
+            "id": "41cad27df8a55d8e3200e8238bf41641",
+            "order": 6,
+            "question": "How many years did general and administrative expense exceed $2,000 million?"
+          },
+          {
+            "id": "109554b000f2e51b7bbb7d4f85dca24a",
+            "order": 8,
+            "question": "What was the percentage change in the total expenses between 2017 and 2018?"
+          }
+        ],
+        "source_index": 1,
+        "source_split": "test_gold",
+        "table": [
+          [
+            "",
+            "",
+            "Years Ended",
+            "",
+            "",
+            ""
+          ],
+          [
+            "",
+            "July 27, 2019",
+            "July 28, 2018",
+            "July 29, 2017",
+            "Variance in Dollars",
+            "Variance in Percent"
+          ],
+          [
+            "Research and development",
+            "$ 6,577",
+            "$ 6,332",
+            "$6,059",
+            "$245",
+            "4%"
+          ],
+          [
+            "Percentage of revenue",
+            "12.7%",
+            "12.8%",
+            "12.6%",
+            "",
+            ""
+          ],
+          [
+            "Sales and marketing",
+            "9,571",
+            "9,242",
+            "9,184",
+            "329",
+            "4%"
+          ],
+          [
+            "Percentage of revenue",
+            "18.4%",
+            "18.7%",
+            "19.1%",
+            "",
+            ""
+          ],
+          [
+            "General and administrative",
+            "1,827",
+            "2,144",
+            "1,993",
+            "(317)",
+            "(15)%"
+          ],
+          [
+            "Percentage of revenue",
+            "3.5%",
+            "4.3%",
+            "4.2%",
+            "",
+            ""
+          ],
+          [
+            "Total",
+            "$17,975",
+            "$17,718",
+            "$17,236",
+            "$257",
+            "1%"
+          ],
+          [
+            "Percentage of revenue",
+            "34.6%",
+            "35.9%",
+            "35.9%",
+            "",
+            ""
+          ]
+        ]
+      },
+      "source_number": 2,
+      "step": 2
+    }
+  ],
+  "selection": "First three helpful, harmful and score-tied adaptive accepted transfers in frozen source, replica, step, recipient order. These prior evaluation sources are now development evidence, not fresh."
+}
