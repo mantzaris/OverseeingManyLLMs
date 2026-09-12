@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v2_c01_coarse_s1_q00",
+      "elapsed_seconds": 0.7061533890664577,
+      "request_sha256": "0bc10b78fa68c0dde2d4102a9d25ff20ef64885f850e3e1df7d02940e0f86a8a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[\"at cost less accumulated amortisation\"],\"scale\":\"\",\"rep\":null}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789206090,
+        "id": "chatcmpl-fb3d59b1fb45463ca96b56d833a13b13",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 17,
+          "prompt_tokens": 1322,
+          "prompt_tokens_details": null,
+          "total_tokens": 1339
+        }
+      },
+      "started_utc": "2026-09-12T09:41:29.794352+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v2_c01_coarse_s1_q00",
+  "input_tokens": 1322,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the source. Return JSON: {\"answer\":[\"value or text\"],\"scale\":\"million\",\"evidence\":[\"T2C1\"],\"derivation\":\"brief explanation\",\"rep\":{\"op\":\"difference\",\"refs\":[\"T2C1\",\"T2C2\"],\"expression\":\"x0-x1\",\"scale\":\"million\"}}. rep is null for text answers or unsupported arithmetic. refs must identify actual numeric table cells, xi reads refs[i] exactly. Operation: lookup, sum, difference, average, percentage_change, ratio, count. Average: (x0+x1)/2. Percentage change: (later-earlier)/earlier*100. Ratios are dimensionless. Scale: \"\", thousand, million, billion, percent. Use the source's amount scale. A rate already displayed with % has percent scale. Match requested rows and periods. Do not use a displayed variance for other periods. Do not put numeric operands into expression: use xi. Return concise JSON only.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 |\n|---|---|---|---|---|---|\n| T0 |  | Rights and licenses | Internally generated software | Software under development | Total |\n| T1 | Movements | $'000 | $'000 | $'000 | $'000 |\n| T2 | At 30 June 2019 |  |  |  |  |\n| T3 | Cost | 13 | 12,961 | 16,284 | 29,259 |\n| T4 | Accumulated amortisation | - | (5,580) | - | (5,580) |\n| T5 | Netbook amount | 13 | 7,381 | 16,284 | 23,678 |\n| T6 | 30 June 2018 |  |  |  |  |\n| T7 | Opening net book amount at 1 July 2017 | 43 | 442 | 8,053 | 8,538 |\n| T8 | Additions – externally acquired | 13 | - | 5,253 | 5,266 |\n| T9 | Additions – internally developed | - | - | 1,256 | 1,256 |\n| T10 | Amortisation | (43) | (1,746) | - | (1,789) |\n| T11 | Transfers | - | 7,563 | (7,563) | - |\n| T12 | Transfer between classes | - | 744 | - | 744 |\n| T13 | Disposals | - | (618) | (490) | (1,108) |\n| T14 | Closing net book amount | 13 | 6,385 | 6,509 | 12,907 |\n| T15 | At 30 June 2018 |  |  |  |  |\n| T16 | Cost | 104 | 9,555 | 6,509 | 16,168 |\n| T17 | Accumulated amortisation | (91) | (3,170) | - | (3,261) |\n| T18 | Net book amount | 13 | 6,385 | 6,509 | 12,907 |\nP1: 11 Intangible assets (continued)\nP2: (a) Intangible assets\nP3: RIGHTS AND LICENCES\nP4: Certain licences that NEXTDC possesses have an indefinite useful life and are carried at cost less impairment losses and are subject to impairment review at least annually and whenever there is an indication that it may be impaired.\nP5: Other licences that NEXTDC acquires are carried at cost less accumulated amortisation and accumulated impairment losses. Amortisation is recognised on a straight-line basis over the estimated useful life. The estimated useful life and amortisation method are reviewed at the end of each annual reporting period.\nP6: INTERNALLY GENERATED SOFTWARE\nP7: Internally developed software is capitalised at cost less accumulated amortisation. Amortisation is calculated using the straight-line basis over the asset’s useful economic life which is generally two to three years. Their useful lives and potential impairment are reviewed at the end of each financial year.\nP8: SOFTWARE UNDER DEVELOPMENT\nP9: Costs incurred in developing products or systems and costs incurred in acquiring software and licenses that will contribute to future period financial benefits through revenue generation and/or cost reduction are capitalised to software and systems. Costs capitalised include external direct costs of materials and services and employee costs.\nP10: Assets in the course of construction include only those costs directly attributable to the development phase and are only recognised following completion of technical feasibility and where the Group has an intention and ability to use the asset.\nQUESTION: How was internally developed software capitalised?\nDRAFT: {'answer': ['at cost less accumulated amortisation'], 'scale': '', 'rep': None}\nVerified only for these sibling questions: [{'question': 'Which year have greater total accumulated amortisation? ', 'answer': ['2019'], 'scale': '', 'derivation': '2019: (5,580) vs 2018: (3,261)'}, {'question': 'What was the percentage change in cost of software under development between 2018 and 2019?', 'answer': 150.18, 'scale': 'percent', 'derivation': '(16,284 - 6,509) / 6,509 '}]\nReconsider your own answer without copying incompatible periods, rows or operations.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 941110,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "0bc10b78fa68c0dde2d4102a9d25ff20ef64885f850e3e1df7d02940e0f86a8a",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v1_c00_corrected_s0_q02",
+      "elapsed_seconds": 2.2610101539175957,
+      "request_sha256": "52a797e60a81e363441a805c43cbd2f9b5c0c948503f998f3bd615fea186af74",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\": [\"2.9\"], \"scale\": \"percent\", \"evidence\": [\"T2C2\"], \"derivation\": \"The 2018 rate of inflation is given in cell T2C2.\", \"rep\": {\"entity\": \"T2\", \"metric\": \"C2\", \"op\": \"lookup\", \"refs\": [\"T2\"], \"periods\": [\"2018\"], \"unit\": \"percent\", \"scale\": \"\", \"expression\": \"x0\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789204784,
+        "id": "chatcmpl-1741100613be4467b2d86fb01605548b",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 105,
+          "prompt_tokens": 653,
+          "prompt_tokens_details": null,
+          "total_tokens": 758
+        }
+      },
+      "started_utc": "2026-09-12T09:19:44.028838+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v1_c00_corrected_s0_q02",
+  "input_tokens": 653,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Return JSON for the financial question: answer (list), scale (\"\", thousand, million, billion, percent), evidence (IDs), derivation (under 25 words), and rep. For a supported numerical computation, rep is {\"entity\":\"subject\", \"metric\":\"row metric\", \"op\":\"lookup|sum|difference|percentage_change|ratio|average|count\", \"refs\":[\"T2C1\",\"T2C2\"], \"periods\":[\"2019\",\"2018\"], \"unit\":\"currency|shares|count|dimensionless|other\", \"scale\":\"million\", \"expression\":\"x0-x1\"}. xi means the numeric value of refs[i], read directly from the immutable source. Order operands deliberately. Constants allowed: 0,1,100,1000,1000000,1000000000 and divisor counts. Percentage change is (later-earlier)/earlier*100; ratio is numerator/denominator. Match the question's requested periods, row, and scale. Do not use a displayed variance for different periods. For text answers or unsupported computations set rep:null and still answer the question. No external facts or text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nQUESTION: How much is the 2018 rate of inflation?\nDRAFT: {'answer': ['2.9'], 'scale': '', 'derivation': 'The 2018 rate of inflation is given in cell T2C2.', 'rep': None}\nOnly THIS question was inspected. Reconstruct a source-supported computation consistent with the acquired annotation. Do not change source values. If the annotation cannot be explained by the source, use rep:null. ANNOTATION: {'question': 'How much is the 2018 rate of inflation?', 'answer': ['2.9'], 'scale': 'percent', 'derivation': ''}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 941002,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "52a797e60a81e363441a805c43cbd2f9b5c0c948503f998f3bd615fea186af74",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v1_c05_corrected_s1_q04",
+      "elapsed_seconds": 5.244684407953173,
+      "request_sha256": "8c35e22b8639242942a227c4111172d836d5ec1e9d217d4ea9d095353f0cac54",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answer\": [\"1\"],\n  \"scale\": \"\",\n  \"evidence\": [\"T4C2\"],\n  \"derivation\": \"In 2019, Finished goods ($224.2 million) exceeded $200 million. In 2018, Finished goods ($138.4 million) did not exceed $200 million.\",\n  \"rep\": {\"entity\": \"T4C2\", \"metric\": \"T4C1\", \"op\": \"difference\", \"refs\": [\"T4C2\", \"200\"], \"periods\": [\"2019\", \"2018\"], \"unit\": \"million\", \"scale\": \"\", \"expression\": \"x0-200\", \"source_id\": \"635228dd-44ae-4ad2-817d-2079a9ceb320\", \"source_version\": \"da816ec8892b07b752a2405bfd1368768d9c05ec65901fd7f4291d6e8694e29c\"}\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789205293,
+        "id": "chatcmpl-937aea1331e14afba2aec4bc7edbed7f",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 262,
+          "prompt_tokens": 855,
+          "prompt_tokens_details": null,
+          "total_tokens": 1117
+        }
+      },
+      "started_utc": "2026-09-12T09:28:13.416513+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v1_c05_corrected_s1_q04",
+  "input_tokens": 855,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Return JSON for the financial question: answer (list), scale (\"\", thousand, million, billion, percent), evidence (IDs), derivation (under 25 words), and rep. For a supported numerical computation, rep is {\"entity\":\"subject\", \"metric\":\"row metric\", \"op\":\"lookup|sum|difference|percentage_change|ratio|average|count\", \"refs\":[\"T2C1\",\"T2C2\"], \"periods\":[\"2019\",\"2018\"], \"unit\":\"currency|shares|count|dimensionless|other\", \"scale\":\"million\", \"expression\":\"x0-x1\"}. xi means the numeric value of refs[i], read directly from the immutable source. Order operands deliberately. Constants allowed: 0,1,100,1000,1000000,1000000000 and divisor counts. Percentage change is (later-earlier)/earlier*100; ratio is numerator/denominator. Match the question's requested periods, row, and scale. Do not use a displayed variance for different periods. For text answers or unsupported computations set rep:null and still answer the question. No external facts or text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | March 31, |  |\n| T1 |  | 2019 | 2018 |\n| T2 | Raw materials | $74.5 | $26.0 |\n| T3 | Work in process | 413.0 | 311.8 |\n| T4 | Finished goods | 224.2 | 138.4 |\n| T5 | Total inventories | $711.7 | $476.2 |\nP1: Inventories\nP2: The components of inventories consist of the following (in millions):\nP3: Inventories are valued at the lower of cost and net realizable value using the first-in, first-out method. Inventory impairment charges establish a new cost basis for inventory and charges are not subsequently reversed to income even if circumstances later suggest that increased carrying amounts are recoverable.\nQUESTION: How many years did the amount of Finished goods exceed $200 million?\nDRAFT: {'answer': ['1'], 'scale': 'million', 'derivation': 'In 2019, Finished goods ($224.2 million) exceeded $200 million. In 2018, Finished goods ($138.4 million) did not exceed $200 million.', 'rep': {'entity': 'T4C2', 'metric': 'T4C1', 'op': 'difference', 'refs': ['T4C2', 'T3C2'], 'periods': ['2019', '2018'], 'unit': 'million', 'scale': 'million', 'expression': 'x0-200', 'source_id': '635228dd-44ae-4ad2-817d-2079a9ceb320', 'source_version': 'da816ec8892b07b752a2405bfd1368768d9c05ec65901fd7f4291d6e8694e29c'}}\nOnly THIS question was inspected. Reconstruct a source-supported computation consistent with the acquired annotation. Do not change source values. If the annotation cannot be explained by the source, use rep:null. ANNOTATION: {'question': 'How many years did the amount of Finished goods exceed $200 million?', 'answer': '1', 'scale': '', 'derivation': '2019'}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 941514,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8c35e22b8639242942a227c4111172d836d5ec1e9d217d4ea9d095353f0cac54",
+  "status": "ok"
+}

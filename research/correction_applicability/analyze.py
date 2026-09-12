@@ -3,7 +3,6 @@ import csv,collections
 from pathlib import Path
 import numpy as np
 from research.adaptive_correction_transfer.scoring import score
-from research.adaptive_correction_transfer.data import annotations
 from .common import ART,read,write
 from .representation import contract
 from .experiment import METHODS
@@ -18,7 +17,9 @@ def interval(vals):
  return dict(mean=float(a.mean()),low=float(np.quantile(b,.025)),high=float(np.quantile(b,.975)),wins=int((a>1e-9).sum()),ties=int((abs(a)<=1e-9).sum()),losses=int((a< -1e-9).sum()),contexts=len(a))
 
 def analyze(revision='v1'):
- cs=read(ART/'development_manifest.json')['contexts'];gold=annotations('train');rows=[];changes=[];patches=[];representations=[];missing=[]
+ from .backend import load
+ contract=load(revision).contract
+ cs=read(ART/'development_manifest.json')['contexts'];gold=read(ART/'offline_development_annotations.json')['annotations'];rows=[];changes=[];patches=[];representations=[];missing=[]
  for i,c in enumerate(cs):
   g=gold[c['id']];initial_path=ART/('development_'+revision)/('c%02d_initial.json'%i)
   if initial_path.exists():
@@ -37,6 +38,7 @@ def analyze(revision='v1'):
      changes.append(dict(context=c['id'],source_index=i,method=method,step=e.get('step',0),recipient=q,before=b,after=a,candidate=cand,help=int(a>b),harm=int(a<b),accepted=h['accepted'],rejected_harm=int(not h['accepted'] and cand<b),reasons=';'.join(h['reasons']),kind=h.get('kind','generated')))
    scores={q:score(a,g[q]) for q,a in final.items()};em=sum(s['em'] for s in scores.values());assert initial_em+local+helped-harmed==em,p
    row=dict(context=c['id'],source_index=i,method=method,answers=len(final),initial_em=initial_em,em=em,f1=sum(s['f1'] for s in scores.values()),scale=sum(s['scale'] for s in scores.values()),joint=sum(s['joint'] for s in scores.values()),whole_context=int(all(s['em'] for s in scores.values())),unfinished=sum(s['unfinished'] for s in scores.values()),inspections=r['inspections'],local_gain=local,helpful_events=helped,harmful_events=harmed,accepted=accepted,rejected=rejected,sibling_fixed=sum(score(base[q],g[q])['em']==0 and scores[q]['em']==1 for q in never),sibling_harmed=sum(score(base[q],g[q])['em']==1 and scores[q]['em']==0 for q in never),calls=len(r['calls']),tokens=sum(u['tokens'] for u in r['calls']),seconds=sum(u['seconds'] for u in r['calls']))
+   row.update(attempts=sum(u['attempts'] for u in r['calls']),extraction_calls=len(init['calls']),extraction_attempts=sum(u['attempts'] for u in init['calls']),extraction_tokens=sum(u['tokens'] for u in init['calls']),extraction_seconds=sum(u['seconds'] for u in init['calls']))
    row['accuracy']=em/len(final);rows.append(row)
  summary=[]
  for method in METHODS:

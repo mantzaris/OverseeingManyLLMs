@@ -13,10 +13,14 @@ def rank(c,initial):
  model=Learner(read(OLD/'initial_model.json'),learn=False)
  return [q['id'] for q in sorted(c['questions'],key=lambda q:(-model.base(q,initial[q['id']]),q['order'],q['id']))][:2]
 
-def generate(cid,c,q,seed,old,mode,feedback=None):
- p,u=request(cid,messages(c,q,old,mode,feedback),seed);return parse(p,c),u
+def generate(cid,c,q,seed,old,mode,feedback=None,engine=None):
+ from .backend import load
+ engine=engine or load('v1')
+ p,u=request(cid,engine.messages(c,q,old,mode,feedback),seed);return engine.parse(p,c),u
 
-def run(c,initial,inspection_ids,inspector,generate_fn,method):
+def run(c,initial,inspection_ids,inspector,generate_fn,method,engine=None):
+ from .backend import load
+ engine=engine or load('v1');contract=engine.contract;executed_answer=engine.executed_answer;infer=engine.infer;apply_to_state=engine.apply_to_state
  start=time.monotonic();state=copy.deepcopy(initial);questions={q['id']:q for q in c['questions']};calls=[];events=[];seen=[];feedbacks=[];snapshots=[copy.deepcopy(state)]
  # Independent execution/verification policies operate on every not-to-be-inspected output,
  # selected without correction information. This is a fixed budget-two protocol.
@@ -30,6 +34,7 @@ def run(c,initial,inspection_ids,inspector,generate_fn,method):
    if not reasons:
     try:candidate=executed_answer(candidate,c)
     except Exception as e:reasons.append('execution:'+str(e))
+   if method=='verify' and reasons==['unsupported_representation'] and getattr(engine,'supported_spans',lambda c,a:False)(c,candidate):reasons=[]
    if not reasons:state[q['id']]=candidate
    revisions.append(dict(recipient=q['id'],before=old,candidate=candidate,after=copy.deepcopy(state[q['id']]),accepted=not reasons,reasons=reasons,usage=usage))
   events.append(dict(kind='independent_verification',revisions=revisions))
@@ -49,6 +54,8 @@ def run(c,initial,inspection_ids,inspector,generate_fn,method):
  return dict(context_id=c['id'],method=method,inspection_ids=inspection_ids,inspections=len(seen),initial=initial,answers=state,events=events,snapshots=snapshots,calls=calls,seconds=time.monotonic()-start)
 
 def pilot(revision='v1',limit=12):
+ from .backend import load
+ engine=load(revision)
  contexts=read(ART/'development_manifest.json')['contexts'][:limit];gold=annotations('train')
  for i,c in enumerate(contexts):
   path=ART/('development_'+revision)/('c%02d_initial.json'%i)
@@ -56,15 +63,15 @@ def pilot(revision='v1',limit=12):
   else:
    old=read(OLD/'development_v4'/('c%02d.json'%i))['initial'];initial={};calls=[]
    for n,q in enumerate(c['questions']):
-    extracted,u=generate('dev_'+revision+'_c%02d_q%02d_extract'%(i,n),c,q,931000+i*100+n,old[q['id']],'extract');a=copy.deepcopy(old[q['id']]);a.update({k:extracted[k] for k in ['rep','representation_errors','representation_valid']});a['extraction_proposal']=extracted;initial[q['id']]=a;calls.append(u)
+    extracted,u=generate('dev_'+revision+'_c%02d_q%02d_extract'%(i,n),c,q,931000+i*100+n,old[q['id']],'extract',engine=engine);a=copy.deepcopy(old[q['id']]);a.update({k:extracted[k] for k in ['rep','representation_errors','representation_valid']});a['extraction_proposal']=extracted;initial[q['id']]=a;calls.append(u)
    write(path,dict(context_id=c['id'],answers=initial,calls=calls,original_initial_source='adaptive_correction_transfer/development_v4/c%02d.json'%i))
   order=rank(c,initial);qindex={q['id']:n for n,q in enumerate(c['questions'])}
   for method in METHODS:
    output=ART/('development_'+revision)/('c%02d_%s.json'%(i,method))
    if output.exists():continue
    def gen(mode,q,old,feedback,step):
-    callid='dev_'+revision+'_c%02d_%s_s%d_q%02d'%(i,mode,step,qindex[q['id']]);return generate(callid,c,q,941000+i*100+step*10+qindex[q['id']],old,mode,feedback)
-   result=run(c,initial,order,Inspector(gold[c['id']],2),gen,method);result['source_index']=i;write(output,result)
+    callid='dev_'+revision+'_c%02d_%s_s%d_q%02d'%(i,mode,step,qindex[q['id']]);return generate(callid,c,q,941000+i*100+step*10+qindex[q['id']],old,mode,feedback,engine=engine)
+   result=run(c,initial,order,Inspector(gold[c['id']],2),gen,method,engine);result['source_index']=i;write(output,result)
   print('Completed development context',i+1,'/',limit,flush=True)
 if __name__=='__main__':
  import argparse

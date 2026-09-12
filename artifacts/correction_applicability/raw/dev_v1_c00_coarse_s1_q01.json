@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v1_c00_coarse_s1_q01",
+      "elapsed_seconds": 4.668259285972454,
+      "request_sha256": "b98c8b73ecfbe77aca18c596ebd91fa83c207a38091770a7920a661ef21be4e3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answer\": [\"2.9\"],\n  \"scale\": \"percent\",\n  \"derivation\": \"The 2019 rate of inflation is given in cell T2C2.\",\n  \"rep\": {\n    \"entity\": \"Rate of inflation\",\n    \"metric\": \"T2\",\n    \"op\": \"lookup\",\n    \"refs\": [\"T2C2\"],\n    \"periods\": [\"2019\"],\n    \"unit\": \"percent\",\n    \"scale\": \"\",\n    \"expression\": \"x0\",\n    \"source_id\": \"e78f8b29-6085-43de-b32f-be1a68641be3\",\n    \"source_version\": \"d54b313210769e67d774a71554f9b8f6fedf45d4ab231b4c9bcf8b65353e85a7\"\n  }\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789204769,
+        "id": "chatcmpl-9d71187dc05c49c786351504478ae1f7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 220,
+          "prompt_tokens": 848,
+          "prompt_tokens_details": null,
+          "total_tokens": 1068
+        }
+      },
+      "started_utc": "2026-09-12T09:19:28.952838+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v1_c00_coarse_s1_q01",
+  "input_tokens": 848,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Return JSON for the financial question: answer (list), scale (\"\", thousand, million, billion, percent), evidence (IDs), derivation (under 25 words), and rep. For a supported numerical computation, rep is {\"entity\":\"subject\", \"metric\":\"row metric\", \"op\":\"lookup|sum|difference|percentage_change|ratio|average|count\", \"refs\":[\"T2C1\",\"T2C2\"], \"periods\":[\"2019\",\"2018\"], \"unit\":\"currency|shares|count|dimensionless|other\", \"scale\":\"million\", \"expression\":\"x0-x1\"}. xi means the numeric value of refs[i], read directly from the immutable source. Order operands deliberately. Constants allowed: 0,1,100,1000,1000000,1000000000 and divisor counts. Percentage change is (later-earlier)/earlier*100; ratio is numerator/denominator. Match the question's requested periods, row, and scale. Do not use a displayed variance for different periods. For text answers or unsupported computations set rep:null and still answer the question. No external facts or text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nQUESTION: How much is the 2019 rate of inflation?\nDRAFT: {'answer': ['2.9'], 'scale': 'percent', 'derivation': 'The 2019 rate of inflation is given in cell T2C2.', 'rep': {'entity': 'Rate of inflation', 'metric': 'T2', 'op': 'lookup', 'refs': ['T2C2'], 'periods': ['2019'], 'unit': 'percent', 'scale': '', 'expression': 'x0', 'source_id': 'e78f8b29-6085-43de-b32f-be1a68641be3', 'source_version': 'd54b313210769e67d774a71554f9b8f6fedf45d4ab231b4c9bcf8b65353e85a7'}}\nACQUIRED SAME-CONTEXT CORRECTIONS, verified only for their own questions: [{'question': 'How much is the 2018 rate of inflation?', 'answer': ['2.9'], 'scale': 'percent', 'derivation': ''}, {'question': 'What does the Weighted average actuarial assumptions consist of?', 'answer': ['Rate of inflation', 'Rate of increase in salaries', 'Discount rate'], 'scale': '', 'derivation': ''}]\nReconsider your distinct answer; preserve its own periods, entity and units.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 941011,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "b98c8b73ecfbe77aca18c596ebd91fa83c207a38091770a7920a661ef21be4e3",
+  "status": "ok"
+}

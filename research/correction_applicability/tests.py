@@ -31,6 +31,8 @@ class Boundaries(unittest.TestCase):
   _,_,_,p=setup();p['to_expression']='x0/0';r=answer(['T1C2','T1C3'],'x1-x0',periods=['2018','2017']);e=propose(C,Q2,r,p);self.assertFalse(e['accepted']);self.assertEqual(e['after'],r)
  def test_missing_representation_retained(self):
   _,_,_,p=setup();a={'answer':['7'],'scale':'million','rep':None};e=propose(C,Q2,a,p);self.assertEqual(e['after'],a);self.assertFalse(e['accepted'])
+ def test_partial_representation_rolls_back(self):
+  _,_,_,p=setup();a={'answer':['273'],'scale':'million','rep':{'source_version':p['source_version'],'refs':['T1C2','T1C3'],'expression':'x1-x0','op':'difference'}};e=propose(C,Q2,a,p);self.assertFalse(e['accepted']);self.assertEqual(e['after'],a)
  def test_inspection_budget_and_hidden_label_isolation(self):
   old,correct,f,_=setup();initial={j['id']:copy.deepcopy(old) for j in C['questions']};gold={j['id']:dict(f,answer='245') for j in C['questions']}
   def gen(*args):return correct,{'call_id':'controlled','tokens':0,'seconds':0,'attempts':0}

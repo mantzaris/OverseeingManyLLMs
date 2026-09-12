@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v2_c06_q00_extract",
+      "elapsed_seconds": 2.2785713160410523,
+      "request_sha256": "51f000003b9091e607d972192b4a926b277adbf18d8022c6126f10fbaccf54c3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[\"4.75\",\"percent\",\"3.57\",\"percent\"],\"scale\":\"percent\",\"rep\":null,\"evidence\":[\"T2C6\",\"T2C7\"],\"derivation\":\"The trend rates for Canadian post-retirement plans will increase linearly to 4.75% in 2029 and grading down to an ultimate rate of 3.57% per annum in 2040 and thereafter as stated in P2.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789206300,
+        "id": "chatcmpl-a869c23522eb43ed83fc839726fc1f36",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 99,
+          "prompt_tokens": 734,
+          "prompt_tokens_details": null,
+          "total_tokens": 833
+        }
+      },
+      "started_utc": "2026-09-12T09:45:00.703519+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v2_c06_q00_extract",
+  "input_tokens": 734,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the source. Return JSON: {\"answer\":[\"value or text\"],\"scale\":\"million\",\"evidence\":[\"T2C1\"],\"derivation\":\"brief explanation\",\"rep\":{\"op\":\"difference\",\"refs\":[\"T2C1\",\"T2C2\"],\"expression\":\"x0-x1\",\"scale\":\"million\"}}. rep is null for text answers or unsupported arithmetic. refs must identify actual numeric table cells, xi reads refs[i] exactly. Operation: lookup, sum, difference, average, percentage_change, ratio, count. Average: (x0+x1)/2. Percentage change: (later-earlier)/earlier*100. Ratios are dimensionless. Scale: \"\", thousand, million, billion, percent. Use the source's amount scale. A rate already displayed with % has percent scale. Match requested rows and periods. Do not use a displayed variance for other periods. Do not put numeric operands into expression: use xi. Return concise JSON only.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 |\n|---|---|---|---|---|---|\n| T0 | As at December 31, | Pension 2019 | Other 2019 | Pension 2018 | Other 2018 |\n| T1 | Actuarial benefit obligation |  |  |  |  |\n| T2 | Discount rate | 3.20% | 2.95% to 3.20% | 3.80% | 3.80% to 4.00% |\n| T3 | Benefit costs for the year ended |  |  |  |  |\n| T4 | Discount rate | 3.90% | 3.90% to 4.00% | 3.60% | 3.25% to 3.60% |\n| T5 | Future salary growth | 2.50% | N/A | 2.50% | N/A |\n| T6 | Health care cost trend rate | N/A | 3.49% to 5.49% | N/A | 4.50% |\n| T7 | Other medical trend rates | N/A | 4.00% to 4.56% | N/A | 4.50% |\nP1: The following are the significant assumptions adopted in measuring the Company’s pension and other benefit obligations:\nP2: For certain Canadian post-retirement plans the above trend rates are applicable for 2019 to 2024 which will increase linearly to 4.75% in 2029 and grading down to an ultimate rate of 3.57% per annum in 2040 and thereafter.\nQUESTION: How will the trend rates for Canadian post-retirement plans change between the current period to 2029 and in 2040 and after respectively?\nDRAFT: {'answer': ['4.75', 'percent', '3.57', 'percent'], 'scale': 'percent', 'rep': None}\nRepresent the draft using source-cell operands. Preserve its stated answer. If its computation cannot be supported, rep:null. Do not force execution to match a wrong draft.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 931600,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "51f000003b9091e607d972192b4a926b277adbf18d8022c6126f10fbaccf54c3",
+  "status": "ok"
+}

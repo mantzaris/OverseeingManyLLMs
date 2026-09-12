@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v2_c10_verify_s0_q02",
+      "elapsed_seconds": 1.5214901869185269,
+      "request_sha256": "52f08b35f79157e0b85c8779f8aa14dafec1b101173636da1ae6d68803ab04fa",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[\"6.1\",\"6.1\",\"6.1\"],\"scale\":\"\",\"evidence\":[\"T2C1\",\"T2C2\",\"T2C3\"],\"derivation\":\"Exact values from the table for each year\",\"rep\":null}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789206538,
+        "id": "chatcmpl-b74b17d73c79484aa837c13f5c77f9a2",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 52,
+          "prompt_tokens": 898,
+          "prompt_tokens_details": null,
+          "total_tokens": 950
+        }
+      },
+      "started_utc": "2026-09-12T09:48:57.595508+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v2_c10_verify_s0_q02",
+  "input_tokens": 898,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the source. Return JSON: {\"answer\":[\"value or text\"],\"scale\":\"million\",\"evidence\":[\"T2C1\"],\"derivation\":\"brief explanation\",\"rep\":{\"op\":\"difference\",\"refs\":[\"T2C1\",\"T2C2\"],\"expression\":\"x0-x1\",\"scale\":\"million\"}}. rep is null for text answers or unsupported arithmetic. refs must identify actual numeric table cells, xi reads refs[i] exactly. Operation: lookup, sum, difference, average, percentage_change, ratio, count. Average: (x0+x1)/2. Percentage change: (later-earlier)/earlier*100. Ratios are dimensionless. Scale: \"\", thousand, million, billion, percent. Use the source's amount scale. A rate already displayed with % has percent scale. Match requested rows and periods. Do not use a displayed variance for other periods. Do not put numeric operands into expression: use xi. Return concise JSON only.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  |  | Year ended March 31,  |  |\n| T1 |  | 2019 | 2018 | 2017 |\n| T2 | Expected term (in years) | 6.1 | 6.1 | 6.1 |\n| T3 | Risk-free interest rate | 2.7% | 2.2% | 2.1% |\n| T4 | Expected volatility | 41.5% | 39.8% | 41.0% |\n| T5 | Expected dividend yield   | —% | —% | —% |\n| T6 | Estimated grant date fair value per ordinary share | $37.15 | $26.52 | $20.22 |\nP1: Share Options\nP2: The Company estimates the fair value of employee share options on the date of grant using the Black-Scholes option-pricing model, which requires the use of highly subjective estimates and assumptions. The Company estimates the expected term of share options for service-based awards utilizing the “Simplified Method,” as it does not have sufficient historical share option exercise information on which to base its estimate. The Simplified Method is based on the average of the vesting tranches and the contractual life of each grant.\nP3: The risk-free interest rate is based on a treasury instrument whose term is consistent with the expected life of the share option. Since there was no public market for the Company’s ordinary shares prior to the IPO and as its shares have been publicly traded for a limited time, the Company determined the expected volatility for options granted based on an analysis of reported data for a peer group of companies that issue options with substantially similar terms.\nP4: The expected volatility of options granted has been determined using an average of the historical volatility measures of this peer group of companies. The Company uses an expected dividend rate of zero as it currently has no history or expectation of paying dividends on its ordinary shares. The fair value of the Company’s ordinary shares at the time of each share option grant is based on the closing market value of its ordinary shares on the grant date.\nP5: The fair value of each share option grant was estimated using the Black-Scholes option-pricing model that used the following weighted-average assumptions:\nP6: The weighted-average per share fair value of share options granted to employees during the years ended March 31, 2019, 2018 and 2017 was $16.48, $11.12 and $8.65 per share, respectively.\nQUESTION: What was the Expected term (in years) in 2019, 2018 and 2017 respectively?\nDRAFT: {'answer': ['6.1', '6.1', '6.1'], 'scale': '', 'rep': None}\nIndependently reread the source and verify this question. Check rows, periods, units and arithmetic. No sibling correction is available.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 942002,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "52f08b35f79157e0b85c8779f8aa14dafec1b101173636da1ae6d68803ab04fa",
+  "status": "ok"
+}

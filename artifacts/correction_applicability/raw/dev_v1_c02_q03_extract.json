@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v1_c02_q03_extract",
+      "elapsed_seconds": 1.7005785200744867,
+      "request_sha256": "9186ad7eeec54c38f56ba38607817f614beb2498095ce4dec8ba05f8e62bbbb2",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\": [\"7\"], \"scale\": \"\", \"derivation\": \"The product categories are listed in P1 and P8, which include Drinkable Kefir, Cheese, Cream and other, ProBugs Kefir, Other dairy, Frozen Kefir, and Net Sales. There are 7 categories in total.\", \"rep\": null}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789204926,
+        "id": "chatcmpl-6816a322f7084a57ac82f116043f396c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 74,
+          "prompt_tokens": 1198,
+          "prompt_tokens_details": null,
+          "total_tokens": 1272
+        }
+      },
+      "started_utc": "2026-09-12T09:22:06.469500+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v1_c02_q03_extract",
+  "input_tokens": 1198,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Return JSON for the financial question: answer (list), scale (\"\", thousand, million, billion, percent), evidence (IDs), derivation (under 25 words), and rep. For a supported numerical computation, rep is {\"entity\":\"subject\", \"metric\":\"row metric\", \"op\":\"lookup|sum|difference|percentage_change|ratio|average|count\", \"refs\":[\"T2C1\",\"T2C2\"], \"periods\":[\"2019\",\"2018\"], \"unit\":\"currency|shares|count|dimensionless|other\", \"scale\":\"million\", \"expression\":\"x0-x1\"}. xi means the numeric value of refs[i], read directly from the immutable source. Order operands deliberately. Constants allowed: 0,1,100,1000,1000000,1000000000 and divisor counts. Percentage change is (later-earlier)/earlier*100; ratio is numerator/denominator. Match the question's requested periods, row, and scale. Do not use a displayed variance for different periods. For text answers or unsupported computations set rep:null and still answer the question. No external facts or text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 |\n|---|---|---|---|---|---|\n| T0 |  |  | 2019 |  | 2018 |\n| T1 | In thousands | $ | % | $ | % |\n| T2 | Drinkable Kefir other than ProBugs | $ 71,822 | 77% | $ 78,523 | 76% |\n| T3 | Cheese | 11,459 | 12% | 11,486 | 11% |\n| T4 | Cream and other | 4,228 | 4% | 5,276 | 5% |\n| T5 | ProBugs Kefir | 2,780 | 3% | 2,795 | 3% |\n| T6 | Other dairy | 1,756 | 2% | 3,836 | 4% |\n| T7 | Frozen Kefir (a) | 1,617 | 2% | 1,434 | 1% |\n| T8 | Net Sales | $ 93,662 | 100% | $ 103,350 | 100% |\nP1: Our product categories are:\nP2: Drinkable Kefir, sold in a variety of organic and non-organic sizes, flavors, and types, including low fat, non-fat, whole milk, protein, and BioKefir (a 3.5 oz. kefir with additional probiotic cultures).\nP3: European-style soft cheeses, including farmer cheese in resealable cups.\nP4: Cream and other, which consists primarily of cream, a byproduct of making our kefir.\nP5: ProBugs, a line of kefir products designed for children.\nP6: Other Dairy, which includes Cupped Kefir and Icelandic Skyr, a line of strained kefir and yogurt products in resealable cups.\nP7: Frozen Kefir, available in soft serve and pint-size containers.\nP8: Lifeway has determined that it has one reportable segment based on how our chief operating decision maker manages the business and in a manner consistent with the internal reporting provided to the chief operating decision maker. The chief operating decision maker, who is responsible for allocating resources and assessing our performance, has been identified collectively as the Chief Financial Officer, the Chief Operating Officer, the Chief Executive Officer, and Chairperson of the board of directors. Substantially all of our consolidated revenues relate to the sale of cultured dairy products that we produce using the same processes and materials and are sold to consumers through a common network of distributors and retailers in the United States.\nP9: Net sales of products by category were as follows for the years ended December 31:\nP10: (a) Includes Lifeway Kefir Shop sales\nP11: Significant Customers – Sales are predominately to companies in the retail food industry located within the United States. Two major customers accounted for approximately 22% and 21% of net sales for the years ended December 31, 2019 and 2018, respectively. Two major customers accounted for approximately 17% of accounts receivable as of December 31, 2019 and 2018. Our ten largest customers as a group accounted for approximately 57% and 59% of net sales for the years ended December 31, 2019 and 2018, respectively.\nQUESTION: How many product categories are available?\nDRAFT: {'answer': ['7'], 'scale': '', 'derivation': 'The product categories are listed in P1 and P8, which include Drinkable Kefir, Cheese, Cream and other, ProBugs Kefir, Other dairy, Frozen Kefir, and Net Sales. There are 7 categories in total.', 'rep': None}\nExtract the draft's numerical interpretation. Preserve its answer even if execution differs. Bind operands to the actual cells; rep:null if the draft has no supported numerical interpretation.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 931203,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "9186ad7eeec54c38f56ba38607817f614beb2498095ce4dec8ba05f8e62bbbb2",
+  "status": "ok"
+}

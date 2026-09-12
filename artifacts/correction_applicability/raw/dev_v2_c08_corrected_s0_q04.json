@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "dev_v2_c08_corrected_s0_q04",
+      "elapsed_seconds": 1.5654690279625356,
+      "request_sha256": "4adc74e4ac707ebc1a36322ddcd35b9f3b9f034b05ab8d1c62efa10ee5d80e73",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[\"7569.5\"],\"scale\":\"thousand\",\"evidence\":[\"T6C3\",\"T6C1\"],\"derivation\":\"(x1-x0)/2\",\"rep\":{\"op\":\"average\",\"refs\":[\"T6C3\",\"T6C1\"],\"expression\":\"(x1-x0)/2\",\"scale\":\"thousand\"}}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789206458,
+        "id": "chatcmpl-c54b293e659c4ef3869ab2a5cb5f8765",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 73,
+          "prompt_tokens": 1274,
+          "prompt_tokens_details": null,
+          "total_tokens": 1347
+        }
+      },
+      "started_utc": "2026-09-12T09:47:38.797032+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "dev_v2_c08_corrected_s0_q04",
+  "input_tokens": 1274,
+  "request": {
+    "max_tokens": 440,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the source. Return JSON: {\"answer\":[\"value or text\"],\"scale\":\"million\",\"evidence\":[\"T2C1\"],\"derivation\":\"brief explanation\",\"rep\":{\"op\":\"difference\",\"refs\":[\"T2C1\",\"T2C2\"],\"expression\":\"x0-x1\",\"scale\":\"million\"}}. rep is null for text answers or unsupported arithmetic. refs must identify actual numeric table cells, xi reads refs[i] exactly. Operation: lookup, sum, difference, average, percentage_change, ratio, count. Average: (x0+x1)/2. Percentage change: (later-earlier)/earlier*100. Ratios are dimensionless. Scale: \"\", thousand, million, billion, percent. Use the source's amount scale. A rate already displayed with % has percent scale. Match requested rows and periods. Do not use a displayed variance for other periods. Do not put numeric operands into expression: use xi. Return concise JSON only.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 | C5 |\n|---|---|---|---|---|---|---|\n| T0 |  |  | Net additions (losses) |  | % of penetration(2) |  |\n| T1 |  | Years ended |  |  |  |  |\n| T2 |  | August 31, | August 31, | August 31, | August 31, | August 31, |\n| T3 |  | 2019 | 2019 | 2018(1) | 2019 | 2018 |\n| T4 | Primary service units | 1,810,366 | (56,552) | (55,849) |  |  |\n| T5 | Internet service customers | 788,243 | 5,966 | 14,173 | 44.7 | 44.7 |\n| T6 | Video service customers | 649,583 | (39,185) | (37,035) | 36.8 | 39.3 |\n| T7 | Telephony service customers | 372,540 | (23,333) | (32,987) | 21.1 | 22.6 |\nP1: CUSTOMER STATISTICS\nP2: (1) Excludes adjustments related to the migration to the new customer management system implemented during the third quarter of fiscal 2018.\nP3: (2) As a percentage of homes passed.\nP4: During the third quarter of fiscal 2018, the Canadian broadband services segment implemented a new customer management system, replacing 22 legacy systems. While the customer management system was still in the stabilization phase, contact center congestion resulted in lower services activations during most of the fourth quarter of fiscal 2018 and the first quarter of 2019. Contact center and marketing operations had returned to normal at the end of the first quarter of 2019.\nP5: Variations of each services are also explained as follows:\nP6: INTERNET Fiscal 2019 Internet service customers net additions stood at 5,966 compared to 14,173 for the prior year mainly due to: • the ongoing interest in high speed offerings; • the sustained interest in bundle offers; and • the increased demand from Internet resellers; partly offset by • competitive offers in the industry; and • contact center congestion during the stabilization period of the new customer management system.\nP7: VIDEO Fiscal 2019 video service customers net losses stood at 39,185 compared to 37,035 for the prior year as a result of: • highly competitive offers in the industry; • a changing video consumption environment; and • contact center congestion during the stabilization period of the new customer management system; partly offset by • customers' ongoing interest in digital advanced video services; and • customers' interest in video services bundled with fast Internet offerings.\nP8: TELEPHONY Fiscal 2019 telephony service customers net losses amounted to 23,333 compared to 32,987 for the prior year mainly due to: • technical issues with telephony activations following the implementation of the new customer management system which were resolved at the end of the first quarter; • increasing wireless penetration in North America and various unlimited offers launched by wireless operators causing some customers to cancel their landline telephony services for wireless telephony services only; partly offset by • growth in the business sector; and • more telephony bundles due to additional promotional activity in the second half of fiscal 2019.\nP9: DISTRIBUTION OF CUSTOMERS At August 31, 2019, 69% of the Canadian broadband services segment's customers enjoyed \"double play\" or \"triple play\" bundled services.\nQUESTION: What was the average increase / (decrease) in the internet service customers between 2018 and 2019?\nDRAFT: {'answer': ['7569.5'], 'scale': 'thousand', 'rep': {'op': 'average', 'refs': ['T6C3', 'T6C1'], 'expression': '(x1-x0)/2', 'scale': 'thousand'}}\nOnly THIS question has been inspected. Explain its annotation with a source-bound computation; rep:null if unexplained. Do not alter source values. Annotation: {'answer': 10069.5, 'scale': '', 'derivation': '(5,966 + 14,173) / 2'}",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 941804,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "4adc74e4ac707ebc1a36322ddcd35b9f3b9f034b05ab8d1c62efa10ee5d80e73",
+  "status": "ok"
+}
