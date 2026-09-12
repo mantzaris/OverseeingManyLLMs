@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_ac543087b7cc0bc8ab7cc531f117e33f",
+      "elapsed_seconds": 0.8570716709364206,
+      "request_sha256": "cbb7e53bd7a47422ae51ef204a18621657cbdd69567058ed58fd9a2f438227ad",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[506,480],\"scale\":\"thousand\",\"evidence\":\"T4C1, T4C2\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211682,
+        "id": "chatcmpl-0bae0ecdbb5042c7b278ff20659f1c94",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 30,
+          "prompt_tokens": 548,
+          "prompt_tokens_details": null,
+          "total_tokens": 578
+        }
+      },
+      "started_utc": "2026-09-12T11:14:42.272274+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_ac543087b7cc0bc8ab7cc531f117e33f",
+  "input_tokens": 548,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | Year Ended December 31, |  |  |\n| T1 |  | 2018 | 2017 | Change |\n| T2 | Other Operating Data |  |  |  |\n| T3 | Average Revenue Per Unit (ARPU) |  |  |  |\n| T4 | ARPU—on-net | $ 480 | $ 506 | (5.1)% |\n| T5 | ARPU—off-net | $ 1,155 | $ 1,239 | (6.8)% |\n| T6 | Average price per megabit | $ 0.82 | $ 1.11 | (25.9)% |\n| T7 | Customer Connections—end of period |  |  |  |\n| T8 | On-net | 68,770 | 61,334 | 12.1% |\n| T9 | Off-net | 10,974 | 9,953 | 10.3% |\nP1: Year Ended December 31, 2018 Compared to the Year Ended December 31, 2017\nP2: Our management reviews and analyzes several key financial measures in order to manage our business and assess the quality of and variability of our service revenue, operating results and cash flows. The following summary tables present a comparison of our results of operations with respect to certain key financial measures. The comparisons illustrated in the tables are discussed in greater detail below.\nORIGINAL QUESTION: What are the respective APRU from on-net in 2017 and 2018 respectively?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912371,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "cbb7e53bd7a47422ae51ef204a18621657cbdd69567058ed58fd9a2f438227ad",
+  "status": "ok"
+}

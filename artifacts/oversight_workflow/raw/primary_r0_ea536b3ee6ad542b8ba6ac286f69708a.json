@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_ea536b3ee6ad542b8ba6ac286f69708a",
+      "elapsed_seconds": 1.5217851690249518,
+      "request_sha256": "ad222db35b152b79204651106a7df13cc9e147adba2cf020ffe4ca27d4f8c1fc",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[20.4],\"scale\":\"million\",\"evidence\":\"T3C1-T3C2\",\"derivation\":\"The change in restricted cash from 2018 to 2019 is calculated as 96.2 - 76.8 = 19.4 million.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211743,
+        "id": "chatcmpl-3ea7f3e24aaf48e6af85b74b00006958",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 68,
+          "prompt_tokens": 505,
+          "prompt_tokens_details": null,
+          "total_tokens": 573
+        }
+      },
+      "started_utc": "2026-09-12T11:15:43.738621+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_ea536b3ee6ad542b8ba6ac286f69708a",
+  "input_tokens": 505,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  |  | Year Ended December 31, |  |\n| T1 |  | 2019 | 2018 | 2017 |\n| T2 | Cash and cash equivalents | $1,501.2 | $1,208.7 | $802.1 |\n| T3 | Restricted cash | 76.8 | 96.2 | 152.8 |\n| T4 | Total cash, cash equivalents and restricted cash | $1,578.0 | $1,304.9 | $954.9 |\nP1: AMERICAN TOWER CORPORATION AND SUBSIDIARIES NOTES TO CONSOLIDATED FINANCIAL STATEMENTS (Tabular amounts in millions, unless otherwise disclosed)\nP2: Cash and Cash Equivalents—Cash and cash equivalents include cash on hand, demand deposits and short-term investments with original maturities of three months or less. The Company maintains its deposits at high-quality financial institutions and monitors the credit ratings of those institutions.\nP3: Restricted Cash—Restricted cash includes cash pledged as collateral to secure obligations and all cash whose use is otherwise limited by contractual provisions.\nP4: The reconciliation of cash and cash equivalents and restricted cash reported within the applicable balance sheet that sum to the total of the same such amounts shown in the statements of cash flows is as follows:\nORIGINAL QUESTION: What was the change in restricted cash between 2018 and 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912456,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ad222db35b152b79204651106a7df13cc9e147adba2cf020ffe4ca27d4f8c1fc",
+  "status": "ok"
+}

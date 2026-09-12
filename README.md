@@ -1,5 +1,34 @@
 # OverseeingManyLLMs
 
+## Current paper direction: a user-controlled review queue
+
+The [new review desk](research/oversight_workflow/README.md) lets one user inspect
+concurrent worker answers beside their original source, defer and resume work,
+pause new task starts, and approve then release an exact output version. Optional
+source sessions keep questions together without merging their decisions.
+
+The completed [software evaluation](research/oversight_workflow/EVALUATION.md) uses
+24 fresh TAT-QA financial source contexts, 145 original questions and 290 actual GPU
+answers. All 144 scripted scenarios replay correctly. The interfaces tie under
+ideal scripted review; pausing increases waiting in the lower-load condition.
+Human effectiveness and workload benefits remain unmeasured. See the separate
+[ICAART position-paper draft](paper/oversight_workflow/main.pdf),
+[report](research/oversight_workflow/REPORT.md) and
+[prospective human study](research/oversight_workflow/HUMAN_STUDY.md).
+
+```bash
+python3 -m research.oversight_workflow.prototype.server --port 9041
+bash research/oversight_workflow/reproduce.sh
+bash paper/oversight_workflow/build.sh
+```
+
+Open http://127.0.0.1:9041 for saved-answer replay; no inference is required.
+Dependencies and live-mode limits are documented in the package README. All earlier
+studies, negative findings, clocks and manuscripts below remain preserved.
+
+## Historical research framework
+
+
 A reproducible research framework for allocating one simulated reviewer across LLM agents. It includes measured laboratory HVAC diagnosis, synthetic civilian maintenance, and adapted tau-bench retail workflows on simulated customer records. Review duration, expiring intervention opportunities, risk estimates and operational loss are explicit; supervision is simulated throughout.
 
 Start with the [practical application report](reports/STAGE5_PRACTICAL.md), [source/adaptation table](paper/RETAIL_ADAPTATION.md), and completed [Stage 4 research report](reports/STAGE4_RESEARCH.md), [research draft](paper/RESEARCH_DRAFT.md), [competition report](reports/STAGE3_COMPETITION.md), [Stage 2 report](reports/STAGE2_DEVELOPMENT.md), [core method](paper/CORE_METHOD.md), and [proof-of-concept plan](plan/PROOF_OF_CONCEPT_PLAN.md). The runtime uses an **RTX 6000 Ada**, the pinned **Qwen2.5-7B-Instruct** model, BF16, and zero CPU offloading. Supervision is simulated. Stage 1's [preserved GPU report](reports/STAGE1_GPU_LIVE.md) records its four-policy zero-loss tie with no corrections.
@@ -8,7 +37,7 @@ Stage 2 adds an offline agreement-based error estimator and a delay-aware greedy
 
 All 56 episodes completed and replayed: **672 experimental generations plus one placement**, with no retries or failures. Calibration had 87 agreeing pairs (12 errors) and nine disagreeing pairs (five errors), so disagreement used pooled fallback. Validation loss totaled 60 for FCFS/uncertainty-first and 62 for myopic/greedy/queue search; each policy corrected two jobs. Queue search and greedy chose identical review orders on all eight scenarios. These ties and negative results are retained.
 
-## Measured HVAC study and current manuscript
+## Measured HVAC study and preserved manuscript
 
 The principal externally grounded application uses **measured FLEXLAB sensor data** with experimentally imposed fault labels. Eight whole days are development and **18 held-out day blocks on one air handler** supply 54 proposal/review pairs. Windows and policy replays are not independent buildings or source cases.
 

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_9371120676b6497d7f014ad5c844ba57",
+      "elapsed_seconds": 1.7750975360395387,
+      "request_sha256": "bd0f4f94f0a61047c19a9e36aedef1391b4e98c6cb429e9eb5017915dfc2d706",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[2],\"scale\":\"thousand\",\"evidence\":[\"T1C1\",\"T1C2\"],\"derivation\":\"In 2019, Accounts receivable was $68,309 thousand and in 2018, it was $76,376 thousand, both exceeding $50,000 thousand for 2 years.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211799,
+        "id": "chatcmpl-a1c7d822dc2a4250857eb85153687a8e",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 81,
+          "prompt_tokens": 371,
+          "prompt_tokens_details": null,
+          "total_tokens": 452
+        }
+      },
+      "started_utc": "2026-09-12T11:16:39.360889+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_9371120676b6497d7f014ad5c844ba57",
+  "input_tokens": 371,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | December 31, 2019 | December 31,2018 |\n| T1 | Accounts receivable | $68,309 | $76,376 |\n| T2 | Less: provision for doubtful receivables | (16,377) | (16,086) |\n| T3 | Accounts receivable, net | $51,932 | $60,290 |\nP1: NAVIOS MARITIME HOLDINGS INC. NOTES TO THE CONSOLIDATED FINANCIAL STATEMENTS (Expressed in thousands of U.S. dollars — except share data)\nP2: NOTE 5: ACCOUNTS RECEIVABLE, NET\nP3: Accounts receivable consisted of the following:\nORIGINAL QUESTION: How many years did Accounts receivable exceed $50,000 thousand?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912504,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "bd0f4f94f0a61047c19a9e36aedef1391b4e98c6cb429e9eb5017915dfc2d706",
+  "status": "ok"
+}

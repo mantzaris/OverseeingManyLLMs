@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r1_bf36dcf35c05932cbf0cad1e27d03fb9",
+      "elapsed_seconds": 1.2540938300080597,
+      "request_sha256": "8e31dbf78f3e6b103fd64deec4f0cde0758e13fcdd76e0ac51ac886ab2316af8",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[0.3],\"scale\":\"percent\",\"evidence\":[[\"T4\",\"C2\"],[\"T4\",\"C3\"]],\"derivation\":\"(59.5-57.6)/57.6 * 100\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211922,
+        "id": "chatcmpl-2aac1ff653c440ad91f825db06071686",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 53,
+          "prompt_tokens": 406,
+          "prompt_tokens_details": null,
+          "total_tokens": 459
+        }
+      },
+      "started_utc": "2026-09-12T11:18:42.700226+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r1_bf36dcf35c05932cbf0cad1e27d03fb9",
+  "input_tokens": 406,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  |  | Year ended December 31, |  |\n| T1 |  | 2019 (1) | 2018 | 2017 |\n| T2 | Software services | $40.2 | $35.9 | $32.8 |\n| T3 | Data and analytics services | 19.3 | 21.7 | 24.0 |\n| T4 | Total related party revenues | $59.5 | $57.6 | $56.8 |\nP1: Consolidated Statements of Earnings and Comprehensive Earnings\nP2: A detail of related party items included in Revenues is as follows (in millions):\nP3: (1) Transactions with FNF are summarized through November 30, 2019, the date after which FNF is no longer considered a related party.\nORIGINAL QUESTION: What was the percentage change in total related party revenues between 2018 and 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 922348,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "8e31dbf78f3e6b103fd64deec4f0cde0758e13fcdd76e0ac51ac886ab2316af8",
+  "status": "ok"
+}

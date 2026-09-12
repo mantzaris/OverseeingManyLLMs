@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_9db7088d9ff2398e66be8c187cfb04d6",
+      "elapsed_seconds": 1.3292878459906206,
+      "request_sha256": "41032efb6db0cb6993e1aa35acd37f35b3214cc5c15de716e1e530538b4c47eb",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[108.07],\"scale\":\"percent\",\"evidence\":[\"T3C1\",\"T3C2\"],\"derivation\":\"(329013-157133)/157133*100\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211814,
+        "id": "chatcmpl-d6450daec2df4ff89d267fe66f4f863d",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 57,
+          "prompt_tokens": 555,
+          "prompt_tokens_details": null,
+          "total_tokens": 612
+        }
+      },
+      "started_utc": "2026-09-12T11:16:54.380430+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_9db7088d9ff2398e66be8c187cfb04d6",
+  "input_tokens": 555,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | December 31, |  |\n| T1 |  | 2018 | 2019 |\n| T2 | Net earnings used for purposes of calculating net income per common share |  |  |\n| T3 | Net earnings from operations | 157,133 | 329,013 |\n| T4 | Basic weighted average number of shares outstanding during the year (thousands) | 52,432 | 49,418 |\n| T5 | Effect of dilutive potential common shares from stock options and restricted shares | 678 | 580 |\n| T6 | Dilutive weighted average number of shares outstanding | 53,110 | 49,999 |\n| T7 | Basic net earnings per share: from operations | 3.00 | 6.66 |\n| T8 | Diluted net earnings per share: | 2.96 | 6.58 |\nP1: NOTE 24. EARNINGS PER SHARE\nP2: Basic net earnings per common share is calculated by dividing net income attributable to common shareholders by the weighted average number of common shares outstanding for that period. The dilutive effect is calculated using the treasury stock method. The calculation of diluted net income per share assumes the exercise of options issued under our stock option plans (and the issuance of shares under our share plans) for periods in which exercises (or issuances) would have a dilutive effect.\nP3: The calculation of basic and diluted net income per share attributable to common shareholders is based on the following data:\nORIGINAL QUESTION: What is the percentage change in Net earnings from operations from 2018 to 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912518,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "41032efb6db0cb6993e1aa35acd37f35b3214cc5c15de716e1e530538b4c47eb",
+  "status": "ok"
+}

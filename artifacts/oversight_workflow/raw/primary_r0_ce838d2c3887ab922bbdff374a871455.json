@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_ce838d2c3887ab922bbdff374a871455",
+      "elapsed_seconds": 0.9767828569747508,
+      "request_sha256": "1ab96a19ca3bc2bd5beeb3fe5953e674ad66d0fd1da04a0b8c2ea3249c76861a",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[700],\"scale\":\"thousand\",\"evidence\":[[\"T3\",\"T4\"]],\"derivation\":\"=3486-4184\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211707,
+        "id": "chatcmpl-fbaa8a9f42c44c05bcb1dcf109dffddd",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 38,
+          "prompt_tokens": 438,
+          "prompt_tokens_details": null,
+          "total_tokens": 476
+        }
+      },
+      "started_utc": "2026-09-12T11:15:07.218867+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_ce838d2c3887ab922bbdff374a871455",
+  "input_tokens": 438,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | 2019 | 2018 |\n| T1 |  | $'000 | $'000 |\n| T2 | Current |  |  |\n| T3 | Trade payables | 3,486 | 4,184 |\n| T4 | Accrued expenses | 6,706 | 2,717 |\n| T5 | GST and employment taxes payable | 2,644 | 1,256 |\n| T6 | Other payables | 6,157 | 4,161 |\n| T7 | Total | 18,993 | 12,318 |\nP1: 9.4. Trade and other payables\nP2: Trade payables are unsecured and are usually paid within 30 days of recognition. Other payables and accruals are paid when amounts fall due. The carrying amounts of trade and other payables are assumed to be the same as their fair values, due to their short-term nature.\nORIGINAL QUESTION: What is the change in Trade payables from 2018 to 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912404,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "1ab96a19ca3bc2bd5beeb3fe5953e674ad66d0fd1da04a0b8c2ea3249c76861a",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_d046f47404c7bac5123b0d27dd27ea1d",
+      "elapsed_seconds": 1.4142304540146142,
+      "request_sha256": "71c9ba8e50c7249bda8140442ce117f6bb0534470e1c27aa72d63beef2d78457",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\": [\"53,330\"], \"scale\": \"thousand\", \"evidence\": \"T3C1\", \"derivation\": \"The net income for 2019 is $53,330 thousand as shown in row T3 column C1 of the table.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211619,
+        "id": "chatcmpl-4627c1763c624dd8a7c9885ed81926d3",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 66,
+          "prompt_tokens": 1173,
+          "prompt_tokens_details": null,
+          "total_tokens": 1239
+        }
+      },
+      "started_utc": "2026-09-12T11:13:39.182038+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_d046f47404c7bac5123b0d27dd27ea1d",
+  "input_tokens": 1173,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 | C5 |\n|---|---|---|---|---|---|---|\n| T0 |  |  |  | Year Ended December 31, |  |  |\n| T1 |  | 2019 | 2018 | 2017 | 2016 | 2015 |\n| T2 | Adjusted EBITDA: |  |  |  |  |  |\n| T3 | Net income | $53,330 | $21,524 | $29,251 | $10,154 | $11,768 |\n| T4 | Adjustments: |  |  |  |  |  |\n| T5 | Interest expense, interest income and other income, net | (8,483) | 503 | 1,133 | (323) | 526 |\n| T6 | Provision for / (benefit from) income taxes | 5,566 | (9,825) | 2,990 | 4,227 | 5,697 |\n| T7 | Amortization and depreciation expense | 22,134 | 21,721 | 17,734 | 6,490 | 5,808 |\n| T8 | Stock-based compensation expense | 20,603 | 13,429 | 7,413 | 4,001 | 4,124 |\n| T9 | Acquisition-related expense | 2,403 | — | 5,895 | 11,098 | 100 |\n| T10 | Litigation expense | 12,754 | 45,729 | 7,212 | 13,387 | 6,347 |\n| T11 | Total adjustments | 54,977 | 71,557 | 42,377 | 38,880 | 22,602 |\n| T12 | Adjusted EBITDA | $108,307 | $93,081 | $71,628 | $49,034 | $34,370 |\nP1: We have included Adjusted EBITDA in this report because it is a key measure that our management uses to understand and evaluate our core operating performance and trends, to generate future operating plans, to make strategic decisions regarding the allocation of capital and to make investments in initiatives that are focused on cultivating new markets for our solutions. We also use certain non-GAAP financial measures, including Adjusted EBITDA, as performance measures under our executive bonus plan. Further, we believe the exclusion of certain expenses in calculating Adjusted EBITDA facilitates comparisons of our operating performance on a period-to-period basis and, in the case of exclusion of acquisition-related expense and certain historical legal expenses, excludes items that we do not consider to be indicative of our core operating performance. Accordingly, we believe that Adjusted EBITDA provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and board of directors.\nP2: Our use of Adjusted EBITDA has limitations as an analytical tool, and you should not consider it in isolation or as a substitute for analysis of our financial results as reported under GAAP. Some of these limitations are: (a) although depreciation and amortization are non-cash charges, the assets being depreciated and amortized may have to be replaced in the future, and Adjusted EBITDA does not reflect cash capital expenditure requirements for such replacements or for new capital expenditure requirements; (b) Adjusted EBITDA does not reflect changes in, or cash requirements for, our working capital needs; (c) Adjusted EBITDA does  may represent a reduction in cash available to us; and (e) other companies, including companies in our industry, may calculate Adjusted EBITDA or similarly titled measures differently, which reduces its usefulness as a comparative measure.\nP3: Because of these and other limitations, you should consider Adjusted EBITDA alongside our other GAAP-based financial performance measures, our net income and our other GAAP financial results. The following table presents a reconciliation of Adjusted EBITDA to net income, the most directly comparable GAAP measure, for each of the periods indicated (in thousands).\nORIGINAL QUESTION: What was the net income in 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912302,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "71c9ba8e50c7249bda8140442ce117f6bb0534470e1c27aa72d63beef2d78457",
+  "status": "ok"
+}

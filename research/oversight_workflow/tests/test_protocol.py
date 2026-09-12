@@ -69,4 +69,47 @@ class ProtocolTests(unittest.TestCase):
         self.cmd('decide',{'id':'a','version':1,'decision':'approve'},False);self.cmd('decide',{'id':'a','version':1,'decision':'defer'})
         self.assertEqual(replay(self.d.events).logical(),self.d.logical())
 
+    def test_replay_resume_clock_never_goes_backwards(self):
+        self.receive();self.cmd('select',{'id':'a'})
+        r=replay(self.d.events);r.command('after-restore','note',{'text':'resumed'})
+        self.assertGreaterEqual(r.events[-1]['at'],self.d.events[-1]['at'])
+        self.assertEqual(r.events[0]['utc'],self.d.events[0]['utc'])
+
+    def test_hidden_label_change_leaves_online_inputs_identical(self):
+        from research.adaptive_correction_transfer.data import context
+        from research.oversight_workflow.inference import messages
+        from research.oversight_workflow.data import task
+        raw=dict(table=dict(uid='ctx',table=[['year','amount'],['2020','12']]),paragraphs=[],questions=[dict(uid='q',order=1,question='What is the 2020 amount?',answer='12',scale='',derivation='secret')])
+        changed=deepcopy(raw);changed['questions'][0].update(answer='999',scale='billion',derivation='different hidden information')
+        a=context(raw,'fixture',0);b=context(changed,'fixture',0)
+        self.assertEqual(a,b);self.assertEqual(messages(a,a['questions'][0]),messages(b,b['questions'][0]))
+        ds=[]
+        for c in (a,b):
+            d=Desk();p=task(c,c['questions'][0],0)
+            d.command('1','offer',p,at=0);d.command('2','admit',{'id':p['id']},at=.1);d.command('3','start',{'id':p['id']},at=.2)
+            d.command('4','receive',{'id':p['id'],'output':OUT},at=.3);ds.append(d.logical())
+        self.assertEqual(ds[0],ds[1])
+
+    def test_racing_revision_and_approval(self):
+        import random
+        for seed in range(40):
+            d=Desk();p=offer()
+            for action,payload in [('offer',p),('admit',{'id':'a'}),('start',{'id':'a'}),('receive',{'id':'a','output':OUT}),('select',{'id':'a'})]:d.command(action,action,payload)
+            jobs=[('revise',{'id':'a','output':{**OUT,'answer':['13']}}),('decide',{'id':'a','version':1,'decision':'approve'})]
+            random.Random(seed).shuffle(jobs)
+            ts=[threading.Thread(target=d.command,args=('race'+action,action,payload)) for action,payload in jobs]
+            for t in ts:t.start()
+            for t in ts:t.join()
+            self.assertFalse(d.command('release','release',{'id':'a','version':2})['ok'])
+            self.assertFalse(d.current_released('a'))
+            self.assertEqual(replay(d.events).logical(),d.logical())
+
+    def test_timed_close_retains_outstanding_and_refuses_late_release(self):
+        self.receive();self.cmd('offer',offer('b'));self.cmd('admit',{'id':'b'});self.cmd('start',{'id':'b'})
+        self.cmd('select',{'id':'a'});self.cmd('close_session')
+        self.cmd('decide',{'id':'a','version':1,'decision':'approve'},False)
+        self.cmd('receive',{'id':'b','output':OUT})
+        self.assertEqual(self.d.counts()['offered'],2);self.assertEqual(self.d.counts()['remaining'],2)
+        self.assertEqual(replay(self.d.events).logical(),self.d.logical())
+
 if __name__=='__main__':unittest.main()

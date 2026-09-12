@@ -6,6 +6,8 @@ from .driver import LiveDriver
 from .inference import answer
 
 def main():
+    if (ART/'live/events.json').exists() or (ART/'collection_complete.json').exists():
+        raise SystemExit('This stage already has live evidence. Use saved-output replay; fresh collection requires a new declared namespace.')
     manifest=read(ART/'frozen/manifest.json');contexts=manifest['contexts']
     live=Desk('sessions');driver=LiveDriver(live,contexts[:2]).start()
     held=False;paused=False;resumed=False;deferred=False;opened=None;selected=None

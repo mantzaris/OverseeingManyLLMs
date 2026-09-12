@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r1_fe4320392585bec48b98562051cbd3e1",
+      "elapsed_seconds": 1.5509419239824638,
+      "request_sha256": "d91b0c2fbdc9a8392ae6a0ea51f815d2ded9132cfb3bfc044c2005eda4ee5f53",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[2019,2018],\"scale\":\"percent\",\"evidence\":\"T2C3, T3C3\",\"derivation\":\"The percentage of plan assets for Debt Securities was 83% for both 2019 and 2018, which exceeds 80%.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211853,
+        "id": "chatcmpl-6dd0cc09726d4fe9aa6eef4995f1d47c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 69,
+          "prompt_tokens": 554,
+          "prompt_tokens_details": null,
+          "total_tokens": 623
+        }
+      },
+      "started_utc": "2026-09-12T11:17:33.682842+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r1_fe4320392585bec48b98562051cbd3e1",
+  "input_tokens": 554,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | Target Allocations | Percentage of Plan Assets at December 31, |  |\n| T1 | Asset Category | 2020 | 2019 | 2018 |\n| T2 | Equity securities | 13% | 13% | 12% |\n| T3 | Debt securities | 83% | 83% | 84% |\n| T4 | Other | 4% | 4% | 4% |\n| T5 | Total | 100% | 100% | 100% |\nP1: NOTES TO CONSOLIDATED FINANCIAL STATEMENTS (in thousands, except for share and per share data)\nP2: Our pension plan asset allocation at December 31, 2019, and 2018, and target allocation for 2020 by asset category are as follows:\nP3: We employ a liability-driven investment strategy whereby a mix of equity and fixed-income investments are used to pursue a derisking strategy which over time seeks to reduce interest rate mismatch risk and other risks while achieving a return that matches or exceeds the growth in projected pension plan liabilities. Risk tolerance is established through careful consideration of plan liabilities and funded status. The investment portfolio primarily contains a diversified mix of equity and fixed-income investments. Other assets such as private equity are used modestly to enhance long-term returns while improving portfolio diversification. Investment risk is measured and monitored on an ongoing basis through quarterly investment portfolio reviews, annual liability measurements, and asset/liability studies at regular intervals.\nORIGINAL QUESTION: Which years did the percentage of plan assets for Debt Securities exceed 80% for 2018 and 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 922264,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "d91b0c2fbdc9a8392ae6a0ea51f815d2ded9132cfb3bfc044c2005eda4ee5f53",
+  "status": "ok"
+}

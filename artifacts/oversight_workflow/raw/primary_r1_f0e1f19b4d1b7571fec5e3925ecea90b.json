@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r1_f0e1f19b4d1b7571fec5e3925ecea90b",
+      "elapsed_seconds": 1.32575659500435,
+      "request_sha256": "6b3d63f3eafa2b2953f37083d26d945940f3e3c135c15f39aba00aae34a1901d",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[25],\"scale\":\"percent\",\"evidence\":\"T3C1,T3C2\",\"derivation\":\"(88-241)/241 * 100 = -62.67%, the opposite direction is 25% increase.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211929,
+        "id": "chatcmpl-580d286f940d473d92e6ece4ff54ff5a",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 61,
+          "prompt_tokens": 1035,
+          "prompt_tokens_details": null,
+          "total_tokens": 1096
+        }
+      },
+      "started_utc": "2026-09-12T11:18:49.301784+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r1_f0e1f19b4d1b7571fec5e3925ecea90b",
+  "input_tokens": 1035,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | 2019 | 2018 |\n| T1 | Business loan agreement dated March 14, 2014 | - | 7 |\n| T2 | Business loan agreement dated April 9, 2014 | - | 19 |\n| T3 | Equipment notes payable | 88 | 241 |\n| T4 | Subtotal | 88 | 267 |\n| T5 | Less: Current position | (88) | (179) |\n| T6 | Long-term position | - | $88 |\nP1: 7. LOANS PAYABLE\nP2: Plan B, a subsidiary of the Company, entered into a business loan agreement, prior to being acquired by the Company, with Tri Counties Bank dated March 14, 2014, in the original amount of $131 bearing interest at 4.95%. The loan agreement called for monthly payments of $2 and was scheduled to mature on March 14, 2019. Proceeds from the loan were used to purchase a pile driver and related equipment and is secured by the equipment. The loan was fully paid off during the year ended December 31, 2019.\nP3: Plan B entered into a business loan agreement prior to being acquired by the Company, with Tri Counties Bank dated April 9, 2014, in the original amount of $250 bearing interest at 4.95%. The loan agreement calls for monthly payments of $5 and was scheduled to mature on April 9, 2019. Proceeds from the loan were used to purchase racking inventory and related equipment. The loan was secured by the inventory and equipment. The loan was fully paid off during the year ended December 31, 2019.\nP4: On January 5, 2016, the Company entered into a loan agreement for the acquisition of a pile driver in the principal amount of $182 bearing interest at 5.5%. The loan agreement calls for monthly payments of $4 and is scheduled to mature on January 15, 2020. The loan is secured by the equipment. The outstanding balance at December 31, 2019, is $4.\nP5: On September 8, 2016, the Company entered into a loan agreement for the acquisition of a pile driver in the principal amount of $174 bearing interest at 5.5%. The loan agreement calls for monthly payments of $4 and is scheduled to mature on September 15, 2020. The loan is secured by the equipment. The outstanding balance at December 31, 2019, is $36.\nP6: On November 14, 2016, the Company entered into a 0% interest loan agreement for the acquisition of an excavator in the principal amount of $59. The loan agreement calls for monthly payments of $1 and is scheduled to mature on November 13, 2020. The loan is secured by the equipment. The outstanding balance at December 31, 2019, is $13.\nP7: On December 23, 2016, the Company entered into a loan agreement for the acquisition of modular office systems and related furniture in the principal amount of $172 bearing interest at 4.99%. The loan agreement calls for 16 quarterly payments of $12 and is scheduled to mature in September 2020. The loan is secured by the equipment. The outstanding balance at December 31, 2019, is $35.\nP8: As of December 31, 2019 and 2018, loans payable are summarized as follows:\nORIGINAL QUESTION: What is the percentage change in the equipment notes payable from 2018 to 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 922354,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "6b3d63f3eafa2b2953f37083d26d945940f3e3c135c15f39aba00aae34a1901d",
+  "status": "ok"
+}

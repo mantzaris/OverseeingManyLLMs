@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_cee6f2467fa5bd0aece4ec15ca46bcf3",
+      "elapsed_seconds": 1.4414951460203156,
+      "request_sha256": "ee5ab80734055fc30c09f100ceb8b10a292adeedc8bcb7713a1b03c2becb8dfd",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[370.1,\"M\"], \"scale\":\"M\", \"evidence\":[[\"T3\",\"C1\"]], \"derivation\":\"FY19 total employee expenditure was 370.1M, larger than FY18's 361.9M.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211677,
+        "id": "chatcmpl-a1ac8596fc4340128759bce9ce5823e7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 63,
+          "prompt_tokens": 375,
+          "prompt_tokens_details": null,
+          "total_tokens": 438
+        }
+      },
+      "started_utc": "2026-09-12T11:14:37.275653+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_cee6f2467fa5bd0aece4ec15ca46bcf3",
+  "input_tokens": 375,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | FY19 | FY18 | Change |\n| T1 |  | $M | $M | % |\n| T2 | Shareholder distributions – dividends1 | 23.9 | 21.8 | 10% |\n| T3 | Total employee expenditure2 | 370.1 | 361.9 | 2% |\nP1: Relative importance of spend on pay\nP2: The following table shows, for FY19 and FY18, the actual expenditure and percentage change in total employee costs and percentage change in distributions to shareholders.\nP3: 1 Represents dividends paid in each financial year\nP4: 2 Total employee expenditure includes wages and salaries, social security costs, pension and other costs and share-based payments, see note 10 of the Financial Statements\nORIGINAL QUESTION: In which year was Total employee expenditure larger?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912364,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "ee5ab80734055fc30c09f100ceb8b10a292adeedc8bcb7713a1b03c2becb8dfd",
+  "status": "ok"
+}

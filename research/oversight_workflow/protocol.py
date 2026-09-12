@@ -35,6 +35,10 @@ class Desk:
             return s
 
     def counts(self):
+        with self.lock:
+            return self._counts()
+
+    def _counts(self):
         ts = list(self.state['tasks'].values())
         rs = list(self.state['requests'].values())
         return dict(offered=len(ts), admitted=sum(t['admitted_at'] is not None for t in ts),
@@ -104,7 +108,11 @@ class Desk:
 
     def _apply(self, action, p, t):
         s=self.state
-        if action=='offer':
+        if s.get('session_closed') and action not in ('receive','revise','display'):
+            raise ProtocolError('The timed review session has ended; outstanding work is retained')
+        if action=='close_session':
+            s['session_closed']=True;s['closed_at']=t;s['paused']=True
+        elif action=='offer':
             required={'id','agent','question_id','question','source'}
             if not required<=set(p):raise ProtocolError('Incomplete task metadata')
             if set(p)-required-{'priority','deadline','priority_origin','dependencies'}:raise ProtocolError('Unsupported task fields')
@@ -204,7 +212,7 @@ class Desk:
             if s['active'] and s['active']['request_id']==r['id']:s['active']=None
         elif action=='display':
             # This is a browser observation, not evidence that a person read it.
-            allowed={'view','request_id','version','visible_ids','client_elapsed_ms','received_to_render_ms','http_roundtrip_ms','focus','action'}
+            allowed={'view','request_id','version','visible_ids','client_elapsed_ms','received_to_render_ms','http_roundtrip_ms','focus','action','scroll_top'}
             if set(p)-allowed:raise ProtocolError('Unsupported display fields')
             s['displays'].append(dict(at=t,**p))
         else:raise ProtocolError('Unknown action')
@@ -242,4 +250,6 @@ def replay(events,condition='sessions'):
         response=desk.command(e['event_id'],e['action'],e['payload'],at=e['at'])
         if response!=e['response'] or digest(desk.state)!=e['state_sha256']:
             raise AssertionError('Replay mismatch at event '+str(e['sequence']))
+        desk.events[-1]=deepcopy(e)  # Preserve original event timing/provenance.
+    if events:desk.started=time.monotonic()-events[-1]['at']
     return desk

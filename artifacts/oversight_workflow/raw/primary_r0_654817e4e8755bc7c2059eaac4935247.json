@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "primary_r0_654817e4e8755bc7c2059eaac4935247",
+      "elapsed_seconds": 1.879463508957997,
+      "request_sha256": "cb8fc2aa6ecf55f77559c38d3b89b8ab4afb3aa9adc79ef2a317dab9d5a7c9c8",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[ \"-7.99\" ], \"scale\":\"percent\", \"evidence\":[ \"T4C1\", \"T4C2\" ], \"derivation\":\"The percentage change is calculated as (2191430 - 2380681) / 2380681 * 100 = -7.99 percent.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211718,
+        "id": "chatcmpl-2b4f58398e3c4a819a4218e9c452d0f7",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 728,
+          "prompt_tokens_details": null,
+          "total_tokens": 812
+        }
+      },
+      "started_utc": "2026-09-12T11:15:18.383434+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "primary_r0_654817e4e8755bc7c2059eaac4935247",
+  "input_tokens": 728,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  |  | YearEnded |  |\n| T1 |  | June 30, 2019 | June 24, 2018 | June 25, 2017 |\n| T2 |  |  | (in thousands, except per share data) |  |\n| T3 | Numerator: |  |  |  |\n| T4 | Net income | $2,191,430 | $2,380,681 | $1,697,763 |\n| T5 | Denominator: |  |  |  |\n| T6 | Basic average shares outstanding | 152,478 | 161,643 | 162,222 |\n| T7 | Effect of potential dilutive securities: |  |  |  |\n| T8 | Employee stock plans | 1,323 | 2,312 | 2,058 |\n| T9 | Convertible notes | 5,610 | 12,258 | 16,861 |\n| T10 | Warrants | 504 | 4,569 | 2,629 |\n| T11 | Diluted average shares outstanding | 159,915 | 180,782 | 183,770 |\n| T12 | Net income per share-basic | $14.37 | $14.73 | $10.47 |\n| T13 | Net income per share-diluted | $13.70 | $13.17 | $9.24 |\nP1: Note 8: Net Income per Share\nP2: Basic net income per share is computed by dividing net income by the weighted-average number of common shares outstanding during the period. Diluted net income per share is computed using the treasury stock method, for dilutive stock options, restricted stock units, and convertible notes.\nP3: The following table reconciles the numerators and denominators of the basic and diluted computations for net income per share.\nP4: (1) Diluted shares outstanding do not include any effect resulting from note hedges associated with the Company’s 2018 Notes as their impact would have been anti-dilutive.\nORIGINAL QUESTION: What is the percentage change in the net income from 2018 to 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912414,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "cb8fc2aa6ecf55f77559c38d3b89b8ab4afb3aa9adc79ef2a317dab9d5a7c9c8",
+  "status": "ok"
+}

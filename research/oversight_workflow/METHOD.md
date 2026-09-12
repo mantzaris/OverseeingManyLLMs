@@ -100,3 +100,13 @@ Generated explanations/citations are labeled and never replace the full source.
 Annotations are absent from agent requests and the live interface. An ideal
 scripted inspection discloses only the question it explicitly corrects. Offline
 scoring has a separate private annotation lookup.
+
+## Timed study preview and recovery
+
+A declared prospective session cutoff closes decision/release actions and pauses
+new starts. In-flight requests can still arrive and remain unresolved. The timer
+is independent of browser clicks. Cutoff does not withdraw tasks or reset their
+history. These preview conditions are separate from the frozen short software
+matrix. Restoring an event journal retains its original timestamps, pinned source,
+notes and version history; the clock includes time away. Journaling occurs before
+HTTP acknowledgment but is not an fsync-backed crash-atomic storage guarantee.

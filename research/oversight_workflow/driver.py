@@ -6,8 +6,10 @@ from .common import ART,read,write
 from .data import task
 
 class ReplayDriver:
-    def __init__(self, desk, items, interval=.15, generation_delay=.04, revision=None):
+    def __init__(self, desk, items, interval=.15, generation_delay=.04, revision=None, start_offsets=None):
         self.desk=desk;self.items=items;self.interval=interval;self.delay=generation_delay
+        self.start_offsets=start_offsets if start_offsets is not None else [i*interval for i in range(len(items))]
+        if len(self.start_offsets)!=len(items) or self.start_offsets!=sorted(self.start_offsets) or any(x<0 for x in self.start_offsets):raise ValueError('Invalid offered-task start schedule')
         self.revision=revision;self.stop_event=threading.Event();self.thread=None
         self.timings=[];self.errors=[];self.run_id=uuid.uuid4().hex[:10]
     def cmd(self,action,p):
@@ -21,19 +23,21 @@ class ReplayDriver:
         begin=time.monotonic();next_task=0;inflight=[];revised=False
         while not self.stop_event.is_set():
             now=time.monotonic()-begin
-            if next_task<len(self.items) and now>=next_task*self.interval and not self.desk.logical()['paused'] and len(inflight)<3:
-                item=self.items[next_task];rid=item['task']['id']
-                if self.cmd('admit',{'id':rid})['ok'] and self.cmd('start',{'id':rid})['ok']:
-                    inflight.append((now+self.delay,item));next_task+=1
+            with self.desk.lock:
+                if next_task<len(self.items) and now>=self.start_offsets[next_task] and not self.desk.state['paused'] and len(inflight)<3:
+                    item=self.items[next_task];rid=item['task']['id']
+                    if self.cmd('admit',{'id':rid})['ok'] and self.cmd('start',{'id':rid})['ok']:
+                        inflight.append((now+self.delay,item));next_task+=1
             for due,item in list(inflight):
                 if now>=due:
                     self.cmd('receive',dict(id=item['task']['id'],output=item['output'],origin='saved_model_output'))
-                    self.timings.append(dict(id=item['task']['id'],eligible_start=(next(i for i,x in enumerate(self.items) if x is item))*self.interval,
+                    self.timings.append(dict(id=item['task']['id'],eligible_start=self.start_offsets[next(i for i,x in enumerate(self.items) if x is item)],
                         intended_delivery_after_start=self.delay,delivery_lateness_ms=(now-due)*1000))
                     inflight.remove((due,item))
             if self.revision and not revised and now>=self.revision['at'] and self.revision['id'] in self.desk.logical()['requests']:
-                self.cmd('revise',dict(id=self.revision['id'],output=self.revision['output'],origin='saved_model_revision'))
+                self.cmd('revise',dict(id=self.revision['id'],output=self.revision['output'],origin=self.revision.get('origin','saved_model_revision')))
                 revised=True
+            if self.desk.state.get('session_closed') and not inflight:break
             if next_task==len(self.items) and not inflight and (not self.revision or revised):break
             self.stop_event.wait(.002)
     def stop(self):
@@ -68,7 +72,7 @@ class LiveDriver:
                             if not r['ok']:raise RuntimeError(r)
             if not job:
                 with self.job_lock:
-                    if not self.jobs:return
+                    if not self.jobs or self.desk.state.get('session_closed'):return
                 self.stop_event.wait(.01);continue
             try:row=answer(c,q,self.replica,self.stage);self.rows.append(row);output=row['output']
             except Exception as e:
@@ -87,3 +91,9 @@ def items_for(contexts,replica=0):
             row=read(ART/'prepared'/f"primary_r{replica}_{q['id']}.json")
             items.append(dict(task=task(c,q,replica),output=row['output']))
     return items
+
+
+def ordered_items(contexts,replica):
+    from itertools import zip_longest
+    groups=[items_for([c],replica) for c in contexts]
+    return [x for row in zip_longest(*groups) for x in row if x]

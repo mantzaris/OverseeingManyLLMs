@@ -3,24 +3,26 @@ import time
 from copy import deepcopy
 from itertools import zip_longest
 from research.adaptive_correction_transfer.scoring import score
-from research.adaptive_correction_transfer.data import annotations
+from .offline import labels
 from .common import ART,read,write,digest
 from .protocol import Desk,replay,CONDITIONS
-from .driver import ReplayDriver,items_for
+from .driver import ReplayDriver,items_for,ordered_items
 
 
-def ordered_items(contexts,replica):
-    groups=[items_for([c],replica) for c in contexts]
-    return [x for row in zip_longest(*groups) for x in row if x]
+EVAL_OUT=ART
+ACTIVE_DESK=None
+ACTIVE_DRIVER=None
 
 def run(contexts,replica,condition,load,bundle):
+    global ACTIVE_DESK,ACTIVE_DRIVER
     config=read(ART/'frozen/manifest.json')['software_scenarios']
-    items=ordered_items(contexts,replica);desk=Desk(condition);gold=annotations('test_gold')
+    items=ordered_items(contexts,replica);desk=Desk(condition);groups=labels();gold={qid:q for c in groups.values() for qid,q in c.items()}
     interval=config['start_interval_seconds'][load];cutoff=config['observation_seconds'];service=config['script_action_seconds']
     revision=None
     c=contexts[0];q=c['questions'][0];revfile=ART/'prepared'/f"revision_r0_{q['id']}.json"
     if replica==0 and revfile.exists():revision=dict(id=items[0]['task']['id'],at=.8,output=read(revfile)['output'])
-    driver=ReplayDriver(desk,items,interval=interval,revision=revision).start()
+    ACTIVE_DESK=desk
+    driver=ReplayDriver(desk,items,interval=interval,revision=revision).start();ACTIVE_DRIVER=driver
     samples=[];last_sample=-1;first_deferred=False;paused=False;resumed=False;counter=0;errors=[];active_checks=0;stable_checks=0;pinned=None
     def command(action,p=None):
         nonlocal counter
@@ -66,7 +68,9 @@ def run(contexts,replica,condition,load,bundle):
                     command('session',{'ids':group})
                 command('select',{'id':rid});a=desk.logical()['active'];pinned=((a['request_id'],a['version'],a['opened_at']),digest(a['output']))
         time.sleep(.003)
-    cutoff_state=desk.logical();cutoff_counts=desk.counts();driver.stop()
+    with desk.lock:
+        cutoff_state=desk.logical();cutoff_counts=desk.counts();cutoff_sequence=len(desk.events);cutoff_at=time.monotonic()-desk.started
+    driver.stop()
     # Worker stop does not remove pending or unstarted tasks.
     events=deepcopy(desk.events);rep=replay(events,condition)
     assert rep.logical()==desk.logical()
@@ -83,11 +87,17 @@ def run(contexts,replica,condition,load,bundle):
         handler_ms=[e['handler_ms'] for e in events],delivery_lateness_ms=[x['delivery_lateness_ms'] for x in driver.timings],
         events=len(events),command_errors=errors,driver_errors=driver.errors,replay=True,
         final_sha256=digest(desk.logical()),kind='Measured wall-clock software behavior with constructed arrivals and ideal scripted reviewer actions')
-    path=ART/'scenarios'/f'b{bundle:02d}_r{replica}_{condition}_{load}.json'
-    write(path,dict(summary=summary,samples=samples,events=events,cutoff_state_sha256=digest(cutoff_state)))
+    path=EVAL_OUT/'scenarios'/f'b{bundle:02d}_r{replica}_{condition}_{load}.json'
+    write(path,dict(summary=summary,samples=samples,events=events,cutoff_state_sha256=digest(cutoff_state),cutoff_sequence=cutoff_sequence,cutoff_at=cutoff_at))
     return summary
 
 def main():
+    global EVAL_OUT
+    import argparse
+    from pathlib import Path
+    p=argparse.ArgumentParser();p.add_argument('--output-dir',type=Path);args=p.parse_args()
+    if args.output_dir:EVAL_OUT=args.output_dir
+    if list((EVAL_OUT/'scenarios').glob('*.json*')):raise SystemExit('Refusing to overwrite recorded scenarios; select a new --output-dir.')
     contexts=read(ART/'frozen/manifest.json')['contexts'];summaries=[]
     for bundle in range(12):
         pair=contexts[bundle*2:bundle*2+2]
@@ -95,8 +105,13 @@ def main():
             for load in ('lower','higher'):
                 # Rotate execution order to distribute host warmup/drift.
                 k=(bundle+replica)%3;order=CONDITIONS[k:]+CONDITIONS[:k]
-                for condition in order:summaries.append(run(pair,replica,condition,load,bundle))
+                for condition in order:
+                    try:summaries.append(run(pair,replica,condition,load,bundle))
+                    except Exception as e:
+                        if ACTIVE_DRIVER:ACTIVE_DRIVER.stop()
+                        write(EVAL_OUT/'software_attempts'/f'failed_b{bundle}_r{replica}_{condition}_{load}.json',dict(error=repr(e),events=ACTIVE_DESK.events if ACTIVE_DESK else [],kind='Incomplete software run retained'))
+                        raise
         print('Completed bundle',bundle,flush=True)
-    write(ART/'software_summary.json',summaries)
+    write(EVAL_OUT/'software_summary.json',summaries)
 
 if __name__=='__main__':main()
