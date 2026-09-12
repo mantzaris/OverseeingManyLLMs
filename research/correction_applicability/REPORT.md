@@ -107,3 +107,9 @@ The focused checks cover hidden-label isolation, fixed inspection budgets, perio
 SERAC already treats edit scope and collateral changes, PAL/Binder already use executable reasoning, ExpeL already reuses experience, and dependency provenance already supports selective preservation. The proposed distinction required **correction-dependent additional accuracy under the purchased-feedback boundary**. It was not demonstrated.
 
 Keep risk-ranked individual correction as the practical default. The next justified experiment is a small competence study of source-grounded unit and period bindings, with an independent source-reading baseline, before asking whether a verified annotation adds any information. The current protocol and counterexample are useful supporting evidence about failed correction transfer, but they should not become the paper's central improvement claim.
+
+## Final verification checkpoint
+
+The committed-source export at `e16728d7` reproduced and built successfully without GPU access or raw dataset downloads. All 23 checked numerical-table/PNG outputs were byte-identical. All 168 policy traces, 19 new focused tests, 39 relevant historical tests and nine browser checks passed. The illustrated note has five pages, with every page and all six scientific figures visually inspected. No overfull boxes or unresolved references remain. The replay server and browser created for this stage were stopped; the existing forwarding and BF16 GPU service remained healthy.
+
+At 2026-09-12T10:15:29.763134+00:00, stage elapsed time was **1h 4m 20s**. Cumulative wall time from the original start was **66h 36m 32s**, including **30h 36m 32s** beyond the original 36-hour target. These are wall clocks, including gaps, not GPU allocation charges. The cumulative ledger now records **61,477 scheduled requests and 61,429 generation attempts**. Historical records remain unchanged. Final commits and repository status are reported with delivery.
