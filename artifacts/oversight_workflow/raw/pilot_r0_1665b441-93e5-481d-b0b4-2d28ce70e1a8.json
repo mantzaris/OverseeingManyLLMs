@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "pilot_r0_1665b441-93e5-481d-b0b4-2d28ce70e1a8",
+      "elapsed_seconds": 1.1430676069576293,
+      "request_sha256": "04ae00e4195296ada73a7cfbcd3e31d15c5f99f0f279be4c33bca32b6010a86b",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\":[2.7],\"scale\":\"percent\",\"evidence\":\"T3C1\",\"derivation\":\"The 2019 rate of increase in salaries is directly stated as 2.7 in the table.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211190,
+        "id": "chatcmpl-7c0a7fba1563436e97f4c237a819cca8",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 47,
+          "prompt_tokens": 405,
+          "prompt_tokens_details": null,
+          "total_tokens": 452
+        }
+      },
+      "started_utc": "2026-09-12T11:06:30.184853+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "pilot_r0_1665b441-93e5-481d-b0b4-2d28ce70e1a8",
+  "input_tokens": 405,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nORIGINAL QUESTION: What is the 2019 average rate of increase in salaries?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912005,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "04ae00e4195296ada73a7cfbcd3e31d15c5f99f0f279be4c33bca32b6010a86b",
+  "status": "ok"
+}

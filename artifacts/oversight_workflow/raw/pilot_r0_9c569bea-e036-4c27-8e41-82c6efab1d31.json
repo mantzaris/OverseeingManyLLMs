@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "pilot_r0_9c569bea-e036-4c27-8e41-82c6efab1d31",
+      "elapsed_seconds": 1.7359239109791815,
+      "request_sha256": "5d907a027e1da8bf462f4a6f3aa7bf9cb43045a3841e71fa96cade2ae7b9be58",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"answer\": [\"Rate of inflation2, Rate of increase in salaries, Discount rate\"], \"scale\": \"\", \"evidence\": [\"T2C0\", \"T3C0\", \"T4C0\"], \"derivation\": \"The table shows the Weighted average actuarial assumptions include Rate of inflation, Rate of increase in salaries, and Discount rate.\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789211184,
+        "id": "chatcmpl-fe758e11084543f4bf829a6f9e5ad021",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 77,
+          "prompt_tokens": 403,
+          "prompt_tokens_details": null,
+          "total_tokens": 480
+        }
+      },
+      "started_utc": "2026-09-12T11:06:24.023966+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "pilot_r0_9c569bea-e036-4c27-8e41-82c6efab1d31",
+  "input_tokens": 403,
+  "request": {
+    "max_tokens": 230,
+    "messages": [
+      {
+        "content": "Answer the financial question using only the supplied table and source paragraphs. Return JSON with answer (a list), scale, evidence (optional table cell IDs or paragraph IDs), and derivation (an optional explanation under 35 words). Scale is \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read source headings, entity and comparison periods carefully. If unsupported, return answer:[] and explain the limitation. For arithmetic you may use a simple expression beginning with \"=\" in the answer list. A calculator evaluates +,-,*,/ and rounds to two decimals. Do not give an executable program. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 % | 2018 % | 2017 % |\n| T1 | Weighted average actuarial assumptions used at 31 March1: |  |  |  |\n| T2 | Rate of inflation2 | 2.9 | 2.9 | 3.0 |\n| T3 | Rate of increase in salaries | 2.7 | 2.7 | 2.6 |\n| T4 | Discount rate | 2.3 | 2.5 | 2.6 |\nP1: Actuarial assumptions\nP2: The Group’s scheme liabilities are measured using the projected unit credit method using the principal actuarial assumptions set out below:\nP3: Notes: 1 Figures shown represent a weighted average assumption of the individual schemes.\nP4: 2 The rate of increases in pensions in payment and deferred revaluation are dependent on the rate of inflation.\nORIGINAL QUESTION: What does the Weighted average actuarial assumptions consist of?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 912001,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5d907a027e1da8bf462f4a6f3aa7bf9cb43045a3841e71fa96cade2ae7b9be58",
+  "status": "ok"
+}
