@@ -18,11 +18,15 @@ class Desk:
  def cases(self):
   m=read(ART/'frozen/manifest.json');root=ART/'evaluation/frozen'
   return [dict(id=p['id'],month=p['month'],change=p['change'],instruction=p['user_change']['text']) for p in m['evaluation'] if (root/(p['id']+'_r0_targeted.json')).exists()]
- def state(self,pid,method):
-  if method not in ['targeted','shared_state','broadcast','sparse','pipeline']:raise ValueError('Unknown method')
-  p=next(p for p in read(ART/'frozen/manifest.json')['evaluation'] if p['id']==pid);root=ART/'evaluation/frozen';initial=read(root/(pid+'_r0_initial.json'));result=read(root/(pid+'_r0_'+method+'.json'))
+ def state(self,pid,method,study="primary"):
+  if method not in ['targeted','shared_state','broadcast','sparse','pipeline','global_packet']:raise ValueError('Unknown method')
+  p=next(p for p in read(ART/'frozen/manifest.json')['evaluation'] if p['id']==pid);root=ART/'evaluation/frozen';initial=read(root/(pid+'_r0_initial.json'));result_path=root/(pid+'_r0_'+method+'.json')
+  if method=='global_packet':result_path=root/'secondary'/(pid+'_r0_global_packet_ordinary.json')
+  if study=='parser_followup' and method!='pipeline':result_path=ART/'parser_followup/runs'/(pid+'_r0_'+method+'.json')
+  if study not in ['primary','parser_followup']:raise ValueError('Unknown study')
+  result=read(result_path)
   # These are public execution checks, not evaluator reference labels.
-  return dict(project=p,before=initial,after=result,affected=affected(p),scope='Main report only. The appendix retains its original requirements.',evidence='Recorded UCI Online Retail transactions. Authored brief and change. Saved GPU tool calls; simulated delivery rounds. Acceptance reports public checks, not a human review.',model='Qwen2.5-7B-Instruct, BF16',mode='saved_gpu_replay')
+  return dict(project=p,before=initial,after=result,affected=affected(p),scope='Main report only. The appendix retains its original requirements.',evidence='Recorded UCI Online Retail transactions. Authored brief and change. Saved GPU tool calls; simulated delivery rounds. Acceptance reports public checks, not a human review.',model='Qwen2.5-7B-Instruct, BF16',mode='saved_gpu_replay',study=study)
  def custom(self,payload):
   base=self.state(payload['id'],'targeted');p=copy.deepcopy(base['project']);fields=payload['fields']
   allowed={'country','metric','inclusion','customer'}
@@ -46,7 +50,7 @@ class Handler(BaseHTTPRequestHandler):
    length=int(self.headers.get('Content-Length','0'))
    if length>20000:raise ValueError('Request too large')
    payload=json.loads(self.rfile.read(length));desk=self.server.desk
-   if self.path=='/api/load':state=desk.state(payload['id'],payload['method']);desk.record('shown_project',payload,state);return self.send_json(state)
+   if self.path=='/api/load':state=desk.state(payload['id'],payload['method'],payload.get('study','primary'));desk.record('shown_project',payload,state);return self.send_json(state)
    if self.path=='/api/custom':state=desk.custom(payload);desk.record('user_change_once',payload,state);return self.send_json(state)
    if self.path=='/api/event':desk.record(payload['action'],payload.get('payload',{}));return self.send_json(dict(ok=True))
    self.send_json(dict(error='Not found'),404)

@@ -44,3 +44,11 @@ The final interface uses generated query parameters compiled to SQL, chart prefi
 Commit `8935400b` records the final tool interface, routing rules, source snapshot, public/private checks, model settings and exact primary/secondary matrix before held-out generation. The collection source hash remains unchanged. Four development originals passed all four structured contracts. The forecast was about 41 minutes with a 50% latency margin for 760 new calls. The stage ceiling remains 1,600 scheduled calls and 2,000 attempt intents, counting every development revision.
 
 Post-freeze work adds replay, plotting, a local interface and descriptive diagnostics. It does not alter the primary method. External API validation now rejects peer-authored instruction registrations and malformed protected-scope changes; all frozen projects already satisfy that validation. A reporting clarification labels stress-condition appendix rewrites as potentially necessary restoration, rather than claiming they were unnecessary merely because the contract was unaffected.
+
+## Follow-up result and stopping decision
+
+All 80 declared parser follow-up continuations returned, using 250 model calls. Targeted, sparse and same-packet global checking each complete 16/16 inspected projects in 46 calls. Broadcast completes 16/16 in 64; full shared state completes 15/16 in 48. The remaining failure uses the unsupported `parameters` alias. No third parser revision, new case replacement or further inference follows. The source sample is unchanged and this is exploratory, not a fresh held-out replication.
+
+An audit establishes that targeted and same-packet global checking select the same roles and packets on the ordinary scope-complete graph. Their request sequences match on all sixteen follow-up pairs. We therefore recommend simplifying to compatible tools plus global checking, or the deterministic pipeline. A post hoc narrative audit finds stock codes called customers despite correct numerical claims. Verifying provenance-linked narrative meaning is a concrete next problem; additional routing variants are not supported by this evidence.
+
+Full replay initially differed only in freshly measured synthetic CPU duration. Reproduction now compares all synthetic substantive fields while preserving the original timing observation. No synthetic outcome is changed.

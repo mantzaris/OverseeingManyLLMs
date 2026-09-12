@@ -17,7 +17,7 @@ Local endpoints:
 | Endpoint | Purpose |
 |---|---|
 | GET `/api/cases` | List saved project cases |
-| POST `/api/load` with `{id, method}` | Load paired original/revised traces |
+| POST `/api/load` with `{id, method, study}` | Load paired original/revised traces |
 | POST `/api/event` with `{action, payload}` | Log what was shown or selected |
 | POST `/api/custom` with `{id, fields}` | Apply a supported main-scope change through the deterministic pipeline |
 | GET `/api/log` | Inspect this server's demonstration events |
@@ -33,3 +33,5 @@ node research/coordination_injections/prototype/browser_smoke.mjs /tmp/coordinat
 Close the server with Ctrl-C. The browser script closes the browser it starts. Neither action stops the existing GPU service.
 
 The input validator was added as post-freeze interface hardening. Every frozen project already satisfies it. It rejects malformed scope registrations at the external API; it does not change a collected continuation, prompt or experimental method. Do not expose this local application as an authenticated multi-user service without a real authorization layer.
+
+The external API now recognizes the explicit `tool`/`params` envelopes declared in the parser follow-up. It does not fill missing task arguments from reference answers or the current contract. Conflicting envelopes and malformed argument shapes become blocked proposals with their raw content retained. This interface repair is separate from the frozen strict-parser experiment. `study` selects `primary` or `parser_followup` in the saved-replay endpoint.

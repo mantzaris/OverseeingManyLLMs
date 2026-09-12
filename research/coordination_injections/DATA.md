@@ -26,6 +26,8 @@ Quantities range from -80,995 to 80,995. Unit prices range from -11,062.06 to 38
 
 ## Reporting definitions
 
+Source timestamps carry no timezone in the file; windows use recorded calendar dates without an inferred UTC conversion. Stage authorization clocks are separately recorded in UTC.
+
 Every query keeps source duplicates, uses an inclusive start and exclusive end, groups by stock code, orders aggregate descending then stock code ascending, and returns at most five rows. `ALL` is an application sentinel for no country predicate. `customer=all` includes missing IDs; `known` requires a nonmissing ID. The two inclusion rules are authored:
 
 - **Positive non-cancellation lines**: quantity > 0, unit price > 0, and no C prefix.

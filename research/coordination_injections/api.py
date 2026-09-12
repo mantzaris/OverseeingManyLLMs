@@ -21,4 +21,13 @@ def validate_project(project):
 
 def adapt(project,rep=0,method='targeted',initial=None,**kwargs):
  validate_project(project)
- return run(project,rep,method,initial,**kwargs)
+ from .agents import call
+ from .normalize import normalize
+ provider=kwargs.pop('generate_fn',call)
+ def compatible_call(*args):
+  proposal,usage=provider(*args);proposal=normalize(proposal,args[1])
+  key={'analysis':'query','appendix':'query','chart':'view','report':'summary'}[args[1]]
+  if isinstance(proposal,dict) and proposal.get('status')=='replace' and not isinstance(proposal.get(key),dict):
+   proposal=dict(status='blocked',reason='Unsupported tool argument shape',raw_proposal=proposal)
+  return proposal,usage
+ return run(project,rep,method,initial,generate_fn=compatible_call,**kwargs)

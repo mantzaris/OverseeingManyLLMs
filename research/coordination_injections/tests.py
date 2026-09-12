@@ -48,6 +48,14 @@ class ProtocolTests(unittest.TestCase):
   with self.assertRaises(ValueError):validate_project(wrong)
   peer=copy.deepcopy(self.p);peer['user_change']['source']='peer_agent'
   with self.assertRaises(PermissionError):validate_project(peer)
+ def test_public_api_rejects_malformed_argument_shapes(self):
+  from .api import adapt
+  def bad(*args):
+   p,u=deterministic_call(*args)
+   if args[1]=='chart':p['view']=['invalid']
+   return p,u
+  r=adapt(self.p,generate_fn=bad)
+  self.assertFalse(r['artifacts']['chart']['accepted']);self.assertIn('raw_proposal',r['artifacts']['chart']['proposal'])
  def test_cycle_rejected(self):
   with self.assertRaises(ValueError):validate_graph(dict(analysis=['report'],chart=['analysis'],report=['chart'],appendix=[]))
  def test_information_isolation(self):
@@ -89,4 +97,20 @@ class ProtocolTests(unittest.TestCase):
   self.assertEqual(len((root/'attempts.jsonl').read_text().splitlines()),2)
  def test_identical_replay(self):
   a=run(self.p,0,generate_fn=deterministic_call);b=run(self.p,0,generate_fn=deterministic_call);self.assertEqual(stable(a),stable(b))
+class PairedAnalysisTests(unittest.TestCase):
+ def test_replicates_are_kept_within_month(self):
+  from .statistics import paired
+  rows=[]
+  for month,deltas in [('m1',[0,4]),('m2',[0,0])]:
+   for rep,delta in enumerate(deltas):
+    for method,value in [('a',delta),('b',0)]:
+     rows.append(dict(month=month,project_id=month,rep=rep,method=method,calls=value))
+  result=paired(rows,'a','b','calls')
+  self.assertEqual(result['differences'],[2,0]);self.assertEqual(result['mean'],1)
+  self.assertEqual(result['blocks'],['m1','m2'])
+ def test_missing_paired_outcome_is_not_silently_dropped(self):
+  from .statistics import paired
+  rows=[dict(month='m1',project_id='p',rep=0,method='a',calls=1)]
+  with self.assertRaises(ValueError):paired(rows,'a','b','calls')
+
 if __name__=='__main__':unittest.main()

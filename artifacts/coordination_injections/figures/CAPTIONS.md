@@ -2,7 +2,7 @@
 
 ## quality_cost
 
-Real recorded transaction data; authored projects and changes; GPU-generated tool choices with deterministic guards. n=16 projects in eight monthly blocks, two generation replicas (32 continuations per method). Bars separate correct accepted artifacts from unfinished work. Error bars are paired-block bootstrap marginal intervals, not equivalence tests. The zero-inference pipeline selects parameters deterministically. Prose semantics are outside the structured correctness endpoint.
+Frozen strict-parser condition: real recorded transaction data, authored projects and changes, GPU-generated tool choices with deterministic guards. The parser follow-up diagnoses an interface confound. n=16 projects in eight monthly blocks, two generation replicas (32 continuations per method). Bars separate correct accepted artifacts from unfinished work. Error bars are paired-block bootstrap marginal intervals, not equivalence tests. The zero-inference pipeline selects parameters deterministically. Prose semantics are outside the structured correctness endpoint.
 
 ## paired_blocks
 
@@ -14,7 +14,7 @@ Authored V combines contract violations, dependency inconsistencies and unfinish
 
 ## scope_and_controls
 
-Real-data ordinary adaptation, except the explicitly labeled matched-format control uses replica 0 only (16 constructed projects). Artifact identity includes proposed content and dependency hashes, so an unnecessary rewrite can count even if numbers remain equal. Recovery-round scatter contains repeated overlapping observations; it is descriptive, not an effect of recipient count randomized independently.
+Real-data ordinary adaptation, except the explicitly labeled matched-format control uses replica 0 only (16 constructed projects). Artifact identity includes proposed content and dependency hashes, so an unnecessary rewrite can count even if numbers remain equal. Recovery scatter shows measured orchestration plus tool and inference latency, not human review time. It is descriptive, not an effect of recipient count randomized independently.
 
 ## stress_ablation
 
@@ -35,4 +35,8 @@ Actual aggregate values from UCI Online Retail, displayed through the generated 
 ## synthetic_boundaries
 
 Entirely authored transaction rows, scopes, changes and controlled responses. Zero GPU calls and no human observations. These mechanism cases expose delayed notification, false acknowledgment, correlated wrong definitions and irrelevant forwarding. They do not estimate prevalence in real agent use.
+
+## parser_followup
+
+Separately declared post hoc sensitivity on the same sixteen already inspected projects, replica 0, in eight monthly blocks. Solid bars use 250 fresh GPU calls, with the same tools, instructions, scopes and guards plus explicit equivalent-envelope normalization. Faint bars are the matched replica-0 strict-parser originals. This is not new held-out evidence. Targeted and the same-packet global check have identical request sequences on all sixteen runs; no independent routing advantage can be inferred. No method has an accepted numerical error; the remaining shared-state failure uses an unsupported parameters alias. The zero-inference pipeline remains perfect on these contracts.
 

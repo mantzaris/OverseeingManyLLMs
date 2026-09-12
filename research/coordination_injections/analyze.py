@@ -12,7 +12,7 @@ def csv_write(path,rows):
  if not rows:return
  fields=[k for k in rows[0] if not isinstance(rows[0][k],(dict,list))]
  with path.open('w') as f:
-  w=csv.DictWriter(f,fields,extrasaction='ignore');w.writeheader();w.writerows(rows)
+  w=csv.DictWriter(f,fields,extrasaction='ignore',lineterminator='\n');w.writeheader();w.writerows(rows)
 def summarize(rows):
  result=[]
  for method in METHODS+['pipeline','global_packet','targeted_no_feedback']:
@@ -90,8 +90,13 @@ def analyze(output=None):
   decoded=[parsed(r) for r in group]
   semantic=[{k:p.get(k) for k in ['status','query','view','summary','notify']} if isinstance(p,dict) else p for p in decoded]
   from .common import digest
-  variation.append(dict(request_sha256=key,calls=[r['call_id'] for r in group],responses=len(group),distinct_parsed_outputs=len({digest(p) for p in decoded}),distinct_tool_choices=len({digest(p) for p in semantic})))
- write(out/'request_variation.json',dict(groups=variation,repeated_request_groups=len(variation),groups_with_different_parsed_outputs=sum(g['distinct_parsed_outputs']>1 for g in variation),groups_with_different_tool_choices=sum(g['distinct_tool_choices']>1 for g in variation),interpretation='Identical full payload including sampling seed. Tool-choice comparison excludes free-form titles and explanatory prose, but includes notification recipients. Fresh GPU calls are not promised deterministic.'))
+  from .normalize import normalize
+  import json
+  role=json.loads(group[0]['request']['messages'][-1]['content'].split('\n',1)[1])['packet']['responsibility']
+  normalized=[normalize(p,role) for p in decoded]
+  normalized_choices=[{k:p.get(k) for k in ['status','query','view','summary','notify']} if isinstance(p,dict) else p for p in normalized]
+  variation.append(dict(distinct_normalized_tool_choices=len({digest(p) for p in normalized_choices}),request_sha256=key,calls=[r['call_id'] for r in group],responses=len(group),distinct_parsed_outputs=len({digest(p) for p in decoded}),distinct_tool_choices=len({digest(p) for p in semantic})))
+ write(out/'request_variation.json',dict(groups=variation,repeated_request_groups=len(variation),groups_with_different_parsed_outputs=sum(g['distinct_parsed_outputs']>1 for g in variation),groups_with_different_tool_choices=sum(g['distinct_tool_choices']>1 for g in variation),groups_with_different_normalized_tool_choices=sum(g['distinct_normalized_tool_choices']>1 for g in variation),interpretation='Identical full payload including sampling seed. The legacy tool-choice field is a projection of schema fields, so envelope differences can count. The added normalized comparison accepts equivalent explicit envelopes. Both exclude free-form titles/prose and retain notify recipients. Fresh GPU calls are not promised deterministic.'))
 
  print('initial',len(initials),sum(r['project_correct'] for r in initials),'missing',len(missing))
  for r in sums:print(r['method'],r['project_correct_total'],'/',r['runs'],'correct; calls',r['calls_total'],'tokens',r['tokens_total'])
