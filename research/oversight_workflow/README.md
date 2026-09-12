@@ -1,6 +1,10 @@
 # Decision desk for concurrent agent work
 
-**Current handoff:** [position paper, frozen formative pilot and Alex's walkthrough](handoff/README.md).
+**New matched comparison:** [Q/G/M with equal twelve-question, nine-minute blocks](matched/README.md).
+Grouping is isolated from admission control, and source-only work now has matched
+allocations. No participant comparison has been performed.
+
+**Preserved handoff:** [position paper, frozen formative pilot and Alex's walkthrough](handoff/README.md).
 The compact pilot replaces no historical results and has no participant observations.
 Its source-only diagnostic is separate from the older effectiveness-study proposal.
 
@@ -21,7 +25,8 @@ The [pilot package](pilot/README.md) adds investigator setup, compact counterbal
 packets, a source-only feasibility check, calculator, forms and offline analysis.
 Its [answer audit](pilot/AUDIT.md) preserves the low historical scores and diagnoses
 why task feasibility needs testing. No participant observations are supplied.
-Use this package for the next investigator preview; institutional determination
+This formative-v1 package remains preserved; the matched comparison above is the
+new investigator preview. Institutional determination
 and consent preparation remain necessary before collection.
 
 ## Quick start: no inference

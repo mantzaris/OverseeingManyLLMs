@@ -1,0 +1,42 @@
+test_admission_disabled_and_q_grouping_refused_with_replay (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_authorization_version_and_practice_duration (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_cutoff_unfinished_and_partial_exports_retained (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_equal_real_configuration_all_three_conditions (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_kind_version_timing_and_assignment_isolation (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ERROR
+test_manifest_allocation_and_balanced_assignments (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_manual_never_requests_model_output (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_no_annotations_in_online_context_and_no_inference_path (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_official_scoring_rejection_and_adjudication_separate (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_source_group_requires_actual_source_and_separate_decisions (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+test_stable_review_scope_and_versioned_release (research.oversight_workflow.matched.tests.test_matched.MatchedTests) ... ok
+
+======================================================================
+ERROR: test_kind_version_timing_and_assignment_isolation (research.oversight_workflow.matched.tests.test_matched.MatchedTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_workflow/matched/tests/test_matched.py", line 108, in test_kind_version_timing_and_assignment_isolation
+    self.assertRaises(ValueError,load_runs,[p],'participant')
+  File "/usr/lib/python3.8/unittest/case.py", line 816, in assertRaises
+    return context.handle('assertRaises', args, kwargs)
+  File "/usr/lib/python3.8/unittest/case.py", line 202, in handle
+    callable_obj(*args, **kwargs)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_workflow/matched/analysis.py", line 34, in load_runs
+    if kind=='participant': verify()
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_workflow/matched/freeze.py", line 22, in verify
+    f=read(OUT/'freeze.json')
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_workflow/common.py", line 15, in read
+    return _read(p)
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/adaptive_correction_transfer/common.py", line 7, in read
+    def read(p):return json.loads(Path(p).read_text())
+  File "/usr/lib/python3.8/pathlib.py", line 1236, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+  File "/usr/lib/python3.8/pathlib.py", line 1222, in open
+    return io.open(self, mode, buffering, encoding, errors, newline,
+  File "/usr/lib/python3.8/pathlib.py", line 1078, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/resort/Documents/repos/OverseeingManyLLMs/artifacts/oversight_workflow/matched_preparation/freeze.json'
+
+----------------------------------------------------------------------
+Ran 11 tests in 4.257s
+
+FAILED (errors=1)
