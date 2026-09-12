@@ -9,6 +9,7 @@ def acquire():
  DATA.mkdir(parents=True,exist_ok=True);archive=DATA/'online_retail.zip'
  if not archive.exists():
   with urllib.request.urlopen(URL,timeout=60) as r:archive.write_bytes(r.read())
+ if hashlib.sha256(archive.read_bytes()).hexdigest()!='f5385cbb54bbebf7196389109c6b0621faab0c304e3702548165e71c84aede8b':raise ValueError('Official source differs from pinned archive')
  with zipfile.ZipFile(archive) as z:
   name=next(x for x in z.namelist() if x.endswith('.xlsx'));raw=z.read(name)
  xlsx=DATA/'Online Retail.xlsx';xlsx.write_bytes(raw)
@@ -36,5 +37,12 @@ def audit():
  if batch:c.executemany('INSERT INTO transactions VALUES(?,?,?,?,?,?,?,?,?,?,?)',batch)
  c.execute('CREATE INDEX transaction_date ON transactions(invoice_date)');c.execute('CREATE INDEX transaction_country_date ON transactions(country,invoice_date)');c.commit()
  out=dict(source_url='https://archive.ics.uci.edu/dataset/352/online%2Bretail',download_url=URL,citation='Chen, D. (2015). Online Retail [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5BW33',license='CC BY 4.0',retrieved_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),archive_sha256=hashlib.sha256(archive.read_bytes()).hexdigest(),xlsx_sha256=hashlib.sha256(xlsx.read_bytes()).hexdigest(),headers=list(headers),counts=dict(counts),countries=dict(sorted(countries.items())),monthly_rows=dict(sorted(months.items())),min_date=min(dates).isoformat(),max_date=max(dates).isoformat(),min_quantity=minq,max_quantity=maxq,min_unit_price=str(minp),max_unit_price=str(maxp),max_price_decimal_places=precision,distinct_invoices=len(invoices),invoice_ids_with_multiple_timestamp_customer_country_tuples=sum(len(v)>1 for v in invoices.values()),anomaly_examples=anomalies,openpyxl=openpyxl.__version__,row_policy='All source rows retained. Original duplicate rows preserved. Analysis rules are explicit project parameters. Prices represented exactly in micro-GBP.',sqlite_integrity=c.execute('PRAGMA integrity_check').fetchall())
- write(ART/'data_audit.json',out);c.close();wb.close();print({k:out[k] for k in ['counts','min_date','max_date','min_unit_price','max_unit_price','max_price_decimal_places']});return out
+ target=ART/'data_audit.json'
+ if target.exists():
+  import json
+  previous=json.loads(target.read_text())
+  for key in ['archive_sha256','xlsx_sha256','counts','countries','monthly_rows']:
+   if previous[key]!=out[key]:raise ValueError('Source re-audit differs: '+key)
+ else:write(target,out)
+ c.close();wb.close();print({k:out[k] for k in ['counts','min_date','max_date','min_unit_price','max_unit_price','max_price_decimal_places']});return out
 if __name__=='__main__':audit()

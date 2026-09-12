@@ -1,0 +1,1443 @@
+{
+  "artifacts": {
+    "analysis": {
+      "accepted": true,
+      "consumed_contract_hash": "7f7953cc2cbae2a62148e33e9d0114c2aa18262f8f1a333e875728c74268b195",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "15036",
+            732
+          ],
+          [
+            "20719",
+            210
+          ],
+          [
+            "20726",
+            180
+          ],
+          [
+            "23204",
+            180
+          ],
+          [
+            "23206",
+            180
+          ]
+        ],
+        "seconds": 0.0006964709609746933,
+        "status": "ok",
+        "table_hash": "41eb84c75feef1a7a059f75fd7d736f35c2e714d533949ea7fc431e4eba938a6"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [
+          "chart"
+        ],
+        "query": {
+          "country": "Germany",
+          "customer": "all",
+          "end": "2011-06-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "start": "2011-05-01"
+        },
+        "status": "replace"
+      },
+      "revision": 2,
+      "role": "analysis",
+      "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'Germany' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "appendix": {
+      "accepted": true,
+      "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+      "dependencies": {},
+      "execution": {
+        "rows": [
+          [
+            "22197",
+            6849
+          ],
+          [
+            "84077",
+            4949
+          ],
+          [
+            "15036",
+            4684
+          ],
+          [
+            "21977",
+            4055
+          ],
+          [
+            "85123A",
+            4006
+          ]
+        ],
+        "seconds": 0.016618718043901026,
+        "status": "ok",
+        "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [],
+        "query": {
+          "country": "ALL",
+          "customer": "all",
+          "end": "2011-06-01",
+          "inclusion": "positive",
+          "metric": "units",
+          "start": "2011-05-01"
+        },
+        "status": "replace"
+      },
+      "revision": 1,
+      "role": "appendix",
+      "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+    },
+    "chart": {
+      "accepted": true,
+      "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+      "dependencies": {
+        "analysis": "e69cc6c3db856716f62547339e55890dc92b6ea99a9235b94835cd873676f866"
+      },
+      "online_issues": [],
+      "points": [
+        [
+          "15036",
+          732
+        ],
+        [
+          "20719",
+          210
+        ],
+        [
+          "20726",
+          180
+        ],
+        [
+          "23204",
+          180
+        ],
+        [
+          "23206",
+          180
+        ]
+      ],
+      "proposal": {
+        "notify": [
+          "report"
+        ],
+        "status": "replace",
+        "title": "Top 5 Positive Units Sales in Germany",
+        "view": {
+          "limit": 5,
+          "source": "analysis",
+          "unit": "items"
+        }
+      },
+      "revision": 2,
+      "role": "chart",
+      "unit": "items"
+    },
+    "report": {
+      "accepted": true,
+      "claims": {
+        "displayed_products": 5,
+        "displayed_total": 1482,
+        "top_stock": "15036",
+        "top_value": 732
+      },
+      "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+      "dependencies": {
+        "chart": "0554b8a22373e646ab87092bcab4c46e26ccb76d1162864cf3c21ac9c17e7ffb"
+      },
+      "online_issues": [],
+      "proposal": {
+        "notify": [],
+        "status": "replace",
+        "summary": {
+          "source": "chart",
+          "unit": "items"
+        },
+        "text": "This report displays the top 5 positive units sales in Germany, showing stock codes and their respective unit sales."
+      },
+      "revision": 2,
+      "role": "report",
+      "unit": "items"
+    }
+  },
+  "calls": [
+    {
+      "attempts": 1,
+      "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_analysis",
+      "request_sha256": "b39ebb0a933119b95153c6da8a3582f4f40b774988fa5898680051ca905c1c8b",
+      "seconds": 1.894747625105083,
+      "status": "ok",
+      "tokens": 735
+    },
+    {
+      "attempts": 1,
+      "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_chart",
+      "request_sha256": "93da5ede29ebf2fdb6580efb526a498e3902c9c9921706ac166fb18fae6ae8c9",
+      "seconds": 1.79918744310271,
+      "status": "ok",
+      "tokens": 711
+    },
+    {
+      "attempts": 1,
+      "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_report",
+      "request_sha256": "38e2ccef067224e603f598f034601584e6602899b58b6825a74d2e489182f311",
+      "seconds": 1.704088913043961,
+      "status": "ok",
+      "tokens": 704
+    }
+  ],
+  "checks": [
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "failed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "analysis"
+    },
+    {
+      "kind": "public_probe",
+      "role": "analysis",
+      "status": "passed"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "chart"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "report"
+    },
+    {
+      "kind": "artifact_check",
+      "role": "appendix"
+    },
+    {
+      "kind": "public_probe",
+      "role": "appendix",
+      "status": "passed"
+    }
+  ],
+  "direct_recipients": [
+    "analysis",
+    "chart",
+    "report"
+  ],
+  "epoch": 1,
+  "events": [
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": false,
+          "consumed_contract_hash": "71310522fb0a2fd2ef107e8d937bf91d7b87ea831b502319486279b297ab7024",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.01908543996978551,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "query_parameters_do_not_match_applicable_contract",
+            "Public synthetic probe mismatch (not real-data reference): expected [['F', 11], ['B', 7], ['A', 2]]; got [['C', 20], ['F', 11], ['B', 7], ['A', 2]]. Check the explicit requirements."
+          ],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.016618718043901026,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "cb2c135402972a81928f84175ca3f5bf270a7f979ae4eab2d7981e5400c971fc",
+          "dependencies": {
+            "analysis": "1b60f45a468bfa8ee7539584270e8d22c65c7a10c9163cce8df53165783d9cec"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:analysis"
+          ],
+          "points": [
+            [
+              "22197",
+              6849
+            ],
+            [
+              "84077",
+              4949
+            ],
+            [
+              "15036",
+              4684
+            ],
+            [
+              "21977",
+              4055
+            ],
+            [
+              "85123A",
+              4006
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units Sales",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 1,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 24543,
+            "top_stock": "22197",
+            "top_value": 6849
+          },
+          "consumed_contract_hash": "cb2c135402972a81928f84175ca3f5bf270a7f979ae4eab2d7981e5400c971fc",
+          "dependencies": {
+            "chart": "245834c5ef8c81f3e154f0b8ce25dee25f9c12112904dca4b3f74111e6409ba0"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:chart"
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sales, showing stock codes and their respective unit sales."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "user_change",
+      "extra": {
+        "exceptions": [
+          "appendix"
+        ],
+        "scope": "main",
+        "source": "authorized_user",
+        "text": "Restrict the main analysis, chart and report to Germany. Keep the appendix under its original all-country brief.",
+        "version": 2
+      },
+      "round": -1
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "7f7953cc2cbae2a62148e33e9d0114c2aa18262f8f1a333e875728c74268b195",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "15036",
+                732
+              ],
+              [
+                "20719",
+                210
+              ],
+              [
+                "20726",
+                180
+              ],
+              [
+                "23204",
+                180
+              ],
+              [
+                "23206",
+                180
+              ]
+            ],
+            "seconds": 0.0006964709609746933,
+            "status": "ok",
+            "table_hash": "41eb84c75feef1a7a059f75fd7d736f35c2e714d533949ea7fc431e4eba938a6"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "Germany",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'Germany' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.016618718043901026,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": false,
+          "consumed_contract_hash": "cb2c135402972a81928f84175ca3f5bf270a7f979ae4eab2d7981e5400c971fc",
+          "dependencies": {
+            "analysis": "1b60f45a468bfa8ee7539584270e8d22c65c7a10c9163cce8df53165783d9cec"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "stale_dependency:analysis",
+            "chart_does_not_match_current_analysis"
+          ],
+          "points": [
+            [
+              "22197",
+              6849
+            ],
+            [
+              "84077",
+              4949
+            ],
+            [
+              "15036",
+              4684
+            ],
+            [
+              "21977",
+              4055
+            ],
+            [
+              "85123A",
+              4006
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units Sales",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 1,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 24543,
+            "top_stock": "22197",
+            "top_value": 6849
+          },
+          "consumed_contract_hash": "cb2c135402972a81928f84175ca3f5bf270a7f979ae4eab2d7981e5400c971fc",
+          "dependencies": {
+            "chart": "245834c5ef8c81f3e154f0b8ce25dee25f9c12112904dca4b3f74111e6409ba0"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "unaccepted_dependency:chart"
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sales, showing stock codes and their respective unit sales."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_analysis",
+        "delivery": "direct",
+        "role": "analysis"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "7f7953cc2cbae2a62148e33e9d0114c2aa18262f8f1a333e875728c74268b195",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "15036",
+                732
+              ],
+              [
+                "20719",
+                210
+              ],
+              [
+                "20726",
+                180
+              ],
+              [
+                "23204",
+                180
+              ],
+              [
+                "23206",
+                180
+              ]
+            ],
+            "seconds": 0.0006964709609746933,
+            "status": "ok",
+            "table_hash": "41eb84c75feef1a7a059f75fd7d736f35c2e714d533949ea7fc431e4eba938a6"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "Germany",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'Germany' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.016618718043901026,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+          "dependencies": {
+            "analysis": "e69cc6c3db856716f62547339e55890dc92b6ea99a9235b94835cd873676f866"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "15036",
+              732
+            ],
+            [
+              "20719",
+              210
+            ],
+            [
+              "20726",
+              180
+            ],
+            [
+              "23204",
+              180
+            ],
+            [
+              "23206",
+              180
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units Sales in Germany",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": false,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 24543,
+            "top_stock": "22197",
+            "top_value": 6849
+          },
+          "consumed_contract_hash": "cb2c135402972a81928f84175ca3f5bf270a7f979ae4eab2d7981e5400c971fc",
+          "dependencies": {
+            "chart": "245834c5ef8c81f3e154f0b8ce25dee25f9c12112904dca4b3f74111e6409ba0"
+          },
+          "online_issues": [
+            "stale_instruction",
+            "stale_dependency:chart",
+            "report_claims_do_not_match_chart"
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This chart displays the top 5 positive units sales, showing stock codes and their respective unit sales."
+          },
+          "revision": 1,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_chart",
+        "delivery": "direct",
+        "role": "chart"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "7f7953cc2cbae2a62148e33e9d0114c2aa18262f8f1a333e875728c74268b195",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "15036",
+                732
+              ],
+              [
+                "20719",
+                210
+              ],
+              [
+                "20726",
+                180
+              ],
+              [
+                "23204",
+                180
+              ],
+              [
+                "23206",
+                180
+              ]
+            ],
+            "seconds": 0.0006964709609746933,
+            "status": "ok",
+            "table_hash": "41eb84c75feef1a7a059f75fd7d736f35c2e714d533949ea7fc431e4eba938a6"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "Germany",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'Germany' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.016618718043901026,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+          "dependencies": {
+            "analysis": "e69cc6c3db856716f62547339e55890dc92b6ea99a9235b94835cd873676f866"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "15036",
+              732
+            ],
+            [
+              "20719",
+              210
+            ],
+            [
+              "20726",
+              180
+            ],
+            [
+              "23204",
+              180
+            ],
+            [
+              "23206",
+              180
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units Sales in Germany",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": true,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 1482,
+            "top_stock": "15036",
+            "top_value": 732
+          },
+          "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+          "dependencies": {
+            "chart": "0554b8a22373e646ab87092bcab4c46e26ccb76d1162864cf3c21ac9c17e7ffb"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This report displays the top 5 positive units sales in Germany, showing stock codes and their respective unit sales."
+          },
+          "revision": 2,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "agent_continuation",
+      "extra": {
+        "call_id": "evaluation_frozen_eval_05_0_r1_targeted_after_ordinary_0_report",
+        "delivery": "direct",
+        "role": "report"
+      },
+      "round": 0
+    },
+    {
+      "artifacts": {
+        "analysis": {
+          "accepted": true,
+          "consumed_contract_hash": "7f7953cc2cbae2a62148e33e9d0114c2aa18262f8f1a333e875728c74268b195",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "15036",
+                732
+              ],
+              [
+                "20719",
+                210
+              ],
+              [
+                "20726",
+                180
+              ],
+              [
+                "23204",
+                180
+              ],
+              [
+                "23206",
+                180
+              ]
+            ],
+            "seconds": 0.0006964709609746933,
+            "status": "ok",
+            "table_hash": "41eb84c75feef1a7a059f75fd7d736f35c2e714d533949ea7fc431e4eba938a6"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [
+              "chart"
+            ],
+            "query": {
+              "country": "Germany",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 2,
+          "role": "analysis",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 AND country = 'Germany' GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "appendix": {
+          "accepted": true,
+          "consumed_contract_hash": "8dff13485c5c1da9ef672c30d64114763c3a4bdcf9746def70ee257ef3fa70fd",
+          "dependencies": {},
+          "execution": {
+            "rows": [
+              [
+                "22197",
+                6849
+              ],
+              [
+                "84077",
+                4949
+              ],
+              [
+                "15036",
+                4684
+              ],
+              [
+                "21977",
+                4055
+              ],
+              [
+                "85123A",
+                4006
+              ]
+            ],
+            "seconds": 0.016618718043901026,
+            "status": "ok",
+            "table_hash": "ee6e23d085e757b627ea805dd709d2733cd7abfed66ec2f75af22970d5aaf3a1"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "query": {
+              "country": "ALL",
+              "customer": "all",
+              "end": "2011-06-01",
+              "inclusion": "positive",
+              "metric": "units",
+              "start": "2011-05-01"
+            },
+            "status": "replace"
+          },
+          "revision": 1,
+          "role": "appendix",
+          "sql": "SELECT stock_code, SUM(quantity) AS value FROM transactions WHERE invoice_date >= '2011-05-01' AND invoice_date < '2011-06-01' AND unit_price_micro > 0 AND quantity > 0 AND is_cancel = 0 GROUP BY stock_code ORDER BY value DESC, stock_code ASC LIMIT 5"
+        },
+        "chart": {
+          "accepted": true,
+          "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+          "dependencies": {
+            "analysis": "e69cc6c3db856716f62547339e55890dc92b6ea99a9235b94835cd873676f866"
+          },
+          "online_issues": [],
+          "points": [
+            [
+              "15036",
+              732
+            ],
+            [
+              "20719",
+              210
+            ],
+            [
+              "20726",
+              180
+            ],
+            [
+              "23204",
+              180
+            ],
+            [
+              "23206",
+              180
+            ]
+          ],
+          "proposal": {
+            "notify": [
+              "report"
+            ],
+            "status": "replace",
+            "title": "Top 5 Positive Units Sales in Germany",
+            "view": {
+              "limit": 5,
+              "source": "analysis",
+              "unit": "items"
+            }
+          },
+          "revision": 2,
+          "role": "chart",
+          "unit": "items"
+        },
+        "report": {
+          "accepted": true,
+          "claims": {
+            "displayed_products": 5,
+            "displayed_total": 1482,
+            "top_stock": "15036",
+            "top_value": 732
+          },
+          "consumed_contract_hash": "ec0d8ba82a607de62e26fe9eee6934c96d1e38617d3e60e4c81d8d37099613e8",
+          "dependencies": {
+            "chart": "0554b8a22373e646ab87092bcab4c46e26ccb76d1162864cf3c21ac9c17e7ffb"
+          },
+          "online_issues": [],
+          "proposal": {
+            "notify": [],
+            "status": "replace",
+            "summary": {
+              "source": "chart",
+              "unit": "items"
+            },
+            "text": "This report displays the top 5 positive units sales in Germany, showing stock codes and their respective unit sales."
+          },
+          "revision": 2,
+          "role": "report",
+          "unit": "items"
+        }
+      },
+      "event": "round_complete",
+      "extra": {},
+      "round": 0
+    }
+  ],
+  "forwarded_messages": 0,
+  "method": "targeted",
+  "month": "2011-05",
+  "project_id": "eval_05_0",
+  "rep": 1,
+  "routes": [
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "query_parameters_do_not_match_applicable_contract",
+        "Public synthetic probe mismatch (not real-data reference): expected [['F', 11], ['B', 7], ['A', 2]]; got [['C', 20], ['F', 11], ['B', 7], ['A', 2]]. Check the explicit requirements."
+      ],
+      "role": "analysis",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "stale_dependency:analysis",
+        "chart_does_not_match_current_analysis"
+      ],
+      "role": "chart",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    },
+    {
+      "delivery": "direct",
+      "feedback": [
+        "stale_instruction",
+        "stale_dependency:chart",
+        "report_claims_do_not_match_chart"
+      ],
+      "role": "report",
+      "round": 0,
+      "scope": "main",
+      "source": "authorized_user"
+    }
+  ],
+  "seconds": 6.675307238008827,
+  "stress": "ordinary",
+  "user_changes": 1,
+  "user_questions": 0
+}

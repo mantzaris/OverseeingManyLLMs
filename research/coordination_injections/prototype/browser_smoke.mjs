@@ -1,0 +1,20 @@
+// Scripted interface verification, never participant data.
+import fs from 'node:fs';import {spawn} from 'node:child_process';
+const out=process.argv[2]||'/tmp/coordination-browser';fs.mkdirSync(out,{recursive:true});
+try{await fetch('http://127.0.0.1:9233/json/version');throw Error('Debug port 9233 already occupied')}catch(e){if(e.message.includes('occupied'))throw e}
+const child=spawn('/opt/google/chrome/google-chrome',['--headless=new','--no-sandbox','--disable-gpu','--disable-dev-shm-usage','--disable-background-networking','--no-first-run','--user-data-dir=/tmp/coordination-browser-'+process.pid,'--remote-debugging-port=9233','about:blank'],{stdio:'ignore'});let ws;const wait=ms=>new Promise(r=>setTimeout(r,ms));
+try{
+ let pages;for(let i=0;i<60;i++){try{pages=await(await fetch('http://127.0.0.1:9233/json/list')).json();if(pages.length)break}catch{}await wait(100)}
+ if(!pages?.length)throw Error('Browser unavailable');ws=new WebSocket(pages.find(p=>p.type==='page').webSocketDebuggerUrl);await new Promise((r,j)=>{ws.onopen=r;ws.onerror=j});let next=0,pending=new Map(),errors=[];ws.onmessage=e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);m.error?p.reject(m.error):p.resolve(m.result)}if(m.method==='Runtime.exceptionThrown')errors.push(m.params)};
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++next;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}))});
+ async function js(expression){const r=await send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value}
+ let checks=0;function assert(x,msg){checks++;if(!x)throw Error(msg)}
+ async function screenshot(name){const r=await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});fs.writeFileSync(out+'/'+name+'.png',Buffer.from(r.data,'base64'))}
+ await send('Page.enable');await send('Runtime.enable');await send('Emulation.setDeviceMetricsOverride',{width:1360,height:1020,deviceScaleFactor:1,mobile:false});await send('Page.navigate',{url:'http://127.0.0.1:9033/'});await wait(600);
+ assert(await js('state!==null'),'Project loaded');assert(await js('document.querySelectorAll(".card").length===4'),'Four real responsibilities');await screenshot('original');
+ const appendix=await js('JSON.stringify(state.before.artifacts.appendix)');await js('apply()');assert(await js('applied && $("apply").disabled'),'Single change installed');await screenshot('change_pending');await js('finish()');assert(await js('$("next").disabled'),'Saved final event reached');assert(await js('JSON.stringify(state.after.artifacts.appendix)')===appendix,'Protected appendix content preserved');await screenshot('adapted');
+ await js('$("custom").open=true;$("country").value="France";$("metric").value="value_micro";$("customRun").click()');await wait(500);
+ assert(await js('state.mode==="deterministic_parameterized_demo"'),'Custom change is labeled deterministic');assert(await js('Object.values(state.after.artifacts).every(a=>a.accepted)'),'Custom connected outputs pass execution checks');assert(await js('state.after.artifacts.analysis.proposal.query.country==="France"'),'Country applied');assert(await js('state.after.artifacts.appendix.proposal.query.country==="ALL"'),'Exception remains all-country');await js('$("custom").open=false;window.scrollTo(0,0)');await screenshot('custom_pipeline');
+ await send('Emulation.setDeviceMetricsOverride',{width:430,height:1050,deviceScaleFactor:1,mobile:true});await screenshot('mobile');assert(await js('document.documentElement.scrollWidth<=window.innerWidth+2'),'No mobile overflow');assert(errors.length===0,'No browser exceptions');
+ fs.writeFileSync(out+'/verification.json',JSON.stringify({passed:true,checks,errors,kind:'Scripted software checks, not participant evidence'},null,2)+'\n');fs.writeFileSync(out+'/interactions.json',JSON.stringify(await(await fetch('http://127.0.0.1:9033/api/log')).json(),null,2)+'\n');console.log(checks+' checks passed');await send('Browser.close');
+}finally{if(ws)ws.close();child.kill()}

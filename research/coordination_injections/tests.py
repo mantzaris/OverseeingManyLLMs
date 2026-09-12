@@ -41,6 +41,13 @@ class ProtocolTests(unittest.TestCase):
   out=run(self.p,0,generate_fn=bad)
   self.assertFalse(any(a['accepted'] for a in out['artifacts'].values()))
   self.assertEqual(len(out['calls']),4)
+ def test_external_scope_exception_validation(self):
+  from .api import validate_project
+  self.assertIs(validate_project(self.p),self.p)
+  wrong=copy.deepcopy(self.p);wrong['after']['appendix']['country']='France'
+  with self.assertRaises(ValueError):validate_project(wrong)
+  peer=copy.deepcopy(self.p);peer['user_change']['source']='peer_agent'
+  with self.assertRaises(PermissionError):validate_project(peer)
  def test_cycle_rejected(self):
   with self.assertRaises(ValueError):validate_graph(dict(analysis=['report'],chart=['analysis'],report=['chart'],appendix=[]))
  def test_information_isolation(self):
@@ -55,6 +62,31 @@ class ProtocolTests(unittest.TestCase):
   c=contract(self.p,'analysis',0);self.assertEqual(probe(compile_sql(c),c)['status'],'passed')
   wrong=compile_sql(c).replace('quantity > 0 AND ','');self.assertEqual(probe(wrong,c)['status'],'failed')
   self.assertEqual(execute('DELETE FROM transactions')['status'],'failed')
+ def test_hand_calculated_transaction_contract(self):
+  from .execution import python_aggregate
+  c=contract(self.p,'analysis',0);rows=probe_rows(c)
+  self.assertEqual(python_aggregate(rows,c),[['C',20],['F',11],['B',7],['A',2]])
+  self.assertEqual(python_aggregate(rows,dict(c,country='France',customer='known')),[['B',7],['A',2]])
+  self.assertEqual(python_aggregate(rows,dict(c,inclusion='signed',metric='value_micro')),[['C',40000000],['F',22000000],['I',18000000],['B',7000000],['A',4000000]])
+ def test_budget_cutoff_before_network(self):
+  from . import client
+  auth=dict(inference_cutoff_utc='2000-01-01T00:00:00+00:00',scheduled_call_ceiling=2,attempt_ceiling=2)
+  with patch.object(client,'ART',Path(self.tmp.name)),patch.object(client,'read',return_value=auth),patch.object(client,'http') as network:
+   with self.assertRaises(RuntimeError):client.generate('new',[],1,20)
+   network.assert_not_called()
+ def test_failed_attempts_retained_and_cached(self):
+  from . import client
+  from .common import write,read
+  root=Path(self.tmp.name);auth=dict(inference_cutoff_utc='2099-01-01T00:00:00+00:00',scheduled_call_ceiling=2,attempt_ceiling=2)
+  write(root/'authorization.json',auth)
+  def network(path,payload):
+   if path=='/tokenize':return {'count':10}
+   raise TimeoutError('Controlled failure')
+  with patch.object(client,'ART',root),patch.object(client,'http',side_effect=network):
+   r=client.generate('failure',[],1,20);self.assertEqual(r['status'],'failed');self.assertEqual(len(r['attempts']),2)
+   again=client.generate('failure',[],1,20);self.assertEqual(r,again)
+   with self.assertRaises(ValueError):client.generate('failure',[],2,20)
+  self.assertEqual(len((root/'attempts.jsonl').read_text().splitlines()),2)
  def test_identical_replay(self):
   a=run(self.p,0,generate_fn=deterministic_call);b=run(self.p,0,generate_fn=deterministic_call);self.assertEqual(stable(a),stable(b))
 if __name__=='__main__':unittest.main()

@@ -52,8 +52,12 @@ Report accepted wrong artifacts, raw snapshot matches, correct accepted artifact
 
 **Bounded propagation.** A run visits four registered roles at most once in each of two rounds. Forwarding only adds an immediate dependent that has not yet been called in that round. Therefore there are at most eight calls, including unsuccessful calls. With one retry, at most sixteen generation attempts occur per continuation. The separate session ledger can impose a stricter cutoff. Cyclic graphs are rejected rather than assumed to converge.
 
-**Scope confinement.** The controller resolves and sends C_i from authorized state; peer `notify` can only name a registered child. The appendix's contract is invariant under main-scope changes. This establishes message authority and represented-scope preservation, not that an LLM complies. Actual outputs must still pass the guard.
+**Scope confinement.** The controller resolves and sends C_i from authorized state; peer `notify` can only name a registered child. The appendix's contract is invariant under the supported project constructor and validated main-scope API; arbitrary dictionaries passed directly to the internal experiment runner are outside that guarantee. This establishes message authority and represented-scope preservation, not that an LLM complies. Actual outputs must still pass the guard.
 
 **Dependency freshness.** Acceptance requires current parent hashes and accepted parents. If the parent artifact changes, an unchanged child is invalidated. A `keep` returns the old artifact with its old hashes, so it cannot falsely certify uptake. Timing metadata is excluded from identity. Content, query parameters and dependency hashes are not.
 
 No contraction guarantee is claimed for LLM repairs. V can increase after a bad continuation; unchanged requirements and natural completion can also reduce V. Matched policy-specific continuations and the deterministic comparator test whether injections add value. The four roles share one pinned model, not independent expertise. No inference about human attention, experienced workload or organizational deployment follows from message counts.
+
+### Interpretation of the stress rewrite count
+
+The frozen score field named `unnecessary_modifications` counts identity changes to contract-unaffected artifacts. In the ordinary condition all original artifacts were valid, so this measures avoidable rewriting. In the exception-corruption stress condition, restoring the appendix is necessary even though its contract did not change. Stress analyses therefore call the same count **unaffected-artifact rewrites**, not unnecessary repairs. The raw score is preserved; the interpretation is narrowed rather than assigning success to leaving corruption untouched.
