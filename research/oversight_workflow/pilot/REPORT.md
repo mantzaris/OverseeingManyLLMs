@@ -170,3 +170,7 @@ version rather than interpret B/C differences as evidence about oversight benefi
 Reproduction and launch commands are in [README.md](README.md). The new resource
 entry is `artifacts/oversight_workflow/pilot_preparation/ledger.json`. Historical
 ledgers, the existing GPU service, all previous research and the paper are preserved.
+
+## Final accounting checkpoint
+
+2026-09-12T15:39:00.464028+00:00 UTC checkpoint: 3664.5 seconds (61.1 minutes) of the separately authorized 90-minute preparation window. Zero new inference calls, attempts, tokens or participant observations. Five complete software assignments and one interrupted harness attempt are retained; all 22 saved blocks replay. Existing inference totals remain 61729 attempts. Time since the original start is 72.001 hours, including inter-stage gaps, versus the historical 36-hour target. No historical clock was reset. Temporary pilot servers and test browsers are stopped. Implementation milestone: `b8a4af45`. The final accounting commit follows this checkpoint.
