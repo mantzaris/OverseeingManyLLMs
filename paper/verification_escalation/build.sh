@@ -8,4 +8,4 @@ bibtex main >> build.log
 pdflatex -interaction=nonstopmode -halt-on-error main.tex >> build.log
 pdflatex -interaction=nonstopmode -halt-on-error main.tex >> build.log
 pdflatex -interaction=nonstopmode -halt-on-error main.tex >> build.log
-pdfinfo main.pdf > pdfinfo.txt
+pdfinfo main.pdf | sed 's/[[:space:]]*$//' > pdfinfo.txt
