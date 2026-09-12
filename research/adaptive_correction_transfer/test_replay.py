@@ -19,6 +19,9 @@ class AdditionalBoundaries(unittest.TestCase):
   self.assertEqual(score(prepare(dict(answer=['10'],scale='percent'),C),g)['em'],0)
   g.update(answer=100,scale='percent')
   self.assertEqual(score(prepare(dict(answer=['=(20-10)/10*100'],scale='percent'),C),g)['em'],1)
+ def test_official_answer_credit_is_not_schema_validity(self):
+  a=prepare(dict(answer=['100'],scale='units'),C);g=dict(answer=100,scale='',answer_type='arithmetic',derivation='')
+  self.assertFalse(a['valid']);self.assertEqual(score(a,g)['em'],1)
  def test_frozen_initialization_unchanged(self):
   p=copy.deepcopy(P);run(C,initial(),p,Inspector(G,2),responder,50,'adaptive',2);self.assertEqual(p,P)
  def test_zero_budget_no_feedback(self):

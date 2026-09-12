@@ -51,3 +51,37 @@ All controlled methods have identical source access, parser, feedback, sampling 
 Each inspection checks and increments a budget counter before revealing anything, giving pathwise adherence. No more than B(n-1) regeneration calls are allowed; the selective methods additionally cap each step at three. Ranking costs O(B n^2), with n <= 8; model generations dominate cost. Scope isolation is structural at context boundaries, while within-context applicability is uncertain. Changing an unasked hidden answer cannot change an online action when acquired disclosures are held fixed; a dedicated test checks this.
 
 The protocol extends correlated audit allocation and feedback-memory systems by jointly tracking harmful and beneficial regeneration with labels restricted to purchased inspections. Bayesian acquisition, bandits, shared memory, and correction rules are established. The discriminating evidence must be improvement over fixed acquisition with the same transfer mechanism, not merely a gain from direct annotation replacement or an extra generation.
+
+## Pseudocode and interpretation of learning
+
+```
+model <- development initialization
+answers <- common generated checkpoint
+for step in 1..inspection_budget:
+    estimate current error and candidate transfer gains from public state
+    choose an uninspected output with the declared epsilon mixture
+    feedback <- purchase only that output's annotation
+    if output was previously regenerated:
+        score its saved transitions against this purchased feedback
+        update the corresponding repair/harm counts
+    update original-error and fully inspected pair counts
+    replace this inspected answer with verified information
+    select recipients under the current method's rule and remaining call cap
+    for each recipient:
+        generate a fresh answer from source + acquired scoped feedback
+        accept only a structurally valid proposal; retain every attempt
+```
+
+At a two-inspection budget, the first disclosure can change the second acquisition through estimated error and co-error. A measured transfer transition is available only if the second inspection purchases a regenerated recipient's label. Such a transition can affect second-step transfer, but cannot retrospectively choose the second inspection. The three-inspection diagnostic permits that feedback to influence a later acquisition. This distinction limits what can be claimed about within-episode learning.
+
+The donor and recipient share a context by construction, but their correctness events are not assumed independent. Conditional error features and transition histories represent some dependence. The additive acquisition score still approximates joint utility and can waste regeneration on a task later inspected directly. The study measures that cost rather than proving an optimal plan.
+
+## Testable claim and falsification
+
+The strongest protocol claim is observational: at the same paid-feedback boundary, adaptive acquisition should increase final correctness compared with fixed acquisition using the same recipient model. A second necessary practical check is whether it beats risk-ranked individual correction at reasonable additional computation. Lower recipient counts alone do not demonstrate greater correctness or reduced experienced workload. If the former comparison ties and the simpler individual method remains competitive, the current adaptive policy should remain a research baseline rather than the paper's central algorithmic contribution.
+
+Output completeness is distinct from benchmark answer correctness. The guard validates answer shape, the scale vocabulary and any explicit arithmetic expression. Missing citations or derivations do not discard an otherwise parseable answer. Their absence is logged and reported as incomplete compliance with the requested output fields. Existing cell IDs are not proof of evidential support, and there is no private gold-evidence guard.
+
+Adaptive and fixed acquisition have identical first-inspection choices and initial recipient rules. Their fresh identical requests can nevertheless produce different model answers. Budget-one differences between those two policies are therefore generation variation, not an acquisition advantage. The second step is the first opportunity for their acquisition rules to differ. Both raw answer/scale variation and changes in official correctness are measured for identical requests.
+
+For matched feedback comparisons, the correction packet's `previous` field is the common initial checkpoint, not necessarily the most recent regenerated draft. The inspected annotation is the same under all fixed-inspection methods. The immediately preceding answer is separately retained as `current_before` and used for local-gain and purchased-transition scoring.

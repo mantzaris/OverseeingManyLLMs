@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c22_r0_q02_initial",
+      "elapsed_seconds": 1.129857145017013,
+      "request_sha256": "51723c2fa05e23d821a3176a5641b753c3d1f8a5bcd41a34facf2a5d4f31b972",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\":[[\"P2\",\"T3C3\"]],\"operation\":\"lookup\",\"derivation\":\"The expected recognition period for RSUs is given in the last paragraph.\",\"answer\":[2.33],\"scale\":\"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789191079,
+        "id": "chatcmpl-9ad55fcab6e64ada95ca444f196754e9",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 46,
+          "prompt_tokens": 521,
+          "prompt_tokens_details": null,
+          "total_tokens": 567
+        }
+      },
+      "started_utc": "2026-09-12T05:31:19.767890+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c22_r0_q02_initial",
+  "input_tokens": 521,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | Year Ended | Year Ended |\n| T1 | Stock-Based Compensation by Type of Award | December 31, 2019 | December 31, 2018 |\n| T2 | Stock options | $2,756 | $2,926 |\n| T3 | RSUs | 955 | 1,129 |\n| T4 | Total stock-based compensation expense | $3,711 | $4,055 |\nP1: Stock-based compensation expense is included in general and administrative expense for each period as follows:\nP2: As of December 31, 2019, there was $4,801 of unrecognized stock-based compensation expense related to unvested employee stock options and $1,882 of unrecognized stock-based compensation expense related to unvested RSUs. These costs are expected to be recognized over a weighted-average period of 2.13 and 2.33 years, respectively.\nQUESTION: How long is it expected to take for the unrecognized stock-based compensation expense related to unvested RSUs to be recognized?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 863202,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "51723c2fa05e23d821a3176a5641b753c3d1f8a5bcd41a34facf2a5d4f31b972",
+  "status": "ok"
+}

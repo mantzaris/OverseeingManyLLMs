@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c21_r1_q00_initial",
+      "elapsed_seconds": 1.4715390279889107,
+      "request_sha256": "28a4ac732c0a6e5aee1b6c26182b9fa12a558c2b14f3972aca301803a74d509f",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\":[[\"P2\",\"P3\"]],\"operation\":\"other\",\"derivation\":\"Sales related reserves represent price concessions and stock rotation rights offered to distributors.\",\"answer\":[\"price concessions and stock rotation rights that the Company offers to many of its distributors.\"],\"scale\":\"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789191023,
+        "id": "chatcmpl-2bf657adae444f0395c4483e58a7177c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 56,
+          "prompt_tokens": 555,
+          "prompt_tokens_details": null,
+          "total_tokens": 611
+        }
+      },
+      "started_utc": "2026-09-12T05:30:23.148068+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c21_r1_q00_initial",
+  "input_tokens": 555,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | March 31, |  |\n| T1 |  | 2019 | 2018 |\n| T2 | Accrued compensation and benefits | $133.2 | $87.6 |\n| T3 | Income taxes payable | 46.9 | 27.5 |\n| T4 | Sales related reserves | 366.9 | — |\n| T5 | Accrued expenses and other liabilities | 240.3 | 114.5 |\n| T6 | Total accrued liabilities | $787.3 | $229.6 |\nP1: Accrued Liabilities\nP2: Accrued liabilities consists of the following (in millions):\nP3: Sales related reserves represent price concessions and stock rotation rights that the Company offers to many of its distributors. For the fiscal year ending March 31, 2018, these sales related reserves were recorded within accounts receivable, and therefore did not exist within accrued liabilities. The Company made this change in classification as part of its adoption of ASC 606. For additional information regarding the Company's adoption of ASC 606, refer to Note 1 of the consolidated financial statements.\nQUESTION: What does sales related reserves represent?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 863110,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "28a4ac732c0a6e5aee1b6c26182b9fa12a558c2b14f3972aca301803a74d509f",
+  "status": "ok"
+}

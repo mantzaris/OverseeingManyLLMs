@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c12_r1_reattempt_s0_q03",
+      "elapsed_seconds": 2.2255070250248536,
+      "request_sha256": "c1126e0fad508ba094c3ae30f40c5ff2ad56e5d1e4179f30cb8fb116a154a3f3",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\": [\"T1C1\", \"T1C2\"], \"operation\": \"difference\", \"derivation\": \"The Net Loss for 2019 is $(15,571) million and for 2018 is $(24,122) million. The change is calculated by subtracting 2018 from 2019.\", \"answer\": [\"=-(15571-24122)\"], \"scale\": \"million\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789189825,
+        "id": "chatcmpl-4228d7040662447fbd8ff87b3e2b4d0c",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 109,
+          "prompt_tokens": 918,
+          "prompt_tokens_details": null,
+          "total_tokens": 1027
+        }
+      },
+      "started_utc": "2026-09-12T05:10:25.583890+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c12_r1_reattempt_s0_q03",
+  "input_tokens": 918,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 |  | 2019 | 2018 |\n| T1 | Net Loss | $(15,571) | $(24,122) |\n| T2 | Basic: |  |  |\n| T3 | Weighted average shares outstanding at beginning of year | 16,041 | 15,949 |\n| T4 | Weighted average shares issued during the year, net | 182 | 92 |\n| T5 | Weighted average common shares, basic | 16,223 | 16,041 |\n| T6 | Loss from per common share, basic | $(0.96) | $(1.50) |\n| T7 | Diluted: |  |  |\n| T8 | Weighted average common shares, basic | 16,223 | 16,041 |\n| T9 | Dilutive impact of stock options and restricted stock awards | — | — |\n| T10 | Weighted average common shares, diluted | 16,223 | 16,041 |\n| T11 | Loss per common share, diluted | $ (0.96) | $ (1.50) |\nP1: Loss per share\nP2: Basic loss per share are computed based on the weighted average number of common shares outstanding during the period. Diluted earnings/loss per share reflect the dilutive impact of outstanding stock options and restricted stock awards. Included in the weighted average shares outstanding is the share consideration in connection with the Restaurant Magic Acquisition (See Note 2 - Acquisitions) in the amount of 908,192 for the period after the close of the transaction. The shares were issued in January 2020, however, no contingencies existed as of the date of the acquisition.\nP3: The following is a reconciliation of the weighted average shares outstanding for the basic and diluted loss per share computations (in thousands, except share and per share data):\nP4: At December 31, 2019 and 2018 there were 383,000 and 750,000 incremental shares, respectively, from the assumed exercise of stock options that were excluded from the computation of diluted earnings per share because of the anti-dilutive effect on earnings per share. There were 308,000 restricted stock awards excluded from the computation of diluted earnings per share for the fiscal year ended 2019 and 113,000 for the fiscal year ended 2018.\nQUESTION: What is the change in Net Loss between December 31, 2018 and 2019?\nThis is a fresh re-solution. Recompute YOUR requested answer from the source; do not assume a prior draft was correct.\nRecheck this output using the same source. No new verified correction is available. Revise only when justified.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 872233,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "c1126e0fad508ba094c3ae30f40c5ff2ad56e5d1e4179f30cb8fb116a154a3f3",
+  "status": "ok"
+}

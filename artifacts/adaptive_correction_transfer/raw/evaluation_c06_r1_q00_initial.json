@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c06_r1_q00_initial",
+      "elapsed_seconds": 1.410108296899125,
+      "request_sha256": "7076a76355f9a14815435e29c7fd07d20013bcac4fc7d529a437a6400b9938db",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\":[[\"P4\",\"The above figures exclude the acquisition of Thermocoax.\"]],\"operation\":\"other\",\"derivation\":\"The statement in P4 directly mentions that the figures in the table exclude the acquisition of Thermocoax.\",\"answer\":[\"Thermocoax\"],\"scale\":\"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789189007,
+        "id": "chatcmpl-fe3c1d9deada4a36bcd9d2e92b51c384",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 609,
+          "prompt_tokens_details": null,
+          "total_tokens": 669
+        }
+      },
+      "started_utc": "2026-09-12T04:56:47.496852+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c06_r1_q00_initial",
+  "input_tokens": 609,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 | C5 |\n|---|---|---|---|---|---|---|\n| T0 | Remuneration key performance indicator | 2019 actual | 2019 threshold | 2019 target | 2019 maximum | Remuneration measure |\n| T1 | Group operating profit (£m) | 277.3 | 256.7 | 270.3 | 283.8 | Annual Incentive Plan |\n| T2 | Group cash generation (£m) | 296.4 | 270.7 | 285.0 | 299.2 | Annual Incentive Plan |\n| T3 | Group ROCE (%) | 54.5 | 50.1 | 52.7 | 55.3 | Annual Incentive Plan |\n| T4 | 2017-2019 EPS (%) | 57.5 | 27.6 | N/A | 52.3 | Performance Share Plan |\n| T5 | 2017-2019 relative TSR (percentile TSR) | 94th | 50th | N/A | 75th | Performance Share Plan |\nP1: 5. Remuneration continued\nP2: Remuneration at a glance 2019\nP3: How we performed\nP4: The above figures exclude the acquisition of Thermocoax.\nQUESTION: What do the figures in the table exclude?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 861610,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "7076a76355f9a14815435e29c7fd07d20013bcac4fc7d529a437a6400b9938db",
+  "status": "ok"
+}

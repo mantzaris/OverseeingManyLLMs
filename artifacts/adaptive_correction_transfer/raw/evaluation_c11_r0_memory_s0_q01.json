@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c11_r0_memory_s0_q01",
+      "elapsed_seconds": 2.0206603339174762,
+      "request_sha256": "872d70a4608bb4251d20836d19b1bf0f835a593da74ad7655a8222bf9f56faf6",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answer\": [\"315,652\"],\n  \"scale\": \"thousand\",\n  \"evidence\": [\"T2C1\", \"T2C2\"],\n  \"operation\": \"lookup\",\n  \"derivation\": \"Found the value in the row 'Gross profit from continuing operations, as reported' for the year 2019.\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789189608,
+        "id": "chatcmpl-de099684bdc442cc832f65877ae4cacc",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 80,
+          "prompt_tokens": 1195,
+          "prompt_tokens_details": null,
+          "total_tokens": 1275
+        }
+      },
+      "started_utc": "2026-09-12T05:06:48.171243+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c11_r0_memory_s0_q01",
+  "input_tokens": 1195,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 |\n|---|---|---|---|\n| T0 | Reconciliation of Non-GAAP measure - operating expenses and operating income from continuing operations, excluding certain items (in thousands) | Years Ended December 31, |  |\n| T1 |  | 2019 | 2018 |\n| T2 | Gross profit from continuing operations, as reported | $ 315,652 | $365,607 |\n| T3 | Adjustments to gross profit: |  |  |\n| T4 | Stock-based compensation | 525 | 742 |\n| T5 | Facility expansion and relocation costs | 3,891 | 1,328 |\n| T6 | Acquisition-related costs | 8,290 | 569 |\n| T7 | Non-GAAP gross profit | 328,358 | 368,246 |\n| T8 | Non-GAAP gross margin | 41.6% | 51.2% |\n| T9 | Operating expenses from continuing operations, as reported | 261,264 | 194,054 |\n| T10 | Adjustments: |  |  |\n| T11 | Amortization of intangible assets | (12,168) | (5,774) |\n| T12 | Stock-based compensation | (6,803) | (8,961) |\n| T13 | Acquisition-related costs | (12,002) | (1,726) |\n| T14 | Facility expansion and relocation costs | (948) | (518) |\n| T15 | Restructuring charges | (5,038) | (4,239) |\n| T16 | Non-GAAP operating expenses | 224,305 | 172,836 |\n| T17 | Non-GAAP operating income | $  104,053 | $  195,410 |\nP1: Non-GAAP Results\nP2: Management uses non-GAAP operating income and non-GAAP EPS to evaluate business performance without the impacts of certain non-cash charges and other charges which are not part of our usual operations. We use these non- GAAP measures to assess performance against business objectives, make business decisions, including developing budgets and forecasting future periods. In addition, management’s incentive plans include these non-GAAP measures as criteria for achievements. These non-GAAP measures are not in accordance with U.S. GAAP and may differ from non- GAAP methods of accounting and reporting used by other companies. However, we believe these non-GAAP measures provide additional information that enables readers to evaluate our business from the perspective of management. The presentation of this additional information should not be considered a substitute for results prepared in accordance with U.S. GAAP.\nP3: The non-GAAP results presented below exclude the impact of non-cash related charges, such as stock-based compensation and amortization of intangible assets. In addition, they exclude discontinued operations and other nonrecurring items such as acquisition-related costs and restructuring expenses, as they are not indicative of future performance. The tax effect of our non-GAAP adjustments represents the anticipated annual tax rate applied to each non-GAAP adjustment after consideration of their respective book and tax treatments and effect of adoption of the Tax Act.\nQUESTION: What was the Gross profit from continuing operations, as reported in 2019?\nThis is a fresh re-solution. Recompute YOUR requested answer from the source; do not assume a prior draft was correct.\nVERIFIED INSPECTIONS (only these questions were inspected; explanations beyond the annotation are not certified):\nPrevious answer: {'answer': [], 'scale': 'percent'}\nQuestion: What was the percentage change in acquisition-related costs between 2018 and 2019?\nAnswer: 1356.94; scale: percent; annotated derivation: ((8,290-569)/569) * 100\nThese records apply directly only to their stated questions and context. Recheck relevant evidence for YOUR distinct question; preserve different periods, entities and ratio scales. You may retain your answer when the correction does not apply.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 872101,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "872d70a4608bb4251d20836d19b1bf0f835a593da74ad7655a8222bf9f56faf6",
+  "status": "ok"
+}

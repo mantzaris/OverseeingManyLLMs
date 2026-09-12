@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c18_r1_reattempt_s0_q02",
+      "elapsed_seconds": 1.782764332019724,
+      "request_sha256": "f09a50cecc61292c6ef6aed82f75fff238e3c38cae113fb6fbc9a0e346ac2ad5",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\": [\"T1C4\", \"T6C4\", \"T1C3\", \"T6C3\"], \"operation\": \"sum\", \"derivation\": \"Sum the total compensation for Richard S. Hill and Christopher A. Seams.\", \"answer\": [\"459974\"], \"scale\": \"dollar\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789190603,
+        "id": "chatcmpl-70ca5bd7277c43d691fccef2982e35c9",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 74,
+          "prompt_tokens": 1053,
+          "prompt_tokens_details": null,
+          "total_tokens": 1127
+        }
+      },
+      "started_utc": "2026-09-12T05:23:23.584405+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c18_r1_reattempt_s0_q02",
+  "input_tokens": 1053,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 |\n|---|---|---|---|---|---|\n| T0 | Name | Fees Earned or Paid in Cash ($) | Stock Awards ($) | Option Awards ($) | Total($) |\n| T1 | Richard S. Hill | $106,000 | $149,987 | — | $255,987 |\n| T2 | Darcy Antonellis | $55,333 | $149,987 | — | $205,320 |\n| T3 | David C. Habiger | $70,000 | $149,987 | — | $219,987 |\n| T4 | V. Sue Molina | $81,000 | $149,987 | — | $230,987 |\n| T5 | George A. Riedel | $68,333 | $149,987 | — | $218,320 |\n| T6 | Christopher A. Seams | $82,000 | $149,987 | — | $231,987 |\nP1: A non-employee director who is initially appointed after any annual meeting of stockholders will receive a restricted stock unit award or option grant on the date of his or her initial appointment to the Board of Directors equal to the pro-rated amount of the annual grant\nP2: Annual option grants and restricted stock unit awards (or any pro-rated grants for directors initially appointed between annual meetings) vest on the earlier to occur of the first anniversary of the date of grant or the next annual meeting of stockholders. No portion of an option automatically granted to a director is exercisable after the tenth anniversary after the date of option grant. Additionally, an option automatically granted to a director may be exercisable after the termination of the director’s services as described in the option agreement, generally ending three months after such termination.\nP3: The following table shows compensation information for our non-employee directors for fiscal year 2019.\nP4: 2019 Director Compensation Table\nP5: (1) The amounts reflected in this column represent the aggregate grant date fair value for stock awards granted to our non-employee directors in 2019, measured in accordance with ASC 718, excluding the effect of estimated forfeitures, and do not reflect whether the recipient has actually realized a financial benefit from these awards. For the methodology of how the aggregate grant date fair value amount is calculated, please see Note 13 of the Notes to Consolidated Financial Statements included in this Form 10-K. The aggregate number of shares subject to unvested restricted stock unit awards outstanding for each non-employee director at December 31, 2019 was: Mr. Hill: 5,889; Ms. Antonellis: 5,889; Mr. Habiger: 5,889; Ms. Molina: 5,889; Mr. Riedel: 5,889 and Mr. Seams: 5,889. None of the non-employee directors held any stock options as of December 31, 2019.\nQUESTION: How much are the total compensations for Richard S. Hill and Christopher A. Seams, respectively?\nThis is a fresh re-solution. Recompute YOUR requested answer from the source; do not assume a prior draft was correct.\nRecheck this output using the same source. No new verified correction is available. Revise only when justified.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 872832,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "f09a50cecc61292c6ef6aed82f75fff238e3c38cae113fb6fbc9a0e346ac2ad5",
+  "status": "ok"
+}

@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c04_r1_q04_initial",
+      "elapsed_seconds": 2.751669473014772,
+      "request_sha256": "5fa11cc7d83d02d63b28cc81109b67656962d586eeca5f91dfa242c87abf54be",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\":[[\"T8C3\", \"T8C2\", \"P1\"], [\"T8C4\", \"T8C3\", \"P1\"]], \"operation\":\"difference\", \"derivation\":\"The change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019 is calculated by subtracting the 2018 value from the 2019 value.\", \"answer\":[73.1, 74.0, \"=(T8C2-T8C3)\"], \"scale\":\"million shares\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789188801,
+        "id": "chatcmpl-888952eaaada4f8fac474d5514cd7d32",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 131,
+          "prompt_tokens": 710,
+          "prompt_tokens_details": null,
+          "total_tokens": 841
+        }
+      },
+      "started_utc": "2026-09-12T04:53:20.905724+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c04_r1_q04_initial",
+  "input_tokens": 710,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  | 2019 | 2018 | 2017 |\n| T1 | EARNINGS PER SHARE |  |  |  |\n| T2 | Net profit/(loss) for the year (USDm) | 166.0 | -34.8 | 2.4 |\n| T3 | Million shares |  |  |  |\n| T4 | Weighted average number of shares | 74.3 | 73.4 | 62.3 |\n| T5 | Weighted average number of treasury shares | -0.3 | -0.3 | -0.3 |\n| T6 | Weighted average number of shares outstanding | 74.0 | 73.1 | 62.0 |\n| T7 | Dilutive effect of outstanding share options | 0.0 | - | - |\n| T8 | Weighted average number of shares outstanding incl. dilutive effect of share options | 74.0 | 73.1 | 62.0 |\n| T9 | Basic earnings/(loss) per share (USD) | 2.24 | -0.48 | 0.04 |\n| T10 | Diluted earnings/(loss) per share (USD) | 2.24 | -0.48 | 0.04 |\nP1: NOTE 26 – EARNINGS PER SHARE AND DIVIDEND PER SHARE\nP2: When calculating diluted earnings per share for 2018 and 2017, RSUs have been omitted as they are out-of-the-money and thus anti-dilutive, but the RSUs may potentially dilute earnings per share in the future. Please refer to note 3 for information on the RSU share options.\nQUESTION: What was the change in the Weighted average number of shares outstanding incl. dilutive effect of share options from 2018 to 2019?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 861414,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "5fa11cc7d83d02d63b28cc81109b67656962d586eeca5f91dfa242c87abf54be",
+  "status": "ok"
+}

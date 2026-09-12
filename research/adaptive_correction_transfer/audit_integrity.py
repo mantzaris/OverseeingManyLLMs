@@ -26,6 +26,7 @@ def audit(partial=False):
     if p.exists():rs[method]=read(p)
     elif not partial:raise AssertionError('Missing '+str(p))
    if len(rs)!=len(m['methods']):continue
+   assert rs['adaptive']['events'][0]['inspected']==rs['fixed_audit']['events'][0]['inspected'];assert rs['adaptive']['events'][0]['recipients']==rs['fixed_audit']['events'][0]['recipients']
    fixed=['individual','memory','source_rule','fixed_audit','reattempt'];seqs=[[e['inspected'] for e in rs[k]['events']] for k in fixed];assert all(s==seqs[0] for s in seqs)
    disclosure=[[e['disclosure'] for e in rs[k]['events']] for k in fixed];assert all(s==disclosure[0] for s in disclosure)
    assert [e['recipients'] for e in rs['source_rule']['events']]==[e['recipients'] for e in rs['reattempt']['events']]

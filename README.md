@@ -191,3 +191,14 @@ Generated-query agreement reduced questions but increased mismatched releases.
 Source recovery and targeted clarification remain the supported default; source
 integrity and candidate coverage limitations are explicit. The existing submission
 and all earlier experiments remain unchanged.
+
+## Adaptive correction transfer exploration
+
+The separate [adaptive correction-transfer package](research/adaptive_correction_transfer/README.md) tests whether one inspected TAT-QA answer can improve related outputs under a two-inspection budget. The frozen comparison covers 24 new source contexts and two generation replicas. Adaptive acquisition obtains 156/288 correct answers, versus 162/288 for fixed acquisition and 170/288 for risk-only individual correction. Its primary difference is -2.08 percentage points, with a paired 95% interval [-4.86, 0.35]. Final never-inspected answers include 14 additional repairs and 21 new errors. The result does not establish an adaptive advantage.
+
+The [report](research/adaptive_correction_transfer/REPORT.md), [four-page illustrated note](paper/adaptive_correction_transfer/main.pdf), local inspection desk, raw GPU continuations and saved-output replay retain helpful and harmful transfers. Financial source material is real, questions are human-written benchmark tasks, and annotation-based supervision is simulated. Historical manuscript sources and experiments remain intact.
+
+```bash
+bash research/adaptive_correction_transfer/reproduce.sh
+python3 -m research.adaptive_correction_transfer.prototype.server --port 9034
+```

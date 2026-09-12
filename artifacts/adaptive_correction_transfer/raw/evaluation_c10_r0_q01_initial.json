@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c10_r0_q01_initial",
+      "elapsed_seconds": 1.435338707990013,
+      "request_sha256": "9c9e9afcc9d0c5737fba31314f83224468e2c939aa69bb57af281af3b1a3cd12",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\"evidence\": [\"P3\"], \"operation\": \"other\", \"derivation\": \"The passage states that deferred software and deferred subscription-based service performance obligations are anticipated to be recognized over the useful life or service periods of one to eighteen months.\", \"answer\": [\"one to eighteen months\"], \"scale\": \"\"}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789189476,
+        "id": "chatcmpl-f4c59baaab804867ae0e86628b3258ad",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 65,
+          "prompt_tokens": 599,
+          "prompt_tokens_details": null,
+          "total_tokens": 664
+        }
+      },
+      "started_utc": "2026-09-12T05:04:36.295219+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c10_r0_q01_initial",
+  "input_tokens": 599,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 |\n|---|---|---|---|---|\n| T0 |  |  | December 31, |  |\n| T1 |  | 2019 | 2018 | 2017 |\n| T2 | Beginning balances | $36,836 | $42,432 | $49,904 |\n| T3 | Deferral of revenue | 45,040 | 40,003 | 46,193 |\n| T4 | Recognition of deferred revenue | (41,034) | (45,599) | (53,665) |\n| T5 | Ending balances | $40,842 | $36,836 | $42,432 |\nP1: 5. Balance Sheet Components\nP2: Deferred Revenue\nP3: Deferred revenue relates to performance obligations for which payments have been received by the customer prior to revenue recognition. Deferred revenue primarily consists of deferred software, or amounts allocated to mobile dashboard and on-line apps and unspecified upgrade rights. Deferred revenue also includes deferred subscription-based services. The deferred software and deferred subscription-based service performance obligations are anticipated to be recognized over the useful life or service periods of one to eighteen months.\nP4: Changes in the total short-term and long-term deferred revenue balance were as follows (in thousands):\nQUESTION: What is the anticipated duration of useful life for the deferred software and deferred subscription-based service performance obligations to be recognised?",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 862001,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "9c9e9afcc9d0c5737fba31314f83224468e2c939aa69bb57af281af3b1a3cd12",
+  "status": "ok"
+}

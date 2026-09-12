@@ -1,0 +1,72 @@
+{
+  "attempts": [
+    {
+      "attempt": 1,
+      "call_id": "evaluation_c07_r1_fixed_audit_s1_q00",
+      "elapsed_seconds": 1.8471340129617602,
+      "request_sha256": "14bc3f434e26bd7dbb4c837a39858e4d2e261574ea875d318940befe4f5c9aa0",
+      "response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "logprobs": null,
+            "message": {
+              "annotations": null,
+              "audio": null,
+              "content": "{\n  \"answer\": [\"using valuation techniques that maximize the use of observable market data and rely as little as possible on entity specific estimates\"],\n  \"scale\": \"\",\n  \"evidence\": [\"P6\"],\n  \"operation\": \"description\",\n  \"derivation\": \"According to the passage, the fair value of financial instruments not traded in active markets is determined using valuation techniques that prioritize observable market data.\"\n}",
+              "function_call": null,
+              "reasoning_content": null,
+              "refusal": null,
+              "role": "assistant",
+              "tool_calls": []
+            },
+            "stop_reason": null,
+            "token_ids": null
+          }
+        ],
+        "created": 1789189203,
+        "id": "chatcmpl-31dc73e64b42469c806bf36de00e54a9",
+        "kv_transfer_params": null,
+        "model": "Qwen/Qwen2.5-7B-Instruct",
+        "object": "chat.completion",
+        "prompt_logprobs": null,
+        "prompt_token_ids": null,
+        "service_tier": null,
+        "system_fingerprint": null,
+        "usage": {
+          "completion_tokens": 84,
+          "prompt_tokens": 1329,
+          "prompt_tokens_details": null,
+          "total_tokens": 1413
+        }
+      },
+      "started_utc": "2026-09-12T05:00:03.317393+00:00",
+      "status": "ok"
+    }
+  ],
+  "call_id": "evaluation_c07_r1_fixed_audit_s1_q00",
+  "input_tokens": 1329,
+  "request": {
+    "max_tokens": 288,
+    "messages": [
+      {
+        "content": "Answer the financial question from the supplied table and paragraphs. Return JSON with evidence (cell IDs like T2C1 or paragraph IDs P1), operation, brief derivation, answer (list of values/spans), and scale. Reason from relevant row labels and periods before the answer; do not combine unrelated rows. For 'which year' return a year; for 'how' return the requested description.\nScale must be \"\", \"thousand\", \"million\", \"billion\", or \"percent\". Read units from source headings and text. Preserve the source scale for amounts. Ratios reported as percentages use percent, regardless of currency units; a source percentage is already in percent. For arithmetic, answer may contain an expression starting with '=', e.g. [\"=(12-9)/9*100\"]. A calculator evaluates it and rounds to two decimals. Otherwise give the final answer. Do not copy these example numbers. Operation: lookup, sum, difference, average, ratio, count, or other. Derivation under 35 words. If unsupported, answer:[] with an explanation. No text outside JSON.",
+        "role": "system"
+      },
+      {
+        "content": "TABLE: C0 contains row labels; cite cells as T<row>C<column>.\n| row | C0 | C1 | C2 | C3 | C4 |\n|---|---|---|---|---|---|\n| T0 |  | Level 1 | Level 2 | Level 3 | Total |\n| T1 |  | RMB’Million | RMB’Million | RMB’Million | RMB’Million |\n| T2 | As at 31 December 2019 |  |  |  |  |\n| T3 | FVPL | 14,766 | 5,091 | 116,079 | 135,936 |\n| T4 | FVOCI | 74,707 | – | 7,014 | 81,721 |\n| T5 | OFA | – | 375 | – | 375 |\n| T6 | Other financial liabilities | – | 523 | 1,873 | 2,396 |\n| T7 | As at 31 December 2018 |  |  |  |  |\n| T8 | FVPL | 10,875 | 5,009 | 81,993 | 97,877 |\n| T9 | FVOCI | 41,578 | – | 1,941 | 43,519 |\n| T10 | OFA | – | 2,032 | – | 2,032 |\n| T11 | Other financial liabilities | – | 40 | 4,466 | 4,506 |\nP1: 3.3 Fair value estimation The table below analyses the Group’s financial instruments carried at fair value as at 31 December 2019 by level of the inputs to valuation techniques used to measure fair value. Such inputs are categorised into three levels within a fair value hierarchy as follows:\nP2: Quoted prices (unadjusted) in active markets for identical assets or liabilities (level 1);\nP3: Inputs other than quoted prices included within level 1 that are observable for the asset or liability, either directly (that is, as prices) or indirectly (that is, derived from prices) (level 2); and\nP4: Inputs for the asset or liability that are not based on observable market data (that is, unobservable inputs) (level 3).\nP5: The fair value of financial instruments traded in active markets is determined with reference to quoted market prices at the end of the reporting period. A market is regarded as active if quoted prices are readily and regularly available from an exchange, dealer, broker, industry group, pricing service, or regulatory agency, and those prices represent actual and regularly occurring market transactions on an arm’s length basis. These instruments are included in level 1.\nP6: The fair value of financial instruments that are not traded in an active market is determined by using valuation techniques. These valuation techniques maximise the use of observable market data where it is available and rely as little as possible on entity specific estimates. If all significant inputs required for evaluating the fair value of a financial instrument are observable, the instrument is included in level 2.\nP7: If one or more of the significant inputs are not based on observable market data, the instrument is included in level 3.\nP8: Specific valuation techniques used to value financial instruments mainly include: • Dealer quotes for similar instruments; • The fair value of interest rate swaps is calculated as the present value of the estimated future cash flows based on observable yield curves; and • Other techniques, such as discounted cash flow analysis, are used to determine fair value for financial instruments.\nQUESTION: How is the fair value of financial instruments that are not traded in active markets determined?\nThis is a fresh re-solution. Recompute YOUR requested answer from the source; do not assume a prior draft was correct.\nVERIFIED INSPECTIONS (only these questions were inspected; explanations beyond the annotation are not certified):\nPrevious answer: {'answer': ['3891'], 'scale': 'million'}\nQuestion: How much did the level 1 FVPL change by from 2018 year end to 2019 year end?\nAnswer: 3891; scale: million; annotated derivation: 14,766-10,875\nPrevious answer: {'answer': ['33129'], 'scale': 'million'}\nQuestion: How much did the level 1 FVOCI change by from 2018 year end to 2019 year end?\nAnswer: 33129; scale: million; annotated derivation: 74,707-41,578\nThese records apply directly only to their stated questions and context. Recheck relevant evidence for YOUR distinct question; preserve different periods, entities and ratio scales. You may retain your answer when the correction does not apply.",
+        "role": "user"
+      }
+    ],
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "response_format": {
+      "type": "json_object"
+    },
+    "seed": 871740,
+    "temperature": 0.3,
+    "top_p": 1.0
+  },
+  "request_sha256": "14bc3f434e26bd7dbb4c837a39858e4d2e261574ea875d318940befe4f5c9aa0",
+  "status": "ok"
+}
