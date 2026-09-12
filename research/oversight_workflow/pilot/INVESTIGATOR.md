@@ -1,0 +1,133 @@
+# Investigator launch, collection boundary and neutral facilitation
+
+## Before anyone participates
+
+No institutional approval/determination, approved consent text, or genuine
+participant export was found in the inspected workflow materials. The existing
+protocol is prospective. This preparation stage authorized neither recruitment
+nor collection. Alex can inspect the **investigator-practice** preview now.
+
+Before a genuine pilot, the responsible investigator must complete and document:
+
+1. The applicable institutional human-subjects determination and any required
+   approval, covering this task, logs, questionnaires, withdrawal and storage.
+   Neither Codex nor a local JSON file provides that determination.
+2. Approved/authorized participant information and consent materials, with purpose,
+   procedure, voluntary participation, discomfort/fatigue, recording details,
+   confidentiality, retention/access, contacts and the applicable withdrawal/data
+   deletion process. The text below is task instruction, **not approved consent**.
+3. Investigator, eligibility/expertise expectations, accessibility arrangements,
+   compensation if any, duration allowance and a small initial formative tranche.
+   Do not describe its size as powered. A six-run balanced assignment example is
+   supplied; the investigator chooses a tranche within the authorized plan.
+4. A pseudonymous code list and assignment schedule prepared before outcomes.
+   For six runs, 0,3,7,11,13,17 cover both interface orders, all S positions, and
+   balanced condition/packet and position/packet counts. Avoid rerunning a person
+   on previously seen sources; a second run is a protocol deviation, not a new
+   independent observation.
+5. The exact repository commit, `formative-v1`, manifest hash and browser/display
+   configuration. Verify on the actual workstation. Freeze features and answers
+   during collection. Any change following observations gets a new version and
+   development boundary, with older exports retained separately.
+6. A private, backed-up local recording directory, consent storage separate from
+   task logs, and a documented handling rule for partial sessions, interruptions,
+   withdrawals and optional item nonresponse. Never commit participant exports to
+   the public repository by default. Free-text notes can contain identifying data.
+7. A blinded adjudication plan. Keep source-based adjudicators blind to condition,
+   participant and official score, mix all released answers, retain reasons and
+   uncertainty, and preserve original official scoring. Decide rater/disagreement
+   handling before collecting; this stage supplies no human adjudications.
+
+## Run the preview
+
+From a clean checkout, use the parent package's requirements/environment:
+
+```bash
+python3 -m research.oversight_workflow.pilot.server --port 9042 \
+  --log-dir /tmp/oversight-pilot-practice
+```
+
+Open http://127.0.0.1:9042. Enter a practice code and assignment. The setup view
+runs training, assigned blocks and forms in order; no configuration-file editing
+is needed between blocks. Each block has a visible timer and common calculator.
+Download the identified package at the end. A new practice code can start the
+next completed run. End/withdraw an active run explicitly first.
+
+For practice, do not fill questionnaires as if they were independent participant
+evidence. Alex's observations are investigator practice. Do not supply the blank
+software-fixture form as an actual questionnaire response.
+
+## Future authorized collection
+
+After the listed external requirements are satisfied, an investigator may create a
+private authorization record using the institution's actual information. Required
+fields: `institutional_determination`, `consent_version`, `investigator`,
+`record_reference`, and boolean `collection_authorized: true`. The record is copied
+into export provenance. Do not put personal contact information or consent files
+in the public repository. The server checks presence, not institutional legitimacy.
+
+```bash
+python3 -m research.oversight_workflow.pilot.server --port 9042 \
+  --kind participant --authorization /private/path/authorization.json \
+  --log-dir /private/path/pilot-records
+```
+
+This is a reproduction instruction for **future authorized use**, not permission
+to collect now. Keep the server on loopback; the study is run locally at one desk.
+Run only one active participant per process. Browser refresh reconnects to the
+current block. The clock continues through connection loss. If the server process
+fails, preserve its `.pilot.json` active export and journals, mark the run incomplete
+and do not silently restart the same participant's scored block. The prototype
+is not a distributed, crash-atomic collection service.
+
+## Neutral facilitator script
+
+Before training, after the applicable consent procedure:
+
+> We are testing these tasks and interfaces, not your financial expertise. The
+> answers were generated by a model and may be wrong or missing. Use the original
+> source to decide what you would release. Neither interface is expected to be
+> better. You may correct, reject or defer. Please do not use another assistant or
+> external search. Tell me if something is unclear or technically broken.
+
+Demonstrate controls using only the separate training source. Ask the person to:
+open and read the source, use the calculator, save a note, defer and resume it,
+enter or approve an answer, then locate the **separate release** action. Show C's
+optional grouping and pause/resume. Each question keeps its own decision.
+Check verbally: approval of one version does not approve a future revision;
+rejection blocks an answer and does not count as a correct completion. Explain
+controls again if needed. Record training difficulty; do not exclude people because
+they struggle with financial calculations unless the authorized eligibility rule
+already specifies the relevant requirement.
+
+Before each scored block:
+
+> The instructions on screen explain this block. Work at a comfortable pace within
+> the timer. Not finishing everything is acceptable and will remain recorded.
+> I can resolve a technical problem, but cannot help choose scored answers.
+
+After each block: offer the form and a short break. Do not suggest a preferred
+rating. Record interruptions or assistance in the facilitator log. Let missing
+questionnaire items remain missing. A block may end early, but the record includes
+all offered tasks. Do not delete low-performing or incomplete blocks.
+
+At the end, ask neutrally:
+
+- Which parts required solving the question from scratch?
+- Did a generated answer or explanation help, hinder or make no difference? Why?
+- What happened when you deferred and returned to work?
+- When did you use source sessions or pause controls, if at all?
+- Were any questions, source units or percentage calculations unclear?
+
+Do not interpret these answers as quantitative workload scores. Record verbatim
+notes only as permitted by the authorized collection plan.
+
+## Facilitator recording form
+
+Use a private CSV/text record with: code, run ID, assignment, pilot commit/hash,
+date, browser/display, financial-table familiarity, LLM familiarity, quantitative
+training (self-described optional), relevant accessibility arrangements, consent
+record reference, training difficulties, block start/end, break durations,
+technical interruptions, assistance, withdrawal, deviations and neutral exit notes.
+The app captures task interactions and forms; the investigator supplies this
+context. Do not infer consent from a successful software run.

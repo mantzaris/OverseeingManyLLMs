@@ -1,0 +1,1 @@
+Software-test harness checked the iframe before its state variable existed, causing a ReferenceError in the test expression. Application continued and retained the offered training tasks. Exported and explicitly withdrawn as an interrupted software fixture. The harness now waits for variable initialization before testing task readiness. No participant or questionnaire evidence.

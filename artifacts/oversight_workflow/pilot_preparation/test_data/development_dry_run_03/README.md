@@ -1,0 +1,1 @@
+Passing dry run before the end-screen gap was noticed: setup for the next investigator run was not exposed. Current pilot adds that control. Task manifest and review protocol unchanged. Software fixture, not participant evidence.

@@ -168,3 +168,13 @@ old-source questions specified in the training file and actual pilot answers.
 An explicitly labeled same-answer/new-version fixture demonstrates why a prior
 approval cannot release a revised artifact. The first question is explanatory;
 the second is a direct table lookup. Use the same facilitator script in B and C.
+
+
+## Prepared formative specialization
+
+The separately versioned [formative pilot](pilot/PROTOCOL.md) is the immediate
+collection preparation, with B/C, a disjoint source-only diagnostic, shorter blocks,
+source-definition overlap checks, task-feasibility audit and participant-level
+descriptive analysis. The broader design above remains prospective. No approval,
+consent or participant findings were added by preparation. See the
+[investigator checklist](pilot/INVESTIGATOR.md) before any collection.

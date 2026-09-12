@@ -1,0 +1,1 @@
+Passing 40-check software dry run before adding the raw-response expansion check. Original model JSON is now accessible for optional fields that contain useful text, without promoting them to an answer. Source-only view never receives a proposal. Manifest and protocol unchanged.

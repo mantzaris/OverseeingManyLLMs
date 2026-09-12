@@ -10,6 +10,15 @@ This is the active ICAART paper direction. [REPORT.md](REPORT.md) describes the
 supported systems contribution and its limits. The [conference draft](../../paper/oversight_workflow/main.pdf)
 is separate from every historical manuscript. Human effectiveness is unmeasured.
 
+## Formative B/C pilot preparation
+
+The [pilot package](pilot/README.md) adds investigator setup, compact counterbalanced
+packets, a source-only feasibility check, calculator, forms and offline analysis.
+Its [answer audit](pilot/AUDIT.md) preserves the low historical scores and diagnoses
+why task feasibility needs testing. No participant observations are supplied.
+Use this package for the next investigator preview; institutional determination
+and consent preparation remain necessary before collection.
+
 ## Quick start: no inference
 
 From the repository root:
