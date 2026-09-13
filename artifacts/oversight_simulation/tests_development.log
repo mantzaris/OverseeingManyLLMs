@@ -1,0 +1,43 @@
+test_accounting_cutoff_and_partial_work (research.oversight_simulation.tests.test_simulation.SimulationTests) ... ok
+test_cutoff_equality_and_version_release (research.oversight_simulation.tests.test_simulation.SimulationTests) ... ok
+test_equal_information_and_no_future_or_labels_in_selector (research.oversight_simulation.tests.test_simulation.SimulationTests) ... ok
+test_failure_deferral_retains_original_and_does_not_release (research.oversight_simulation.tests.test_simulation.SimulationTests) ... FAIL
+test_full_engine_replay_and_reproducibility (research.oversight_simulation.tests.test_simulation.SimulationTests) ... FAIL
+test_no_questionnaires_or_human_schema (research.oversight_simulation.tests.test_simulation.SimulationTests) ... ok
+test_real_inputs_original_schedule_and_no_duplicate_goals (research.oversight_simulation.tests.test_simulation.SimulationTests) ... ok
+test_shared_familiarity_and_zero_cost_equivalence (research.oversight_simulation.tests.test_simulation.SimulationTests) ... FAIL
+
+======================================================================
+FAIL: test_failure_deferral_retains_original_and_does_not_release (research.oversight_simulation.tests.test_simulation.SimulationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_simulation/tests/test_simulation.py", line 58, in test_failure_deferral_retains_original_and_does_not_release
+    self.assertEqual(replay_trace(t,items,self.inputs['sources'],'M',True),t['final_state_sha256'])
+AssertionError: '176528cf7d88f38d4d3039436be8b4c4da22f0ca9b6965669ebaf089b66cb7fe' != '13a8fdbb9df87d2895f554231d0cb44ef1e4d76e5564e50bf9d827c339a039e1'
+- 176528cf7d88f38d4d3039436be8b4c4da22f0ca9b6965669ebaf089b66cb7fe
++ 13a8fdbb9df87d2895f554231d0cb44ef1e4d76e5564e50bf9d827c339a039e1
+
+
+======================================================================
+FAIL: test_full_engine_replay_and_reproducibility (research.oversight_simulation.tests.test_simulation.SimulationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_simulation/tests/test_simulation.py", line 51, in test_full_engine_replay_and_reproducibility
+    self.assertEqual(t['final_state_sha256'],replay_trace(t,items,self.inputs['sources'],pol,True))
+AssertionError: '7489acd2a219899db30caa3e22d920743dc1d1539251451e5fed7030d387677e' != '31724f479b40a5f4acd3a09a57ca7db8c128c3b023432b84bedb029a63326dfa'
+- 7489acd2a219899db30caa3e22d920743dc1d1539251451e5fed7030d387677e
++ 31724f479b40a5f4acd3a09a57ca7db8c128c3b023432b84bedb029a63326dfa
+
+
+======================================================================
+FAIL: test_shared_familiarity_and_zero_cost_equivalence (research.oversight_simulation.tests.test_simulation.SimulationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/resort/Documents/repos/OverseeingManyLLMs/research/oversight_simulation/tests/test_simulation.py", line 41, in test_shared_familiarity_and_zero_cost_equivalence
+    item=items[0];self.assertGreater(orientation_time(item,0,{},0,c),orientation_time(item,10,{item['source_id']:(10,1)},1,c))
+AssertionError: 0.0 not greater than 0.0
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.407s
+
+FAILED (failures=3)
