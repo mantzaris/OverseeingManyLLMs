@@ -54,9 +54,9 @@ an authorization JSON as approval. Before actual participant use, resolve:
   are unresolved here; reuse valid existing coverage if it is supplied.
 - **Population:** eligible participants, required source/numeracy familiarity and
   prior exposure exclusions. No population or participant commitments are invented.
-- **Tranche and schedule:** decide whether this is standalone feasibility or part
-  of a larger predetermined collection. Fix size, assignment order and stopping/
-  missingness arrangements before outcomes. Do not extend or stop for effect direction.
+- **Tranche and schedule:** standalone feasibility is selected. Fix its size,
+  assignment order and stopping/missingness arrangements before outcomes. Do not
+  extend or stop for effect direction.
 - **Adjudication:** name actual source-qualified raters and disagreement handling,
   with blinding and official scores preserved. No additional judgments exist here.
 - **Storage and withdrawal:** choose actual private export/identity/consent locations,
@@ -65,12 +65,17 @@ an authorization JSON as approval. Before actual participant use, resolve:
 
 ## Concrete scheduling option, not yet registered
 
-The existing balanced six-assignment cycle is a feasible **scheduling option**.
-It is not a powered sample, agreed tranche, recruitment commitment or registration.
-It may be selected for standalone feasibility; if collection belongs to a larger
-study, the total design and sample/stopping rules must be predetermined first.
-Study purpose, actual tranche size, investigator, authorization/consent references,
-private code mapping and registration date remain **unresolved**.
+The user selected a **standalone feasibility study** in this Codex session. Its
+purpose is to identify task/interface problems, review strategies and preliminary
+paired outcome variability. It is not a powered effectiveness study or a tranche
+implicitly pooled into a later larger study. This purpose decision neither
+authorizes participant collection nor registers the schedule.
+
+The existing balanced six-assignment cycle remains a proposed **scheduling option**.
+Six participants have not been agreed or committed. Actual tranche size, investigator,
+authorization/consent references, private code mapping and registration date remain
+**unresolved**. A later effectiveness study would need its own predetermined design
+and sampling justification; feasibility outcomes must remain identifiable.
 
 | Proposed slot | Assignment ID | First block | Second block | Third block |
 |---|---:|---|---|---|
